@@ -1,0 +1,46 @@
+form {
+    max-width: 500px;
+    border: 2px solid black;
+    border-radius: 10%;
+    box-shadow: 0 0 10px grey;
+}
+
+form:invalid {
+    border-color: red;
+}
+
+form:valid {
+    border-color: green;
+}
+
+fieldset {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+}
+
+fieldset:invalid {
+    color: red;
+    border-color: red;
+}
+
+fieldset:valid {
+    color:green;
+    border-color:green;
+}
+
+input {
+    margin: 10px;
+    padding: 0 10px;
+    outline-offset: 5px;
+    width: 90%;
+}
+
+legend {
+    text-align: left;
+}
+
+select {
+    padding: 0 10px;
+    outline-offset: 5px;
+}
