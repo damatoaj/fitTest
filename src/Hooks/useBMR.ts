@@ -1,59 +1,110 @@
-import { useState, useMemo, ChangeEvent } from 'react';
+import { useState, ChangeEventHandler, MouseEventHandler, ChangeEvent, FormEventHandler, FormEvent} from 'react';
+import { calculateMicros } from '../Functions/calculateMicros';
+import { calculateMacros } from '../Functions/calcuateMacros';
+import { Micros, Macros } from '../interfaces';
 
+type Demographics = {
+    sex: string,
+    age: number,
+    height: number,
+    weight: number,
+    activityLevel: string,
+    goal: string
+};
 const useBMR = () => {
-    const [data, setData] = useState({
+    const [data, setData] = useState<Demographics>({
         sex: 'female',
         age: 0,
         height: 0,
         weight: 0,
-        activityLevel: 'moderately activity'
+        activityLevel: 'moderate activity',
+        goal: 'maintain'
     });
 
-    const kg = data.weight / 2.2;
-    const cm = data.height * 2.54;
+    const [viewResults, setViewResults] = useState<boolean>(false);
 
-    const bmr = useMemo(()=> {
-        let raw =  66 + (14 * kg) + (5 * cm) - (7 * data.age);
+    const kg : number = data.weight / 2.2;
+    const cm : number = data.height * 2.54;
 
-        if (data.sex === 'male') {
-            if(data.activityLevel === 'sedentary') return raw * 1.2;
-            if(data.activityLevel === 'light activity') return raw * 1.375;
-            if(data.activityLevel === 'moderately active') return raw * 1.55;
-            if(data.activityLevel === 'very active') return raw * 1.725;
-            if(data.activityLevel === 'extra active') return raw * 1.9;
-        };
+    const [macros, setMacros] = useState<Macros>({
+        totalCalories: 0,
+        carbs: {
+            minGrams: 0,
+            maxGrams: 0,
+            minCal: 0,
+            maxCal: 0
+        },
+        protein: {
+            minGrams: 0,
+            maxGrams: 0,
+            minCal: 0,
+            maxCal: 0
+        }
+    });
+    const [micros, setMicros] = useState<Micros>({
+        fiber : { amount: 0, unit: 'grams'},
+        vitaminA : { amount: 0, unit: 'micrograms'},
+        vitaminD : { amount: 0, unit: 'micrograms'},
+        vitaminE : { amount: 0, unit: 'milligrams'},
+        vitaminK : { amount: 0, unit: 'micrograms'},
+        vitaminC : { amount: 0, unit: 'milligrams'},
+        vitaminB6 : { amount: 0, unit: 'milligrams'},
+        vitaminB12 : { amount: 0, unit: 'milligrams'},
+        folate : { amount: 0, unit: 'micrograms'},
+        riboflavin : { amount: 0, unit: 'milligrams'},
+        calcium : { amount: 0, unit: 'milligrams'},
+        iodine : { amount: 0, unit: 'micrograms'},
+        chromium : { amount: 0, unit: 'micrograms'},
+        iron : { amount: 0, unit: 'milligrams'},
+        magnesium : { amount: 0, unit: 'milligrams'},
+        selenium : { amount: 0, unit: 'micrograms'},
+        zinc : { amount: 0, unit: 'milligrams'}
+    });
 
-        raw = 655 + (9.6 * kg) + (1.85 * cm) - (4.7 * data.age);
-        if(data.activityLevel === 'sedentary') return raw * 1.2;
-        if(data.activityLevel === 'light activity') return raw * 1.375;
-        if(data.activityLevel === 'moderately active') return raw * 1.55;
-        if(data.activityLevel === 'very active') return raw * 1.725;
-        if(data.activityLevel === 'extra active') return raw * 1.9;
-    }, [data, kg, cm])
-
-    const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
+    const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]: e.target.value}
         })
     };
 
-    const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleSelect : ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]:e.target.value}
         })
     };
 
-    const handleReset = () => {
+    const handleReset : MouseEventHandler = () => {
         setData(()=> { return {
-            sex: 'male',
+            sex: 'female',
             age: 0,
             height: 0,
             weight: 0,
-            activityLevel: ''
+            activityLevel: 'moderately active',
+            goal: 'maintain'
         }}) 
+    };
+
+    const handleSubmit : FormEventHandler<HTMLFormElement>= (e:FormEvent) => {
+        e.preventDefault();
+        if (data.age < 18 || data.weight < 50 || data.height < 36) return
+        setMacros(calculateMacros(data.sex, data.age, kg, cm, data.activityLevel, data.goal));
+        setMicros(calculateMicros(data.sex, data.age));
+        setViewResults(true)
+    };
+
+    const newForm : MouseEventHandler = () => {
+        setData(()=> { return {
+            sex: 'female',
+            age: 0,
+            height: 0,
+            weight: 0,
+            activityLevel: 'moderately active',
+            goal: 'maintain'
+        }}) 
+        setViewResults(false);
     }
 
-    return { data, bmr, handleChange, handleSelect, handleReset}
+    return { data, macros, micros, handleChange, handleSelect, handleReset, handleSubmit, viewResults, newForm}
 };
 
 export default useBMR;

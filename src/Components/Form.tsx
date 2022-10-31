@@ -1,32 +1,44 @@
-import React from 'react';
-import useBMR from '../Hooks/useBMR';
+import { useRef, memo, ChangeEventHandler, FormEventHandler, MouseEventHandler } from 'react';
 import './Form.css'
-const Form = () => {
-    const { data, handleChange, handleReset, handleSelect} = useBMR();
 
+type FormProps = {
+    handleChange: ChangeEventHandler<HTMLInputElement>,
+    handleReset: MouseEventHandler<HTMLButtonElement>,
+    handleSelect: ChangeEventHandler<HTMLSelectElement>,
+    handleSubmit: FormEventHandler<HTMLFormElement>
+}
+const Form = (props:FormProps) => {
+    const form = useRef<HTMLFormElement | null>(null);
+    let valid = true;
+    if(form.current && form.current !== null) {
+        valid = form.current.checkValidity();
+        console.log(valid, '<--- falid')
+    }
     return (
-        <form>
-            <h1>Calculate Your Basal Metabolic Rate</h1>
+        <form
+            onSubmit={props.handleSubmit}
+            ref={form}
+        >
+            <h2>Calculate Your Basal Metabolic Rate</h2>
             <fieldset>
                 <legend>Sex</legend>
                 <select 
                     name='sex'
-                    onChange={handleSelect}
-                    value={data.sex}
+                    onChange={props.handleSelect}
+                    defaultValue={'female'}
                 >
-                    <option>Female</option>
-                    <option>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='male'>Male</option>
                 </select>
             </fieldset>
             <fieldset>
                 <legend>Age</legend>
                 <input 
                     type='number' 
-                    onChange={handleChange}
+                    onChange={props.handleChange}
                     name='age'
                     min='18'
                     max='125'
-                    value={data.age}
                     required
                 />
             </fieldset>
@@ -35,22 +47,20 @@ const Form = () => {
                 <input 
                     type='number' 
                     name='height'
-                    onChange={handleChange}
+                    onChange={props.handleChange}
                     min='36'
                     max='96'
-                    value={data.height}
                     required
-                />
+            />
             </fieldset>
             <fieldset>
                 <legend>Goal Weight in Pounds</legend>
                 <input 
                     type='number' 
-                    onChange={handleChange}
+                    onChange={props.handleChange}
                     name='weight'
                     min='50'
                     max='400'
-                    value={data.weight}
                     required
                 />
             </fieldset>
@@ -58,20 +68,34 @@ const Form = () => {
                 <legend>Activity Level</legend>
                 <select 
                     name='activityLevel'
-                    onChange={handleSelect}
-                    value={data.activityLevel}
+                    onChange={props.handleSelect}
+                    defaultValue={'moderately active'}
                 >
                     <option value='sedentary'>Sedentary</option>
                     <option value='light activity'>Light Activity</option>
-                    <option value='moderately activity' selected>Moderately Active</option>
+                    <option value='moderately activity'>Moderately Active</option>
                     <option value='very active'>Very Active</option>
                     <option value='extra active'>Extra Active</option>
                 </select>
             </fieldset>
-            <button type='submit'>Submit</button>
-            <button type='button' onClick={handleReset}>Reset</button>
+            <fieldset>
+                <legend>Body Weight Goal</legend>
+                <select
+                    onChange={props.handleSelect}
+                    name='goal'
+                    defaultValue={'maintain'}
+                >
+                    <option value='maintain'>Maintain Current Size</option>
+                    <option value='increase'>Increase Muscle Mass</option>
+                    <option value='decrease'>Decrease Body Fat</option>
+                </select>
+            </fieldset>
+            <span>
+                <button type='submit' disabled={valid}>Submit</button>
+                <button type='reset' onClick={props.handleReset}>Reset</button>
+            </span>
         </form>
     )
 };
 
-export default Form;
+export default memo(Form);

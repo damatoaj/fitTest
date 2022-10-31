@@ -1,8 +1,12 @@
 form {
-    max-width: 500px;
+    max-width: 600px;
     border: 2px solid black;
     border-radius: 10%;
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 15px grey;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-top: 30px;
 }
 
 form:invalid {
@@ -29,6 +33,16 @@ fieldset:valid {
     border-color:green;
 }
 
+fieldset:focus-within {
+    color:blue;
+    border-color:blue;
+}
+
+fieldset:has(input:placeholder-shown){
+    color:black;
+    border-color:black;
+}
+
 input {
     margin: 10px;
     padding: 0 10px;
@@ -43,4 +57,45 @@ legend {
 select {
     padding: 0 10px;
     outline-offset: 5px;
+}
+
+span {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+span > button {
+    padding: 10px;
+    border-radius: 5%;
+}
+
+span > button[type = submit]:hover {
+    color: white;
+    background-color: green;
+}
+span > button[type = submit]:active {
+    color: white;
+    background-color: green;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 5px -2px grey;
+}
+
+span > button[type = submit]:disabled {
+    background-color: red;
+}
+
+span > button[type = submit]:disabled:hover {
+    color: white;
+    background-color: red;
+}
+
+span > button[type = reset]:hover {
+    background-color: yellow;
+}
+
+span > button[type = reset]:active {
+    background-color: yellow;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 5px -2px grey;
 }
