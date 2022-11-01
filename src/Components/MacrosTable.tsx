@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Macros } from '../interfaces';
 import './Table.css';
+
 type Props = {
     macros : Macros
 };
@@ -46,7 +47,7 @@ const MacrosTable = ({macros} : Props) => {
                     <td>{macros.protein.maxCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
                 </tr>
             </table>
-    )
+    );
 };
 
 export default memo(MacrosTable);

@@ -9,11 +9,10 @@ type FormProps = {
 }
 const Form = (props:FormProps) => {
     const form = useRef<HTMLFormElement | null>(null);
-    let valid = true;
+    let valid : boolean = false;
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity();
-        console.log(valid, '<--- falid')
-    }
+    };
     return (
         <form
             onSubmit={props.handleSubmit}
@@ -71,11 +70,36 @@ const Form = (props:FormProps) => {
                     onChange={props.handleSelect}
                     defaultValue={'moderately active'}
                 >
-                    <option value='sedentary'>Sedentary</option>
-                    <option value='light activity'>Light Activity</option>
-                    <option value='moderately activity'>Moderately Active</option>
-                    <option value='very active'>Very Active</option>
-                    <option value='extra active'>Extra Active</option>
+                    <option 
+                        title='Little or no exercise'
+                        value='sedentary'
+                    >
+                        Sedentary
+                    </option>
+                    <option 
+                        title='Light exercise/sports 1-3 days/week'
+                        value='light activity'
+                    >
+                        Light Activity
+                    </option>
+                    <option 
+                        title='Moderate exercise/sports 3-5 days/week'
+                        value='moderately activity'
+                    >
+                        Moderately Active
+                    </option>
+                    <option 
+                        title='Hard exercise/sports 6-7 days/week'
+                        value='very active'
+                    >
+                        Very Active
+                    </option>
+                    <option 
+                        title='Very hard exercise/sports and a physical job'
+                        value='extra active'
+                    >
+                        Extra Active    
+                    </option>
                 </select>
             </fieldset>
             <fieldset>
@@ -91,7 +115,7 @@ const Form = (props:FormProps) => {
                 </select>
             </fieldset>
             <span>
-                <button type='submit' disabled={valid}>Submit</button>
+                <button type='submit' disabled={!valid}>Submit</button>
                 <button type='reset' onClick={props.handleReset}>Reset</button>
             </span>
         </form>

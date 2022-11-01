@@ -1,9 +1,11 @@
 import {memo} from 'react';
 import {Micros} from '../interfaces';
 import './Table.css';
+
 type Props = {
     micros: Micros
-}
+};
+
 const MicrosTable = ({micros}:Props) => {
     return (
         <>
@@ -124,7 +126,7 @@ const MicrosTable = ({micros}:Props) => {
                 </tr>
             </table>
         </>
-    )
+    );
 };
 
 export default memo(MicrosTable);

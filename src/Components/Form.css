@@ -7,6 +7,7 @@ form {
     flex-direction: column;
     padding: 15px;
     margin-top: 30px;
+    background-color: whitesmoke;
 }
 
 form:invalid {
@@ -18,9 +19,8 @@ form:valid {
 }
 
 fieldset {
-    padding: 10px;
     margin-bottom: 10px;
-    width: 90%;
+    width: 100%;
 }
 
 fieldset:invalid {
@@ -44,10 +44,24 @@ fieldset:has(input:placeholder-shown){
 }
 
 input {
-    margin: 10px;
     padding: 0 10px;
     outline-offset: 5px;
-    width: 90%;
+    width: 100%;
+    background-color: whitesmoke;
+    border: none;
+    height:100%;
+}
+
+input:invalid {
+    border-bottom: 1px solid red;
+}
+
+input:valid {
+    border-bottom: 1px solid green;
+}
+
+input:focus {
+    border-bottom: none;
 }
 
 legend {
@@ -70,11 +84,11 @@ span > button {
     border-radius: 5%;
 }
 
-span > button[type = submit]:hover {
+span > button[type = submit]:enabled:hover {
     color: white;
     background-color: green;
 }
-span > button[type = submit]:active {
+span > button[type = submit]:enabled:active {
     color: white;
     background-color: green;
     transform: translateY(-5px);
@@ -82,12 +96,15 @@ span > button[type = submit]:active {
 }
 
 span > button[type = submit]:disabled {
-    background-color: red;
+    background-color: whitesmoke;
+    border: 1px solid red;
+    color: red;
 }
 
 span > button[type = submit]:disabled:hover {
     color: white;
     background-color: red;
+    cursor: not-allowed;
 }
 
 span > button[type = reset]:hover {
