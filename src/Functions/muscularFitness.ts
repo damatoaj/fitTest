@@ -212,9 +212,95 @@ const womenBenchPress = (pushed:number, bodyWeight:number, age:number) => {
     return 'very poor'
 };
 
+const menLegPress = (age:number, pushed:number, bodyWeight:number) => {
+    if (age < 20) throw new Error('Age is outside of accepted range');
+    const ratio = pushed / bodyWeight;
+    if (age <= 29) {
+        if (ratio >= 2.27) return 'Well above average';
+        if (ratio >= 2.05) return 'Well above average';
+        if (ratio >= 1.91) return 'Well above average';
+        if (ratio >= 1.74) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 39 && age >= 30) {
+        if (ratio >= 2.07) return 'Well above average';
+        if (ratio >= 1.85) return 'Well above average';
+        if (ratio >= 1.71) return 'Well above average';
+        if (ratio >= 1.59) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 49 && age >= 40) {
+        if (ratio >= 1.92) return 'Well above average';
+        if (ratio >= 1.74) return 'Well above average';
+        if (ratio >= 1.62) return 'Well above average';
+        if (ratio >= 1.51) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 59 && age >= 50) {
+        if (ratio >= 1.8) return 'Well above average';
+        if (ratio >= 1.64) return 'Well above average';
+        if (ratio >= 1.52) return 'Well above average';
+        if (ratio >= 1.39) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (ratio >= 1.73) return 'Well above average';
+    if (ratio >= 1.56) return 'Well above average';
+    if (ratio >= 1.43) return 'Well above average';
+    if (ratio >= 1.3) return 'Well above average';
+    return 'Well below average' 
+};
+
+const womenLegPress = (age:number, pushed:number, bodyWeight:number) => {
+    if (age < 20) throw new Error('Age is outside of accepted range');
+    const ratio = pushed / bodyWeight;
+    if (age <= 29) {
+        if (ratio >= 1.82) return 'Well above average';
+        if (ratio >= 1.58) return 'Well above average';
+        if (ratio >= 1.44) return 'Well above average';
+        if (ratio >= 1.27) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 39 && age >= 30) {
+        if (ratio >= 1.61) return 'Well above average';
+        if (ratio >= 1.39) return 'Well above average';
+        if (ratio >= 1.27) return 'Well above average';
+        if (ratio >= 1.15) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 49 && age >= 40) {
+        if (ratio >= 1.48) return 'Well above average';
+        if (ratio >= 1.29) return 'Well above average';
+        if (ratio >= 1.18) return 'Well above average';
+        if (ratio >= 1.08) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (age <= 59 && age >= 50) {
+        if (ratio >= 1.37) return 'Well above average';
+        if (ratio >= 1.17) return 'Well above average';
+        if (ratio >= 1.05) return 'Well above average';
+        if (ratio >= .95) return 'Well above average';
+        return 'Well below average'
+    };
+
+    if (ratio >= 1.32) return 'Well above average';
+    if (ratio >= 1.13) return 'Well above average';
+    if (ratio >= .99) return 'Well above average';
+    if (ratio >= .88) return 'Well above average';
+    return 'Well below average' 
+};
+
 export {
     menGripStrength,
     womenGripStrength,
     menBenchPress,
-    womenBenchPress
+    womenBenchPress,
+    menLegPress,
+    womenLegPress
 };
