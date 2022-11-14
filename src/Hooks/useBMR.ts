@@ -1,6 +1,6 @@
 import { useState, ChangeEventHandler, MouseEventHandler, ChangeEvent, FormEventHandler, FormEvent} from 'react';
-import { calculateMicros } from '../Functions/calculateMicros';
-import { calculateMacros } from '../Functions/calcuateMacros';
+import { calculateMicros } from '../Functions/Nutrition/calculateMicros';
+import { calculateMacros } from '../Functions/Nutrition/calcuateMacros';
 import { Micros, Macros } from '../interfaces';
 
 type Demographics = {
