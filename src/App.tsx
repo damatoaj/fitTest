@@ -1,6 +1,7 @@
 import './App.css';
 
 import Form from './Components/Form';
+import NavBar from './Components/NavBar';
 import Results from './Screens/Results';
 import useBMR from './Hooks/useBMR';
 function App() {
@@ -16,6 +17,7 @@ function App() {
   } = useBMR();
     return (
       <main>
+        <NavBar />
         {!viewResults && <Form 
           handleChange={handleChange} 
           handleReset={handleReset}
