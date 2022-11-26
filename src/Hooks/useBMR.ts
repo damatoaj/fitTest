@@ -2,6 +2,7 @@ import { useState, ChangeEventHandler, MouseEventHandler, ChangeEvent, FormEvent
 import { calculateMicros } from '../Functions/Nutrition/calculateMicros';
 import { calculateMacros } from '../Functions/Nutrition/calcuateMacros';
 import { Micros, Macros } from '../interfaces';
+import { useNavigate } from 'react-router-dom'
 
 type Demographics = {
     sex: string,
@@ -12,6 +13,7 @@ type Demographics = {
     goal: string
 };
 const useBMR = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState<Demographics>({
         sex: 'female',
         age: 0,
@@ -20,8 +22,6 @@ const useBMR = () => {
         activityLevel: 'moderate activity',
         goal: 'maintain'
     });
-
-    const [viewResults, setViewResults] = useState<boolean>(false);
 
     const kg : number = data.weight / 2.2;
     const cm : number = data.height * 2.54;
@@ -89,7 +89,7 @@ const useBMR = () => {
         if (data.age < 18 || data.weight < 50 || data.height < 36) return
         setMacros(calculateMacros(data.sex, data.age, kg, cm, data.activityLevel, data.goal));
         setMicros(calculateMicros(data.sex, data.age));
-        setViewResults(true)
+        navigate('/nutrition/results')
     };
 
     const newForm : MouseEventHandler = () => {
@@ -101,10 +101,10 @@ const useBMR = () => {
             activityLevel: 'moderately active',
             goal: 'maintain'
         }}) 
-        setViewResults(false);
+        navigate('/nutrition')
     }
 
-    return { data, macros, micros, handleChange, handleSelect, handleReset, handleSubmit, viewResults, newForm}
+    return { data, macros, micros, handleChange, handleSelect, handleReset, handleSubmit, newForm}
 };
 
 export default useBMR;
