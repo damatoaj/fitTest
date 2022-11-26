@@ -16,16 +16,18 @@ function App() {
     newForm
   } = useBMR();
     return (
-      <main>
+      <>
         <NavBar />
-        {!viewResults && <Form 
-          handleChange={handleChange} 
-          handleReset={handleReset}
-          handleSelect={handleSelect} 
-          handleSubmit={handleSubmit}
-        />}
-        {viewResults && <Results macros={macros} micros={micros} newForm={newForm}/>}
-      </main>
+        <main>
+          {!viewResults && <Form 
+            handleChange={handleChange} 
+            handleReset={handleReset}
+            handleSelect={handleSelect} 
+            handleSubmit={handleSubmit}
+          />}
+          {viewResults && <Results macros={macros} micros={micros} newForm={newForm}/>}
+        </main>
+      </>
     )
 }
 
