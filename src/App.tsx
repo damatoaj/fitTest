@@ -7,6 +7,7 @@ import useBMR from './Hooks/useBMR';
 
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
+import StrengthTable from './Components/StrengthTable';
 function App() {
   const { 
     macros, 
@@ -31,6 +32,7 @@ function App() {
           </Route> 
           <Route path='/nutrition/results' element={<Results macros={macros} micros={micros} newForm={newForm}/>}/>
           <Route path='/strength' element={<StrengthForm />} />
+          <Route path='/strength/results' element={<StrengthTable/>} />
         </Routes>
       </>
     )

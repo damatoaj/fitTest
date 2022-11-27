@@ -1,6 +1,8 @@
 import './Form.css';
-import { useRef, memo } from 'react'
+import { useRef, memo } from 'react';
+import useStrength from '../Hooks/useStrength';
 const StrengthForm = () => {
+    const { newForm, handleChange, handleSelect, handleSubmit} = useStrength();
     const form = useRef<HTMLFormElement | null>(null);
     let valid : boolean = false;
     if(form.current && form.current !== null) {
@@ -9,6 +11,7 @@ const StrengthForm = () => {
     return (
         <form
             ref={form}
+            onSubmit={handleSubmit}
         >
             <h2>Calculate Your Muscular Fitness</h2>
             <fieldset>
@@ -16,6 +19,7 @@ const StrengthForm = () => {
                 <select 
                     name='sex'
                     defaultValue={'female'}
+                    onChange={handleSelect}
                 >
                     <option value='female'>Female</option>
                     <option value='male'>Male</option>
@@ -24,6 +28,7 @@ const StrengthForm = () => {
             <fieldset>
                 <legend>Age</legend>
                 <input 
+                    onChange={handleChange}
                     type='number'
                     name='age'
                     min='18'
@@ -34,6 +39,7 @@ const StrengthForm = () => {
             <fieldset>
                 <legend>Weight in Pounds</legend>
                 <input
+                    onChange={handleChange}
                     type='number'
                     name='weight'
                     min='50'
@@ -44,6 +50,7 @@ const StrengthForm = () => {
             <fieldset>
                 <legend>Leg Press 1 Rep Max</legend>
                 <input 
+                    onChange={handleChange}
                     type='number'
                     name='legPress'
                     min='0'
@@ -53,6 +60,7 @@ const StrengthForm = () => {
             <fieldset>
                 <legend>Bench Press 1 Rep Max</legend>
                 <input 
+                    onChange={handleChange}
                     type='number'
                     name='benchPress'
                     min='0'
@@ -65,6 +73,7 @@ const StrengthForm = () => {
                     Left Hand
                 </label>
                     <input 
+                        onChange={handleChange}
                         type='number'
                         name='leftHand'
                         min='0'
@@ -74,6 +83,7 @@ const StrengthForm = () => {
                     Right Hand
                 </label>
                     <input 
+                        onChange={handleChange}
                         type='number'
                         name='rightHand'
                         min='0'
