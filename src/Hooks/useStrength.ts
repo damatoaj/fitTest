@@ -1,3 +1,4 @@
+import { Agent } from 'http';
 import {ChangeEvent, ChangeEventHandler, MouseEventHandler, useState, FormEventHandler, FormEvent} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { 
@@ -21,6 +22,7 @@ const useStrength = () => {
         leftHandGrip: 0,
         rightHandGrip: 0
     });
+    const [error, setError] = useState(null);
 
     const handleChange : ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
@@ -48,28 +50,49 @@ const useStrength = () => {
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (e:FormEvent) => {
         e.preventDefault();
+        setError(null);
         let paramsObject = {};
         const gripStrength = (data.leftHandGrip + data.rightHandGrip) / 2.2;
-        if (data.sex === 'female') {
-            paramsObject = {
-                benchPressRatio: womenBenchPress(data.benchPress, data.bodyWeight, data.age),
-                legPressRatio: womenLegPress(data.age, data.legPress, data.bodyWeight),
-                gripStrength: womenGripStrength(data.age, gripStrength)
-            }
-        } else {
-            paramsObject = {
-                benchPressRatio: menBenchPress(data.benchPress, data.bodyWeight, data.age),
-                legPressRatio: menLegPress(data.age, data.legPress, data.bodyWeight),
-                gripStrength: menGripStrength(data.age, gripStrength)
-            }
+        try {
+            if (data.sex === 'female') {
+                if (data.age < 14 || data.age > 69) {
+                    paramsObject = {
+                        benchPressRatio: womenBenchPress(data.benchPress, data.bodyWeight, data.age),
+                        legPressRatio: womenLegPress(data.age, data.legPress, data.bodyWeight),
+                        gripStrength: 'Outside Of Age Range For Test'
+                    }
+                } else {
+                    paramsObject = {
+                        benchPressRatio: womenBenchPress(data.benchPress, data.bodyWeight, data.age),
+                        legPressRatio: womenLegPress(data.age, data.legPress, data.bodyWeight),
+                        gripStrength: womenGripStrength(data.age, gripStrength)
+                    }
+                }
+            } else {
+                if (data.age < 14 || data.age > 69) {
+                    paramsObject = {
+                        benchPressRatio: menBenchPress(data.benchPress, data.bodyWeight, data.age),
+                        legPressRatio: menLegPress(data.age, data.legPress, data.bodyWeight),
+                        gripStrength: 'Outside Of Age Range For Test'
+                    }
+                } else {
+                    paramsObject = {
+                        benchPressRatio: menBenchPress(data.benchPress, data.bodyWeight, data.age),
+                        legPressRatio: menLegPress(data.age, data.legPress, data.bodyWeight),
+                        gripStrength: menGripStrength(data.age, gripStrength)
+                    }
+                }
+            };
+    
+            const queryParams = new URLSearchParams(paramsObject)
+    
+            navigate({
+                pathname:'/strength/results',
+                search: `?${queryParams}`
+            })
+        } catch (e:any) {
+            setError(e)
         }
-
-        const queryParams = new URLSearchParams(paramsObject)
-        console.log(queryParams, '<--- query params')
-        navigate({
-            pathname:'/strength/results',
-            search: `?${queryParams}`
-        })
     };
 
     const newForm : MouseEventHandler = () => {
@@ -85,7 +108,7 @@ const useStrength = () => {
         navigate('/strength')
     };
 
-    return { data, handleSubmit, newForm, handleReset, handleChange, handleSelect }
+    return { data, handleSubmit, newForm, handleReset, handleChange, handleSelect, error }
 };
 
 export default useStrength;

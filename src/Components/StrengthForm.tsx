@@ -2,12 +2,17 @@ import './Form.css';
 import { useRef, memo } from 'react';
 import useStrength from '../Hooks/useStrength';
 const StrengthForm = () => {
-    const { newForm, handleChange, handleSelect, handleSubmit} = useStrength();
+    const { handleChange, handleSelect, handleSubmit, error, handleReset} = useStrength();
     const form = useRef<HTMLFormElement | null>(null);
     let valid : boolean = false;
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity();
     };
+
+    if (error) {
+        alert(error)
+    }
+
     return (
         <form
             ref={form}
@@ -31,7 +36,7 @@ const StrengthForm = () => {
                     onChange={handleChange}
                     type='number'
                     name='age'
-                    min='18'
+                    min='14'
                     max='125'
                     required
                 />
@@ -92,7 +97,7 @@ const StrengthForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' onClick={handleReset}>Reset</button>
             </span>
         </form>
     )
