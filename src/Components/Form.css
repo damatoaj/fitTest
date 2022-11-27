@@ -10,6 +10,11 @@ form {
     background-color: whitesmoke;
 }
 
+form label {
+    display:inline-block;
+    margin: 10px 0;
+}
+
 form:invalid {
     border-color: red;
 }
