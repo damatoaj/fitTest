@@ -8,6 +8,9 @@ import useBMR from './Hooks/useBMR';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
 import StrengthTable from './Components/StrengthTable';
+import EnduranceForm from './Components/EnduranceForm';
+import Bruce from './Screens/TreadmillProtocals/Bruce';
+import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 function App() {
   const { 
     macros, 
@@ -33,6 +36,11 @@ function App() {
           <Route path='/nutrition/results' element={<Results macros={macros} micros={micros} newForm={newForm}/>}/>
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
+          <Route path='/endurance' element={<EnduranceForm />} />
+          <Route path='/treadmill-protocols'>
+            <Route path='bruce' element={<Bruce />} />
+            <Route path='bruce/results' element={<TreadmillResults />} />
+          </Route>
         </Routes>
       </>
     )
