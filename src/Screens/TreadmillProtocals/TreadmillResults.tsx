@@ -10,7 +10,7 @@ const TreadmillResults = () => {
     const vo2 : number = parseInt(mets) * kg;
     const category = menCardioFitnessClassification(age, vo2)
     return (
-        <main>
+        <main className='container'>
             <h1>Hello</h1>
             <p>You have {category} cardio respiratory fitness</p>
         </main>
