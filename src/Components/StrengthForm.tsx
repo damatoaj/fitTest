@@ -1,4 +1,3 @@
-import './Form.css';
 import { useRef, memo } from 'react';
 import useStrength from '../Hooks/useStrength';
 const StrengthForm = () => {
@@ -60,6 +59,7 @@ const StrengthForm = () => {
                     name='legPress'
                     min='0'
                     max='2000'
+                    placeholder='Lbs'
                 />
             </fieldset>
             <fieldset>
@@ -70,6 +70,7 @@ const StrengthForm = () => {
                     name='benchPress'
                     min='0'
                     max='2000' 
+                    placeholder='Lbs'
                 />
             </fieldset>
             <fieldset>
@@ -83,6 +84,7 @@ const StrengthForm = () => {
                         name='leftHand'
                         min='0'
                         max='2000'
+                        placeholder='Lbs'
                     />
                 <label htmlFor='rightHand'>
                     Right Hand
@@ -93,6 +95,7 @@ const StrengthForm = () => {
                         name='rightHand'
                         min='0'
                         max='2000'
+                        placeholder='Lbs'
                     />
             </fieldset>
             <span>

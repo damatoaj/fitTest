@@ -1,11 +1,10 @@
-import './Form.css';
 import { useRef, FormEventHandler, useState, FormEvent, ChangeEventHandler, ChangeEvent, memo } from 'react';
 import { menPushupCategories, womenPushupCategories } from '../Functions/Testing/muscularEndurance';
 const EnduranceForm = () => {
     const form = useRef<HTMLFormElement | null>(null);
     const [data, setData] = useState({
         sex: 'female',
-        age: 16,
+        age: 20,
         pushups: 0
     });
     let error : string | null = null;
@@ -27,8 +26,15 @@ const EnduranceForm = () => {
         })
     };
 
+    const handleReset = () => {
+        setData({
+            sex: 'female',
+            age: 20,
+            pushups:0
+        })
+    };
+
     const handleSubmit : FormEventHandler<HTMLFormElement> = (e:FormEvent) => {
-        console.log('click')
         e.preventDefault();
         let category : string = '';
         try {
@@ -66,7 +72,7 @@ const EnduranceForm = () => {
                 <input
                     type='number'
                     name='age'
-                    min='14'
+                    min='20'
                     max='69'
                     required
                     value={data.age}
@@ -77,6 +83,7 @@ const EnduranceForm = () => {
                 <legend>Pushups Completed</legend>
                 <input
                     type='number'
+                    name='pushups'
                     min='0'
                     required
                     value={data.pushups}
@@ -85,7 +92,7 @@ const EnduranceForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' onClick={handleReset}>Reset</button>
             </span>
         </form>
     )

@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { menCardioFitnessClassification, womenCardioFitnessClassification } from "../../Functions/Testing/cardioFitness";
+import { menCardioFitnessClassification } from "../../Functions/Testing/cardioFitness";
 const TreadmillResults = () => {
     const [searchParams] = useSearchParams();
 

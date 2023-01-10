@@ -1,0 +1,57 @@
+button {
+    min-width: 50px;
+    transition: .3s;
+    padding: 10px;
+    border-radius: 5%;
+}
+
+button:hover {
+    cursor:pointer;
+}
+
+button[type=submit]:enabled {
+    border-color:green;
+    color: green;
+}
+
+button[type = submit]:enabled:hover {
+    color: white;
+    background-color: green;
+}
+button[type = submit]:enabled:active {
+    color: white;
+    background-color: green;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 5px -2px grey;
+}
+
+button[type = submit]:disabled {
+    border: 1px solid red;
+    color: red;
+}
+
+button[type = submit]:disabled:hover {
+    color: white;
+    background-color: red;
+    cursor: not-allowed;
+}
+
+button[type = reset]:hover {
+    background-color: yellow;
+}
+
+button[type = reset]:active {
+    background-color: yellow;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 5px -2px grey;
+}
+
+button[type = button]:hover {
+    background-color: black;
+    color: white
+  }
+  
+  button[type = button]:active {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 5px -2px grey;
+  }

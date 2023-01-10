@@ -19,3 +19,7 @@ main.container h3 {
     color: green;
     font-size: 2rem;
 }
+
+main.container time {
+    font-size: 2rem;
+}

@@ -34,7 +34,23 @@ interface Micros {
     zinc : { amount: number, unit: string}
 }
 
+interface UserContextInterface {
+    activityLevel: string;
+    age: number | null;
+    benchPress: number | null;
+    bodyWeightGoal: string;
+    height: number | null;
+    leftHand: number | null;
+    legPress: number | null;
+    name: string;
+    pushups: number | null;
+    rightHand: number| null;
+    sex: string;
+    weight: number | null;
+}
+
 export type {
     Macros,
-    Micros
+    Micros,
+    UserContextInterface
 }

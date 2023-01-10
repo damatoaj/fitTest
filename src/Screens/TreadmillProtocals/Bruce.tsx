@@ -32,7 +32,7 @@ const Bruce = () => {
     useEffect(()=> {
         if (state.inProgress) {
             const bruceTest = setInterval(()=> {
-                if (state.seconds <= 59) {
+                if (state.seconds < 59) {
                     setState((prev) => {
                         return { ...prev, seconds : prev.seconds + 1 }
                     })
@@ -88,7 +88,7 @@ const Bruce = () => {
                 </section>
             )}
             <h2>Time</h2>
-            <h4>{state.minutes < 10 ? `0${state.minutes}`:state.minutes}:{state.seconds < 10 ? `0${state.seconds}`:state.seconds}</h4>
+            <time>{state.minutes < 10 ? `0${state.minutes}`:state.minutes}:{state.seconds < 10 ? `0${state.seconds}`:state.seconds}</time>
 
             {!state.inProgress && <button type='button' onClick={handleStart} disabled={state.inProgress}>Start</button>}
             {state.inProgress && <button type='button' onClick={handleStop} disabled={!state.inProgress}>Stop</button>}

@@ -1,5 +1,4 @@
 import { useRef, memo, ChangeEventHandler, FormEventHandler, MouseEventHandler } from 'react';
-import './Form.css'
 
 type FormProps = {
     handleChange: ChangeEventHandler<HTMLInputElement>,

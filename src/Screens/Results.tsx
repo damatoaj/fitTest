@@ -11,7 +11,7 @@ type ResultsProps = {
 }
 const Results = ({macros, micros, newForm}: ResultsProps) => {
     return (
-        <article>
+        <article style={styles.article}>
             <div id='printable'>
                 <MacrosTable macros={macros} />
                 <MicrosTable micros={micros} />
@@ -24,5 +24,11 @@ const Results = ({macros, micros, newForm}: ResultsProps) => {
 
     )
 };
+
+const styles : any = {
+    article: {
+        paddingBottom: '20px'
+    }
+}
 
 export default Results;

@@ -15,11 +15,11 @@ const useStrength = () => {
     const [data, setData] = useState({
         sex:'female',
         age:0,
-        bodyWeight:0,
-        benchPress: 0,
-        legPress: 0,
-        leftHandGrip: 0,
-        rightHandGrip: 0
+        bodyWeight:-1,
+        benchPress: -1,
+        legPress: -1,
+        leftHandGrip: -1,
+        rightHandGrip: -1
     });
     const [error, setError] = useState(null);
 
@@ -39,11 +39,11 @@ const useStrength = () => {
         setData(()=> { return {
             sex: 'female',
             age: 0,
-            bodyWeight: 0,
-            benchPress: 0,
-            legPress: 0,
-            leftHandGrip: 0,
-            rightHandGrip: 0
+            bodyWeight: -1,
+            benchPress: -1,
+            legPress: -1,
+            leftHandGrip: -1,
+            rightHandGrip: -1,
         }})
     };
 
@@ -56,29 +56,29 @@ const useStrength = () => {
             if (data.sex === 'female') {
                 if (data.age < 14 || data.age > 69) {
                     paramsObject = {
-                        benchPressRatio: womenBenchPress(data.benchPress, data.bodyWeight, data.age),
-                        legPressRatio: womenLegPress(data.age, data.legPress, data.bodyWeight),
+                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.bodyWeight, data.age): 'No Data' ,
+                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.bodyWeight) : 'No Data',
                         gripStrength: 'Outside Of Age Range For Test'
                     }
                 } else {
                     paramsObject = {
-                        benchPressRatio: womenBenchPress(data.benchPress, data.bodyWeight, data.age),
-                        legPressRatio: womenLegPress(data.age, data.legPress, data.bodyWeight),
-                        gripStrength: womenGripStrength(data.age, gripStrength)
+                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.bodyWeight, data.age): 'No Data',
+                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.bodyWeight) : 'No Data',
+                        gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? womenGripStrength(data.age, gripStrength) : 'No Data'
                     }
                 }
             } else {
                 if (data.age < 14 || data.age > 69) {
                     paramsObject = {
-                        benchPressRatio: menBenchPress(data.benchPress, data.bodyWeight, data.age),
-                        legPressRatio: menLegPress(data.age, data.legPress, data.bodyWeight),
+                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.bodyWeight, data.age) : 'No Data',
+                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.bodyWeight): 'No Data',
                         gripStrength: 'Outside Of Age Range For Test'
                     }
                 } else {
                     paramsObject = {
-                        benchPressRatio: menBenchPress(data.benchPress, data.bodyWeight, data.age),
-                        legPressRatio: menLegPress(data.age, data.legPress, data.bodyWeight),
-                        gripStrength: menGripStrength(data.age, gripStrength)
+                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.bodyWeight, data.age) : 'No Data',
+                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.bodyWeight): 'No Data',
+                        gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? menGripStrength(data.age, gripStrength) : 'No Data'
                     }
                 }
             };
@@ -98,11 +98,11 @@ const useStrength = () => {
         setData(()=> { return {
             sex: 'female',
             age: 0,
-            bodyWeight: 0,
-            benchPress: 0,
-            legPress: 0,
-            leftHandGrip: 0,
-            rightHandGrip: 0
+            bodyWeight: -1,
+            benchPress: -1,
+            legPress: -1,
+            leftHandGrip: -1,
+            rightHandGrip: -1
         }})
         navigate('/strength')
     };

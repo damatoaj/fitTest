@@ -1,6 +1,5 @@
 import {memo} from 'react';
 import {Micros} from '../interfaces';
-import './Table.css';
 
 type Props = {
     micros: Micros

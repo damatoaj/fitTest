@@ -1,7 +1,12 @@
-import './App.css';
+import './CSS/App.css';
+import './CSS/Buttons.css';
+import './CSS/Form.css';
+import './CSS/Table.css';
+import './CSS/Links.css';
 
 import Form from './Components/Form';
 import NavBar from './Components/NavBar';
+import MobileNav from './Components/MobileNav';
 import Results from './Screens/Results';
 import useBMR from './Hooks/useBMR';
 
@@ -21,9 +26,11 @@ function App() {
     handleSubmit,
     newForm
   } = useBMR();
+  
     return (
       <>
-        <NavBar />
+      {window.innerWidth > 600 && <NavBar />}
+      {window.innerWidth <= 600 && <MobileNav />}
         <Routes>
           <Route
             path='/nutrition' 

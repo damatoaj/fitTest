@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { Macros } from '../interfaces';
-import './Table.css';
 
 type Props = {
     macros : Macros
