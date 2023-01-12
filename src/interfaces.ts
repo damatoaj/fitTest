@@ -47,6 +47,8 @@ interface UserContextInterface {
     rightHand: number| null;
     sex: string;
     weight: number | null;
+    macros: Macros | null;
+    micros: Micros | null;
 }
 
 export type {
