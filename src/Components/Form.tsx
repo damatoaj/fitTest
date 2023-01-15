@@ -1,5 +1,5 @@
 import { useRef, memo, ChangeEventHandler, FormEventHandler, MouseEventHandler } from 'react';
-
+import { useUserContext } from '../Hooks/useUserContext';
 type FormProps = {
     handleChange: ChangeEventHandler<HTMLInputElement>,
     handleReset: MouseEventHandler<HTMLButtonElement>,
@@ -7,56 +7,76 @@ type FormProps = {
     handleSubmit: FormEventHandler<HTMLFormElement>
 }
 const Form = (props:FormProps) => {
-    const form = useRef<HTMLFormElement | null>(null);
-    let valid : boolean = false;
+    const { state } = useUserContext()
+    const form = useRef<HTMLFormElement | null>(null)
+    let valid : boolean = false
     if(form.current && form.current !== null) {
-        valid = form.current.checkValidity();
-    };
+        valid = form.current.checkValidity()
+    }
     return (
         <form
             onSubmit={props.handleSubmit}
             ref={form}
         >
             <h2>Calculate Your Basal Metabolic Rate</h2>
-            <fieldset>
-                <legend>Sex</legend>
-                <select 
-                    name='sex'
-                    onChange={props.handleSelect}
-                    defaultValue={'female'}
-                >
-                    <option value='female'>Female</option>
-                    <option value='male'>Male</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend>Age</legend>
-                <input 
-                    type='number' 
-                    onChange={props.handleChange}
-                    name='age'
-                    min='18'
-                    max='125'
-                    required
+            {!state.user.sex && (
+                <fieldset>
+                    <legend>Sex</legend>
+                    <select 
+                        name='sex'
+                        onChange={props.handleSelect}
+                        defaultValue={'female'}
+                    >
+                        <option value='FEMALE'>Female</option>
+                        <option value='MALE'>Male</option>
+                    </select>
+                </fieldset>
+            )}
+            {!state.user.age && (
+                <fieldset>
+                    <legend>Age</legend>
+                    <input 
+                        type='number' 
+                        onChange={props.handleChange}
+                        name='age'
+                        min='18'
+                        max='125'
+                        required
+                    />
+                </fieldset>
+            )}
+            {!state.user.height && (
+                <fieldset>
+                    <legend>Height In Inches</legend>
+                    <input 
+                        type='number' 
+                        name='height'
+                        onChange={props.handleChange}
+                        min='36'
+                        max='96'
+                        required
                 />
-            </fieldset>
-            <fieldset>
-                <legend>Height In Inches</legend>
-                <input 
-                    type='number' 
-                    name='height'
-                    onChange={props.handleChange}
-                    min='36'
-                    max='96'
-                    required
-            />
-            </fieldset>
+                </fieldset>
+            )}
+            {!state.user.currentWeight && (
+                <fieldset>
+                    <legend>Current Weight in Pounds</legend>
+                    <input 
+                        type='number' 
+                        onChange={props.handleChange}
+                        name='currentWeight'
+                        min='50'
+                        max='400'
+                        required
+                    />
+                </fieldset>
+            )}
             <fieldset>
                 <legend>Goal Weight in Pounds</legend>
                 <input 
                     type='number' 
                     onChange={props.handleChange}
-                    name='weight'
+                    name='goalWeight'
                     min='50'
                     max='400'
                     required
@@ -83,7 +103,7 @@ const Form = (props:FormProps) => {
                     </option>
                     <option 
                         title='Moderate exercise/sports 3-5 days/week'
-                        value='moderately activity'
+                        value='moderately active'
                     >
                         Moderately Active
                     </option>
@@ -109,8 +129,8 @@ const Form = (props:FormProps) => {
                     defaultValue={'maintain'}
                 >
                     <option value='maintain'>Maintain Current Size</option>
-                    <option value='increase'>Increase Muscle Mass</option>
-                    <option value='decrease'>Decrease Body Fat</option>
+                    <option value='gain'>Increase Muscle Mass</option>
+                    <option value='lose'>Decrease Body Fat</option>
                 </select>
             </fieldset>
             <span>

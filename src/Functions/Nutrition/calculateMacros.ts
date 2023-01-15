@@ -1,13 +1,15 @@
-export function calculateProtein(mass:number, goal: string = 'maintain') {
+import { Sex, WeightGoal, ActivityLevel } from "../../interfaces";
+
+export function calculateProtein(mass:number, goal: WeightGoal = 'maintain') {
     let min = 1.2;
     let max = 1.6;
 
-    if (goal === 'increase') {
+    if (goal === 'gain') {
         min = 1.8;
         max = 2.4;
     };
 
-    if (goal === 'decrease') {
+    if (goal === 'lose') {
         min = 2;
         max = 2.6;
     };
@@ -20,10 +22,10 @@ export function calculateProtein(mass:number, goal: string = 'maintain') {
     }
 };
 
-export function harrisBenedictBMR(sex:string='male', age:number, height:number, mass:number, activityLevel:string='moderately active') {
+export function harrisBenedictBMR(sex:Sex='MALE', age:number, height:number, mass:number, activityLevel:ActivityLevel='moderately active') {
     // this calculation assumes measurements in metric
     let rawBMR:number =  66 + (14 * mass) + (5 * height) - (7 * age);
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if(activityLevel === 'sedentary') return Math.round(rawBMR * 1.2);
         if(activityLevel === 'light activity') return  Math.round(rawBMR * 1.375);
         if(activityLevel === 'very active') return  Math.round(rawBMR * 1.725);
@@ -48,8 +50,9 @@ export function calculateCarbs(totalCalories:number) {
     }
 };
 
-export function calculateMacros(sex:string='male', age:number, mass:number, height:number, activityLevel:string='moderately active', goal: string = 'maintain'){
-    if (sex !== 'male' && sex !== 'female') throw new Error('Invalid sex for this equation')
+export function calculateMacros(sex:Sex='MALE', age:number, mass:number, height:number, activityLevel:ActivityLevel='moderately active', goal: WeightGoal = 'maintain'){
+    console.warn(sex, age, mass, height, activityLevel, goal , typeof age)
+    if (sex !== 'MALE' && sex !== 'FEMALE') throw new Error('Invalid sex for this equation')
     if (181 < mass || mass < 4.5) throw new Error('Mass is outside of the acceptable ranges')
     if (height < 90 || mass > 244) throw new Error('Height is outside of the acceptable ranges')
     if (age < 1 || age > 100) throw new Error('Age is outside of the acceptable range')

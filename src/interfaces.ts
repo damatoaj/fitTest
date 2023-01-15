@@ -34,25 +34,38 @@ interface Micros {
     zinc : { amount: number, unit: string}
 }
 
-interface UserContextInterface {
-    activityLevel: string;
+interface User {
+    activityLevel: ActivityLevel | null;
     age: number | null;
     benchPress: number | null;
-    bodyWeightGoal: string;
+    bodyWeightGoal: WeightGoal | null;
+    currentWeight: number | null;
+    goalWeight: number | null;
     height: number | null;
     leftHand: number | null;
     legPress: number | null;
     name: string;
-    pushups: number | null;
+    pushups: { pushups: number, category: FitnessCategory} | null;
     rightHand: number| null;
-    sex: string;
-    weight: number | null;
+    sex: Sex | null;
     macros: Macros | null;
     micros: Micros | null;
 }
 
+type Sex = 'MALE' | 'FEMALE'
+
+type FitnessCategory = 'poor' | 'fair' | 'good' | 'very good' | 'excellent' | 'superior'
+
+type ActivityLevel = 'sedentary' | 'light activity' | 'moderately active' | 'very active' | 'extra active'
+
+type WeightGoal = 'lose' | 'maintain' | 'gain'
+
 export type {
     Macros,
     Micros,
-    UserContextInterface
+    User,
+    FitnessCategory,
+    ActivityLevel,
+    WeightGoal,
+    Sex
 }

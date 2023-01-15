@@ -1,3 +1,5 @@
+import { Sex } from "../../interfaces";
+
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
     if (weight < 1 || weight > 800) throw new Error('Weight is outside the acceptable parameters');
@@ -12,11 +14,9 @@ const calculateBMI = (weight:number, height:number) => {
     if ( bmi >= 40) return { classification: 'obesity class 3', bmi }
 };
 
-const waistCircumferenceRiskFactor = (sex:string = 'male', wc: number) => {
+const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) => {
     //WC should be in centimeters
-    const Sex = sex.toLocaleLowerCase();
-    if (Sex !== 'male' && Sex !== 'female') throw new Error('Sex must be male or female');
-    if (Sex === 'male') {
+    if (sex === 'MALE') {
         if (wc < 80) return 'very low';
         if (wc <= 99 && wc >= 80) return 'low';
         if (wc <= 120 && wc >= 100) return 'high';

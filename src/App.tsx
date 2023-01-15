@@ -16,10 +16,10 @@ import StrengthTable from './Components/StrengthTable';
 import EnduranceForm from './Components/EnduranceForm';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
+import { useUserContext } from './Hooks/useUserContext';
 function App() {
+  const { state } = useUserContext()
   const { 
-    macros, 
-    micros,
     handleChange, 
     handleReset, 
     handleSelect, 
@@ -40,7 +40,7 @@ function App() {
               handleSubmit={handleSubmit}/>}
           >
           </Route> 
-          <Route path='/nutrition/results' element={<Results macros={macros} micros={micros} newForm={newForm}/>}/>
+          {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} newForm={newForm}/>}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
           <Route path='/endurance' element={<EnduranceForm />} />

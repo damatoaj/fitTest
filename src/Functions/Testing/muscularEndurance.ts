@@ -1,5 +1,8 @@
-const menPushupCategories = (age:number, pushups:number) => {
+function pushupAge (age:number) {
     if(age < 20 || age > 69) throw new Error('Age is outside of acceptable range');
+}
+const menPushupCategories = (age:number, pushups:number) => {
+    pushupAge(age)
     if (age <= 29) {
         if (pushups >= 36) return 'excellent';
         if (pushups >= 29) return 'very good';
@@ -40,7 +43,7 @@ const menPushupCategories = (age:number, pushups:number) => {
 };
 
 const womenPushupCategories = (age: number, pushups:number) => {
-    if(age < 20 || age > 69) throw new Error('Age is outside of acceptable range');
+    pushupAge(age)
     if (age <= 29) {
         if (pushups >= 30) return 'excellent';
         if (pushups >= 21) return 'very good';

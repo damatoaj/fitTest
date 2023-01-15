@@ -1,6 +1,8 @@
-function calculateFiber(sex:string, age:number) {
+import { Sex } from "../../interfaces";
+
+function calculateFiber(sex:Sex, age:number) {
     const unit : string = 'grams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < 4) return { amount: 19, unit }
         if (age < 9) return { amount: 25, unit }
         if (age < 14) return { amount: 31, unit }
@@ -15,9 +17,9 @@ function calculateFiber(sex:string, age:number) {
     return { amount: 21, unit }
 };
 
-function calculateVitaminA(sex:string, age:number){
+function calculateVitaminA(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 400, unit }
         if (age < 1) return { amount: 500, unit }
         if (age < 3) return { amount: 300, unit }
@@ -35,9 +37,9 @@ function calculateVitaminA(sex:string, age:number){
     return { amount: 700, unit }
 };
 
-function calculateVitaminD(sex:string, age:number){
+function calculateVitaminD(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < 1) return { amount: 400, unit }
         if (age < 70) return { amount: 600, unit }
         return { amount: 800, unit }
@@ -48,9 +50,9 @@ function calculateVitaminD(sex:string, age:number){
     return { amount: 800, unit }
 };
 
-function calculateVitaminE(sex:string, age:number){
+function calculateVitaminE(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < 4) return { amount: 6, unit }
         if (age < 9) return { amount: 7, unit }
         if (age < 14) return { amount: 11, unit }
@@ -64,9 +66,9 @@ function calculateVitaminE(sex:string, age:number){
     return { amount: 15, unit }
 };
 
-function calculateVitaminK(sex:string, age:number){
+function calculateVitaminK(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 2, unit }
         if (age < 1) return { amount: 2.5, unit }
         if (age < 4) return { amount: 30, unit }
@@ -87,9 +89,9 @@ function calculateVitaminK(sex:string, age:number){
     return { amount: 90, unit }
 };
 
-function calculateVitaminC(sex:string, age:number){
+function calculateVitaminC(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 40, unit }
         if (age < 1) return { amount: 50, unit }
         if (age < 4) return { amount: 15, unit }
@@ -110,9 +112,9 @@ function calculateVitaminC(sex:string, age:number){
     return { amount: 75, unit }
 };
 
-function calculateVitaminB6(sex:string, age:number){
+function calculateVitaminB6(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < 1) return { amount: .3, unit }
         if (age < 4) return { amount: .5, unit }
         if (age < 9) return { amount: .6, unit }
@@ -132,9 +134,9 @@ function calculateVitaminB6(sex:string, age:number){
     return { amount: 1.5, unit }
 };
 
-function calculateVitaminB12(sex:string, age:number){
+function calculateVitaminB12(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: .3, unit }
         if (age < 1) return { amount: .5, unit }
         if (age < 4) return { amount: .9, unit }
@@ -153,9 +155,9 @@ function calculateVitaminB12(sex:string, age:number){
     return { amount: 2.4, unit }
 };
 
-function calculateRiboflavin(sex:string, age:number){
+function calculateRiboflavin(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: .3, unit }
         if (age < 1) return { amount: .4, unit }
         if (age < 4) return { amount: .5, unit }
@@ -176,9 +178,9 @@ function calculateRiboflavin(sex:string, age:number){
     return { amount: 1.1, unit }
 };
 
-function calculateFolate(sex:string, age:number){
+function calculateFolate(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 65, unit }
         if (age < 1) return { amount: 80, unit }
         if (age < 4) return { amount: 150, unit }
@@ -197,9 +199,9 @@ function calculateFolate(sex:string, age:number){
     return { amount: 400, unit }
 };
 
-function calculateCalcium(sex:string, age:number){
+function calculateCalcium(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 200, unit }
         if (age < 1) return { amount: 260, unit }
         if (age < 4) return { amount: 700, unit }
@@ -220,9 +222,9 @@ function calculateCalcium(sex:string, age:number){
     return { amount: 1200, unit }
 };
 
-function calculateChromium(sex:string, age:number){
+function calculateChromium(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: .2, unit }
         if (age < 1) return { amount: 5.5, unit }
         if (age < 4) return { amount: 11, unit }
@@ -245,9 +247,9 @@ function calculateChromium(sex:string, age:number){
     return { amount: 20, unit }
 };
 
-function calculateIodine(sex:string, age:number){
+function calculateIodine(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 110, unit }
         if (age < 1) return { amount: 120, unit }
         if (age < 9) return { amount: 90, unit }
@@ -264,9 +266,9 @@ function calculateIodine(sex:string, age:number){
     return { amount: 150, unit }
 };
 
-function calculateIron(sex:string, age:number){
+function calculateIron(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: .27, unit }
         if (age < 1) return { amount: 11, unit }
         if (age < 4) return { amount: 7, unit }
@@ -288,9 +290,9 @@ function calculateIron(sex:string, age:number){
     return { amount: 8, unit }
 };
 
-function calculateMagnesium(sex:string, age:number){
+function calculateMagnesium(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 30, unit }
         if (age < 1) return { amount: 75, unit }
         if (age < 9) return { amount: 130, unit }
@@ -310,9 +312,9 @@ function calculateMagnesium(sex:string, age:number){
     return { amount: 320, unit }
 };
 
-function calculateSelenium(sex:string, age:number){
+function calculateSelenium(sex:Sex, age:number){
     const unit : string = 'micrograms';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 15, unit }
         if (age < 4) return { amount: 20, unit }
         if (age < 9) return { amount: 30, unit }
@@ -329,9 +331,9 @@ function calculateSelenium(sex:string, age:number){
     return { amount: 55, unit }
 };
 
-function calculateZinc(sex:string, age:number){
+function calculateZinc(sex:Sex, age:number){
     const unit : string = 'milligrams';
-    if (sex === 'male') {
+    if (sex === 'MALE') {
         if (age < .9) return { amount: 2, unit }
         if (age < 4) return { amount: 3, unit }
         if (age < 9) return { amount: 5, unit }
@@ -348,9 +350,9 @@ function calculateZinc(sex:string, age:number){
     return { amount: 8, unit }
 };
 
-export function calculateMicros(sex:string = 'male', age:number) {
-    if (sex !== 'male' && sex !== 'female') throw new Error('Sex must be male or female');
-    if (age <= 0 || age > 120) throw new Error("Age is outside the acceptabel range");
+export function calculateMicros(sex:Sex = 'MALE', age:number) {
+    if (sex !== 'MALE' && sex !== 'FEMALE') throw new Error('Sex must be male or female');
+    if (age <= 0 || age > 120) throw new Error("Age is outside the acceptable range");
 
     const fiber = calculateFiber(sex, age);
     const vitaminA = calculateVitaminA(sex, age);

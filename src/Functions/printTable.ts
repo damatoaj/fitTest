@@ -6,5 +6,5 @@ export function printTable(id:string) {
     WinPrint?.focus();
     WinPrint?.print();
     WinPrint?.close();
-};
+}
 

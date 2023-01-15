@@ -1,73 +1,73 @@
 import { useRef, FormEventHandler, useState, FormEvent, ChangeEventHandler, ChangeEvent, memo } from 'react';
-import { menPushupCategories, womenPushupCategories } from '../Functions/Testing/muscularEndurance';
+import { useUserContext } from '../Hooks/useUserContext';
 const EnduranceForm = () => {
+    const {state, dispatch} = useUserContext();
     const form = useRef<HTMLFormElement | null>(null);
     const [data, setData] = useState({
-        sex: 'female',
+        sex: 'FEMALE',
         age: 20,
         pushups: 0
     });
-    let error : string | null = null;
 
     let valid : boolean = false;
     if (form?.current !== null) {
         valid = form.current.checkValidity();
-    };
+    }
 
     const handleChange : ChangeEventHandler<HTMLInputElement> = (e: ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]:e.target.value}
         })
-    };
+    }
 
     const handleSelect : ChangeEventHandler<HTMLSelectElement> = (e: ChangeEvent<HTMLSelectElement>) => {
         setData((prev) => {
             return {...prev, [e.target.name]:e.target.value}
         })
-    };
+    }
 
     const handleReset = () => {
         setData({
-            sex: 'female',
+            sex: 'FEMALE',
             age: 20,
             pushups:0
         })
-    };
+    }
 
-    const handleSubmit : FormEventHandler<HTMLFormElement> = (e:FormEvent) => {
-        e.preventDefault();
-        let category : string = '';
+    const handleSubmit : FormEventHandler<HTMLFormElement> = async(e:FormEvent) => {
+        e.preventDefault()
         try {
-            if (data.sex === 'female') {
-                category = womenPushupCategories(data.age, data.pushups)
-                alert(`Category: ${category}`)
-            } else {
-               category = menPushupCategories(data.age, data.pushups);
-               alert(`Category: ${category}`)
-            };
+            if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload:data.sex})
+            if (!state.user.age) await dispatch({type: 'UPDATE_AGE', payload:data.age})
+            dispatch({type:'UPDATE_PUSHUPS', payload: data.pushups})
         } catch (e:any) {
-            error = e.message
-            alert(error)
+            const error : string = e.message
+            dispatch({type:"ERROR", error})
         }
-;    };
+    }
+
+    if (state.error) alert(state.error)
     return (
         <form
             ref={form}
             onSubmit={handleSubmit}
         >
             <h2>Calculate Your Muscular Fitness</h2>
-            <fieldset>
-                <legend>Sex</legend>
-                <select
-                    name='sex'
-                    value={data.sex}
-                    onChange={handleSelect}
-                >
-                    <option value='female'>Female</option>
-                    <option value='male'>Male</option>
-                </select>
-            </fieldset>
-            <fieldset>
+            {!state.user.sex && (
+                <fieldset>
+                    <legend>Sex</legend>
+                    <select
+                        name='sex'
+                        value={data.sex}
+                        onChange={handleSelect}
+                    >
+                        <option value='FEMALE'>Female</option>
+                        <option value='MALE'>Male</option>
+                    </select>
+                </fieldset>
+            )}
+            {!state.user.age && (
+                <fieldset>
                 <legend>Age</legend>
                 <input
                     type='number'
@@ -79,6 +79,7 @@ const EnduranceForm = () => {
                     onChange={handleChange}
                 />
             </fieldset>
+            )}
             <fieldset>
                 <legend>Pushups Completed</legend>
                 <input
