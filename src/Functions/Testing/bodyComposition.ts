@@ -1,4 +1,4 @@
-import { Sex } from "../../interfaces";
+import { Sex, BMI, BMIClassifications } from "../../interfaces";
 
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
@@ -6,12 +6,12 @@ const calculateBMI = (weight:number, height:number) => {
     if (height < 1 || height > 274) throw new Error('Height is outside of the acceptable parameters');
 
     const bmi = weight / height^2 
-    if (bmi < 18.5) return { classification: 'underweight', bmi }
-    if (25 > bmi && bmi >= 18.5) return { classification: 'normal', bmi }
-    if (30 > bmi && bmi >= 25) return { classification: 'overweight', bmi}
-    if (35 > bmi && bmi >= 30) return { classification: 'obesity class 1', bmi }
-    if (40 > bmi && bmi >= 35) return { classification: 'obesity class 2', bmi }
-    if ( bmi >= 40) return { classification: 'obesity class 3', bmi }
+    if (bmi < 18.5) return { bmi, classification:  'underweight' as BMIClassifications } as BMI
+    if (25 > bmi && bmi >= 18.5) return {bmi, classification: 'normal'  as BMIClassifications } as BMI
+    if (30 > bmi && bmi >= 25) return { bmi, classification: 'overweight' as BMIClassifications } as BMI
+    if (35 > bmi && bmi >= 30) return {bmi, classification: 'obesity class 1'  as BMIClassifications } as BMI
+    if (40 > bmi && bmi >= 35) return { bmi, classification: 'obesity class 2' as BMIClassifications } as BMI
+    return { bmi, classification: 'obesity class 3'  as BMIClassifications } as BMI
 };
 
 const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) => {

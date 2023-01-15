@@ -62,6 +62,7 @@ const useBMR = () => {
             if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload: data.sex})
             if (!state.user.height) await dispatch({type:'UPDATE_HEIGHT', payload:data.height})
             if (!state.user.currentWeight) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload:data.currentWeight})
+            if (!state.user.bmi) await dispatch({type:'UPDATE_BMI', payload:{h:state.user.height, w:state.user.currentWeight}})
             await dispatch({type:"UPDATE_WEIGHT_GOAL", payload:data.goal})
             await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight})
             await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel})

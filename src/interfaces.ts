@@ -38,6 +38,7 @@ interface User {
     activityLevel: ActivityLevel | null;
     age: number | null;
     benchPress: number | null;
+    bmi: BMI | null
     bodyWeightGoal: WeightGoal | null;
     currentWeight: number | null;
     goalWeight: number | null;
@@ -51,6 +52,9 @@ interface User {
     macros: Macros | null;
     micros: Micros | null;
 }
+type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3'
+
+type BMI = { bmi:number, classification: BMIClassifications }
 
 type Sex = 'MALE' | 'FEMALE'
 
@@ -67,5 +71,7 @@ export type {
     FitnessCategory,
     ActivityLevel,
     WeightGoal,
-    Sex
+    Sex,
+    BMI,
+    BMIClassifications
 }
