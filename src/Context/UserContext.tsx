@@ -122,8 +122,7 @@ export const userReducer = (state : State, action: Action) => {
             } else {
                 state.user.benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
             }
-            
-            return {...state}
+            return {...state, error:null}
         case 'ERROR':
             return {...state, error: action.payload}
         default:

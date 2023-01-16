@@ -69,6 +69,9 @@ type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high'
 type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor'
 
 type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor'}
+
+type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor'}
+
 export type {
     Macros,
     Micros,
@@ -81,5 +84,6 @@ export type {
     BMIClassifications,
     WaistCircumferenceCategory,
     BodyCompCategory,
-    BenchPress
+    BenchPress,
+    GripStrength
 }

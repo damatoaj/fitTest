@@ -48,7 +48,7 @@ const useStrength = () => {
         }})
     };
 
-    const handleSubmit : FormEventHandler<HTMLFormElement> = (e:FormEvent) => {
+    const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent) => {
         e.preventDefault();
         let paramsObject = {};
         const gripStrength = (data.leftHandGrip + data.rightHandGrip) / 2.2;
@@ -83,9 +83,10 @@ const useStrength = () => {
                 }
             };
 
-            if (!state.user.age) dispatch({type: 'UPDATE_AGE', payload:data.age})
-            if (!state.user.currentWeight) dispatch({type:'UPDATE_CURRENT_WEIGHT', payload: data.currentWeight})
-            dispatch({type:'UPDATE_BENCH_PRESS', payload:data.benchPress})
+            if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload:data.sex})
+            if (!state.user.age) await dispatch({type: 'UPDATE_AGE', payload:data.age})
+            if (!state.user.currentWeight) await dispatch({type:'UPDATE_CURRENT_WEIGHT', payload: data.currentWeight})
+            await dispatch({type:'UPDATE_BENCH_PRESS', payload:data.benchPress})
             const queryParams = new URLSearchParams(paramsObject)
     
             navigate({
