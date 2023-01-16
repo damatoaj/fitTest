@@ -64,6 +64,10 @@ type ActivityLevel = 'sedentary' | 'light activity' | 'moderately active' | 'ver
 
 type WeightGoal = 'lose' | 'maintain' | 'gain'
 
+type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high'
+
+type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor'
+
 export type {
     Macros,
     Micros,
@@ -73,5 +77,7 @@ export type {
     WeightGoal,
     Sex,
     BMI,
-    BMIClassifications
+    BMIClassifications,
+    WaistCircumferenceCategory,
+    BodyCompCategory
 }
