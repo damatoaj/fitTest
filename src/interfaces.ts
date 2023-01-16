@@ -37,7 +37,7 @@ interface Micros {
 interface User {
     activityLevel: ActivityLevel | null;
     age: number | null;
-    benchPress: number | null;
+    benchPress: BenchPress | null;
     bmi: BMI | null
     bodyWeightGoal: WeightGoal | null;
     currentWeight: number | null;
@@ -68,6 +68,7 @@ type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high'
 
 type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor'
 
+type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor'}
 export type {
     Macros,
     Micros,
@@ -79,5 +80,6 @@ export type {
     BMI,
     BMIClassifications,
     WaistCircumferenceCategory,
-    BodyCompCategory
+    BodyCompCategory,
+    BenchPress
 }

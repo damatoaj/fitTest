@@ -1,15 +1,13 @@
-import { useRef, memo } from 'react';
-import useStrength from '../Hooks/useStrength';
+import { useRef, memo } from 'react'
+import useStrength from '../Hooks/useStrength'
+import { useUserContext } from '../Hooks/useUserContext'
 const StrengthForm = () => {
-    const { handleChange, handleSelect, handleSubmit, error, handleReset} = useStrength();
-    const form = useRef<HTMLFormElement | null>(null);
-    let valid : boolean = false;
+    const {state} = useUserContext()
+    const { handleChange, handleSelect, handleSubmit, handleReset} = useStrength()
+    const form = useRef<HTMLFormElement | null>(null)
+    let valid : boolean = false
     if(form.current && form.current !== null) {
-        valid = form.current.checkValidity();
-    };
-
-    if (error) {
-        alert(error)
+        valid = form.current.checkValidity()
     }
 
     return (
@@ -18,39 +16,45 @@ const StrengthForm = () => {
             onSubmit={handleSubmit}
         >
             <h2>Calculate Your Muscular Fitness</h2>
-            <fieldset>
-                <legend>Sex</legend>
-                <select 
-                    name='sex'
-                    defaultValue={'female'}
-                    onChange={handleSelect}
-                >
-                    <option value='female'>Female</option>
-                    <option value='male'>Male</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend>Age</legend>
-                <input 
-                    onChange={handleChange}
-                    type='number'
-                    name='age'
-                    min='14'
-                    max='125'
-                    required
-                />
-            </fieldset>
-            <fieldset>
-                <legend>Weight in Pounds</legend>
-                <input
-                    onChange={handleChange}
-                    type='number'
-                    name='weight'
-                    min='50'
-                    max='400'
-                    required
-                />
-            </fieldset>
+            {!state.user.sex && (
+                <fieldset>
+                    <legend>Sex</legend>
+                    <select 
+                        name='sex'
+                        defaultValue={'FEMALE'}
+                        onChange={handleSelect}
+                    >
+                        <option value='FEMALE'>Female</option>
+                        <option value='MALE'>Male</option>
+                    </select>
+                </fieldset>
+            )}
+            {!state.user.age && (
+                <fieldset>
+                    <legend>Age</legend>
+                    <input 
+                        onChange={handleChange}
+                        type='number'
+                        name='age'
+                        min='14'
+                        max='125'
+                        required
+                    />
+                </fieldset>
+            )}
+            {!state.user.currentWeight && (
+                <fieldset>
+                    <legend>Weight in Pounds</legend>
+                    <input
+                        onChange={handleChange}
+                        type='number'
+                        name='currentWeight'
+                        min='50'
+                        max='400'
+                        required
+                    />
+                </fieldset>
+            )}
             <fieldset>
                 <legend>Leg Press 1 Rep Max</legend>
                 <input 

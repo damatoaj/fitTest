@@ -8,20 +8,21 @@ import {
     womenBenchPress,
     womenLegPress
 } from '../Functions/Testing/muscularFitness';
+import { useUserContext } from './useUserContext';
 
 
 const useStrength = () => {
-    const navigate = useNavigate();
+    const {state, dispatch} = useUserContext()
+    const navigate = useNavigate()
     const [data, setData] = useState({
-        sex:'female',
+        sex:'FEMALE',
         age:0,
-        bodyWeight:-1,
+        currentWeight:-1,
         benchPress: -1,
         legPress: -1,
         leftHandGrip: -1,
         rightHandGrip: -1
-    });
-    const [error, setError] = useState(null);
+    })
 
     const handleChange : ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
@@ -37,9 +38,9 @@ const useStrength = () => {
 
     const handleReset : MouseEventHandler = () => {
         setData(()=> { return {
-            sex: 'female',
+            sex: 'FEMALE',
             age: 0,
-            bodyWeight: -1,
+            currentWeight: -1,
             benchPress: -1,
             legPress: -1,
             leftHandGrip: -1,
@@ -49,40 +50,42 @@ const useStrength = () => {
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (e:FormEvent) => {
         e.preventDefault();
-        setError(null);
         let paramsObject = {};
         const gripStrength = (data.leftHandGrip + data.rightHandGrip) / 2.2;
         try {
-            if (data.sex === 'female') {
+            if (data.sex === 'FEMALE') {
                 if (data.age < 14 || data.age > 69) {
                     paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.bodyWeight, data.age): 'No Data' ,
-                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.bodyWeight) : 'No Data',
+                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.currentWeight, data.age): 'No Data' ,
+                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.currentWeight) : 'No Data',
                         gripStrength: 'Outside Of Age Range For Test'
                     }
                 } else {
                     paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.bodyWeight, data.age): 'No Data',
-                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.bodyWeight) : 'No Data',
+                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.currentWeight, data.age): 'No Data',
+                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.currentWeight) : 'No Data',
                         gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? womenGripStrength(data.age, gripStrength) : 'No Data'
                     }
                 }
             } else {
                 if (data.age < 14 || data.age > 69) {
                     paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.bodyWeight, data.age) : 'No Data',
-                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.bodyWeight): 'No Data',
+                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.currentWeight, data.age) : 'No Data',
+                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.currentWeight): 'No Data',
                         gripStrength: 'Outside Of Age Range For Test'
                     }
                 } else {
                     paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.bodyWeight, data.age) : 'No Data',
-                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.bodyWeight): 'No Data',
+                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.currentWeight, data.age) : 'No Data',
+                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.currentWeight): 'No Data',
                         gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? menGripStrength(data.age, gripStrength) : 'No Data'
                     }
                 }
             };
-    
+
+            if (!state.user.age) dispatch({type: 'UPDATE_AGE', payload:data.age})
+            if (!state.user.currentWeight) dispatch({type:'UPDATE_CURRENT_WEIGHT', payload: data.currentWeight})
+            dispatch({type:'UPDATE_BENCH_PRESS', payload:data.benchPress})
             const queryParams = new URLSearchParams(paramsObject)
     
             navigate({
@@ -90,15 +93,16 @@ const useStrength = () => {
                 search: `?${queryParams}`
             })
         } catch (e:any) {
-            setError(e)
+            const error = e.message
+            dispatch({type:'ERROR', payload: error})
         }
     };
 
     const newForm : MouseEventHandler = () => {
         setData(()=> { return {
-            sex: 'female',
+            sex: 'FEMALE',
             age: 0,
-            bodyWeight: -1,
+            currentWeight: -1,
             benchPress: -1,
             legPress: -1,
             leftHandGrip: -1,
@@ -107,7 +111,7 @@ const useStrength = () => {
         navigate('/strength')
     };
 
-    return { data, handleSubmit, newForm, handleReset, handleChange, handleSelect, error }
+    return { data, handleSubmit, newForm, handleReset, handleChange, handleSelect }
 };
 
 export default useStrength;

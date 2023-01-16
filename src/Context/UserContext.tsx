@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, Dispatch, useReducer } from "react";
 import { FitnessCategory, User, ActivityLevel, Macros, Micros, WeightGoal } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
+import { menBenchPress, womenBenchPress } from "../Functions/Testing/muscularFitness";
 import { 
     validateName, 
     validateAge, 
@@ -49,6 +50,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_WEIGHT_GOAL', payload: WeightGoal}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
     | {type: 'UPDATE_BMI', payload: {h:number, w:number}}
+    | {type: 'UPDATE_BENCH_PRESS', payload: number}
 
 
 const initialState = {
@@ -58,60 +60,70 @@ const initialState = {
 }
 
 export const userReducer = (state : State, action: Action) => {
-    switch (action.type) {
+    const { type, payload } = action 
+    switch (type) {
         case 'UPDATE_BMI':
-            const { h, w} = action.payload
+            const { h, w} = payload
             state.user.bmi = calculateBMI(w, h)
             return {...state, error:null}
         case 'UPDATE_CURRENT_WEIGHT':
-            state.user.currentWeight = validateCurrentWeight(action.payload)
+            state.user.currentWeight = validateCurrentWeight(payload)
             return {...state, error: null}
         case 'UPDATE_WEIGHT_GOAL':
-            state.user.bodyWeightGoal = action.payload
+            state.user.bodyWeightGoal = payload
             return {...state, error : null}
         case 'UPDATE_MACROS':
-            state.user.macros = action.payload
+            state.user.macros = payload
             return {...state, error: null}
         case 'UPDATE_MICROS':
-            state.user.micros = action.payload
+            state.user.micros = payload
             return {...state, error: null}
         case "UPDATE_ACTIVITY_LEVEL":
-            state.user.activityLevel = action.payload
+            state.user.activityLevel = payload
             return {...state, error: null}
         case 'UPDATE_NAME':
-            const name = validateName(action.payload)
+            const name = validateName(payload)
             state.user.name = name
             return {...state, error: null}
         case 'UPDATE_SEX':
-            const sex = validateSex(action.payload)
+            const sex = validateSex(payload)
             state.user.sex = sex
             return {...state, error: null}
         case 'UPDATE_AGE':
-            const age = validateAge(action.payload)
+            const age = validateAge(payload)
             state.user.age = age
             return {...state, error: null}
         case 'UPDATE_HEIGHT':
-            const height= validateHeight(action.payload)
+            const height= validateHeight(payload)
             state.user.height = height
             return {...state, error: null}
         case 'UPDATE_GOAL_WEIGHT':
-            state.user.goalWeight = validateGoalWeight(action.payload)
+            state.user.goalWeight = validateGoalWeight(payload)
             return {...state, error: null}
         case 'UPDATE_PUSHUPS':
             let category : FitnessCategory = 'fair'
 
             if (state.user.sex === 'FEMALE' && state.user.age !== null) {
-                category = womenPushupCategories(state.user.age, action.payload)
+                category = womenPushupCategories(state.user.age, payload)
             } else if (state.user.sex === 'MALE' && state.user.age !== null){
-                category = menPushupCategories(state.user.age, action.payload);
+                category = menPushupCategories(state.user.age, payload);
             } else {
                 return {...state}
             }
             state.user.pushups = {
-                pushups: action.payload, 
+                pushups: payload, 
                 category
             }
             return {...state, error: null}
+        case 'UPDATE_BENCH_PRESS':
+            if (!state.user.sex || !state.user.age || !state.user.currentWeight) return {...state}
+            if (state.user.sex === 'MALE') {
+                state.user.benchPress = menBenchPress(payload, state.user.currentWeight, state.user.age)
+            } else {
+                state.user.benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
+            }
+            
+            return {...state}
         case 'ERROR':
             return {...state, error: action.payload}
         default:
