@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, Dispatch, useReducer } from "react";
 import { FitnessCategory, User, ActivityLevel, Macros, Micros, WeightGoal } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
-import { menBenchPress, womenBenchPress } from "../Functions/Testing/muscularFitness";
+import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
 import { 
     validateName, 
     validateAge, 
@@ -19,12 +19,11 @@ const initialUser: User = {
     bodyWeightGoal: null,
     currentWeight: null,
     goalWeight: null,
+    gripStrength: null,
     height: null,
-    leftHand: null,
     legPress: null,
     name: '',
     pushups: null,
-    rightHand: null,
     sex: null,
     macros: null,
     micros: null
@@ -51,7 +50,8 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
     | {type: 'UPDATE_BMI', payload: {h:number, w:number}}
     | {type: 'UPDATE_BENCH_PRESS', payload: number}
-
+    | {type: 'UPDATE_GRIP_STRENGTH', payload: number}
+    | {type: 'UPDATE_LEG_PRESS', payload:number}
 
 const initialState = {
     user: initialUser,
@@ -62,44 +62,74 @@ const initialState = {
 export const userReducer = (state : State, action: Action) => {
     const { type, payload } = action 
     switch (type) {
+        case 'UPDATE_LEG_PRESS':
+            if (state.user.sex === 'MALE' && state.user.age && state.user.currentWeight) {
+                state.user.legPress = menLegPress(state.user.age, payload, state.user.currentWeight)
+                state.error = null
+                return {...state}
+            } else if (state.user.sex === 'FEMALE' && state.user.age && state.user.currentWeight) {
+                state.user.legPress = womenLegPress(state.user.age, payload, state.user.currentWeight)
+                state.error = null
+                return {...state}
+            } else {
+                return {...state}
+            }
+        case 'UPDATE_GRIP_STRENGTH':
+            if (state.user.sex === 'MALE' && state.user.age) {
+                state.user.gripStrength = menGripStrength(state.user.age, payload)
+                state.error = null
+            } else if (state.user.sex === 'FEMALE' && state.user.age) {
+                console.log(payload, '<--- payload')
+                state.user.gripStrength = womenGripStrength(state.user.age, payload)
+                state.error = null
+            } 
+            return {...state}
         case 'UPDATE_BMI':
             const { h, w} = payload
             state.user.bmi = calculateBMI(w, h)
-            return {...state, error:null}
+            state.error = null
+            return {...state}
         case 'UPDATE_CURRENT_WEIGHT':
             state.user.currentWeight = validateCurrentWeight(payload)
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_WEIGHT_GOAL':
             state.user.bodyWeightGoal = payload
-            return {...state, error : null}
+            state.error = null
+            return {...state}
         case 'UPDATE_MACROS':
             state.user.macros = payload
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_MICROS':
             state.user.micros = payload
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case "UPDATE_ACTIVITY_LEVEL":
             state.user.activityLevel = payload
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_NAME':
             const name = validateName(payload)
             state.user.name = name
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_SEX':
-            const sex = validateSex(payload)
-            state.user.sex = sex
-            return {...state, error: null}
+            state.user.sex = validateSex(payload)
+            state.error = null
+            return {...state}
         case 'UPDATE_AGE':
-            const age = validateAge(payload)
-            state.user.age = age
-            return {...state, error: null}
+            state.user.age = validateAge(payload)
+            state.error = null
+            return {...state}
         case 'UPDATE_HEIGHT':
-            const height= validateHeight(payload)
-            state.user.height = height
-            return {...state, error: null}
+            state.user.height = validateHeight(payload)
+            state.error = null
+            return {...state}
         case 'UPDATE_GOAL_WEIGHT':
             state.user.goalWeight = validateGoalWeight(payload)
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_PUSHUPS':
             let category : FitnessCategory = 'fair'
 
@@ -114,7 +144,8 @@ export const userReducer = (state : State, action: Action) => {
                 pushups: payload, 
                 category
             }
-            return {...state, error: null}
+            state.error = null
+            return {...state}
         case 'UPDATE_BENCH_PRESS':
             if (!state.user.sex || !state.user.age || !state.user.currentWeight) return {...state}
             if (state.user.sex === 'MALE') {
@@ -122,9 +153,11 @@ export const userReducer = (state : State, action: Action) => {
             } else {
                 state.user.benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
             }
-            return {...state, error:null}
+            state.error = null
+            return {...state}
         case 'ERROR':
-            return {...state, error: action.payload}
+            state.error = payload
+            return {...state}
         default:
             return state
     }

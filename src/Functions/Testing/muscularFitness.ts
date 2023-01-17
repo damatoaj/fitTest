@@ -1,8 +1,8 @@
-import { BenchPress, GripStrength } from "../../interfaces"
+import { BenchPress, GripStrength, LegPress } from "../../interfaces"
 const menGripStrength = (age:number, kg:number) => {
     //assumes a combined kg for both hands
-    if (age < 14 || age > 69) throw new Error('Age is outside of the acceptable range')
-    if (kg < 0 || kg > 1000) throw new Error('KG is outside of acceptable range')
+    if (age < 14 || age > 69) throw new RangeError('Age is outside of the acceptable range')
+    if (kg < 0 || kg > 1000) throw new RangeError('KG is outside of acceptable range')
     if (age < 20) {
         if (kg >= 108) return {gripStrength:kg, category:'excellent'} as GripStrength
         if (kg >= 98) return {gripStrength:kg, category: 'very good'} as GripStrength
@@ -52,8 +52,8 @@ const menGripStrength = (age:number, kg:number) => {
 
 const womenGripStrength = (age:number, kg:number) => {
     //assumes a combined kg for both hands
-    if (age < 14 || age > 69) throw new Error('Age is outside of the acceptable range')
-    if (kg < 0 || kg > 1000) throw new Error('KG is outside of acceptable range')
+    if (age < 14 || age > 69) throw new RangeError('Age is outside of the acceptable range')
+    if (kg < 0 || kg > 1000) throw new RangeError('KG is outside of acceptable range')
     if (age < 20) {
         if (kg >= 68) return {gripStrength:kg, category:'excellent'} as GripStrength
         if (kg >= 60) return {gripStrength:kg, category: 'very good'} as GripStrength
@@ -102,6 +102,11 @@ const womenGripStrength = (age:number, kg:number) => {
 }
 
 const menBenchPress = (pushed:number, bodyWeight:number, age:number) => {
+    //assumes pushed and bodyweight are both in kg or lbs
+    if (bodyWeight < 0 || bodyWeight > 700) throw new Error('Bodyweight is outside of acceptable range')
+    if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
+    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
+
     const bpr = pushed / bodyWeight
     
     if (age < 20) {
@@ -158,6 +163,11 @@ const menBenchPress = (pushed:number, bodyWeight:number, age:number) => {
 }
 
 const womenBenchPress = (pushed:number, bodyWeight:number, age:number) => {
+    //assumes pushed and bodyweight are both in kg or lbs
+    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight is outside of acceptable range')
+    if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
+    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
+    
     const bpr = pushed / bodyWeight
     
     if (age < 20) {
@@ -214,87 +224,95 @@ const womenBenchPress = (pushed:number, bodyWeight:number, age:number) => {
 }
 
 const menLegPress = (age:number, pushed:number, bodyWeight:number) => {
-    if (age < 20) throw new Error('Age is outside of accepted range');
+    //assumes pushed and bodyweight are both in kg or lbs
+    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight must be between 1 and 700')
+    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed must be between 1 and 1000')
+    if (age < 20 || age > 100) throw new RangeError('Age must be between 20 and 100');
+    
     const ratio = pushed / bodyWeight;
     if (age <= 29) {
-        if (ratio >= 2.27) return 'Well above average';
-        if (ratio >= 2.05) return 'Well above average';
-        if (ratio >= 1.91) return 'Well above average';
-        if (ratio >= 1.74) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 2.27) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 2.05) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.91) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.74) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 39 && age >= 30) {
-        if (ratio >= 2.07) return 'Well above average';
-        if (ratio >= 1.85) return 'Well above average';
-        if (ratio >= 1.71) return 'Well above average';
-        if (ratio >= 1.59) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 2.07) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.85) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.71) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.59) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 49 && age >= 40) {
-        if (ratio >= 1.92) return 'Well above average';
-        if (ratio >= 1.74) return 'Well above average';
-        if (ratio >= 1.62) return 'Well above average';
-        if (ratio >= 1.51) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.92) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.74) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.62) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.51) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 59 && age >= 50) {
-        if (ratio >= 1.8) return 'Well above average';
-        if (ratio >= 1.64) return 'Well above average';
-        if (ratio >= 1.52) return 'Well above average';
-        if (ratio >= 1.39) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.8) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.64) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.52) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.39) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
-    if (ratio >= 1.73) return 'Well above average';
-    if (ratio >= 1.56) return 'Well above average';
-    if (ratio >= 1.43) return 'Well above average';
-    if (ratio >= 1.3) return 'Well above average';
-    return 'Well below average' 
+    if (ratio >= 1.73) return {legPress:pushed, category:'well above average'} as LegPress
+    if (ratio >= 1.56) return {legPress:pushed, category:'above average'} as LegPress
+    if (ratio >= 1.43) return {legPress:pushed, category:'average'} as LegPress
+    if (ratio >= 1.3) return {legPress:pushed, category:'below average'} as LegPress
+    return {legPress:pushed, category: 'well below average'} as LegPress
 }
 
 const womenLegPress = (age:number, pushed:number, bodyWeight:number) => {
-    if (age < 20) throw new Error('Age is outside of accepted range');
+    //assumes pushed and bodyweight are both in kg or lbs
+    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight must be between 1 and 700')
+    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed must be between 1 and 1000')
+    if (age < 20 || age > 100) throw new RangeError('Age must be between 20 and 100');
+    
     const ratio = pushed / bodyWeight
     if (age <= 29) {
-        if (ratio >= 1.82) return 'Well above average';
-        if (ratio >= 1.58) return 'Well above average';
-        if (ratio >= 1.44) return 'Well above average';
-        if (ratio >= 1.27) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.82) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.58) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.44) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.27) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 39 && age >= 30) {
-        if (ratio >= 1.61) return 'Well above average';
-        if (ratio >= 1.39) return 'Well above average';
-        if (ratio >= 1.27) return 'Well above average';
-        if (ratio >= 1.15) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.61) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.39) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.27) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.15) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 49 && age >= 40) {
-        if (ratio >= 1.48) return 'Well above average';
-        if (ratio >= 1.29) return 'Well above average';
-        if (ratio >= 1.18) return 'Well above average';
-        if (ratio >= 1.08) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.48) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.29) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.18) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= 1.08) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
     if (age <= 59 && age >= 50) {
-        if (ratio >= 1.37) return 'Well above average';
-        if (ratio >= 1.17) return 'Well above average';
-        if (ratio >= 1.05) return 'Well above average';
-        if (ratio >= .95) return 'Well above average';
-        return 'Well below average'
+        if (ratio >= 1.37) return {legPress:pushed, category:'well above average'} as LegPress
+        if (ratio >= 1.17) return {legPress:pushed, category:'above average'} as LegPress
+        if (ratio >= 1.05) return {legPress:pushed, category:'average'} as LegPress
+        if (ratio >= .95) return {legPress:pushed, category:'below average'} as LegPress
+        return {legPress:pushed, category: 'well below average'} as LegPress
     }
 
-    if (ratio >= 1.32) return 'Well above average';
-    if (ratio >= 1.13) return 'Well above average';
-    if (ratio >= .99) return 'Well above average';
-    if (ratio >= .88) return 'Well above average';
-    return 'Well below average' 
+    if (ratio >= 1.32) return {legPress:pushed, category:'well above average'} as LegPress
+    if (ratio >= 1.13) return {legPress:pushed, category:'above average'} as LegPress
+    if (ratio >= .99) return {legPress:pushed, category:'average'} as LegPress
+    if (ratio >= .88) return {legPress:pushed, category:'below average'} as LegPress
+    return {legPress:pushed, category: 'well below average'} as LegPress
 }
 
 export {

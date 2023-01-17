@@ -1,27 +1,28 @@
 import {ChangeEvent, ChangeEventHandler, MouseEventHandler, useState, FormEventHandler, FormEvent} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { 
-    menGripStrength, 
-    womenGripStrength,
-    menBenchPress,
-    menLegPress,
-    womenBenchPress,
-    womenLegPress
-} from '../Functions/Testing/muscularFitness';
+import { Sex } from '../interfaces';
 import { useUserContext } from './useUserContext';
 
-
+type data = {
+    sex: Sex,
+    age: string,
+    currentWeight: string,
+    benchPress: string,
+    leftHand:string,
+    rightHand:string,
+    legPress:string
+}
 const useStrength = () => {
     const {state, dispatch} = useUserContext()
     const navigate = useNavigate()
-    const [data, setData] = useState({
+    const [data, setData] = useState<data>({
         sex:'FEMALE',
-        age:0,
-        currentWeight:-1,
-        benchPress: -1,
-        legPress: -1,
-        leftHandGrip: -1,
-        rightHandGrip: -1
+        age:'0',
+        currentWeight: '0',
+        benchPress: '0',
+        legPress: '0',
+        leftHand: '0',
+        rightHand: '0'
     })
 
     const handleChange : ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,62 +40,32 @@ const useStrength = () => {
     const handleReset : MouseEventHandler = () => {
         setData(()=> { return {
             sex: 'FEMALE',
-            age: 0,
-            currentWeight: -1,
-            benchPress: -1,
-            legPress: -1,
-            leftHandGrip: -1,
-            rightHandGrip: -1,
+            age: '0',
+            currentWeight: '0',
+            benchPress: '0',
+            legPress: '0',
+            leftHand: '0',
+            rightHand: '0',
         }})
     };
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent) => {
         e.preventDefault();
-        let paramsObject = {};
-        const gripStrength = (data.leftHandGrip + data.rightHandGrip) / 2.2;
-        try {
-            if (data.sex === 'FEMALE') {
-                if (data.age < 14 || data.age > 69) {
-                    paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.currentWeight, data.age): 'No Data' ,
-                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.currentWeight) : 'No Data',
-                        gripStrength: 'Outside Of Age Range For Test'
-                    }
-                } else {
-                    paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? womenBenchPress(data.benchPress, data.currentWeight, data.age): 'No Data',
-                        legPressRatio: data.legPress !== -1 ? womenLegPress(data.age, data.legPress, data.currentWeight) : 'No Data',
-                        gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? womenGripStrength(data.age, gripStrength) : 'No Data'
-                    }
-                }
-            } else {
-                if (data.age < 14 || data.age > 69) {
-                    paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.currentWeight, data.age) : 'No Data',
-                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.currentWeight): 'No Data',
-                        gripStrength: 'Outside Of Age Range For Test'
-                    }
-                } else {
-                    paramsObject = {
-                        benchPressRatio: data.benchPress !== -1 ? menBenchPress(data.benchPress, data.currentWeight, data.age) : 'No Data',
-                        legPressRatio: data.legPress !== -1 ? menLegPress(data.age, data.legPress, data.currentWeight): 'No Data',
-                        gripStrength: data.leftHandGrip !== -1 && data.rightHandGrip !== -1 ? menGripStrength(data.age, gripStrength) : 'No Data'
-                    }
-                }
-            };
 
+        try {
+            const gripStrength = (parseInt(data.leftHand) + parseInt(data.rightHand))/ 2.2;
             if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload:data.sex})
             if (!state.user.age) await dispatch({type: 'UPDATE_AGE', payload:data.age})
             if (!state.user.currentWeight) await dispatch({type:'UPDATE_CURRENT_WEIGHT', payload: data.currentWeight})
             await dispatch({type:'UPDATE_BENCH_PRESS', payload:data.benchPress})
-            const queryParams = new URLSearchParams(paramsObject)
-    
+            await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: gripStrength})
+            await dispatch({type: 'UPATE_LEG_PRESS', payload:data.legPress})
             navigate({
                 pathname:'/strength/results',
-                search: `?${queryParams}`
             })
         } catch (e:any) {
             const error = e.message
+            alert(`${e.name}: ${error}`)
             dispatch({type:'ERROR', payload: error})
         }
     };
@@ -102,12 +73,12 @@ const useStrength = () => {
     const newForm : MouseEventHandler = () => {
         setData(()=> { return {
             sex: 'FEMALE',
-            age: 0,
-            currentWeight: -1,
-            benchPress: -1,
-            legPress: -1,
-            leftHandGrip: -1,
-            rightHandGrip: -1
+            age: '0',
+            currentWeight: '0',
+            benchPress: '0',
+            legPress: '0',
+            leftHand: '0',
+            rightHand: '0'
         }})
         navigate('/strength')
     };

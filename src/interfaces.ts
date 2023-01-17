@@ -42,12 +42,11 @@ interface User {
     bodyWeightGoal: WeightGoal | null;
     currentWeight: number | null;
     goalWeight: number | null;
+    gripStrength: GripStrength | null;
     height: number | null;
-    leftHand: number | null;
-    legPress: number | null;
+    legPress: LegPress | null;
     name: string;
     pushups: { pushups: number, category: FitnessCategory} | null;
-    rightHand: number| null;
     sex: Sex | null;
     macros: Macros | null;
     micros: Micros | null;
@@ -69,6 +68,7 @@ type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high'
 type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor'
 
 type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor'}
+type LegPress = {legPress:number, category:'well above average'|'above average'|'average'|'below average'|'well below average'}
 
 type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor'}
 
@@ -85,5 +85,6 @@ export type {
     WaistCircumferenceCategory,
     BodyCompCategory,
     BenchPress,
+    LegPress,
     GripStrength
 }
