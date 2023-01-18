@@ -57,9 +57,9 @@ const useStrength = () => {
             if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload:data.sex})
             if (!state.user.age) await dispatch({type: 'UPDATE_AGE', payload:data.age})
             if (!state.user.currentWeight) await dispatch({type:'UPDATE_CURRENT_WEIGHT', payload: data.currentWeight})
-            await dispatch({type:'UPDATE_BENCH_PRESS', payload:data.benchPress})
-            await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: gripStrength})
-            await dispatch({type: 'UPATE_LEG_PRESS', payload:data.legPress})
+            await dispatch({type:'UPDATE_BENCH_PRESS', payload: Math.round(parseInt(data.benchPress))})
+            await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round(gripStrength)})
+            await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))})
             navigate({
                 pathname:'/strength/results',
             })

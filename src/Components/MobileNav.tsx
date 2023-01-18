@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileNav = () => {
@@ -88,4 +88,4 @@ const styles : any = {
     }
 }
 
-export default MobileNav;
+export default memo(MobileNav);

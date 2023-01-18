@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
+import {memo} from 'react'
 const NavBar = () => {
     return (
         <header>
@@ -19,6 +19,6 @@ const NavBar = () => {
             </ul>
         </header>
     )
-};
+}
 
-export default NavBar;
+export default memo(NavBar)

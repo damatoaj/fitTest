@@ -1,7 +1,7 @@
-import { useSearchParams } from "react-router-dom";
-
+import { useUserContext } from "../Hooks/useUserContext"
+import { memo } from 'react'
 const StrengthTable = () => {
-    const [searchParams] = useSearchParams()
+    const { state : {user} } = useUserContext()
     return (
         <table>
             <thead>
@@ -12,14 +12,20 @@ const StrengthTable = () => {
                     <th>Grip Strength</th>
                 </tr>
                 <tr>
-                    <th>Results: </th>
-                    <th>{searchParams.get('legPressRatio')}</th>
-                    <th>{searchParams.get('benchPressRatio')}</th>
-                    <th>{searchParams.get('gripStrength')}</th>
+                    <th>Category: </th>
+                    <th>{user.legPress?.category ? user.legPress.category : 'No Data'}</th>
+                    <th>{user.benchPress?.category ? user.benchPress.category: 'No Data'}</th>
+                    <th>{user.gripStrength?.category ? user.gripStrength?.category : 'No Data'}</th>
+                </tr>
+                <tr>
+                    <th>Weight (lbs): </th>
+                    <th>{user.legPress?.legPress ? user.legPress.legPress : 'No Data'}</th>
+                    <th>{user.benchPress?.benchPress ? user.benchPress.benchPress: 'No Data'}</th>
+                    <th>{user.gripStrength?.gripStrength ? user.gripStrength?.gripStrength : 'No Data'}</th>
                 </tr>
             </thead>
         </table>
     )
-};
+}
 
-export default StrengthTable;
+export default memo(StrengthTable)
