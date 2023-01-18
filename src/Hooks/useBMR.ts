@@ -21,15 +21,16 @@ const useBMR = () => {
     const [data, setData] = useState<Demographics>({
         sex: 'FEMALE',
         age: 0,
-        height: 0,
-        currentWeight: 0,
+        height: 0, //inches
+        currentWeight: 0, //pounds
         activityLevel: 'moderately active',
         goal: 'maintain',
-        goalWeight: 0
+        goalWeight: 0 //pounds
     })
 
-    const kg : number = data.goalWeight / 2.2
+    const kg : number = data.currentWeight / 2.2
     const cm : number = data.height * 2.54
+    const m : number = cm / 100
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
@@ -62,7 +63,7 @@ const useBMR = () => {
             if (!state.user.sex) await dispatch({type:'UPDATE_SEX', payload: data.sex})
             if (!state.user.height) await dispatch({type:'UPDATE_HEIGHT', payload:data.height})
             if (!state.user.currentWeight) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload:data.currentWeight})
-            if (!state.user.bmi) await dispatch({type:'UPDATE_BMI', payload:{h:state.user.height, w:state.user.currentWeight}})
+            if (!state.user.bmi) await dispatch({type:'UPDATE_BMI', payload:{h:m, w:kg}})
             await dispatch({type:"UPDATE_WEIGHT_GOAL", payload:data.goal})
             await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight})
             await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel})

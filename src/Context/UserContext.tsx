@@ -79,7 +79,6 @@ export const userReducer = (state : State, action: Action) => {
                 state.user.gripStrength = menGripStrength(state.user.age, payload)
                 state.error = null
             } else if (state.user.sex === 'FEMALE' && state.user.age) {
-                console.log(payload, '<--- payload')
                 state.user.gripStrength = womenGripStrength(state.user.age, payload)
                 state.error = null
             } 

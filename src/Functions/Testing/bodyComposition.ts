@@ -2,9 +2,9 @@ import { Sex, BMI, BMIClassifications, WaistCircumferenceCategory, BodyCompCateg
 
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
-    if (weight < 1 || weight > 800) throw new Error('Weight is outside the acceptable parameters');
-    if (height < 1 || height > 274) throw new Error('Height is outside of the acceptable parameters');
-
+    if (weight < 1 || weight > 800) throw new RangeError('Weight is outside the acceptable parameters');
+    if (height < 1 || height > 274) throw new RangeError('Height is outside of the acceptable parameters');
+    console.log(weight, height, '<_----w h ')
     const bmi = weight / height^2 
     if (bmi < 18.5) return { bmi, classification:  'underweight' as BMIClassifications } as BMI
     if (25 > bmi && bmi >= 18.5) return {bmi, classification: 'normal'  as BMIClassifications } as BMI
@@ -15,6 +15,8 @@ const calculateBMI = (weight:number, height:number) => {
 };
 
 const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) => {
+    if (sex !== 'MALE' && sex !== 'FEMALE') throw new TypeError('Sex must be MALE or FEMALE')
+    if (wc < 20 || wc > 500) throw new RangeError('WC must be between 20 and 500')
     //WC should be in centimeters
     if (sex === 'MALE') {
         if (wc < 80) return 'very low' as WaistCircumferenceCategory;
@@ -29,8 +31,8 @@ const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) => {
 };
 
 const menBodyComp = (age:number, bodyFat:number) => {
-    if(age < 20 || age > 80) throw new Error('Age is outside of range');
-    if (bodyFat < 1 || bodyFat > 100) throw new Error('Percent must be between 1 and 100');
+    if(age < 20 || age > 80) throw new RangeError('Age is outside of range');
+    if (bodyFat < 1 || bodyFat > 100) throw new RangeError('Percent must be between 1 and 100');
 
     if (age <= 29) {
         if (bodyFat <= 6.4) return 'very lean' as BodyCompCategory;
@@ -86,8 +88,8 @@ const menBodyComp = (age:number, bodyFat:number) => {
 };
 
 const womenBodyComp = (age:number, bodyFat:number) => {
-    if(age < 20 || age > 80) throw new Error('Age is outside of range');
-    if (bodyFat < 1 || bodyFat > 100) throw new Error('Percent must be between 1 and 100');
+    if(age < 20 || age > 80) throw new RangeError('Age is outside of range');
+    if (bodyFat < 1 || bodyFat > 100) throw new RangeError('Percent must be between 1 and 100');
 
     if (age <= 29) {
         if (bodyFat <= 14) return 'very lean' as BodyCompCategory;

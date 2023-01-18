@@ -1,19 +1,30 @@
 interface Macros {
     totalCalories: number,
-    carbs: {
-        minGrams: number,
-        maxGrams: number,
-        minCal: number,
-        maxCal: number
-    },
-    protein: {
-        minGrams: number,
-        maxGrams: number,
-        minCal: number,
-        maxCal: number
-    }
+    carbs: Carbohydrates,
+    protein: Protein,
+    fats: Fats
 }
 
+type Protein = {
+    minGrams:number;
+    maxGrams:number;
+    minCal:number;
+    maxCal:number;
+}
+
+type Carbohydrates = {
+    minGrams:number;
+    maxGrams:number;
+    minCal:number;
+    maxCal:number;
+}
+
+type Fats = {
+    minGrams:number;
+    maxGrams:number;
+    minCal:number;
+    maxCal:number;
+}
 interface Micros {
     fiber : { amount: number, unit: string},
     vitaminA : { amount: number, unit: string},
@@ -86,5 +97,8 @@ export type {
     BodyCompCategory,
     BenchPress,
     LegPress,
-    GripStrength
+    GripStrength,
+    Protein,
+    Fats,
+    Carbohydrates
 }
