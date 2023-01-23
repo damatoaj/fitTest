@@ -82,7 +82,7 @@ select {
     outline-offset: 5px;
 }
 
-span {
+form span {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-evenly;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Ramp from './Ramp';
 import './TreadmillTests.css';
 const Bruce = () => {
     const navigate = useNavigate();
@@ -77,6 +78,7 @@ const Bruce = () => {
 
     return (
         <main className='container'>
+            <Ramp />
             {state.inProgress && (
                 <section>
                     <h1>You Are In Stage {state.stage}</h1>
