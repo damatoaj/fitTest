@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Alegreya', serif;
 }
 
 html {
@@ -36,3 +37,8 @@ header li {
   list-style: none;
 }
 
+@media only screen and (max-width: 400px) {
+  body {
+    margin-top: 100px;
+  }
+}
