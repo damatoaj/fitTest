@@ -88,3 +88,11 @@ span {
     justify-content: space-evenly;
 }
 
+@media screen and (max-width:400px) {
+    form {
+        width:100%;
+        border: none;
+        border-radius: 0;
+    }
+}
+
