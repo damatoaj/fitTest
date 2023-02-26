@@ -4,8 +4,8 @@ const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
     if (weight < 1 || weight > 800) throw new RangeError('Weight is outside the acceptable parameters');
     if (height < 1 || height > 274) throw new RangeError('Height is outside of the acceptable parameters');
-    console.log(weight, height, '<_----w h ')
-    const bmi = weight / height^2 
+
+    const bmi = weight / height ** 2 
     if (bmi < 18.5) return { bmi, classification:  'underweight' as BMIClassifications } as BMI
     if (25 > bmi && bmi >= 18.5) return {bmi, classification: 'normal'  as BMIClassifications } as BMI
     if (30 > bmi && bmi >= 25) return { bmi, classification: 'overweight' as BMIClassifications } as BMI
