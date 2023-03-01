@@ -22,7 +22,8 @@ const initialUser: User = {
     gripStrength: null,
     height: null,
     legPress: null,
-    name: '',
+    fname: null,
+    lname: null,
     pushups: null,
     sex: null,
     macros: null,
@@ -113,8 +114,10 @@ export const userReducer = (state : State, action: Action) => {
             state.error = null
             return {...state}
         case 'UPDATE_NAME':
-            const name = validateName(payload)
-            state.user.name = name
+            const fname = validateName(payload)
+            const lname = validateName(payload)
+            state.user.fname = fname
+            state.user.lname= lname
             state.error = null
             return {...state}
         case 'UPDATE_SEX':

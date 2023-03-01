@@ -9,6 +9,7 @@ import NavBar from './Components/NavBar';
 import MobileNav from './Components/MobileNav';
 import Results from './Screens/Results';
 import useBMR from './Hooks/useBMR';
+import Home from './Screens/Home';
 
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
@@ -17,6 +18,7 @@ import EnduranceForm from './Components/EnduranceForm';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
+import DemoGraphicsForm from './Components/DemoGraphicsForm';
 function App() {
   const { state } = useUserContext()
   const { 
@@ -32,6 +34,11 @@ function App() {
       {window.innerWidth > 600 && <NavBar />}
       {window.innerWidth <= 600 && <MobileNav />}
         <Routes>
+          <Route
+            path='/'
+            element={<Home />}
+          />
+            <Route path='/parq' element={<DemoGraphicsForm/>}></Route>
           <Route
             path='/nutrition' 
             element={<Form handleChange={handleChange} 

@@ -56,7 +56,8 @@ interface User {
     gripStrength: GripStrength | null;
     height: number | null;
     legPress: LegPress | null;
-    name: string;
+    fname: string | null;
+    lname: string | null;
     pushups: { pushups: number, category: FitnessCategory} | null;
     sex: Sex | null;
     macros: Macros | null;
