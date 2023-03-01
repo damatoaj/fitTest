@@ -1,4 +1,4 @@
-main.container {
+main.treadmill-container {
     display:'flex';
     flex-direction:column;
     text-align: center;
@@ -6,20 +6,20 @@ main.container {
     justify-content: space-between;
 }
 
-main.container > button {
+main.treadmill-container > button {
     max-width: 200px;
     place-self: center;
 }
 
-main.container h1 {
+main.treadmill-container h1 {
     text-decoration: underline;
 }
 
-main.container h3 {
+main.treadmill-container h3 {
     color: green;
     font-size: 2rem;
 }
 
-main.container time {
+main.treadmill-container time {
     font-size: 2rem;
 }

@@ -46,10 +46,10 @@ const Ramp = () => {
                 if (state.seconds < 59) {
                     setState((prev:Treadmill) => ({ ...prev, seconds : prev.seconds + 1 }))
                 } else {
-                    setState((prev:Treadmill) => ({...prev, seconds:0 }))
+                    setState((prev:Treadmill) => ({...prev, seconds:0, minutes:prev.minutes + 1 }))
                 };
 
-                if (state.seconds === 0 || state.seconds === 30) {
+                if (state.seconds === 59 || state.seconds === 29) {
                     console.warn('update stage')
                     //update stage
                     if (state.stage < 32) {
@@ -84,7 +84,7 @@ const Ramp = () => {
     }, [state])
 
     return (
-        <main className='container'>
+        <main className='treadmill-container'>
             {state.inProgress && (
                 <section>
                     <h1>You Are In Stage {state.stage}</h1>

@@ -38,35 +38,51 @@ const Bruce = () => {
                         return { ...prev, seconds : prev.seconds + 1 }
                     })
                 } else {
-                    if (state.minutes + 1 < 3) {
+                    if (state.minutes < 2) {
+                        //stage 1
                         setState((prev) => {
                             return { ...prev, seconds : 0, minutes : prev.minutes + 1 }
                         })
-                    } else if (state.minutes + 1 >= 3 && state.minutes + 1 < 6) {
+                        console.log('stage 1: ', state)
+                    } 
+                    else if (state.minutes >= 2 && state.minutes < 6) {
+                        //stage 2
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:12, mph: 2.5, stage:2, mets: 7 }
                         })
-                    } else if (state.minutes + 1 >= 6 && state.minutes + 1 < 9) {
+                        console.log('stage 2: ', state)
+                    } 
+                    else if (state.minutes >= 5 && state.minutes < 9) {
+                        //stage 3
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:14, mph: 3.4, stage:3, mets: 10 }
                         })
-                    } else if (state.minutes + 1 >= 9 && state.minutes + 1 < 12) {
+                    } 
+                    else if (state.minutes >= 8 && state.minutes < 12) {
+                        //stage 4
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:16, mph: 4.2, stage:4, mets: 13 }
                         })
-                    } else if (state.minutes + 1 >= 12 && state.minutes + 1 < 15) {
+                    } 
+                    else if (state.minutes >= 11 && state.minutes < 15) {
+                        //stage 5
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:18, mph: 5, stage:5, mets: 15 }
                         })
-                    } else if (state.minutes + 1 >= 15 && state.minutes + 1 < 18) {
+                    } 
+                    else if (state.minutes >= 14 && state.minutes < 18) {
+                        //stage 6
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:20, mph: 5.5, stage:6, mets: 18 }
                         })
-                    } else if (state.minutes + 1 >= 18 && state.minutes + 1  < 21) {
+                    } 
+                    else if (state.minutes >= 17 && state.minutes  < 21) {
+                        //stage7
                         setState((prev) => {
                             return {...prev, seconds : 0, minutes: prev.minutes + 1, grade:22, mph: 6, stage:7, mets: 20 }
                         })
-                    } else {
+                    } 
+                    else {
                         clearInterval(bruceTest)
                     }
                 }
@@ -77,7 +93,7 @@ const Bruce = () => {
 
 
     return (
-        <main className='container'>
+        <main className='treadmill-container'>
             <Ramp />
             {state.inProgress && (
                 <section>

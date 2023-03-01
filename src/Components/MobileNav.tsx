@@ -32,7 +32,7 @@ const styles : any = {
     container : {
         width: '200px',
         border: '2px solid grey',
-        backgroundColor: 'rgb(0, 0, 0, .4',
+        backgroundColor: 'rgb(0, 0, 0, .4)',
         display:'flex',
         flexDirection:'column',
         paddingInline: '10px',
@@ -53,7 +53,7 @@ const styles : any = {
         height: '100%',
         zIndex:'100',
         border: '2px solid grey',
-        backgroundColor: 'rgb(0, 0, 0, .4',
+        backgroundColor: 'rgb(0, 0, 0, .4)',
         position: 'fixed',
         display: 'flex',
         flexDirection: 'column',
@@ -62,7 +62,7 @@ const styles : any = {
     },
     link: {
         color:'white',
-        backgroundColor:'rgb(0, 0, 0, .7',
+        backgroundColor:'rgb(0, 0, 0, .7)',
         padding: '5%'
     },
     rectangle : {
@@ -75,11 +75,11 @@ const styles : any = {
         height: '25px',
         width: '25px',
         borderLeft: '20px solid white',
-        borderBottom: '11px solid rgb(0, 0, 0, .2',
-        borderTop: '11px solid rgb(0, 0, 0, .2'
+        borderBottom: '11px solid rgb(0, 0, 0, .2)',
+        borderTop: '11px solid rgb(0, 0, 0, .2)'
     },
     back: {
-        backgroundColor:'rgb(0, 0, 0, .7',
+        backgroundColor:'rgb(0, 0, 0, .7)',
         display:'flex',
         justifyContent:'flex-end',
         color:'white',
