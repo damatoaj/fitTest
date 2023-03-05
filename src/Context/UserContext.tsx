@@ -66,17 +66,14 @@ export const userReducer = (state : State, action: Action) => {
         case 'UPDATE_LEG_PRESS':
             console.log('leg press')
             if (state.user.sex === 'MALE' && state.user.age && state.user.currentWeight) {
-                console.log('first option')
                 state.user.legPress = menLegPress(state.user.age, payload, state.user.currentWeight)
                 state.error = null
                 return {...state}
             } else if (state.user.sex === 'FEMALE' && state.user.age && state.user.currentWeight) {
-                console.log('second option')
                 state.user.legPress = womenLegPress(state.user.age, payload, state.user.currentWeight)
                 state.error = null
                 return {...state}
             } else {
-                console.log('third option')
                 return {...state}
             }
         case 'UPDATE_GRIP_STRENGTH':

@@ -2,12 +2,15 @@ form {
     max-width: 600px;
     border: 2px solid black;
     border-radius: 10%;
-    box-shadow: 0 0 15px grey;
+    box-shadow: 0 0 15px lightgrey;
     display: flex;
     flex-direction: column;
     padding: 15px;
     margin-top: 30px;
     background-color: whitesmoke;
+    transition: max-width 2s ease, 
+        border-color 1s ease,
+        box-shadow 2s ease;
 }
 
 form label {
@@ -21,6 +24,13 @@ form:invalid {
 
 form:valid {
     border-color: green;
+}
+
+form:focus-within {
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 0 20px black; 
+    border-color: lightblue;
 }
 
 fieldset {
@@ -72,6 +82,7 @@ input:blank {
 input:focus {
     border-bottom: none;
 }
+
 
 legend {
     text-align: left;
