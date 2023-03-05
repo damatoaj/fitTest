@@ -29,7 +29,7 @@ const EnduranceForm = () => {
     const handleReset = () => {
         setData({
             sex: 'FEMALE',
-            age: 20,
+            age: 0,
             pushups:0
         })
     }
@@ -58,7 +58,7 @@ const EnduranceForm = () => {
                     <legend>Sex</legend>
                     <select
                         name='sex'
-                        value={data.sex}
+                        defaultValue={'FEMALE'}
                         onChange={handleSelect}
                     >
                         <option value='FEMALE'>Female</option>
@@ -75,7 +75,6 @@ const EnduranceForm = () => {
                     min='20'
                     max='69'
                     required
-                    value={data.age}
                     onChange={handleChange}
                 />
             </fieldset>
@@ -87,7 +86,6 @@ const EnduranceForm = () => {
                     name='pushups'
                     min='0'
                     required
-                    value={data.pushups}
                     onChange={handleChange}
                 />
             </fieldset>

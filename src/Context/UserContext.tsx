@@ -43,7 +43,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type:'UPDATE_HEIGHT', payload:number}
     | {type: 'UPDATE_GOAL_WEIGHT', payload: number}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
-    | {type: 'UPDATE_NAME', payload: string}
+    | {type: 'UPDATE_NAME', payload: {fname:string, lname:string}}
     | {type: 'UPDATE_ACTIVITY_LEVEL', payload: ActivityLevel}
     | {type: 'UPDATE_MACROS', payload: Macros}
     | {type: 'UPDATE_MICROS', payload: Micros}
@@ -114,8 +114,8 @@ export const userReducer = (state : State, action: Action) => {
             state.error = null
             return {...state}
         case 'UPDATE_NAME':
-            const fname = validateName(payload)
-            const lname = validateName(payload)
+            const fname = validateName(payload.fname)
+            const lname = validateName(payload.lname)
             state.user.fname = fname
             state.user.lname= lname
             state.error = null
