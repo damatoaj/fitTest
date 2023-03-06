@@ -1,9 +1,9 @@
 import { useRef, memo } from 'react'
-import useStrength from '../Hooks/useStrength'
+import useForm from '../Hooks/useForm'
 import { useUserContext } from '../Hooks/useUserContext'
 const StrengthForm = () => {
     const {state} = useUserContext()
-    const { handleChange, handleSelect, handleSubmit, handleReset} = useStrength()
+    const { handleChange, handleSelect, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     let valid : boolean = false
     if(form.current && form.current !== null) {
@@ -14,6 +14,7 @@ const StrengthForm = () => {
         <form
             ref={form}
             onSubmit={handleSubmit}
+            onReset={handleReset}
         >
             <h2>Calculate Your Muscular Fitness</h2>
             {!state.user.sex && (
@@ -104,7 +105,7 @@ const StrengthForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset' onClick={handleReset}>Reset</button>
+                <button type='reset'>Reset</button>
             </span>
         </form>
     )

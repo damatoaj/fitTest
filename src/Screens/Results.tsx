@@ -1,4 +1,3 @@
-import { MouseEventHandler } from 'react';
 import MacrosTable from '../Components/MacrosTable';
 import MicrosTable from '../Components/MicrosTable';
 import { Macros, Micros } from '../interfaces';
@@ -7,9 +6,8 @@ import { printTable } from '../Functions/printTable'
 type ResultsProps = {
     macros: Macros,
     micros: Micros,
-    newForm: MouseEventHandler
 }
-const Results = ({macros, micros, newForm}: ResultsProps) => {
+const Results = ({macros, micros}: ResultsProps) => {
     return (
         <article style={styles.article}>
             <div id='printable'>
@@ -17,7 +15,7 @@ const Results = ({macros, micros, newForm}: ResultsProps) => {
                 <MicrosTable micros={micros} />
             </div>
             <span>
-                <button type='button' onClick={newForm}>New Form</button>
+                <button type='button'>New Form</button>
                 <button type='button' onClick={()=> printTable('printable')}>Print</button>
             </span>
         </article>

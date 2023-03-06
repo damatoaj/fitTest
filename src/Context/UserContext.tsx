@@ -1,5 +1,5 @@
-import { createContext, PropsWithChildren, Dispatch, useReducer } from "react";
-import { FitnessCategory, User, ActivityLevel, Macros, Micros, WeightGoal } from "../interfaces";
+import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from "react";
+import { FitnessCategory, User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
 import { 
@@ -11,6 +11,8 @@ import {
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
+import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
+import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
 const initialUser: User = {
     activityLevel: null,
     age: null,
@@ -40,16 +42,13 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'ERROR', payload:string}
     | {type: 'UPDATE_SEX', payload: 'MALE' | 'FEMALE'}
     | {type:'UPDATE_AGE', payload: number}
-    | {type:'UPDATE_HEIGHT', payload:number}
+    | {type: 'UPDATE_HEIGHT', payload:number}
     | {type: 'UPDATE_GOAL_WEIGHT', payload: number}
+    | {type: 'UPDATE_WEIGHT_GOAL', payload: WeightGoal}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
     | {type: 'UPDATE_NAME', payload: {fname:string, lname:string}}
     | {type: 'UPDATE_ACTIVITY_LEVEL', payload: ActivityLevel}
-    | {type: 'UPDATE_MACROS', payload: Macros}
-    | {type: 'UPDATE_MICROS', payload: Micros}
-    | {type: 'UPDATE_WEIGHT_GOAL', payload: WeightGoal}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
-    | {type: 'UPDATE_BMI', payload: {h:number, w:number}}
     | {type: 'UPDATE_BENCH_PRESS', payload: number}
     | {type: 'UPDATE_GRIP_STRENGTH', payload: number}
     | {type: 'UPDATE_LEG_PRESS', payload:number}
@@ -64,7 +63,6 @@ export const userReducer = (state : State, action: Action) => {
     const { type, payload } = action 
     switch (type) {
         case 'UPDATE_LEG_PRESS':
-            console.log('leg press')
             if (state.user.sex === 'MALE' && state.user.age && state.user.currentWeight) {
                 state.user.legPress = menLegPress(state.user.age, payload, state.user.currentWeight)
                 state.error = null
@@ -85,25 +83,8 @@ export const userReducer = (state : State, action: Action) => {
                 state.error = null
             } 
             return {...state}
-        case 'UPDATE_BMI':
-            const { h, w} = payload
-            state.user.bmi = calculateBMI(w, h)
-            state.error = null
-            return {...state}
         case 'UPDATE_CURRENT_WEIGHT':
             state.user.currentWeight = validateCurrentWeight(payload)
-            state.error = null
-            return {...state}
-        case 'UPDATE_WEIGHT_GOAL':
-            state.user.bodyWeightGoal = payload
-            state.error = null
-            return {...state}
-        case 'UPDATE_MACROS':
-            state.user.macros = payload
-            state.error = null
-            return {...state}
-        case 'UPDATE_MICROS':
-            state.user.micros = payload
             state.error = null
             return {...state}
         case "UPDATE_ACTIVITY_LEVEL":
@@ -175,9 +156,65 @@ export const UserContext = createContext<UserContextType>({state:initialState, d
 
 export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
+    const bmi : BMI | null = useMemo(()=> {
+        if (state.user.height && state.user.currentWeight) {
+            return calculateBMI(state.user.currentWeight/2.2, state.user.height * 2.54)
+        }
+        return null
+    }, [state.user.height, state.user.currentWeight])
+    const bodyWeightGoal : WeightGoal | null = useMemo(()=> {
+        if (state.user.currentWeight && state.user.goalWeight) {
+            if (state.user.currentWeight > state.user.goalWeight) {
+                return 'lose'
+            } else if (state.user.currentWeight < state.user.goalWeight) {
+                return 'gain'
+            } else {return'maintain'}
+        }
+        return null
+    }, [state.user.currentWeight, state.user.goalWeight])
+    const macros : Macros | null = useMemo(()=> {
+        console.log('age: ',state.user.age )
+        console.log('sex: ',state.user.sex )
+        console.log('weight: ',state.user.currentWeight )
+        console.log('height: ',state.user.height )
+        console.log('ativity level: ',state.user.activityLevel )
+        console.log('bodyweightgoal: ',bodyWeightGoal )
+
+        if (state.user.age 
+            && state.user.sex 
+            && state.user.currentWeight
+            && state.user.height
+            && state.user.activityLevel
+            && bodyWeightGoal) {
+                console.log('should return ')
+            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight/2.2, state.user.height * 2.54, state.user.activityLevel, bodyWeightGoal)
+        }
+        return null
+    }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height])
+    const micros : Micros | null = useMemo(()=> {
+        if (state.user.age && state.user.sex) {
+            return calculateMicros(state.user.sex,state.user.age)
+        }
+        return null
+    }, [state.user.age, state.user.sex])
     console.log('user: ', state.user)
     return(
-        <UserContext.Provider value={{state, dispatch}}>
+        <UserContext.Provider 
+            value={{
+                state: { 
+                    user: {
+                        ...state.user, 
+                        bodyWeightGoal, 
+                        bmi, 
+                        macros,
+                        micros
+                    }, 
+                    error:state.error, 
+                    isLoading:state.isLoading
+                }, 
+                dispatch
+            }}
+        >
             {props.children}
         </UserContext.Provider>
     )

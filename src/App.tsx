@@ -9,8 +9,9 @@ import Form from './Components/Form';
 import NavBar from './Components/NavBar';
 import MobileNav from './Components/MobileNav';
 import Results from './Screens/Results';
-import useBMR from './Hooks/useBMR';
 import Home from './Screens/Home';
+import Loader from './Components/Loader';
+import Error from './Components/Error';
 
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
@@ -22,16 +23,11 @@ import { useUserContext } from './Hooks/useUserContext';
 import DemoGraphicsForm from './Components/DemoGraphicsForm';
 function App() {
   const { state } = useUserContext()
-  const { 
-    handleChange, 
-    handleReset, 
-    handleSelect, 
-    handleSubmit,
-    newForm
-  } = useBMR();
   
     return (
       <>
+      {state.error && <Error message={state.error} />}
+      {state.isLoading && <Loader />}
       {window.innerWidth > 600 && <NavBar />}
       {window.innerWidth <= 600 && <MobileNav />}
         <Routes>
@@ -42,13 +38,10 @@ function App() {
             <Route path='/parq' element={<DemoGraphicsForm/>}></Route>
           <Route
             path='/nutrition' 
-            element={<Form handleChange={handleChange} 
-              handleReset={handleReset}
-              handleSelect={handleSelect} 
-              handleSubmit={handleSubmit}/>}
+            element={<Form />}
           >
           </Route> 
-          {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} newForm={newForm}/>}/>}
+          {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
           <Route path='/endurance' element={<EnduranceForm />} />
