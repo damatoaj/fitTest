@@ -158,7 +158,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
     const bmi : BMI | null = useMemo(()=> {
         if (state.user.height && state.user.currentWeight) {
-            return calculateBMI(state.user.currentWeight/2.2, state.user.height * 2.54)
+            return calculateBMI(state.user.currentWeight / 2.2, state.user.height / 39.37)
         }
         return null
     }, [state.user.height, state.user.currentWeight])
@@ -173,20 +173,12 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         return null
     }, [state.user.currentWeight, state.user.goalWeight])
     const macros : Macros | null = useMemo(()=> {
-        console.log('age: ',state.user.age )
-        console.log('sex: ',state.user.sex )
-        console.log('weight: ',state.user.currentWeight )
-        console.log('height: ',state.user.height )
-        console.log('ativity level: ',state.user.activityLevel )
-        console.log('bodyweightgoal: ',bodyWeightGoal )
-
         if (state.user.age 
             && state.user.sex 
             && state.user.currentWeight
             && state.user.height
             && state.user.activityLevel
             && bodyWeightGoal) {
-                console.log('should return ')
             return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight/2.2, state.user.height * 2.54, state.user.activityLevel, bodyWeightGoal)
         }
         return null
@@ -197,7 +189,13 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         }
         return null
     }, [state.user.age, state.user.sex])
-    console.log('user: ', state.user)
+    console.log('user: ', {
+        ...state.user, 
+        bodyWeightGoal, 
+        bmi, 
+        macros,
+        micros
+    })
     return(
         <UserContext.Provider 
             value={{

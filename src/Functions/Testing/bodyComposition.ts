@@ -2,8 +2,8 @@ import { Sex, BMI, BMIClassifications, WaistCircumferenceCategory, BodyCompCateg
 
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
-    if (weight < 1 || weight > 800) throw new RangeError('Weight is outside the acceptable parameters');
-    if (height < 1 || height > 274) throw new RangeError('Height is outside of the acceptable parameters');
+    if (weight < 1 || weight > 800) throw new RangeError(`Weight is outside the acceptable parameters: ${weight}`);
+    if (height < 1 || height > 274) throw new RangeError(`Height is outside of the acceptable parameters: ${height}`);
 
     const bmi = weight / (height ** 2)
     if (bmi < 18.5) return { bmi, classification:  'underweight' as BMIClassifications } as BMI
