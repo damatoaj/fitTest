@@ -1,0 +1,40 @@
+[
+    {
+        "id":1,
+        "testName": "Push Up Test",
+        "heading":"Push-up Test Procedures For Measurement of Muscular Endurance",
+        "steps":[
+            "The pushup-up test is administered with men starting in the standard \"down\" position (hands pointingforward and under the shoulder, back straight, head up, using the toes as the pivotal point) and women in the modified \"knee push-up\" position (legs together, lower leg in contact with mat with ankles plantar-flexed, back straight, hands shoulder width apart, head up, using the knees as the pivotal point).",
+            "The client/patient must raise the body by straightening the elbows and return to the \"down\" position, until the chin touches the mat. The stomach should not touch the mat.",
+            "For both men and women, the subject's back must be straight at all times, and the subject must push up to a straight arm position.",
+            "The maximal number of pushups performed consecutively without rest is counted as the score.",
+            "The test is stopped when the client strains forcibly or unable to maintain the appropriate technique within two repetitions"
+        ]
+    },
+    {
+        "id":2,
+        "testName": "One Rep Max Test",
+        "heading":"One Repetition Maximum (1-RM) Test Procedures For Measurement of Muscular Strength",
+        "steps": [
+            "Testing should be completed only after the subject has participated in familiarization/practice sessions",
+            "The subject should warm up by completing a number of submaximal repetitions of the specific exercise that will be used to determine the 1-RM.",
+            "Determine the 1-RM within four trials with rest periods of 3-5 min between trials.",
+            "Select an initial weight that is within the subject's percieved capacity (~50%-70% of capacity).",
+            "Resistance is progressively increased by 5.0%-10.0% for upper body or 10.0%-20.0% for lower body exercise from the previous successful attempt until the subject cannot complete the selected repetitions(s); all repetitions should be performed at the same speed of movement and ROM to instill consistency between trials.",
+            "The final weight lifted successfully is recorded as the absolute 1-RM."
+        ]
+    },
+    {
+        "id":3,
+        "testName": "Grip Strength Test",
+        "heading":"Static Handgrip Strength Test Procedures",
+        "steps": [
+            "Adjust the grip bar so the second joint of the fingers fits snugly under the handle and takes the weight of the instrument. Set the dynamometer to zero.",
+            "The subject holds the handgrip dynamometer in line with the forearm at the level of the thigh, away from the body.",
+            "The subject squeezes the handgrip dynamometer as hard as possible without holding the breath (to avoid the Valsalva maneuver). Neither the hand nor the handgrip dynamometer should touch the body or any other object.",
+            "Repeat the test twice with each hand. The score is the hight of the two readings (to the nearest kilogram) for each hand added together",
+            "Resistance is progressively increased by 5.0%-10.0% for upper body or 10.0%-20.0% for lower body exercise from the previous successful attempt until the subject cannot complete the selected repetitions(s); all repetitions should be performed at the same speed of movement and ROM to instill consistency between trials.",
+            "The final weight lifted successfully is recorded as the absolute 1-RM."
+        ]
+    }
+]

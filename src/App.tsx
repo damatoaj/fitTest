@@ -16,7 +16,7 @@ import Error from './Components/Error';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
 import StrengthTable from './Components/StrengthTable';
-import EnduranceForm from './Components/EnduranceForm';
+import Pushup from './Screens/PushupProtocol/Pushup';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
@@ -44,7 +44,7 @@ function App() {
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
-          <Route path='/endurance' element={<EnduranceForm />} />
+          <Route path='/endurance' element={<Pushup />} />
           <Route path='/treadmill-protocols'>
             <Route path='bruce' element={<Bruce />} />
             <Route path='bruce/results' element={<TreadmillResults />} />

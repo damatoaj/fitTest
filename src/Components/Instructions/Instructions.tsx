@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 
 type instructionsProps = {
     heading: string;
@@ -15,7 +15,7 @@ type paragraphProps = {
 }
 
 const Paragraph = ({paragraph, i} : paragraphProps): React.ReactElement => {
-    return <li><p><strong>Step {i}</strong></p> <p>{paragraph}</p></li>
+    return <li key={i}><p>{paragraph}</p></li>
 }
 
 const Paragraphs = ({paragraphs}: paragraphs) => {
@@ -34,4 +34,4 @@ return (
 )
 }
 
-export default Instructions
+export default memo(Instructions)
