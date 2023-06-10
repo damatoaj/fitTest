@@ -12,7 +12,7 @@ const EnduranceForm = () => {
     return (
         <form
             ref={form}
-            onSubmit={handleSubmit}
+            onSubmit={(e)=> handleSubmit(e)}
             onReset={handleReset}
         >
             <h2>Calculate Your Muscular Fitness</h2>

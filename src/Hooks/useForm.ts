@@ -1,5 +1,6 @@
 import { useState, ChangeEventHandler, ChangeEvent, FormEventHandler, FormEvent} from 'react';
 import { useUserContext } from './useUserContext';
+import { useNavigate } from 'react-router-dom';
 
 type Data = {
     activityLevel: string,
@@ -17,7 +18,8 @@ type Data = {
     sex: string,
 }
 
-const useForm = () => {
+const useForm = (url?:string) => {
+    const navigate : Function = useNavigate()
     const { dispatch} = useUserContext()
     const [data, setData] = useState<Data>({
         age: '',
@@ -69,7 +71,7 @@ const useForm = () => {
         }}) 
     }
 
-    const handleSubmit : FormEventHandler<HTMLFormElement> = async(e:FormEvent) => {
+    const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent,) => {
         e.preventDefault()
         try {
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel})
@@ -83,6 +85,7 @@ const useForm = () => {
             if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))})
             if (data.sex.length > 0) await dispatch({type:'UPDATE_SEX', payload: data.sex})
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)})
+            if (url) navigate(url)
         } catch (e:any) {
             const error = e.message
             dispatch({type:'ERROR', payload:error})

@@ -3,7 +3,7 @@ import './CSS/Buttons.css';
 import './CSS/Form.css';
 import './CSS/Table.css';
 import './CSS/Links.css';
-import './CSS/ToolTip.css'
+import './CSS/ToolTip.css';
 
 import Form from './Components/Form';
 import NavBar from './Components/NavBar';
@@ -21,6 +21,8 @@ import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
 import DemoGraphicsForm from './Components/DemoGraphicsForm';
+import Timer from './Components/Timer/Timer';
+import EnduranceForm from './Components/EnduranceForm';
 function App() {
   const { state } = useUserContext()
   
@@ -44,7 +46,11 @@ function App() {
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
-          <Route path='/endurance' element={<Pushup />} />
+          <Route path='/pushups'>
+            <Route path='instructions' element={<Pushup />} />
+            <Route path='test' element={<Timer nextUrl={'/pushups/results'} /> } />
+            <Route path='results' element={<EnduranceForm /> } />
+          </Route>
           <Route path='/treadmill-protocols'>
             <Route path='bruce' element={<Bruce />} />
             <Route path='bruce/results' element={<TreadmillResults />} />

@@ -10,7 +10,7 @@ const Form = () => {
     }
     return (
         <form
-            onSubmit={handleSubmit}
+            onSubmit={(e)=>handleSubmit(e)}
             ref={form}
             onReset={handleReset}
         >
@@ -43,13 +43,13 @@ const Form = () => {
                         Sedentary
                     </option>
                     <option 
-                        title='Light exercise/sports 1-3 days/week'
+                        data-title='Light exercise/sports 1-3 days/week'
                         value='light activity'
                     >
                         Light Activity
                     </option>
                     <option 
-                        title='Moderate exercise/sports 3-5 days/week'
+                        data-title='Moderate exercise/sports 3-5 days/week'
                         value='moderately active'
                     >
                         Moderately Active

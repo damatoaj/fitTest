@@ -3,10 +3,9 @@ import useForm from '../Hooks/useForm';
 
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
-    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm()
-
+    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm('/nutrition')
     let valid : boolean = false
-
+    
     if (form?.current !== null) {
         valid = form.current.checkValidity()
     }
