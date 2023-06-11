@@ -49,6 +49,8 @@ function DemoGraphicsForm() {
                 max='69'
                 required
                 onChange={handleChange}
+                step={1}
+                maxLength={3}
             />
         </fieldset>
         <fieldset>
@@ -60,6 +62,8 @@ function DemoGraphicsForm() {
                 max='450'
                 required
                 onChange={handleChange}
+                step={.5}
+                maxLength={7}
             />
         </fieldset>
         <fieldset>
@@ -72,6 +76,8 @@ function DemoGraphicsForm() {
                 max='108'
                 required
                 onChange={handleChange}
+                step={.5}
+                maxLength={6}
             />
         </fieldset>
         <fieldset>

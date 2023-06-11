@@ -26,8 +26,10 @@ const GripForm = () => {
                         name='leftHand'
                         min='0'
                         max='2000'
-                        placeholder='Lbs'
+                        placeholder='Measure in Lbs'
                         autoFocus={true}
+                        step={.5}
+                        maxLength={6}
                     />
                 <label htmlFor='rightHand'>
                     Right Hand
@@ -38,7 +40,9 @@ const GripForm = () => {
                         name='rightHand'
                         min='0'
                         max='2000'
-                        placeholder='Lbs'
+                        placeholder='Measure in Lbs'
+                        step={.5}
+                        maxLength={6}
                     />
             </fieldset>
             <span>

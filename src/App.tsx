@@ -26,7 +26,11 @@ import PushupResults from './Screens/PushupProtocol/PushupResults';
 import GripStrengthInstructions from './Screens/GripStrengthProtocol/GripStrengthInstructions';
 import GripStrengthTest from './Screens/GripStrengthProtocol/GripStrengthTest';
 import GripStrengthResults from './Screens/GripStrengthProtocol/GripStrengthResults';
-
+import BenchInstructions from './Screens/BenchPressProtocol/BenchInstructions';
+import BenchResults from './Screens/BenchPressProtocol/BenchResults';
+import BenchTest from './Screens/BenchPressProtocol/BenchTest';
+import LegPressResults from './Screens/LegPressProtocol/LegPressResults';
+import LegPressInstructions from './Screens/LegPressProtocol/LegPressInstructions';
 function App() {
   const { state } = useUserContext()
   
@@ -50,6 +54,16 @@ function App() {
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
+          <Route path='/bench-press'>
+            <Route path='/bench-press/instructions' element={<BenchInstructions />} />
+            <Route path='/bench-press/test' element={<BenchTest />} />
+            <Route path='/bench-press/results' element={<BenchResults />} />
+          </Route>
+          <Route path='/leg-press'>
+            <Route path='/leg-press/instructions' element={<LegPressInstructions />} />
+            <Route path='/leg-press/test' element={<h1>hi</h1>} />
+            <Route path='/leg-press/results' element={<LegPressResults />} />
+          </Route>
           <Route path='/grip-strength'>
             <Route path='/grip-strength/instructions' element={<GripStrengthInstructions />} />
             <Route path='/grip-strength/test' element={<GripStrengthTest />} />

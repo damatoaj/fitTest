@@ -59,7 +59,7 @@ fieldset:has(input:placeholder-shown){
 }
 
 input {
-    padding: 0 10px;
+    padding: 5px 10px;
     outline-offset: 5px;
     width: 100%;
     background-color: whitesmoke;
@@ -83,6 +83,14 @@ input:focus {
     border-bottom: none;
 }
 
+input:placeholder-shown {
+    border-bottom: 1px solid black;
+}
+
+form:has(input:placeholder-shown) {
+    border-color:black;
+}
+
 
 legend {
     text-align: left;
@@ -97,6 +105,16 @@ form span {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-evenly;
+}
+
+.validity-error {
+    color: red
+}
+
+.message-container {
+    min-height: 60px;
+    width:100%;
+    text-align: center;
 }
 
 @media screen and (max-width:400px) {

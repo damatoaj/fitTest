@@ -25,6 +25,8 @@ const EnduranceForm = () => {
                     required
                     onChange={handleChange}
                     autoFocus={true}
+                    step={1}
+                    maxLength={3}
                 />
             </fieldset>
             <span>

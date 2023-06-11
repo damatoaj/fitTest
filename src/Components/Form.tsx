@@ -25,6 +25,8 @@ const Form = () => {
                     min='50'
                     max='400'
                     required
+                    step={.5}
+                    maxLength={6}
                 />
             </fieldset>
             <fieldset>
