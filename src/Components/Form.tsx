@@ -18,6 +18,7 @@ const Form = () => {
             <fieldset>
                 <legend>Goal Weight in Pounds</legend>
                 <input 
+                    autoFocus={true}
                     type='number' 
                     onChange={handleChange}
                     name='goalWeight'

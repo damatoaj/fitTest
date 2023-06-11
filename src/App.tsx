@@ -16,13 +16,17 @@ import Error from './Components/Error';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/StrengthForm';
 import StrengthTable from './Components/StrengthTable';
-import Pushup from './Screens/PushupProtocol/Pushup';
+import PushupInstructions from './Screens/PushupProtocol/PushupInstructions';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
 import DemoGraphicsForm from './Components/DemoGraphicsForm';
 import PushupTest from './Screens/PushupProtocol/PushupTest';
 import PushupResults from './Screens/PushupProtocol/PushupResults';
+import GripStrengthInstructions from './Screens/GripStrengthProtocol/GripStrengthInstructions';
+import GripStrengthTest from './Screens/GripStrengthProtocol/GripStrengthTest';
+import GripStrengthResults from './Screens/GripStrengthProtocol/GripStrengthResults';
+
 function App() {
   const { state } = useUserContext()
   
@@ -46,8 +50,13 @@ function App() {
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
+          <Route path='/grip-strength'>
+            <Route path='/grip-strength/instructions' element={<GripStrengthInstructions />} />
+            <Route path='/grip-strength/test' element={<GripStrengthTest />} />
+            <Route path='/grip-strength/results' element={<GripStrengthResults />} />
+          </Route>
           <Route path='/pushups'>
-            <Route path='instructions' element={<Pushup />} />
+            <Route path='instructions' element={<PushupInstructions />} />
             <Route path='test' element={<PushupTest /> } />
             <Route path='results' element={<PushupResults /> } />
           </Route>

@@ -1,17 +1,12 @@
-import React from 'react'
 import EnduranceForm from '../../Components/EnduranceForm'
-import { useUserContext } from '../../Hooks/useUserContext'
+import ResultsScreen from '../../Components/ResultsScreen'
+
 const PushupResults =() =>  {
-const { state : {user} } = useUserContext()
-
-  return (
-    <main>
-        <h1>Pushup Test For Muscular Endurance</h1>
-        <EnduranceForm />
-        {user.pushups && <h2>You scored {user.pushups.category}</h2>}
-    </main>
-
-  )
+  return <ResultsScreen 
+    title='Pushup Test For Muscular Endurance'
+    form={<EnduranceForm />}
+    test='pushups'
+  />
 }
 
 export default PushupResults

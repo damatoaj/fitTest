@@ -20,6 +20,7 @@ function DemoGraphicsForm() {
         <fieldset>
             <legend>First Name</legend>
             <input 
+                autoFocus={true}
                 name='fname'
                 placeholder=''
                 required
