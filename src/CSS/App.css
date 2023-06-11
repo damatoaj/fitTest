@@ -17,7 +17,11 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   place-content: center;
+  padding: 3%;
+  align-items: center;
+  justify-content: center;
 }
 
 header {

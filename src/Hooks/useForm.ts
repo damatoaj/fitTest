@@ -37,10 +37,6 @@ const useForm = (url?:string) => {
         sex: '',
     })
 
-    const poundsToKg = (pounds:number) => pounds / 2.2
-    const inchesToCm  = (inches:number) => inches * 2.54
-    const cmToM = (cm:number) => cm / 100
-
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]: e.target.value}
@@ -81,7 +77,7 @@ const useForm = (url?:string) => {
             if (data.fname.length > 0 && data.lname.length > 0) await dispatch({type: 'UPDATE_NAME', payload: {fname:data.fname,lname:data.lname}})
             if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight})
             if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.height)})
-            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round(poundsToKg(parseInt(data.leftHand) + parseInt(data.rightHand)))})
+            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round(parseInt(data.leftHand) + parseInt(data.rightHand))})
             if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))})
             if (data.sex.length > 0) await dispatch({type:'UPDATE_SEX', payload: data.sex})
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)})

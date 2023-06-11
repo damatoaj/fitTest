@@ -21,8 +21,8 @@ import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
 import DemoGraphicsForm from './Components/DemoGraphicsForm';
-import Timer from './Components/Timer/Timer';
-import EnduranceForm from './Components/EnduranceForm';
+import PushupTest from './Screens/PushupProtocol/PushupTest';
+import PushupResults from './Screens/PushupProtocol/PushupResults';
 function App() {
   const { state } = useUserContext()
   
@@ -48,8 +48,8 @@ function App() {
           <Route path='/strength/results' element={<StrengthTable/>} />
           <Route path='/pushups'>
             <Route path='instructions' element={<Pushup />} />
-            <Route path='test' element={<Timer nextUrl={'/pushups/results'} /> } />
-            <Route path='results' element={<EnduranceForm /> } />
+            <Route path='test' element={<PushupTest /> } />
+            <Route path='results' element={<PushupResults /> } />
           </Route>
           <Route path='/treadmill-protocols'>
             <Route path='bruce' element={<Bruce />} />

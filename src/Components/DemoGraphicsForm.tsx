@@ -68,7 +68,7 @@ function DemoGraphicsForm() {
                 type='number'
                 name='height'
                 min='50'
-                max='450'
+                max='108'
                 required
                 onChange={handleChange}
             />

@@ -4,7 +4,7 @@ type Props = {
 
 function Countdown({number} : Props) {
   return (
-    <div className="countdown">{number}</div>
+    <h2 className="countdown">{number}</h2>
   )
 }
 

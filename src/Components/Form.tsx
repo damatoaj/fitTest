@@ -2,7 +2,7 @@ import { useRef, memo } from 'react';
 import useForm from '../Hooks/useForm';
 
 const Form = () => {
-    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm()
+    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/nutrition/results')
     const form = useRef<HTMLFormElement | null>(null)
     let valid : boolean = false
     if(form.current && form.current !== null) {

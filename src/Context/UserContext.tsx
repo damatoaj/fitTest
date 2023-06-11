@@ -10,6 +10,7 @@ import {
     validateCurrentWeight, 
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
+import { poundsToKg,inchesToCm } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
@@ -74,10 +75,10 @@ export const userReducer = (state : State, action: Action) => {
             }
         case 'UPDATE_GRIP_STRENGTH':
             if (state.user.sex === 'MALE' && state.user.age) {
-                const gripStrength = menGripStrength(state.user.age, payload)
-                return {error:null, isLoading:false, user: {...state.user, gripStrength}}
+                const gripStrength = menGripStrength(state.user.age, poundsToKg(payload))
+                return {error:null, isLoading:false, user: {...state.user,gripStrength}}
             } else if (state.user.sex === 'FEMALE' && state.user.age) {
-                const gripStrength = womenGripStrength(state.user.age, payload)
+                const gripStrength = womenGripStrength(state.user.age,poundsToKg(payload))
                 return {error:null, isLoading:false, user: {...state.user, gripStrength}}
             } else {
                 return {...state, isLoading:false}
@@ -117,10 +118,10 @@ export const userReducer = (state : State, action: Action) => {
         case 'UPDATE_BENCH_PRESS':
             if (!state.user.sex || !state.user.age || !state.user.currentWeight) return {...state, isLoading:false}
             if (state.user.sex === 'MALE') {
-                const benchPress = menBenchPress(payload, state.user.currentWeight, state.user.age)
+                const benchPress = menBenchPress(poundsToKg(payload), poundsToKg(state.user.currentWeight), state.user.age)
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             } else {
-                const benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
+                const benchPress = womenBenchPress(poundsToKg(payload), poundsToKg(state.user.currentWeight), state.user.age)
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             }
         case 'ERROR':
@@ -142,7 +143,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
     const bmi : BMI | null = useMemo(()=> {
         if (state.user.height && state.user.currentWeight) {
-            return calculateBMI(state.user.currentWeight / 2.2, state.user.height / 39.37)
+            return calculateBMI(poundsToKg(state.user.currentWeight), inchesToCm(state.user.height))
         }
         return null
     }, [state.user.height, state.user.currentWeight])
@@ -163,7 +164,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             && state.user.height
             && state.user.activityLevel
             && bodyWeightGoal) {
-            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight/2.2, state.user.height * 2.54, state.user.activityLevel, bodyWeightGoal)
+            return calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)
         }
         return null
     }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height])
