@@ -7,7 +7,7 @@ const checkInput = (input:HTMLInputElement) =>  {
     if (input.maxLength && input.value.length > input.maxLength) return 'Too many characters'
     return ''
 }
-const StrengthForm = () => {
+const LegPressForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const input = useRef<HTMLInputElement | null>(null)
@@ -54,4 +54,4 @@ const StrengthForm = () => {
     )
 };
 
-export default memo(StrengthForm);
+export default memo(LegPressForm);

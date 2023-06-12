@@ -45,6 +45,23 @@ interface Micros {
     zinc : { amount: number, unit: string}
 }
 
+interface Equipment {
+    '12bench': boolean | null,
+    '16bench': boolean | null,
+    'benchPressStation': boolean | null,
+    'bloodPressureCuff': boolean | null,
+    'bodyFatPercentage': boolean | null,
+    'handGripDynamometer': boolean | null,
+    'legPress': boolean | null,
+    'measuringTap': boolean | null,
+    'metronome': boolean | null,
+    'sitReachBox': boolean | null,
+    'skinFoldCalipers': boolean | null,
+    'stopwatch': boolean | null,
+    'treadmill': boolean | null,
+    'treadmillDegrees': number | null
+}
+
 interface User {
     activityLevel: ActivityLevel | null;
     age: number | null;
@@ -101,5 +118,6 @@ export type {
     GripStrength,
     Protein,
     Fats,
-    Carbohydrates
+    Carbohydrates,
+    Equipment
 }

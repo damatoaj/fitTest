@@ -31,6 +31,7 @@ import BenchResults from './Screens/BenchPressProtocol/BenchResults';
 import BenchTest from './Screens/BenchPressProtocol/BenchTest';
 import LegPressResults from './Screens/LegPressProtocol/LegPressResults';
 import LegPressInstructions from './Screens/LegPressProtocol/LegPressInstructions';
+import EquipmentForm from './Components/Forms/EquipmentForm';
 function App() {
   const { state } = useUserContext()
   
@@ -50,7 +51,9 @@ function App() {
             path='/nutrition' 
             element={<Form />}
           >
+            
           </Route> 
+          <Route path='/equipment' element={<EquipmentForm />} />
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
