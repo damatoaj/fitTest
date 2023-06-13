@@ -21,11 +21,11 @@ const MacrosTable = ({macros} : Props) => {
                         </tr>
                         <tr>
                             <th colSpan={2}>Grams</th>
-                            <th colSpan={2}>Carbohydrates</th>
+                            <th colSpan={2}>Calories</th>
                             <th colSpan={2}>Grams</th>
-                            <th colSpan={2}>Carbohydrates</th>
+                            <th colSpan={2}>Calories</th>
                             <th colSpan={2}>Grams</th>
-                            <th colSpan={2}>Carbohydrates</th>
+                            <th colSpan={2}>Calories</th>
                         </tr>
                         <tr>
                             <th colSpan={1}>Min</th>

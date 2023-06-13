@@ -198,7 +198,7 @@ const EquipmentForm = () => {
                         maxLength={4}
                         min={0}
                         max={30}
-                        step={.1}
+                        step={1}
                         ref={input}
                     />
                 </>)}

@@ -72,6 +72,7 @@ interface User {
     goalWeight: number | null;
     gripStrength: GripStrength | null;
     height: number | null;
+    hrMax: number | null;
     legPress: LegPress | null;
     fname: string | null;
     lname: string | null;

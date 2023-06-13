@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from 
 import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
+import { foxEquation, astrandEquation, tanakaEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
 import { 
     validateName, 
     validateAge, 
@@ -24,6 +25,7 @@ const initialUser: User = {
     goalWeight: null,
     gripStrength: null,
     height: null,
+    hrMax: null,
     legPress: null,
     fname: null,
     lname: null,
@@ -174,12 +176,22 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         }
         return null
     }, [state.user.age, state.user.sex])
+
+    const hrMax : number | null= useMemo(()=> {
+        if (!state.user.age) return null
+        if (state.user.age < 34) {
+            return astrandEquation(state.user.age)
+        } else {
+            return gellishEquation(state.user.age)
+        }
+    }, [state.user.age])
     console.log('user: ', {
         ...state.user, 
         bodyWeightGoal, 
         bmi, 
         macros,
-        micros
+        micros,
+        hrMax
     })
     return(
         <UserContext.Provider 
