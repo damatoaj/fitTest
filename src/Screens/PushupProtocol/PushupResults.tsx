@@ -1,4 +1,4 @@
-import EnduranceForm from '../../Components/EnduranceForm'
+import EnduranceForm from '../../Components/Forms/EnduranceForm'
 import ResultsScreen from '../../Components/ResultsScreen'
 
 const PushupResults =() =>  {

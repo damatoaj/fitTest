@@ -1,5 +1,5 @@
-import MacrosTable from '../Components/MacrosTable';
-import MicrosTable from '../Components/MicrosTable';
+import MacrosTable from '../Components/Tables/MacrosTable';
+import MicrosTable from '../Components/Tables/MicrosTable';
 import { Macros, Micros } from '../interfaces';
 import { printTable } from '../Functions/printTable'
 

@@ -1,4 +1,4 @@
-import { useUserContext } from "../Hooks/useUserContext"
+import { useUserContext } from "../../Hooks/useUserContext"
 import { memo } from 'react'
 const StrengthTable = () => {
     const { state : {user} } = useUserContext()

@@ -80,14 +80,18 @@ interface User {
     sex: Sex | null;
     macros: Macros | null;
     micros: Micros | null;
+    vo2Max: VO2Max | null;
 }
+
+type VO2Max = { vo2Max: number, category: FitnessCategory}
+
 type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3'
 
 type BMI = { bmi:number, classification: BMIClassifications }
 
 type Sex = 'MALE' | 'FEMALE'
 
-type FitnessCategory = 'poor' | 'fair' | 'good' | 'very good' | 'excellent' | 'superior'
+type FitnessCategory = 'very poor' | 'poor' | 'fair' | 'good' | 'very good' | 'excellent' | 'superior'
 
 type ActivityLevel = 'sedentary' | 'light activity' | 'moderately active' | 'very active' | 'extra active'
 
@@ -120,5 +124,6 @@ export type {
     Protein,
     Fats,
     Carbohydrates,
-    Equipment
+    Equipment,
+    VO2Max
 }

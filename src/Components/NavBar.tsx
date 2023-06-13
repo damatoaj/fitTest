@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom'
 import {memo} from 'react'
+import { navLinks } from '../Screens/Variables/navLinks'
 const NavBar = () => {
+    const links = navLinks.map((link) => {
+        return (<li key={link.value}>
+            <Link to={link.value}>{link.label}</Link>
+        </li>
+    )})
     return (
         <header>
             <ul>
-                <li>
-                    <Link to='/nutrition'>Nutrition</Link>
-                </li>
-                <li>
-                    <Link to='/strength'>Strength</Link>
-                </li>
-                <li>
-                    <Link to='/endurance'>Endurance</Link>
-                </li>
-                <li>
-                    <Link to='/health'>Health</Link>
-                </li>
+                {links}
             </ul>
         </header>
     )

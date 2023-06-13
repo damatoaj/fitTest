@@ -1,6 +1,6 @@
 import { useRef, memo } from 'react'
-import useForm from '../Hooks/useForm'
-import { useUserContext } from '../Hooks/useUserContext'
+import useForm from '../../Hooks/useForm'
+import { useUserContext } from '../../Hooks/useUserContext'
 const StrengthForm = () => {
     const {state} = useUserContext()
     const { handleChange, handleSelect, handleSubmit, handleReset} = useForm()

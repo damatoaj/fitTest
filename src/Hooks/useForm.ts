@@ -16,6 +16,7 @@ type Data = {
     pushups:string,
     rightHand:string
     sex: string,
+    vo2Max:string
 }
 
 const useForm = (url?:string) => {
@@ -35,6 +36,7 @@ const useForm = (url?:string) => {
         pushups:'',
         rightHand:'',
         sex: '',
+        vo2Max: ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +66,14 @@ const useForm = (url?:string) => {
             pushups:'',
             rightHand:'',
             sex: '',
+            vo2Max:'',
         }}) 
+    }
+
+    const customChange = (field:string, value:string) => {
+        setData(prev => {
+            return {...prev, [field]:value}
+        })
     }
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent,) => {
@@ -81,6 +90,7 @@ const useForm = (url?:string) => {
             if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))})
             if (data.sex.length > 0) await dispatch({type:'UPDATE_SEX', payload: data.sex})
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)})
+            if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)})
             if (url) navigate(url)
         } catch (e:any) {
             const error = e.message
@@ -88,7 +98,7 @@ const useForm = (url?:string) => {
         }
     }
 
-    return { data, handleChange, handleSelect, handleReset, handleSubmit }
+    return { data, handleChange, handleSelect, handleReset, handleSubmit, customChange }
 }
 
 export default useForm

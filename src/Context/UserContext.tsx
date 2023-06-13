@@ -1,8 +1,9 @@
 import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from "react";
 import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
+import { womenCardioFitnessClassification, menCardioFitnessClassification } from "../Functions/Testing/cardioFitness";
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
-import { foxEquation, astrandEquation, tanakaEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
+import { astrandEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
 import { 
     validateName, 
     validateAge, 
@@ -11,7 +12,7 @@ import {
     validateCurrentWeight, 
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
-import { poundsToKg,inchesToCm } from "../Functions/Conversions";
+import { poundsToKg,inchesToCm, cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
@@ -32,7 +33,8 @@ const initialUser: User = {
     pushups: null,
     sex: null,
     macros: null,
-    micros: null
+    micros: null,
+    vo2Max: null
 }
 
 type State = {
@@ -42,6 +44,7 @@ type State = {
 }
 
 type Action = {type: 'UPDATE_PUSHUPS', payload: number}
+    | {type: 'LOADING', payload: boolean}
     | {type: 'ERROR', payload:string}
     | {type: 'UPDATE_SEX', payload: 'MALE' | 'FEMALE'}
     | {type:'UPDATE_AGE', payload: number}
@@ -54,7 +57,8 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_CURRENT_WEIGHT', payload: number}
     | {type: 'UPDATE_BENCH_PRESS', payload: number}
     | {type: 'UPDATE_GRIP_STRENGTH', payload: number}
-    | {type: 'UPDATE_LEG_PRESS', payload:number}
+    | {type: 'UPDATE_LEG_PRESS', payload: number}
+    | {type: 'UPDATE_VO2MAX', payload: number}
 
 const initialState = {
     user: initialUser,
@@ -65,6 +69,19 @@ const initialState = {
 export const userReducer = (state : State, action: Action) => {
     const { type, payload } = action 
     switch (type) {
+        case 'LOADING':
+            return {...state, isLoading: true}
+        case 'UPDATE_VO2MAX':
+            console.log(payload)
+            if (state.user.sex === 'MALE' && state.user.age) {
+                const vo2Max = menCardioFitnessClassification(state.user.age, payload)
+                return { error: null, isLoading: false, user: {...state.user, vo2Max}}
+            } else if (state.user.sex === 'FEMALE' && state.user.age) {
+                const vo2Max = womenCardioFitnessClassification(state.user.age, payload)
+                return { error: null, isLoading: false, user: {...state.user, vo2Max}}
+            } else {
+                return {...state, isLoading:false}
+            }
         case 'UPDATE_LEG_PRESS':
             if (state.user.sex === 'MALE' && state.user.age && state.user.currentWeight) {
                 const legPress = menLegPress(state.user.age, payload, state.user.currentWeight)
@@ -145,7 +162,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
     const bmi : BMI | null = useMemo(()=> {
         if (state.user.height && state.user.currentWeight) {
-            return calculateBMI(poundsToKg(state.user.currentWeight), inchesToCm(state.user.height))
+            return calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)))
         }
         return null
     }, [state.user.height, state.user.currentWeight])

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Macros } from '../interfaces';
+import { Macros } from '../../interfaces';
 
 type Props = {
     macros : Macros

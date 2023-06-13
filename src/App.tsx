@@ -14,13 +14,13 @@ import Loader from './Components/Loader';
 import Error from './Components/Error';
 
 import { Route, Routes } from 'react-router-dom';
-import StrengthForm from './Components/StrengthForm';
-import StrengthTable from './Components/StrengthTable';
+import StrengthForm from './Components/Forms/StrengthForm';
+import StrengthTable from './Components/Tables/StrengthTable';
 import PushupInstructions from './Screens/PushupProtocol/PushupInstructions';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
-import DemoGraphicsForm from './Components/DemoGraphicsForm';
+import DemoGraphicsForm from './Components/Forms/DemoGraphicsForm';
 import PushupTest from './Screens/PushupProtocol/PushupTest';
 import PushupResults from './Screens/PushupProtocol/PushupResults';
 import GripStrengthInstructions from './Screens/GripStrengthProtocol/GripStrengthInstructions';
@@ -32,6 +32,8 @@ import BenchTest from './Screens/BenchPressProtocol/BenchTest';
 import LegPressResults from './Screens/LegPressProtocol/LegPressResults';
 import LegPressInstructions from './Screens/LegPressProtocol/LegPressInstructions';
 import EquipmentForm from './Components/Forms/EquipmentForm';
+import StepTestForm from './Components/Forms/StepTestForm';
+import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions';
 function App() {
   const { state } = useUserContext()
   
@@ -80,6 +82,10 @@ function App() {
           <Route path='/treadmill-protocols'>
             <Route path='bruce' element={<Bruce />} />
             <Route path='bruce/results' element={<TreadmillResults />} />
+          </Route>
+          <Route path='/step-test'>
+            <Route path='instructions' element={<StepTestInstructions />} />
+            <Route path='results' element={<StepTestForm />} />
           </Route>
         </Routes>
       </>

@@ -5,7 +5,7 @@ import Error from './Error'
 type Props = {
     title : any;
     form : ReactNode;
-    test: 'pushups' | 'legPress' | 'benchPress' | 'gripStrength';
+    test: 'pushups' | 'legPress' | 'benchPress' | 'gripStrength' | 'vo2Max';
 }
 function ResultsScreen({title, test, form} : Props) {
     const { state : {user, error, isLoading} } = useUserContext()

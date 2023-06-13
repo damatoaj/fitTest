@@ -1,6 +1,6 @@
 import { useRef, memo } from 'react'
 
-import useForm from '../Hooks/useForm'
+import useForm from '../../Hooks/useForm'
 const EnduranceForm = () => {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange, handleReset, handleSubmit} = useForm()

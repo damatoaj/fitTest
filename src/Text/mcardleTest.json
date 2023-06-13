@@ -1,0 +1,16 @@
+{
+    "id":1,
+    "testName": "McArdle Step Test",
+    "heading":"McArdle Step Test for VO2 Max",
+    "steps":[
+        "Place a 16.25 inch (41.25 cm) bench on a stable surface.",
+        "Set a metronome to 24 steps per minute for men or 22 steps per minute for women.",
+        "When ready start the metronome, the participant will be stepping in time to it.",
+        "The rhythm is up, up, down, down. Lead with the dominant foot. If right-footed, it would be right up, left up, right down, left down.",
+        "Set a timer for three minutes. When ready, start the timer with the participant stepping to the rhythm.",
+        "At the three minutes mark, stop stepping (if on the box, step down)",
+        "Wait five seconds.",
+        "Take a 15 second heart rate count, either at the wrist or neck",
+        "Multiply that heart rate number by four."
+    ]
+}

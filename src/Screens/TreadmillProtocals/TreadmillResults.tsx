@@ -10,7 +10,7 @@ const TreadmillResults = () => {
 
     const mets : string = searchParams.get('mets') ?? '0';
     const vo2 : number = parseInt(mets) * kg;
-    const category : string = menCardioFitnessClassification(age, vo2) ?? 'No Data'
+    const category : any = menCardioFitnessClassification(age, vo2) ?? 'No Data'
     return (
         <main className='container'>
             <h1>Hello</h1>
