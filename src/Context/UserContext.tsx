@@ -206,6 +206,10 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             return gellishEquation(state.user.age)
         }
     }, [state.user.age])
+
+    if (state.user?.uid === null) {
+        dispatch({type: 'UPDATE_UID', payload: null})
+    }
     console.log('user: ', {
         ...state.user, 
         bodyWeightGoal, 
