@@ -34,6 +34,7 @@ const initialUser: User = {
     sex: null,
     macros: null,
     micros: null,
+    uid: null,
     vo2Max: null
 }
 
@@ -59,6 +60,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_GRIP_STRENGTH', payload: number}
     | {type: 'UPDATE_LEG_PRESS', payload: number}
     | {type: 'UPDATE_VO2MAX', payload: number}
+    | {type: 'UPDATE_UID', payload: null}
 
 const initialState = {
     user: initialUser,
@@ -143,6 +145,8 @@ export const userReducer = (state : State, action: Action) => {
                 const benchPress = womenBenchPress(poundsToKg(payload), poundsToKg(state.user.currentWeight), state.user.age)
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             }
+        case 'UPDATE_UID':
+            return {error: null, isLoading:false, user:{...state.user, uid: Date.now()}}
         case 'ERROR':
             const error = payload
             return {...state, error, isLoading:false}

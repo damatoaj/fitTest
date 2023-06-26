@@ -76,10 +76,11 @@ interface User {
     legPress: LegPress | null;
     fname: string | null;
     lname: string | null;
-    pushups: { pushups: number, category: FitnessCategory} | null;
-    sex: Sex | null;
     macros: Macros | null;
     micros: Micros | null;
+    pushups: { pushups: number, category: FitnessCategory} | null;
+    sex: Sex | null;
+    uid: number | null;
     vo2Max: VO2Max | null;
 }
 
