@@ -6,10 +6,10 @@ const BenchPressForm = () => {
     const form = useRef<HTMLFormElement | null>(null)
     const { state : {user } } = useUserContext()
 
-    let valid : boolean = false
+    let valid : boolean = Boolean(user.benchPress?.benchPress) || false
+    
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
-
     }
 
     return (

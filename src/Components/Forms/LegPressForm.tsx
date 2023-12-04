@@ -15,7 +15,7 @@ const LegPressForm = () => {
 
     let valid : boolean = Boolean(user.legPress?.legPress) || false
     let message : string = ''
-    if(form.current && form.current !== null) {
+    if (form.current && form.current !== null) {
         valid = form.current.checkValidity()
         if(input.current) {message = checkInput(input.current)}
     }

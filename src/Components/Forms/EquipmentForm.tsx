@@ -19,8 +19,8 @@ const EquipmentForm = () => {
         'bloodPressureCuff':false,
         'bodyFatPercentage':false,
         'handGripDynamometer':false,
-        'legPress':false,
-        'measuringTap':false,
+        'legPressMachine':false,
+        'measuringTape':false,
         'metronome':false,
         'sitReachBox':false,
         'skinFoldCalipers':false,
@@ -45,8 +45,8 @@ const EquipmentForm = () => {
             'bloodPressureCuff':false,
             'bodyFatPercentage':false,
             'handGripDynamometer':false,
-            'legPress':false,
-            'measuringTap':false,
+            'legPressMachine':false,
+            'measuringTape':false,
             'metronome':false,
             'sitReachBox':false,
             'skinFoldCalipers':false,
@@ -87,6 +87,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='12bench'
+                        defaultChecked={state.equipment['12bench'] ?? false}
                     />
                     12 Inch (30.5cm) Bench
                 </label>
@@ -95,6 +96,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='16bench'
+                        defaultChecked={state.equipment['16bench'] ?? false}
                     />
                     16.25 Inch (41.25cm) Bench
                 </label>
@@ -102,7 +104,9 @@ const EquipmentForm = () => {
                     <input
                         onChange={handleChange}
                         type='checkbox'
-                        name='benchPress'
+                        name='benchPressStation'
+                        defaultChecked={state.equipment['benchPressStation'] ?? false}
+
                     />
                     Bench Press Station
                 </label>
@@ -111,6 +115,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='bloodPressureCuff'
+                        defaultChecked={state.equipment['bloodPressureCuff'] ?? false}
                     />
                     Blood Pressure Cuff (Manual with Stethoscope or Automated)
                 </label>
@@ -119,6 +124,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='bodyFatPercentage'
+                        defaultChecked={state.equipment['bodyFatPercentage'] ?? false}
                     />
                     Body Fat Percentage Device
                 </label>
@@ -127,6 +133,7 @@ const EquipmentForm = () => {
                          onChange={handleChange} 
                         type='checkbox'
                         name='handGripDynamometer'
+                        defaultChecked={state.equipment['handGripDynamometer'] ?? false}
                     />
                     Hand Grip Dynamometer
                 </label>
@@ -135,7 +142,9 @@ const EquipmentForm = () => {
                     <input
                         onChange={handleChange}
                         type='checkbox'
-                        name='legPress'
+                        name='legPressMachine'
+                        defaultChecked={state.equipment['legPressMachine'] ?? false}
+
                     />
                     Leg Press Machine
                 </label>
@@ -144,6 +153,8 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='measuringTape'
+                        defaultChecked={state.equipment['measuringTape'] ?? false}
+
                     />
                     Measuring Tape
                 </label>
@@ -152,6 +163,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='metronome'
+                        defaultChecked={state.equipment['metronome'] ?? false}
                     />
                     Metronome
                 </label>
@@ -160,6 +172,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='sitReachBox'
+                        defaultChecked={state.equipment['sitReachBox'] ?? false}
                     />
                     Sit & Reach Box
                 </label>
@@ -168,6 +181,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='skinFoldCalipers'
+                        defaultChecked={state.equipment['skinFoldCalipers'] ?? false}
                     />
                     Skin Fold Calipers
                 </label>
@@ -176,6 +190,7 @@ const EquipmentForm = () => {
                         onChange={handleChange}
                         type='checkbox'
                         name='stopwatch'
+                        defaultChecked={state.equipment['stopwatch'] ?? false}
                     />
                     Stopwatch or Timer
                 </label>
@@ -184,6 +199,8 @@ const EquipmentForm = () => {
                         type='checkbox'
                         name='treadmill'
                         onChange={handleChange}
+                        defaultChecked={state.equipment['treadmill'] ?? false}
+
                     />
                     Tread Mill
                 </label>
@@ -200,6 +217,8 @@ const EquipmentForm = () => {
                         max={30}
                         step={1}
                         ref={input}
+                        defaultValue={state.equipment['treadmillDegrees'] || ''}
+
                     />
                 </>)}
             </fieldset>
