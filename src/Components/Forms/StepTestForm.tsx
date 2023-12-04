@@ -6,7 +6,9 @@ function StepTestForm() {
     const { state } = useUserContext()
     const form = useRef<HTMLFormElement | null>(null)
     const { customChange,handleSubmit, handleReset} = useForm()
-    let valid : boolean = false
+    const { state : { user } } = useUserContext()
+
+    let valid : boolean = Boolean(user.vo2Max?.vo2Max) || false
     
     if (form?.current !== null) {
         valid = form.current.checkValidity()
@@ -39,6 +41,7 @@ function StepTestForm() {
                 onChange={vo2}
                 step={1}
                 maxLength={3}
+                defaultValue={user.vo2Max?.vo2Max || ''}
             />
         </fieldset>
         <span>

@@ -1,8 +1,11 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
+import { useUserContext } from '../../Hooks/useUserContext'
 const BenchPressForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
+    const { state : {user } } = useUserContext()
+
     let valid : boolean = false
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
@@ -29,6 +32,7 @@ const BenchPressForm = () => {
                     step={.5}
                     maxLength={6}
                     required
+                    defaultValue={user.benchPress?.benchPress || ''}
                 />
             </fieldset>
             <span>

@@ -1,9 +1,10 @@
 import { useRef, memo } from 'react'
-
+import { useUserContext } from '../../Hooks/useUserContext'
 import useForm from '../../Hooks/useForm'
 const EnduranceForm = () => {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange, handleReset, handleSubmit} = useForm()
+    const { state : {user } } = useUserContext()
 
     let valid : boolean = false;
     if (form?.current !== null) {
@@ -27,6 +28,7 @@ const EnduranceForm = () => {
                     autoFocus={true}
                     step={1}
                     maxLength={3}
+                    defaultValue={user.pushups?.pushups || ''}
                 />
             </fieldset>
             <span>

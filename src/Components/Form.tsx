@@ -1,10 +1,11 @@
 import { useRef, memo } from 'react';
 import useForm from '../Hooks/useForm';
-
+import { useUserContext } from '../Hooks/useUserContext';
 const Form = () => {
     const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/nutrition/results')
     const form = useRef<HTMLFormElement | null>(null)
-    let valid : boolean = false
+    const { state: {user} } = useUserContext()
+    let valid : boolean = Boolean(user.activityLevel && user.goalWeight) || false
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
     }
@@ -27,6 +28,7 @@ const Form = () => {
                     required
                     step={.5}
                     maxLength={6}
+                    defaultValue={user.goalWeight || ''}
                 />
             </fieldset>
             <fieldset>
@@ -34,7 +36,7 @@ const Form = () => {
                 <select 
                     name='activityLevel'
                     onChange={handleSelect}
-                    defaultValue={''}
+                    defaultValue={user.activityLevel || ''}
                 >
                     <option value='' disabled>
                         --Select One--

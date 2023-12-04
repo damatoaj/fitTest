@@ -1,6 +1,6 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
-
+import { useUserContext } from '../../Hooks/useUserContext'
 const checkInput = (input:HTMLInputElement) =>  {
     if (input.min && parseInt(input.value) < parseInt(input.min)) return 'Input value is too low'
     if (input.max && parseInt(input.value) > parseInt(input.max)) return 'Input value exceeds boundaries'
@@ -11,15 +11,14 @@ const LegPressForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const input = useRef<HTMLInputElement | null>(null)
+    const { state : {user } } = useUserContext()
 
-    let valid : boolean = false
+    let valid : boolean = Boolean(user.legPress?.legPress) || false
     let message : string = ''
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
         if(input.current) {message = checkInput(input.current)}
     }
-
-    
 
     return (
         <form
@@ -41,6 +40,7 @@ const LegPressForm = () => {
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
+                    defaultValue={user.legPress?.legPress || '' }
                 />
             </fieldset>
             <div className='message-container'>

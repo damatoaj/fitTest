@@ -2,10 +2,10 @@ import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext'
 const StrengthForm = () => {
-    const {state} = useUserContext()
+    const { state } = useUserContext()
     const { handleChange, handleSelect, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
-    let valid : boolean = false
+    let valid : boolean = Boolean(state.user.sex && state.user.age && state.user.legPress?.legPress && state.user.benchPress?.benchPress) || false
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
     }
@@ -65,6 +65,7 @@ const StrengthForm = () => {
                     min='0'
                     max='2000'
                     placeholder='Lbs'
+                    defaultValue={state.user.legPress?.legPress || ''}
                 />
             </fieldset>
             <fieldset>
@@ -76,6 +77,7 @@ const StrengthForm = () => {
                     min='0'
                     max='2000' 
                     placeholder='Lbs'
+                    defaultValue={state.user.benchPress?.benchPress || ''}
                 />
             </fieldset>
             <fieldset>
@@ -90,6 +92,7 @@ const StrengthForm = () => {
                         min='0'
                         max='2000'
                         placeholder='Lbs'
+                        defaultValue={''}
                     />
                 <label htmlFor='rightHand'>
                     Right Hand
@@ -101,6 +104,7 @@ const StrengthForm = () => {
                         min='0'
                         max='2000'
                         placeholder='Lbs'
+                        defaultValue={''}
                     />
             </fieldset>
             <span>

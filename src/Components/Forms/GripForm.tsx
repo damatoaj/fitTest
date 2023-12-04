@@ -4,7 +4,7 @@ const GripForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     let valid : boolean = false
-    if(form.current && form.current !== null) {
+    if (form.current && form.current !== null) {
         valid = form.current.checkValidity()
     }
 

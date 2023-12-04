@@ -1,10 +1,11 @@
 import { useRef, memo } from 'react';
 import useForm from '../../Hooks/useForm';
-
+import { useUserContext } from '../../Hooks/useUserContext';
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange,handleSubmit,handleSelect, handleReset} = useForm('/nutrition')
-    let valid : boolean = false
+    const { state : {user } } = useUserContext()
+    let valid : boolean = Boolean(user.age && user.fname && user.lname && user.sex && user.height && user.currentWeight) || false
     
     if (form?.current !== null) {
         valid = form.current.checkValidity()
@@ -27,6 +28,7 @@ function DemoGraphicsForm() {
                 type='text'
                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
                 onChange={handleChange}
+                defaultValue={user.fname || ''}
             />      
         </fieldset>
         <fieldset>
@@ -38,6 +40,7 @@ function DemoGraphicsForm() {
                 type='text'
                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
                 onChange={handleChange}
+                defaultValue={user.lname || ''}
             />
         </fieldset>
         <fieldset>
@@ -51,6 +54,7 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={1}
                 maxLength={3}
+                defaultValue={user.age || ''}
             />
         </fieldset>
         <fieldset>
@@ -64,6 +68,7 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={.5}
                 maxLength={7}
+                defaultValue={user.currentWeight || ''}
             />
         </fieldset>
         <fieldset>
@@ -78,6 +83,7 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={.5}
                 maxLength={6}
+                defaultValue={user.height || ''}
             />
         </fieldset>
         <fieldset>
@@ -86,7 +92,7 @@ function DemoGraphicsForm() {
             name='sex'
             onChange={handleSelect}
             required
-            defaultValue={''}
+            defaultValue={user.sex || ''}
         >
             <option disabled value=''>--Select--</option>
             <option value='FEMALE'>Female</option>
