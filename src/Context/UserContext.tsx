@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from "react";
+import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo, useEffect } from "react";
 import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
 import { womenCardioFitnessClassification, menCardioFitnessClassification } from "../Functions/Testing/cardioFitness";
@@ -16,6 +16,8 @@ import { poundsToKg,inchesToCm, cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
+import MyAppDatabase from "../Classes/MyAppDatabase";
+
 const initialUser: User = {
     activityLevel: null,
     age: null,
@@ -146,7 +148,7 @@ export const userReducer = (state : State, action: Action) => {
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             }
         case 'UPDATE_UID':
-            return {error: null, isLoading:false, user:{...state.user, uid: Date.now()}}
+            return {error: null, isLoading:false, user:{...state.user, uid: Math.floor(Math.random() * Date.now()) }}
         case 'ERROR':
             const error = payload
             return {...state, error, isLoading:false}
@@ -164,6 +166,8 @@ export const UserContext = createContext<UserContextType>({state:initialState, d
 
 export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
+    
+    
     const bmi : BMI | null = useMemo(()=> {
         if (state.user.height && state.user.currentWeight) {
             return calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)))
@@ -210,6 +214,21 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     if (state.user?.uid === null) {
         dispatch({type: 'UPDATE_UID', payload: null})
     }
+
+    useEffect(()=> {
+        const db = new MyAppDatabase();
+        db.version(1).stores({users: JSON.stringify({...state.user, ...macros, ...micros, hrMax, bmi, bodyWeightGoal })})
+        db.transaction('rw', db.users, async ()=> {
+            if (!state.user.uid || !bmi) return
+            const user = await db.users.get(state.user.uid)
+            if (!user) await db.users.add({...state.user, ...macros, ...micros, hrMax, bmi, bodyWeightGoal })
+        })
+        .catch(err=> {
+            console.warn(err)
+        })
+        return ()=> db.close()
+    }, [state.user, hrMax, bmi, macros, micros, bodyWeightGoal])
+    
     console.log('user: ', {
         ...state.user, 
         bodyWeightGoal, 
@@ -218,6 +237,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         micros,
         hrMax
     })
+
     return(
         <UserContext.Provider 
             value={{
