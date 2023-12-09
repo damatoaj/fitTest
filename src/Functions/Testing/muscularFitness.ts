@@ -29,7 +29,7 @@ const menGripStrength = (age:number, kg:number): GripStrength => {
 
         const categories: ('excellent' | 'very good' | 'good' | 'fair' | 'poor')[] = ['excellent', 'very good', 'good', 'fair', 'poor'];
         return {
-            gripStrength: kg,
+            gripStrength: Math.round(kg),
             category: categories[categoryIndex],
         };  
     } catch (err: any) {
@@ -75,7 +75,7 @@ const womenGripStrength = (age:number, kg:number) : GripStrength => {
         const categories: ('excellent' | 'very good' | 'good' | 'fair' | 'poor')[] = ['poor', 'fair', 'good', 'very good', 'excellent'];
         console.timeEnd('women grip')
         return {
-            gripStrength: kg,
+            gripStrength: Math.round(kg),
             category: categories[categoryIndex % categories.length],
         };  
     } catch (err: any){

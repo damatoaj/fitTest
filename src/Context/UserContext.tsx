@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo, useEffect } from "react";
+import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from "react";
 import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
 import { womenCardioFitnessClassification, menCardioFitnessClassification } from "../Functions/Testing/cardioFitness";
@@ -16,7 +16,6 @@ import { poundsToKg,inchesToCm, cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
-import MyAppDatabase from "../Classes/MyAppDatabase";
 
 const initialUser: User = {
     activityLevel: null,
@@ -72,6 +71,8 @@ const initialState = {
 
 export const userReducer = (state : State, action: Action) => {
     const { type, payload } = action 
+    console.info(`Type: ${type}`)
+    console.table(payload)
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true}
@@ -214,20 +215,6 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     if (state.user?.uid === null) {
         dispatch({type: 'UPDATE_UID', payload: null})
     }
-
-    useEffect(()=> {
-        const db = new MyAppDatabase();
-        db.version(1).stores({users: JSON.stringify({...state.user, ...macros, ...micros, hrMax, bmi, bodyWeightGoal })})
-        db.transaction('rw', db.users, async ()=> {
-            if (!state.user.uid || !bmi) return
-            const user = await db.users.get(state.user.uid)
-            if (!user) await db.users.add({...state.user, ...macros, ...micros, hrMax, bmi, bodyWeightGoal })
-        })
-        .catch(err=> {
-            console.warn(err)
-        })
-        return ()=> db.close()
-    }, [state.user, hrMax, bmi, macros, micros, bodyWeightGoal])
     
     console.log('user: ', {
         ...state.user, 

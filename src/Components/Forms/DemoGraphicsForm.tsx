@@ -26,7 +26,7 @@ function DemoGraphicsForm() {
                 placeholder=''
                 required
                 type='text'
-                pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+                pattern="^[\w'\-,\.][^0-9_!¡?÷?¿\/\\+=@#$%^&*\(\)\{\}\|~<>;:\[\]]{2,}$"
                 onChange={handleChange}
                 defaultValue={user.fname || ''}
             />      
@@ -38,7 +38,7 @@ function DemoGraphicsForm() {
                 placeholder=''
                 required 
                 type='text'
-                pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+                pattern="^[\w'\-,\.][^0-9_!¡?÷?¿\/\\+=@#$%^&*\(\)\{\}\|~<>;:\[\]]{2,}$"
                 onChange={handleChange}
                 defaultValue={user.lname || ''}
             />
