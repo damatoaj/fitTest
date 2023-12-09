@@ -4,6 +4,8 @@ button {
     padding: 10px;
     border-radius: 5%;
     max-width: 200px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 button:hover {
@@ -27,7 +29,7 @@ button[type = submit]:enabled:active {
 }
 
 button[type = submit]:disabled {
-    border: 1px solid red;
+    border-color: red;
     color: red;
 }
 

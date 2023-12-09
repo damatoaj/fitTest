@@ -84,6 +84,8 @@ interface User {
     vo2Max: VO2Max | null;
 }
 
+type UserKeys = keyof User;
+
 type VO2Max = { vo2Max: number, category: FitnessCategory}
 
 type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3'
@@ -107,6 +109,13 @@ type LegPress = {legPress:number, category:'well above average'|'above average'|
 
 type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor'}
 
+
+interface Link {
+    label:string;
+    value:string;
+    dependencies: UserKeys[];
+}
+
 export type {
     Macros,
     Micros,
@@ -126,5 +135,7 @@ export type {
     Fats,
     Carbohydrates,
     Equipment,
-    VO2Max
+    VO2Max,
+    UserKeys,
+    Link
 }

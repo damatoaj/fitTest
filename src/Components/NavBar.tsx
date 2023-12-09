@@ -1,19 +1,38 @@
 import { Link } from 'react-router-dom'
-import {memo} from 'react'
+import { User, UserKeys, Link as L } from '../interfaces'
 import { navLinks } from '../Screens/Variables/navLinks'
-const NavBar = () => {
-    const links = navLinks.map((link) => {
-        return (<li key={link.value}>
-            <Link to={link.value}>{link.label}</Link>
-        </li>
-    )})
+
+interface NavBarProps {
+    u: User
+}
+
+
+const NavBar = ({u} : NavBarProps) => {
+    const links = navLinks.map((link : L, i: number) => {
+        let enabled : Boolean = true;
+        link.dependencies.forEach((d : UserKeys)=> {
+            if (u[d] === null || !Object.hasOwn(u,d)) {
+                enabled = false
+            }            
+        })
+
+        if (enabled) {
+            return (<li key={i}>
+                <Link to={link.value} >{link.label}</Link>
+            </li>
+        )} else {
+            return (<li key={i} hidden>
+                <Link to={link.value} >{link.label}</Link>
+            </li>
+        )}
+    })
     return (
         <header>
-            <ul>
+            <menu>
                 {links}
-            </ul>
+            </menu>
         </header>
     )
 }
 
-export default memo(NavBar)
+export default NavBar
