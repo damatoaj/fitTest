@@ -27,6 +27,7 @@ function StepTestForm() {
         ref={form}
         onSubmit={handleSubmit}
         onReset={handleReset}
+        name='stepTest'
     >
         <h2>Step Test Results</h2>
         <fieldset>

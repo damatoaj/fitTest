@@ -55,6 +55,7 @@ function DemoGraphicsForm() {
                 step={1}
                 maxLength={3}
                 defaultValue={user.age || ''}
+                placeholder=''
             />
         </fieldset>
         <fieldset>
@@ -69,6 +70,7 @@ function DemoGraphicsForm() {
                 step={.5}
                 maxLength={7}
                 defaultValue={user.currentWeight || ''}
+                placeholder='Measured In Pounds'
             />
         </fieldset>
         <fieldset>
@@ -84,6 +86,7 @@ function DemoGraphicsForm() {
                 step={.5}
                 maxLength={6}
                 defaultValue={user.height || ''}
+                placeholder='Measured In Inches'
             />
         </fieldset>
         <fieldset>
@@ -92,9 +95,9 @@ function DemoGraphicsForm() {
             name='sex'
             onChange={handleSelect}
             required
-            defaultValue={user.sex || ''}
+            defaultValue={user.sex || 'default'}
         >
-            <option disabled value=''>--Select--</option>
+            <option disabled value='default' >--Select--</option>
             <option value='FEMALE'>Female</option>
             <option value='MALE'>Male</option>
         </select>

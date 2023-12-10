@@ -13,6 +13,7 @@ const GripForm = () => {
             ref={form}
             onSubmit={handleSubmit}
             onReset={handleReset}
+            name='gripTest'
         >
             <h2>Enter Your Top Score For Both Hands</h2>
             <fieldset>

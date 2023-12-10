@@ -22,7 +22,7 @@ function ResultsScreen({title, test, form} : Props) {
     <main>
         <h1>{title}</h1>
         {form}
-        {user[test] && <h2>You scored {user[test]?.category}</h2>}
+        {user[test] && <h2>You are in the "<output name={test}>{user[test]?.category}</output>" category</h2>}
     </main>
     )
 }

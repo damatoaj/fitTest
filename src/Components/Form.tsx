@@ -36,9 +36,9 @@ const Form = () => {
                 <select 
                     name='activityLevel'
                     onChange={handleSelect}
-                    defaultValue={user.activityLevel || ''}
+                    defaultValue={user.activityLevel || 'default'}
                 >
-                    <option value='' disabled>
+                    <option value='default' disabled>
                         --Select One--
                     </option>
                     <option 

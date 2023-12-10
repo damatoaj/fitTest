@@ -89,11 +89,6 @@ input:placeholder-shown {
     border-bottom: 1px solid black;
 }
 
-form:has(input:placeholder-shown) {
-    border-color:black;
-}
-
-
 legend {
     text-align: left;
 }
@@ -127,6 +122,73 @@ input[type='checkbox'] {
     min-height: 60px;
     width:100%;
     text-align: center;
+}
+
+option[disabled][value='default'] {
+    display: none;
+}
+
+
+option:checked {
+    background-color: red;
+}
+
+fieldset:has(input:required:placeholder-shown) legend::after {
+    color: 'red';
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    z-index: 10;
+    content: '*';
+    position: relative;
+    left: 5px;
+    margin-right: 10px;
+}
+
+fieldset:has(select:required) legend::after {
+    color: 'red';
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    z-index: 10;
+    content: '*';
+    position: relative;
+    left: 5px;
+    margin-right: 5px;
+}
+
+fieldset:has(select[value='default']) {
+    border-color: black;
+    color: black;
+}
+
+/* fieldset:has(select:required > option:checked) legend::after {
+    color: 'red';
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    z-index: 10;
+    content: '';
+    position: relative;
+    left: 5px;
+    margin-right: 5px;
+} */
+
+form:has(input:placeholder-shown) {
+    border-color:black;
+}
+
+
+fieldset:has(select:required:empty) legend::after {
+    color: 'red';
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    z-index: 10;
+    content: '*';
+    position: relative;
+    left: 5px;
+    margin-right: 5px;
 }
 
 @media screen and (max-width:400px) {

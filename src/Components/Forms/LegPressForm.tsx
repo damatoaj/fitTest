@@ -25,6 +25,7 @@ const LegPressForm = () => {
             ref={form}
             onSubmit={handleSubmit}
             onReset={handleReset}
+            name='legPress'
         >
             <h2>Calculate Your Muscular Fitness</h2>
             <fieldset>

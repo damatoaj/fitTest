@@ -17,6 +17,7 @@ const BenchPressForm = () => {
             ref={form}
             onSubmit={handleSubmit}
             onReset={handleReset}
+            name='benchPress'
         >
             <h2>Calculate Your Muscular Fitness</h2>
             <fieldset>

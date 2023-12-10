@@ -15,6 +15,7 @@ const EnduranceForm = () => {
             ref={form}
             onSubmit={(e)=> handleSubmit(e)}
             onReset={handleReset}
+            name='pushups'
         >
             <h2>Calculate Your Muscular Fitness</h2>
             <fieldset>
