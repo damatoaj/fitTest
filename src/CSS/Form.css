@@ -133,6 +133,10 @@ option:checked {
     background-color: red;
 }
 
+fieldset > span {
+    justify-content: start;
+}
+
 fieldset:has(input:required:placeholder-shown) legend::after {
     color: 'red';
     width: 20px;

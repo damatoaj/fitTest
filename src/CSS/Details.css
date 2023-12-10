@@ -1,0 +1,11 @@
+details {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+details.popover[open] > * {
+    border: 2px solid black;
+    position: absolute;
+    padding: 15px 15px 15px 25px;
+    background-color: whitesmoke;
+}

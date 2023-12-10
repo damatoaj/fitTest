@@ -4,6 +4,7 @@ import './CSS/Form.css';
 import './CSS/Table.css';
 import './CSS/Links.css';
 import './CSS/ToolTip.css';
+import './CSS/Details.css';
 
 import Form from './Components/Form';
 import NavBar from './Components/NavBar';

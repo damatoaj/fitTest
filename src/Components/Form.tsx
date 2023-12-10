@@ -33,6 +33,7 @@ const Form = () => {
             </fieldset>
             <fieldset>
                 <legend>Activity Level</legend>
+                <span>
                 <select 
                     name='activityLevel'
                     onChange={handleSelect}
@@ -48,13 +49,13 @@ const Form = () => {
                         Sedentary
                     </option>
                     <option 
-                        data-title='Light exercise/sports 1-3 days/week'
+                        title='Light exercise/sports 1-3 days/week'
                         value='light activity'
                     >
                         Light Activity
                     </option>
                     <option 
-                        data-title='Moderate exercise/sports 3-5 days/week'
+                        title='Moderate exercise/sports 3-5 days/week'
                         value='moderately active'
                     >
                         Moderately Active
@@ -72,6 +73,16 @@ const Form = () => {
                         Extra Active    
                     </option>
                 </select>
+                <details className='popover'>
+                    <ol>
+                        <li>Sedentary: Little or no exercise</li>
+                        <li>Light Activity: Light exercise/sports 1-3 days/week</li>
+                        <li>Moderately Active: Moderate exercise/sports 3-5 days/week</li>
+                        <li>Very Active: Hard exercise/sports 6-7 days/week</li>
+                        <li>Extra Active: Very hard exercise/sports and a physical job</li>
+                    </ol>
+                </details>
+                </span>
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
