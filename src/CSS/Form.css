@@ -38,6 +38,8 @@ form:focus-within {
 fieldset {
     margin-bottom: 10px;
     width: 100%;
+    border-style:solid;
+    border-width: 1px;
 }
 
 fieldset:invalid {
@@ -48,6 +50,11 @@ fieldset:invalid {
 fieldset:valid {
     color:green;
     border-color:green;
+}
+
+fieldset:has(select) {
+    color:black;
+    border-color:black;
 }
 
 fieldset:focus-within {
@@ -67,18 +74,19 @@ input {
     background-color: whitesmoke;
     border: none;
     height:100%;
+    border-bottom: 1px solid black;
 }
 
 input:invalid {
-    border-bottom: 1px solid red;
+    border-bottom-color: red;
 }
 
 input:valid {
-    border-bottom: 1px solid green;
+    border-bottom-color:green;
 }
 
 input:blank {
-    border-bottom: 1px solid black;
+    border-bottom-color: black;
 }
 
 input:focus {
@@ -86,8 +94,9 @@ input:focus {
 }
 
 input:placeholder-shown {
-    border-bottom: 1px solid black;
+    border-bottom-color: black;
 }
+
 
 legend {
     text-align: left;
@@ -161,10 +170,6 @@ fieldset:has(select:required) legend::after {
     margin-right: 5px;
 }
 
-fieldset:has(select[value='default']) {
-    border-color: black;
-    color: black;
-}
 
 /* fieldset:has(select:required > option:checked) legend::after {
     color: 'red';

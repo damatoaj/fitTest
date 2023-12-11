@@ -1,5 +1,6 @@
 import { useRef, memo, useState, FormEvent, ChangeEvent } from 'react'
 import { useEquipmentContext } from '../../Hooks/useEquipmentContext'
+import { useNavigate } from 'react-router-dom'
 import Error from '../Error'
 import Loader from '../Loader'
 const checkInput = (input:HTMLInputElement) =>  {
@@ -10,6 +11,7 @@ const checkInput = (input:HTMLInputElement) =>  {
 }
 const EquipmentForm = () => {
     const { state, dispatch } = useEquipmentContext()
+    const navigate = useNavigate()
     const form = useRef<HTMLFormElement | null>(null)
     const input = useRef<HTMLInputElement | null>(null)
     const [data,setData] = useState({
@@ -60,6 +62,7 @@ const EquipmentForm = () => {
         dispatch({type:'LOADING', payload:true})
         try {
             dispatch({type:'UPDATE', payload:data})
+            navigate('/nutrition')
         } catch (error) {
             dispatch({type:'ERROR', payload:error})
         }

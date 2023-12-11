@@ -3,7 +3,7 @@ import useForm from '../../Hooks/useForm';
 import { useUserContext } from '../../Hooks/useUserContext';
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
-    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm('/nutrition')
+    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm('/equipment')
     const { state : {user } } = useUserContext()
     let valid : boolean = Boolean(user.age && user.fname && user.lname && user.sex && user.height && user.currentWeight) || false
     
