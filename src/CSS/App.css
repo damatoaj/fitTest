@@ -1,3 +1,7 @@
+
+:root {
+  --bpm-animation-duration: 2.72s;
+}
 * {
   box-sizing: border-box;
   font-family: 'Alegreya', serif;
@@ -43,6 +47,33 @@ header li {
 
 .hidden {
   display: none;
+}
+
+h2[data-direction="up"] {
+  animation-name:blink;
+  animation-duration:  var(--bpm-animation-duration);
+  animation-iteration-count: infinite;
+  color:green
+}
+
+h2[data-direction="down"] {
+  animation-name:blink;
+  animation-duration:  var(--bpm-animation-duration);
+  animation-iteration-count: infinite;
+  color:red;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @media only screen and (max-width: 400px) {

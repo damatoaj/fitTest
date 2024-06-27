@@ -33,8 +33,10 @@ import BenchTest from './Screens/BenchPressProtocol/BenchTest';
 import LegPressResults from './Screens/LegPressProtocol/LegPressResults';
 import LegPressInstructions from './Screens/LegPressProtocol/LegPressInstructions';
 import EquipmentForm from './Components/Forms/EquipmentForm';
-import StepTestForm from './Components/Forms/StepTestForm';
+import StepTestTime from './Screens/McArdleStepTest/stepTestTimer';
 import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions';
+import SummaryTable from './Components/Tables/SummaryTable';
+import StepTestResults from './Screens/McArdleStepTest/StepTestResults';
 function App() {
   const { state } = useUserContext()
   
@@ -86,8 +88,10 @@ function App() {
           </Route>
           <Route path='/step-test'>
             <Route path='instructions' element={<StepTestInstructions />} />
-            <Route path='results' element={<StepTestForm />} />
+            <Route path='progress' element={<StepTestTime />} />
+            <Route path='results' element={<StepTestResults />} />
           </Route>
+          <Route path='/summary' element={<SummaryTable/>}></Route>
         </Routes>
       </>
     )

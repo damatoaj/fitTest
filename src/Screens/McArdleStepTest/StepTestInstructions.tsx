@@ -6,7 +6,7 @@ function StepTestInstructions() {
     title={mcardleTest.testName}
     heading={mcardleTest.heading}
     paragraphs={mcardleTest.steps}
-    nextURL={'/step-test/results'}
+    nextURL={'/step-test/progress'}
   />
 }
 

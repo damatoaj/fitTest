@@ -37,7 +37,7 @@ function StepTestForm() {
                 type='number'
                 name='vo2Max'
                 min='40'
-                max='220'
+                max='400'
                 required
                 onChange={vo2}
                 step={1}
