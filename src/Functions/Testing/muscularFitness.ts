@@ -98,56 +98,56 @@ const menBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPres
     const bpr = pushed / bodyWeight
     
     if (age < 20) {
-        if (bpr >= 1.76) return {category:'superior', benchPress: pushed} 
-        if (bpr >= 1.34) return {category:'excellent',benchPress:pushed} 
-        if (bpr >= 1.19) return {category:'good',benchPress:pushed} 
-        if (bpr >= 1.06) return {category:'fair',benchPress:pushed} 
-        if (bpr >= .89) return {category:'poor',benchPress:pushed} 
-        return {category:'very poor',benchPress:pushed} 
+        if (bpr >= 1.76) return {category:'superior', benchPress: Math.floor(pushed)} 
+        if (bpr >= 1.34) return {category:'excellent',benchPress:Math.floor(pushed)} 
+        if (bpr >= 1.19) return {category:'good',benchPress:Math.floor(pushed)} 
+        if (bpr >= 1.06) return {category:'fair',benchPress:Math.floor(pushed)} 
+        if (bpr >= .89) return {category:'poor',benchPress:Math.floor(pushed)} 
+        return {category:'very poor',benchPress:Math.floor(pushed)} 
     }
 
     if (age <= 29) {
-        if (bpr >= 1.63) return {category:'superior', benchPress: pushed} 
-        if (bpr >= 1.32) return {category:'excellent',benchPress:pushed} 
-        if (bpr >= 1.14) return {category:'good',benchPress:pushed} 
-        if (bpr >= .99) return {category:'fair',benchPress:pushed} 
-        if (bpr >= .88) return {category:'poor',benchPress:pushed} 
-        return {category:'very poor',benchPress:pushed} 
+        if (bpr >= 1.63) return {category:'superior', benchPress: Math.floor(pushed)} 
+        if (bpr >= 1.32) return {category:'excellent',benchPress:Math.floor(pushed)} 
+        if (bpr >= 1.14) return {category:'good',benchPress:Math.floor(pushed)} 
+        if (bpr >= .99) return {category:'fair',benchPress:Math.floor(pushed)} 
+        if (bpr >= .88) return {category:'poor',benchPress:Math.floor(pushed)} 
+        return {category:'very poor',benchPress:Math.floor(pushed)} 
     }
 
     if (age <= 39) {
-        if (bpr >= 1.35) return {category:'superior', benchPress: pushed} 
-        if (bpr >= 1.12) return {category:'excellent',benchPress:pushed} 
-        if (bpr >= .98) return {category:'good',benchPress:pushed} 
-        if (bpr >= .88) return {category:'fair',benchPress:pushed} 
-        if (bpr >= .78) return {category:'poor',benchPress:pushed} 
-        return {category:'very poor',benchPress:pushed} 
+        if (bpr >= 1.35) return {category:'superior', benchPress: Math.floor(pushed)} 
+        if (bpr >= 1.12) return {category:'excellent',benchPress:Math.floor(pushed)} 
+        if (bpr >= .98) return {category:'good',benchPress:Math.floor(pushed)} 
+        if (bpr >= .88) return {category:'fair',benchPress:Math.floor(pushed)} 
+        if (bpr >= .78) return {category:'poor',benchPress:Math.floor(pushed)} 
+        return {category:'very poor',benchPress:Math.floor(pushed)} 
     }
 
     if (age <= 49) {
-        if (bpr >= 1.2) return {category:'superior', benchPress: pushed} 
-        if (bpr >= 1) return {category:'excellent',benchPress:pushed} 
-        if (bpr >= .88) return {category:'good',benchPress:pushed} 
-        if (bpr >= .8) return {category:'fair',benchPress:pushed} 
-        if (bpr >= .72) return {category:'poor',benchPress:pushed} 
-        return {category:'very poor',benchPress:pushed} 
+        if (bpr >= 1.2) return {category:'superior', benchPress: Math.floor(pushed)} 
+        if (bpr >= 1) return {category:'excellent',benchPress:Math.floor(pushed)} 
+        if (bpr >= .88) return {category:'good',benchPress:Math.floor(pushed)} 
+        if (bpr >= .8) return {category:'fair',benchPress:Math.floor(pushed)} 
+        if (bpr >= .72) return {category:'poor',benchPress:Math.floor(pushed)} 
+        return {category:'very poor',benchPress:Math.floor(pushed)} 
     }
 
     if (age <= 59) {
-        if (bpr >= 1.05) return {category:'superior', benchPress: pushed} 
-        if (bpr >= .9) return {category:'excellent',benchPress:pushed} 
-        if (bpr >= .79) return {category:'good',benchPress:pushed} 
-        if (bpr >= .71) return {category:'fair',benchPress:pushed} 
-        if (bpr >= .63) return {category:'poor',benchPress:pushed} 
-        return {category:'very poor',benchPress:pushed} 
+        if (bpr >= 1.05) return {category:'superior', benchPress: Math.floor(pushed)} 
+        if (bpr >= .9) return {category:'excellent',benchPress:Math.floor(pushed)} 
+        if (bpr >= .79) return {category:'good',benchPress:Math.floor(pushed)} 
+        if (bpr >= .71) return {category:'fair',benchPress:Math.floor(pushed)} 
+        if (bpr >= .63) return {category:'poor',benchPress:Math.floor(pushed)} 
+        return {category:'very poor',benchPress:Math.floor(pushed)} 
     }
 
-    if (bpr >= .94) return {category:'superior', benchPress: pushed} 
-    if (bpr >= .82) return {category:'excellent',benchPress:pushed} 
-    if (bpr >= .72) return {category:'good',benchPress:pushed} 
-    if (bpr >= .66) return {category:'fair',benchPress:pushed} 
-    if (bpr >= .57) return {category:'poor',benchPress:pushed} 
-    return {category:'very poor',benchPress:pushed} 
+    if (bpr >= .94) return {category:'superior', benchPress: Math.floor(pushed)} 
+    if (bpr >= .82) return {category:'excellent',benchPress:Math.floor(pushed)} 
+    if (bpr >= .72) return {category:'good',benchPress:Math.floor(pushed)} 
+    if (bpr >= .66) return {category:'fair',benchPress:Math.floor(pushed)} 
+    if (bpr >= .57) return {category:'poor',benchPress:Math.floor(pushed)} 
+    return {category:'very poor',benchPress: Math.floor(pushed)} 
 }
 
 const womenBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPress => {
@@ -159,56 +159,56 @@ const womenBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPr
     const bpr = pushed / bodyWeight
     
     if (age < 20) {
-        if (bpr >= .88) return {category:'superior', benchPress: pushed}
-        if (bpr >= .77) return {category:'excellent',benchPress:pushed}
-        if (bpr >= .65) return {category:'good',benchPress:pushed}
-        if (bpr >= .58) return {category:'fair',benchPress:pushed}
-        if (bpr >= .53) return {category:'poor',benchPress:pushed}
-        return {category:'very poor',benchPress:pushed}
+        if (bpr >= .88) return {category:'superior', benchPress: Math.floor(pushed)}
+        if (bpr >= .77) return {category:'excellent',benchPress:Math.floor(pushed)}
+        if (bpr >= .65) return {category:'good',benchPress:Math.floor(pushed)}
+        if (bpr >= .58) return {category:'fair',benchPress:Math.floor(pushed)}
+        if (bpr >= .53) return {category:'poor',benchPress:Math.floor(pushed)}
+        return {category:'very poor',benchPress:Math.floor(pushed)}
     }
 
     if (age <= 29) {
-        if (bpr >= 1.01) return {category:'superior', benchPress: pushed}
-        if (bpr >= .8) return {category:'excellent',benchPress:pushed}
-        if (bpr >= .7) return {category:'good',benchPress:pushed}
-        if (bpr >= .59) return {category:'fair',benchPress:pushed}
-        if (bpr >= .51) return {category:'poor',benchPress:pushed}
-        return {category:'very poor',benchPress:pushed}
+        if (bpr >= 1.01) return {category:'superior', benchPress: Math.floor(pushed)}
+        if (bpr >= .8) return {category:'excellent',benchPress:Math.floor(pushed)}
+        if (bpr >= .7) return {category:'good',benchPress:Math.floor(pushed)}
+        if (bpr >= .59) return {category:'fair',benchPress:Math.floor(pushed)}
+        if (bpr >= .51) return {category:'poor',benchPress:Math.floor(pushed)}
+        return {category:'very poor',benchPress:Math.floor(pushed)}
     }
 
     if (age <= 39) {
-        if (bpr >= .82) return {category:'superior', benchPress: pushed}
-        if (bpr >= .7) return {category:'excellent',benchPress:pushed}
-        if (bpr >= .6) return {category:'good',benchPress:pushed}
-        if (bpr >= .53) return {category:'fair',benchPress:pushed}
-        if (bpr >= .47) return {category:'poor',benchPress:pushed}
-        return {category:'very poor',benchPress:pushed}
+        if (bpr >= .82) return {category:'superior', benchPress: Math.floor(pushed)}
+        if (bpr >= .7) return {category:'excellent',benchPress:Math.floor(pushed)}
+        if (bpr >= .6) return {category:'good',benchPress:Math.floor(pushed)}
+        if (bpr >= .53) return {category:'fair',benchPress:Math.floor(pushed)}
+        if (bpr >= .47) return {category:'poor',benchPress:Math.floor(pushed)}
+        return {category:'very poor',benchPress:Math.floor(pushed)}
     }
 
     if (age <= 49) {
-        if (bpr >= .77) return {category:'superior', benchPress: pushed}
-        if (bpr >= .62) return {category:'excellent',benchPress:pushed}
-        if (bpr >= .54) return {category:'good',benchPress:pushed}
-        if (bpr >= .5) return {category:'fair',benchPress:pushed}
-        if (bpr >= .43) return {category:'poor',benchPress:pushed}
-        return {category:'very poor',benchPress:pushed}
+        if (bpr >= .77) return {category:'superior', benchPress: Math.floor(pushed)}
+        if (bpr >= .62) return {category:'excellent',benchPress:Math.floor(pushed)}
+        if (bpr >= .54) return {category:'good',benchPress:Math.floor(pushed)}
+        if (bpr >= .5) return {category:'fair',benchPress:Math.floor(pushed)}
+        if (bpr >= .43) return {category:'poor',benchPress:Math.floor(pushed)}
+        return {category:'very poor',benchPress:Math.floor(pushed)}
     }
 
     if (age <= 59) {
-        if (bpr >= .68) return {category:'superior', benchPress: pushed}
-        if (bpr >= .55) return {category:'excellent',benchPress:pushed}
-        if (bpr >= .48) return {category:'good',benchPress:pushed}
-        if (bpr >= .44) return {category:'fair',benchPress:pushed}
-        if (bpr >= .39) return {category:'poor',benchPress:pushed}
-        return {category:'very poor',benchPress:pushed}
+        if (bpr >= .68) return {category:'superior', benchPress: Math.floor(pushed)}
+        if (bpr >= .55) return {category:'excellent',benchPress:Math.floor(pushed)}
+        if (bpr >= .48) return {category:'good',benchPress:Math.floor(pushed)}
+        if (bpr >= .44) return {category:'fair',benchPress:Math.floor(pushed)}
+        if (bpr >= .39) return {category:'poor',benchPress:Math.floor(pushed)}
+        return {category:'very poor',benchPress:Math.floor(pushed)}
     }
 
-    if (bpr >= .72) return {category:'superior', benchPress: pushed}
-    if (bpr >= .54) return {category:'excellent',benchPress:pushed}
-    if (bpr >= .47) return {category:'good',benchPress:pushed}
-    if (bpr >= .43) return {category:'fair',benchPress:pushed}
-    if (bpr >= .38) return {category:'poor',benchPress:pushed}
-    return {category:'very poor',benchPress:pushed}
+    if (bpr >= .72) return {category:'superior', benchPress: Math.floor(pushed)}
+    if (bpr >= .54) return {category:'excellent',benchPress:Math.floor(pushed)}
+    if (bpr >= .47) return {category:'good',benchPress:Math.floor(pushed)}
+    if (bpr >= .43) return {category:'fair',benchPress:Math.floor(pushed)}
+    if (bpr >= .38) return {category:'poor',benchPress:Math.floor(pushed)}
+    return {category:'very poor',benchPress:Math.floor(pushed)}
 }
 
 const menLegPress = (age:number, pushed:number, bodyWeight:number) : LegPress => {

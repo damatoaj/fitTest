@@ -13,18 +13,19 @@ function StepTestTime() {
 
     const [step, setStep] = useState(1)
 
-    const phases = [3,180,5,15];
     const phrases = [
         'Get ready in...',
         'Step test in progress',
         'Find your pulse on the wrist or neck',
         'Count your pulses for 15 seconds',
         'Hit next to enter your pulse rate '
-    ]
+    ];
 
     const progress = useMemo(()=> {
+        const phases = [3,180,5,15];
+
         return state.count * 100 / phases[state.phase];
-    }, [state.count, state.phase, phases]);
+    }, [state.count, state.phase]);
 
     const time = useMemo(()=> {
         let minutes = `0${Math.floor(state.count / 60 % 60)}`;

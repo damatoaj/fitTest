@@ -29,8 +29,6 @@ form:valid {
 }
 
 form:focus-within {
-    width: 90%;
-    max-width: 800px;
     box-shadow: 0 0 20px black; 
     border-color: lightblue;
 }
@@ -40,6 +38,8 @@ fieldset {
     width: 100%;
     border-style:solid;
     border-width: 1px;
+    border-radius: 3%;
+
 }
 
 fieldset:invalid {
