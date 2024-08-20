@@ -22,3 +22,98 @@ a:active {
 a:disabled {
     text-decoration: strike-through;
 }
+
+button.link {
+    border: none;
+    width: 100%;
+    text-align: left;
+    border-radius: 0%;
+}
+
+button.link[data-active="false"]::after {
+    content: '  >';
+}
+
+button.link[data-active='true']::after {
+    content: '  v';
+}
+
+button.link:hover {
+    border: none;
+    background-color: darkblue;
+    width: 100%;
+    text-align: left;
+}
+
+nav a {
+    width: 100% !important;
+    display: block;
+}
+
+nav > ul > * {
+    width:100%;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav > ul > li {
+    width: clamp(100px, 10rem ,300px);
+}
+
+/* button.link[data-layer="1"] + ul > li:nth-child(even) {
+    background-color: darkgray;
+} */
+
+.light {
+    background-color: lightgray;
+}
+
+.dark {
+    background-color: darkgray;
+}
+
+li.subnav {
+    background-color: transparent;
+}
+
+/* .subnav > ul > li:nth-child(odd) {
+    background-color: transparent;
+} */
+
+
+
+/* .sub-subnav > ul > li:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+.sub-subnav > ul > li:nth-child(even) {
+    background-color: darkgrey;
+} */
+
+button.link[data-active="false"] + * {
+    display: none !important;
+}
+
+button.link[data-active="true"] + * {
+    position: relative;
+    z-index: 100;
+}
+
+@media screen and (min-width : 800px) {
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav > ul {
+        display: flex;
+        flex-direction: row-reverse;
+        height: clamp(10px, 10rem, 40px);
+    }
+}
