@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { User, UserKeys, Link as L } from '../interfaces'
-import { navLinks, sub } from '../Screens/Variables/navLinks'
-import { useState } from 'react'
+import { navLinks } from '../Screens/Variables/navLinks'
+import { useState, useEffect } from 'react'
 interface NavBarProps {
     u: User
 }
@@ -12,7 +12,9 @@ const NavBar = ({u} : NavBarProps) => {
         tests: 'false',
         muscularEndurance: 'false',
         muscularStrength: 'false',
-        cardiovascularEndurance: 'false'
+        cardiovascularEndurance: 'false',
+        showAll : window.innerWidth < 800 ? 'false' : 'true',
+        showHamburger : window.innerWidth < 800 ? 'true' : 'false'
     });
 
     const links = navLinks.map((link : L, i: number) => {
@@ -34,10 +36,24 @@ const NavBar = ({u} : NavBarProps) => {
         )}
     })
 
+    useEffect(()=> {
+        if (window.innerWidth > 800) {
+            setState({...state, showHamburger : 'false'})
+        } else {
+            setState({...state, showHamburger : 'true'})
+        };
+    }, [state])
+
    
     return (
         <nav>
-            <ul>
+            <button 
+                data-showHamburger={state.showHamburger}
+                onClick={()=> state.showAll=== 'false' ? setState({...state, showAll : 'true'}) : setState({...state, showAll : 'false'})}
+            >
+                Menu
+            </button>
+            <ul data-showAll={state.showAll}>
                 <li className='light'>
                     <Link to='/' >Home</Link>
                 </li>
