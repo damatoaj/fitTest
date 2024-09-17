@@ -71,7 +71,7 @@ const NavBar = ({u} : NavBarProps) => {
             >
                 Menu
             </button>
-            <ul data-showAll={state.showAll}>
+            <ul data-showall={state.showAll}>
                 <li className='light'>
                     <Link to='/' onClick={handleNavigate}>Home</Link>
                 </li>
@@ -147,6 +147,9 @@ const NavBar = ({u} : NavBarProps) => {
                             </ul>
                         </li>
                     </ul>
+                </li>
+                <li className='dark'>
+                    <Link to='/summary' onClick={handleNavigate}>Summary</Link>
                 </li>
             </ul>
         </nav>

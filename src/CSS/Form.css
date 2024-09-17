@@ -7,7 +7,8 @@ form {
     box-shadow: 0 0 15px lightgrey;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: clamp(10px, 5%, 20px);
+    margin: clamp(10px, 1rem, 30px);
     margin-top: 30px;
     background-color: whitesmoke;
     transition: max-width 2s ease, 
