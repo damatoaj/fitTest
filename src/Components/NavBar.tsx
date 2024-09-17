@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { User, UserKeys, Link as L } from '../interfaces'
 import { navLinks } from '../Screens/Variables/navLinks'
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 interface NavBarProps {
     u: User
 }
@@ -13,9 +13,16 @@ const NavBar = ({u} : NavBarProps) => {
         muscularEndurance: 'false',
         muscularStrength: 'false',
         cardiovascularEndurance: 'false',
-        showAll : window.innerWidth < 800 ? 'false' : 'true',
-        showHamburger : window.innerWidth < 800 ? 'true' : 'false'
+        showAll : window.innerWidth < 800 ? 'false' : 'true'
     });
+
+    const showHamburger : boolean = useMemo(()=> {
+        if (window.innerWidth > 800) {
+            return false
+        } else {
+            return true
+        };
+    }, [window.innerWidth])
 
     const links = navLinks.map((link : L, i: number) => {
         let enabled : Boolean = true;
@@ -36,35 +43,46 @@ const NavBar = ({u} : NavBarProps) => {
         )}
     })
 
-    useEffect(()=> {
-        if (window.innerWidth > 800) {
-            setState({...state, showHamburger : 'false'})
+    const handleNavigate = () => {
+        if (window.innerWidth < 800) {
+            setState({
+                tests: 'false',
+                muscularEndurance: 'false',
+                muscularStrength: 'false',
+                cardiovascularEndurance: 'false',
+                showAll : 'false'
+            });
         } else {
-            setState({...state, showHamburger : 'true'})
+            setState({
+                tests: 'false',
+                muscularEndurance: 'false',
+                muscularStrength: 'false',
+                cardiovascularEndurance: 'false',
+                showAll : 'true'
+            });
         };
-    }, [state])
-
+    };
    
     return (
         <nav>
             <button 
-                data-showHamburger={state.showHamburger}
+                data-showHamburger={showHamburger}
                 onClick={()=> state.showAll=== 'false' ? setState({...state, showAll : 'true'}) : setState({...state, showAll : 'false'})}
             >
                 Menu
             </button>
             <ul data-showAll={state.showAll}>
                 <li className='light'>
-                    <Link to='/' >Home</Link>
+                    <Link to='/' onClick={handleNavigate}>Home</Link>
                 </li>
                 <li className='dark'>
-                    <Link to='/parq'>Par-Q</Link>
+                    <Link to='/parq' onClick={handleNavigate}>Par-Q</Link>
                 </li>
                 <li className='light'>
-                    <Link to='/nutrition'>Nutrition</Link>
+                    <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>
                 </li>
                 <li className='dark'>
-                    <Link to='/equipment'>Equipment</Link>
+                    <Link to='/equipment' onClick={handleNavigate}>Equipment</Link>
                 </li>
                 <li className='subnav'>
                     <button 
@@ -87,7 +105,7 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='light'>
-                                    <Link to='/pushups/instructions'>Pushups</Link>
+                                    <Link to='/pushups/instructions' onClick={handleNavigate}>Pushups</Link>
                                 </li>
                             </ul>
                         </li>
@@ -103,13 +121,13 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='dark'>
-                                    <Link to='/bench-press/instructions'>Bench Press</Link>
+                                    <Link to='/bench-press/instructions' onClick={handleNavigate}>Bench Press</Link>
                                 </li>
                                 <li className='light'>
-                                    <Link to='/grip-strength/instructions'>Grip Strength</Link>
+                                    <Link to='/grip-strength/instructions' onClick={handleNavigate}>Grip Strength</Link>
                                 </li>
                                 <li className='dark'>
-                                    <Link to='/leg-press/instructions'>Leg Press</Link>
+                                    <Link to='/leg-press/instructions' onClick={handleNavigate}>Leg Press</Link>
                                 </li>
                             </ul>
                         </li>
@@ -124,7 +142,7 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='light'>
-                                    <Link to='/step-test/instructions'>McArdle Step Test</Link>
+                                    <Link to='/step-test/instructions' onClick={handleNavigate}>McArdle Step Test</Link>
                                 </li>
                             </ul>
                         </li>

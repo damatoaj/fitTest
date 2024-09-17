@@ -214,12 +214,18 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             && state.user.height
             && state.user.activityLevel
             && bodyWeightGoal) {
+            if (!sessionStorage.getItem('macros')) {
+                sessionStorage.setItem('macros', JSON.stringify(calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)));
+            }
             return calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)
         }
         return null
     }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height])
     const micros : Micros | null = useMemo(()=> {
         if (state.user.age && state.user.sex) {
+            if (!sessionStorage.getItem('micros')) {
+                sessionStorage.setItem('micros', JSON.stringify(calculateMicros(state.user.sex,state.user.age)));
+            }
             return calculateMicros(state.user.sex,state.user.age)
         }
         return null
@@ -228,9 +234,15 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const hrMax : number | null= useMemo(()=> {
         if (!state.user.age) return null
         if (state.user.age < 34) {
-            return astrandEquation(state.user.age)
+            if (!sessionStorage.getItem('hr_max')) {
+                sessionStorage.setItem('hr_max', JSON.stringify(astrandEquation(state.user.age)));
+            };
+            return astrandEquation(state.user.age);
         } else {
-            return gellishEquation(state.user.age)
+            if (!sessionStorage.getItem('hr_max')) {
+                sessionStorage.setItem('hr_max', JSON.stringify(gellishEquation(state.user.age)));
+            };
+            return gellishEquation(state.user.age);
         }
     }, [state.user.age])
 

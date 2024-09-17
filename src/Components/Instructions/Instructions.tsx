@@ -1,5 +1,6 @@
 import React, {memo} from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../Hooks/useUserContext";
 
 type instructionsScreenProps = {
     heading: string;
@@ -42,14 +43,22 @@ return (
 )})
 
 const InstructionsScreen = memo(({title, nextURL, heading, paragraphs}:instructionsScreenProps) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const user = useUserContext();
+
+
 
     return <main>
         <h1>{title}</h1>
         <Instructions heading={heading} paragraphs={paragraphs} />
-        <button type="button"  onClick={()=> navigate(nextURL)}>Click to Begin</button>
+        {
+            user.state.user.age &&
+            user.state.user.sex ?
+            <button type="button"  onClick={()=> navigate(nextURL)}>Click to Begin</button> :
+            <button type="button"  onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
+        }
     </main>
 
-})
+});
 
-export default InstructionsScreen
+export default InstructionsScreen;

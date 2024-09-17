@@ -1,7 +1,10 @@
 import { useRef, memo } from 'react';
 import useForm from '../Hooks/useForm';
 import { useUserContext } from '../Hooks/useUserContext';
+import { useNavigate } from "react-router-dom";
+
 const Form = () => {
+    const navigate = useNavigate();
     const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/nutrition/results')
     const form = useRef<HTMLFormElement | null>(null)
     const { state: {user} } = useUserContext()
@@ -84,10 +87,16 @@ const Form = () => {
                 </details>
                 </span>
             </fieldset>
-            <span>
-                <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset' onClick={handleReset}>Reset</button>
-            </span>
+            {user.currentWeight ? 
+                <span>
+                    <button type='submit' disabled={!valid}>Submit</button>
+                    <button type='reset' onClick={handleReset}>Reset</button>
+                </span>
+                :
+                <span>
+                    <button type="button"  onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
+                </span>
+            }
         </form>
     )
 };
