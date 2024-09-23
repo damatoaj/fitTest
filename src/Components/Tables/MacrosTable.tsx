@@ -45,18 +45,18 @@ const MacrosTable = ({macros} : Props) => {
                     <tbody>
                         <tr>
                             <td>{macros.totalCalories}</td>
-                            <td>{macros.carbs.minGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.carbs.maxGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.carbs.minCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
-                            <td>{macros.carbs.maxCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
-                            <td>{macros.protein.minGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.protein.maxGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.protein.minCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
-                            <td>{macros.protein.maxCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
-                            <td>{macros.fats.minGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.fats.maxGrams}<abbr title='Grams'><b>g</b></abbr></td>
-                            <td>{macros.fats.minCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
-                            <td>{macros.fats.maxCal}<abbr title='Carbohydrates'><b>cal</b></abbr></td>
+                            <td>{macros.carbs.minGrams}</td>
+                            <td>{macros.carbs.maxGrams}</td>
+                            <td>{macros.carbs.minCal}</td>
+                            <td>{macros.carbs.maxCal}</td>
+                            <td>{macros.protein.minGrams}</td>
+                            <td>{macros.protein.maxGrams}</td>
+                            <td>{macros.protein.minCal}</td>
+                            <td>{macros.protein.maxCal}</td>
+                            <td>{macros.fats.minGrams}</td>
+                            <td>{macros.fats.maxGrams}</td>
+                            <td>{macros.fats.minCal}</td>
+                            <td>{macros.fats.maxCal}</td>
                         </tr>
                     </tbody>
                 </table>
