@@ -16,6 +16,7 @@ import { poundsToKg,inchesToCm, cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
+import { bloodPressureCalculation } from "../Functions/BloodPressure";
 
 const u : string | null = localStorage.getItem('user');
 
@@ -38,7 +39,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     macros: null,
     micros: null,
     uid: null,
-    vo2Max: null
+    vo2Max: null,
+    bloodPressure : null
 };
 
 type State = {
@@ -65,6 +67,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_VO2MAX', payload: number}
     | {type: 'UPDATE_UID', payload: null}
     | {type: 'UPDATE HR_MAX', payload : number}
+    | {type: 'UPDATE_BLOOD_PRESSURE', payload: [number, number]}
 
 const initialState = {
     user: initialUser,
@@ -78,11 +81,16 @@ export const userReducer = (state : State, action: Action) => {
     console.table(payload)
     switch (type) {
         case 'LOADING':
-            return {...state, isLoading: true}
+            return {...state, isLoading: true, error: null}
+        case 'UPDATE_BLOOD_PRESSURE':
+            if (!payload[0] || !payload[1] || typeof payload[0] !== 'number' || typeof payload[1] !== 'number') throw new Error(`UserContext Error: Blood Pressure Payload Length is invalid: ${payload}`);
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])}));
+            return { error : null, isLoading : false, user: {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])}}
         case 'UPDATE HR_MAX':
-            if (typeof payload !== 'number') throw new TypeError(`HR MAX must use number, but received ${payload}`);
-            if (payload > 220 || payload < 0) throw new Error('HR MAX falls outside of acceptable range, check inputs');
-                return { error: null, isLoading: false, user : {...state.user, hrMax: payload}}
+            if (typeof payload !== 'number') throw new TypeError(`UserContext Error: HR MAX must use number, but received ${payload}`);
+            if (payload > 220 || payload < 0) throw new Error('UserContext Error: HR MAX falls outside of acceptable range, check inputs');
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, hrMax: payload}));
+            return { error: null, isLoading: false, user : {...state.user, hrMax: payload}}
         case 'UPDATE_VO2MAX':
             if (state.user.sex === 'MALE' && state.user.age) {
                 const vo2Max = menCardioFitnessClassification(state.user.age, payload)

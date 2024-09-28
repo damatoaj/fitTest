@@ -82,7 +82,7 @@ interface User {
     sex: Sex | null;
     uid: number | null;
     vo2Max: VO2Max | null;
-
+    bloodPressure : BloodPressure | null;
 }
 
 type UserKeys = keyof User;

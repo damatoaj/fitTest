@@ -1,6 +1,6 @@
 import { BloodPressure} from "../interfaces";
 
-export const bloodPressureClassification = (sbp:number, dbp:number) => {
+export const bloodPressureCalculation = (sbp:number, dbp:number) => {
     if (typeof sbp !== 'number' || typeof dbp !== 'number') throw new TypeError('Blood pressure parameters must be numbers');
     if (sbp < 1 || dbp < 1 || sbp > 400 || dbp > 200) throw new RangeError('Blood pressure paremeters outside of acceptable range');
     let classification = 'normal';

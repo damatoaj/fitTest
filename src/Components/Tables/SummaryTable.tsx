@@ -17,10 +17,15 @@ const SummaryTable = () => {
             <h1>Your Fitness Summary on 
                 <time dateTime={today}> {date}, {month}, {year}</time>
             </h1>
-            <h2>Heart Rate Max</h2>
+            <h2>Demongraphic Data</h2>
             {state.user.hrMax && <table>
                 <th>Heart Rate Max</th>
                 <tr><td>{state.user.hrMax}</td></tr>
+            </table>}
+            {state.user.bloodPressure && <table>
+                <th>Blood Pressure</th>
+                <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
+                <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
             </table>}
             <h2>Muscular Strength & Endurance</h2>
             {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}

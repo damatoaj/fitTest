@@ -16,7 +16,9 @@ type Data = {
     pushups:string,
     rightHand:string
     sex: string,
-    vo2Max:string
+    vo2Max:string,
+    sbp : string,
+    dbp : string
 }
 
 const useForm = (url?:string) => {
@@ -36,7 +38,9 @@ const useForm = (url?:string) => {
         pushups:'',
         rightHand:'',
         sex: '',
-        vo2Max: ''
+        vo2Max: '',
+        sbp : '',
+        dbp : ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +71,8 @@ const useForm = (url?:string) => {
             rightHand:'',
             sex: '',
             vo2Max:'',
+            sbp : '',
+            dbp : ''
         }}) 
     }
 
@@ -78,23 +84,25 @@ const useForm = (url?:string) => {
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent,) => {
         e.preventDefault()
+        dispatch({type: 'LOADING', payload : null})
         try {
-            if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel})
-            if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)})
-            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: Math.round(parseInt(data.benchPress))})
-            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: parseInt(data.currentWeight)})
-            if (data.fname.length > 0 && data.lname.length > 0) await dispatch({type: 'UPDATE_NAME', payload: {fname:data.fname,lname:data.lname}})
-            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight})
-            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.height)})
-            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2)})
-            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))})
-            if (data.sex.length > 0) await dispatch({type:'UPDATE_SEX', payload: data.sex})
-            if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)})
-            if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)})
-            if (url) navigate(url)
+            if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
+            if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
+            if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});
+            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: Math.round(parseInt(data.benchPress))});
+            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: parseInt(data.currentWeight)});
+            if (data.fname.length > 0 && data.lname.length > 0) await dispatch({type: 'UPDATE_NAME', payload: {fname:data.fname,lname:data.lname}});
+            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight});
+            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.height)});
+            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2)});
+            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))});
+            if (data.sex.length > 0) await dispatch({type:'UPDATE_SEX', payload: data.sex});
+            if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
+            if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
+            if (url) navigate(url);
         } catch (e:any) {
-            const error = e.message
-            dispatch({type:'ERROR', payload:error})
+            const error = e.message;
+            dispatch({type:'ERROR', payload:error});
         }
     }
 
