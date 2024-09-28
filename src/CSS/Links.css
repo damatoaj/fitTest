@@ -94,7 +94,7 @@ button.link[data-active="true"] + * {
     z-index: 100;
 }
 
-button[data-showHamburger="false"] {
+button[data-showhamburger="false"] {
     display: none;
 }
 

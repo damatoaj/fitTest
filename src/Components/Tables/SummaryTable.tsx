@@ -12,6 +12,18 @@ const SummaryTable = () => {
     const year : number = new Date().getFullYear();
     const today : string = `${year}-${month}-${date}`
 
+    const handleSave = () => {
+        const u : string | null = sessionStorage.getItem('user');
+        if (typeof u === 'string') {
+            localStorage.setItem('mostRecentSession', JSON.stringify({...JSON.parse(u), date: today}));
+            console.log('update localstorage');
+            let d : HTMLDialogElement | null= document.querySelector('dialog#confirmationModal');
+            if (d !== null) d.close();
+            return true
+        }
+        
+        return false
+    };
     return (
         <main>
             <h1>Your Fitness Summary on 
@@ -20,12 +32,16 @@ const SummaryTable = () => {
             <h2>Demongraphic Data</h2>
             {state.user.hrMax && <table>
                 <th>Heart Rate Max</th>
+                <tbody>
                 <tr><td>{state.user.hrMax}</td></tr>
+                </tbody>
             </table>}
             {state.user.bloodPressure && <table>
                 <th>Blood Pressure</th>
-                <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
-                <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
+                <tbody>
+                    <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
+                    <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
+                </tbody>
             </table>}
             <h2>Muscular Strength & Endurance</h2>
             {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
@@ -36,6 +52,36 @@ const SummaryTable = () => {
             {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
             <h2>Micro Nutrition Recommendations From The FDA</h2>
             {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
+            {state.user?.fname !== null && (
+                <section>
+                    <h3>Want to save your session to compare for next time?</h3>
+                    <p>Clicking the "Save" button below will push your results into a cache that you can refer back to the next time you visit the site. That way, as long as you are using the same browser you can compare your previous performance to this session.
+                    </p>
+                    <button type='button' onClick={()=> {
+                        let d : HTMLDialogElement | null = document.querySelector('dialog#confirmationModal')
+
+                        if (d !== null) d.showModal();
+                        }}
+                    >
+                        {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
+                    </button>
+                    <dialog id='confirmationModal'>
+                        <p>Are you sure? Clicking save will overwrite previous test data</p>
+                        <button autoFocus type='submit' onClick={handleSave}>I'm sure</button>
+                        <span>
+                            <button 
+                                type='button'
+                                onClick={()=> {
+                                    let d : HTMLDialogElement | null = document.querySelector('dialog#confirmationModal');
+                                    if (d !== null) d.close();
+                                }}
+                            >
+                                Close
+                            </button>
+                        </span>
+                    </dialog>
+                </section>
+            )}
         </main>
     )
 };

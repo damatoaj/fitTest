@@ -6,7 +6,24 @@ type Props = {
 };
 
 const MacrosTable = ({macros} : Props) => {
-    if (window.innerWidth > 500) {
+    if (!macros) {
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <th>Macro Nutrients</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>No Data</td>
+                    </tr>
+                </tbody>
+            </table>
+        )
+    };
+
+    if (window.innerWidth > 600) {
         return (
                 <table>
                     <thead>
@@ -61,7 +78,7 @@ const MacrosTable = ({macros} : Props) => {
                     </tbody>
                 </table>
         )
-    }
+    };
 
     return (
         <table>
@@ -150,7 +167,7 @@ const MacrosTable = ({macros} : Props) => {
             </tr>
         </tbody>
     </table>
-    )
+    );
 };
 
 export default memo(MacrosTable);

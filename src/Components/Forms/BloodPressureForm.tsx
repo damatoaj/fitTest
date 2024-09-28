@@ -1,17 +1,17 @@
-import { useRef, memo, FormEventHandler, FormEvent } from 'react'
+import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext'
-import { bloodPressureCalculation } from '../../Functions/BloodPressure';
 const BenchPressForm = () => {
-    const { handleChange, handleSubmit, handleReset} = useForm()
-    const form = useRef<HTMLFormElement | null>(null)
-    const { state : {user } } = useUserContext()
+    const { handleChange, handleSubmit, handleReset} = useForm();
+    const form = useRef<HTMLFormElement | null>(null);
+    const { state : {user } } = useUserContext();
 
-    let valid : boolean = Boolean(user.benchPress?.benchPress) || false
+    let valid : boolean = Boolean(user.bloodPressure?.sbp) || false;
     
-    // if(form.current && form.current !== null) {
-    //     valid = form.current.checkValidity()
-    // }
+    if(form.current && form.current !== null) {
+        valid = form.current.checkValidity()
+        console.log(form.current, valid)
+    }
 
     return (
         <form
@@ -54,7 +54,7 @@ const BenchPressForm = () => {
                 />
             </fieldset>
             <span>
-                <button type='submit' >Submit</button>
+                <button type='submit' disabled={!valid}>{user.bloodPressure ?  'Update' : 'Submit' }</button>
                 <button type='reset'>Reset</button>
             </span>
         </form>

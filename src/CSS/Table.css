@@ -6,7 +6,7 @@ table {
     text-transform: capitalize;
 }
 
-table, th, td {
+table, thead, tbody, th, td {
     border: 1px solid black;
     padding: 4px 7px;
     background-color: whitesmoke;

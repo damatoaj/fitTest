@@ -103,7 +103,7 @@ function DemoGraphicsForm() {
         </select>
     </fieldset>
         <span>
-            <button type='submit' disabled={!valid}>Submit</button>
+            <button type='submit' disabled={!valid}>{user.fname ?  'Update' : 'Submit' }</button>
             <button type='reset'>Reset</button>
         </span>
     </form>

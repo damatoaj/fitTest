@@ -66,7 +66,7 @@ const NavBar = ({u} : NavBarProps) => {
     return (
         <nav>
             <button 
-                data-showHamburger={showHamburger}
+                data-showhamburger={showHamburger}
                 onClick={()=> state.showAll=== 'false' ? setState({...state, showAll : 'true'}) : setState({...state, showAll : 'false'})}
             >
                 Menu
