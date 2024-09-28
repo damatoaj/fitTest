@@ -1,5 +1,5 @@
 form {
-    max-width: 600px;
+    width: clamp(300px, 100%, 600px);
     border-width: 2px;
     border-style: solid;
     border-color: black;

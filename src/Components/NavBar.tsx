@@ -76,7 +76,7 @@ const NavBar = ({u} : NavBarProps) => {
                     <Link to='/' onClick={handleNavigate}>Home</Link>
                 </li>
                 <li className='dark'>
-                    <Link to='/parq' onClick={handleNavigate}>Par-Q</Link>
+                    <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
                 </li>
                 <li className='light'>
                     <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>

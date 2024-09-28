@@ -82,15 +82,20 @@ interface User {
     sex: Sex | null;
     uid: number | null;
     vo2Max: VO2Max | null;
+
 }
 
 type UserKeys = keyof User;
 
-type VO2Max = { vo2Max: number, category: FitnessCategory}
+type VO2Max = { vo2Max: number, category: FitnessCategory};
 
-type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3'
+type BloodPressureClassifications = 'normal' | 'prehypertension' | 'stage 1 hypertension' | 'stage 2 hypertension';
 
-type BMI = { bmi:number, classification: BMIClassifications }
+type BloodPressure = { sbp : number, dbp : number, classification : BloodPressureClassifications };
+
+type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3';
+
+type BMI = { bmi:number, classification: BMIClassifications };
 
 type Sex = 'MALE' | 'FEMALE'
 
@@ -126,6 +131,8 @@ export type {
     Sex,
     BMI,
     BMIClassifications,
+    BloodPressureClassifications,
+    BloodPressure,
     WaistCircumferenceCategory,
     BodyCompCategory,
     BenchPress,

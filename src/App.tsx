@@ -21,7 +21,7 @@ import PushupInstructions from './Screens/PushupProtocol/PushupInstructions';
 import Bruce from './Screens/TreadmillProtocals/Bruce';
 import TreadmillResults from './Screens/TreadmillProtocals/TreadmillResults';
 import { useUserContext } from './Hooks/useUserContext';
-import DemoGraphicsForm from './Components/Forms/DemoGraphicsForm';
+import DemographicsScreen from './Screens/Demographics/DemographicsScreen';
 import PushupTest from './Screens/PushupProtocol/PushupTest';
 import PushupResults from './Screens/PushupProtocol/PushupResults';
 import GripStrengthInstructions from './Screens/GripStrengthProtocol/GripStrengthInstructions';
@@ -51,7 +51,7 @@ function App() {
             path='/'
             element={<Home />}
           />
-            <Route path='/parq' element={<DemoGraphicsForm/>}></Route>
+            <Route path='/parq' element={<DemographicsScreen/>}></Route>
           <Route
             path='/nutrition' 
             element={<Form />}

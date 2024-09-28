@@ -64,6 +64,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_LEG_PRESS', payload: number}
     | {type: 'UPDATE_VO2MAX', payload: number}
     | {type: 'UPDATE_UID', payload: null}
+    | {type: 'UPDATE HR_MAX', payload : number}
 
 const initialState = {
     user: initialUser,
@@ -78,8 +79,11 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true}
+        case 'UPDATE HR_MAX':
+            if (typeof payload !== 'number') throw new TypeError(`HR MAX must use number, but received ${payload}`);
+            if (payload > 220 || payload < 0) throw new Error('HR MAX falls outside of acceptable range, check inputs');
+                return { error: null, isLoading: false, user : {...state.user, hrMax: payload}}
         case 'UPDATE_VO2MAX':
-            console.log(payload)
             if (state.user.sex === 'MALE' && state.user.age) {
                 const vo2Max = menCardioFitnessClassification(state.user.age, payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, vo2Max}));
@@ -187,16 +191,15 @@ type UserContextType = {
 export const UserContext = createContext<UserContextType>({state:initialState, dispatch:() => null});
 
 export const UserProvider = (props:PropsWithChildren<{}>) => {
-    const [state, dispatch] = useReducer(userReducer, initialState)
-    
-
+    const [state, dispatch] = useReducer(userReducer, initialState);
     
     const bmi : BMI | null = useMemo(()=> {
         if (state.user.height && state.user.currentWeight) {
             return calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)))
         }
         return null
-    }, [state.user.height, state.user.currentWeight])
+    }, [state.user.height, state.user.currentWeight]);
+
     const bodyWeightGoal : WeightGoal | null = useMemo(()=> {
         if (state.user.currentWeight && state.user.goalWeight) {
             if (state.user.currentWeight > state.user.goalWeight) {
@@ -206,7 +209,8 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             } else {return'maintain'}
         }
         return null
-    }, [state.user.currentWeight, state.user.goalWeight])
+    }, [state.user.currentWeight, state.user.goalWeight]);
+
     const macros : Macros | null = useMemo(()=> {
         if (state.user.age 
             && state.user.sex 
@@ -220,7 +224,8 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             return calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)
         }
         return null
-    }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height])
+    }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height]);
+
     const micros : Micros | null = useMemo(()=> {
         if (state.user.age && state.user.sex) {
             if (!sessionStorage.getItem('micros')) {
@@ -229,7 +234,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             return calculateMicros(state.user.sex,state.user.age)
         }
         return null
-    }, [state.user.age, state.user.sex])
+    }, [state.user.age, state.user.sex]);
 
     const hrMax : number | null= useMemo(()=> {
         if (!state.user.age) return null
@@ -237,14 +242,16 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             if (!sessionStorage.getItem('hr_max')) {
                 sessionStorage.setItem('hr_max', JSON.stringify(astrandEquation(state.user.age)));
             };
+            dispatch({type: 'UPDATE HR_MAX', payload: astrandEquation(state.user.age)})
             return astrandEquation(state.user.age);
         } else {
             if (!sessionStorage.getItem('hr_max')) {
                 sessionStorage.setItem('hr_max', JSON.stringify(gellishEquation(state.user.age)));
             };
+            dispatch({type: 'UPDATE HR_MAX', payload: gellishEquation(state.user.age)})
             return gellishEquation(state.user.age);
         }
-    }, [state.user.age])
+    }, [state.user.age]);
 
     if (state.user?.uid === null) {
         dispatch({type: 'UPDATE_UID', payload: null})
