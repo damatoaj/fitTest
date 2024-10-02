@@ -4,6 +4,7 @@ import PushupsTable from "./PushupsTable";
 import MacrosTable from "./MacrosTable";
 import MicrosTable from "./MicrosTable";
 import BMITable from "./BMITable";
+import { printTable } from "../../Functions/printTable";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -25,7 +26,7 @@ const SummaryTable = () => {
         return false
     };
     return (
-        <main>
+        <main id='summary-table'>
             <h1>Your Fitness Summary on 
                 <time dateTime={today}> {date}, {month}, {year}</time>
             </h1>
@@ -57,14 +58,17 @@ const SummaryTable = () => {
                     <h3>Want to save your session to compare for next time?</h3>
                     <p>Clicking the "Save" button below will push your results into a cache that you can refer back to the next time you visit the site. That way, as long as you are using the same browser you can compare your previous performance to this session.
                     </p>
-                    <button type='button' onClick={()=> {
-                        let d : HTMLDialogElement | null = document.querySelector('dialog#confirmationModal')
+                    <span>
+                        <button type='button' onClick={()=> {
+                            let d : HTMLDialogElement | null = document.querySelector('dialog#confirmationModal')
 
-                        if (d !== null) d.showModal();
-                        }}
-                    >
-                        {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
-                    </button>
+                            if (d !== null) d.showModal();
+                            }}
+                        >
+                            {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
+                        </button>
+                        <button type='button' onClick={()=> printTable('summary-table')}>Print Results</button>
+                    </span>
                     <dialog id='confirmationModal'>
                         <p>Are you sure? Clicking save will overwrite previous test data</p>
                         <button autoFocus type='submit' onClick={handleSave}>I'm sure</button>
