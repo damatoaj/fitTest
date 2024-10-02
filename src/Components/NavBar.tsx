@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { User, UserKeys, Link as L } from '../interfaces'
 import { navLinks } from '../Screens/Variables/navLinks'
-import { useState, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 interface NavBarProps {
     u: User
 }
@@ -16,13 +16,22 @@ const NavBar = ({u} : NavBarProps) => {
         showAll : window.innerWidth < 800 ? 'false' : 'true'
     });
 
-    const showHamburger : boolean = useMemo(()=> {
-        if (window.innerWidth > 800) {
-            return false
-        } else {
-            return true
-        };
-    }, [window.innerWidth])
+    const [showHamburger, setShowHamburger]= useState<boolean>(window.innerWidth > 800 ? false : true);
+        
+    
+    useEffect(()=> {
+        function handleHamburger() {
+            if (window.innerWidth > 800) {
+                setShowHamburger(false);
+            } else {
+                setShowHamburger(true);
+            };
+        }
+        window.addEventListener('resize', handleHamburger);
+        return ()=> window.removeEventListener('resize', handleHamburger);
+        
+    }, [])
+
 
     const links = navLinks.map((link : L, i: number) => {
         let enabled : Boolean = true;
@@ -78,16 +87,16 @@ const NavBar = ({u} : NavBarProps) => {
                 <li className='dark'>
                     <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
                 </li>
-                <li className='light'>
+                {/* <li className='light'>
                     <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>
-                </li>
+                </li> */}
                 {/* <li className='dark'>
                     <Link to='/equipment' onClick={handleNavigate}>Equipment</Link>
                 </li> */}
                 <li className='subnav'>
                     <button 
                         type="button" 
-                        className='link dark' 
+                        className='link light' 
                         data-active={state.tests}
                         onClick={()=> state.tests=== 'false' ? setState({...state, tests : 'true'}) : setState({...state, tests : 'false'})}
                     >
@@ -97,14 +106,14 @@ const NavBar = ({u} : NavBarProps) => {
                         <li className='sub-subnav'>
                             <button 
                                 type="button" 
-                                className='link light' 
+                                className='link dark' 
                                 data-active={state.muscularEndurance}
                                 onClick={()=> state.muscularEndurance === 'false' ? setState({...state, muscularEndurance : 'true'}) : setState({...state, muscularEndurance : 'false'})}
                             >
                                 Muscular Endurance
                             </button>
                             <ul>
-                                <li className='dark'>
+                                <li className='light'>
                                     <Link to='/pushups/instructions' onClick={handleNavigate}>Pushups</Link>
                                 </li>
                             </ul>
@@ -148,7 +157,7 @@ const NavBar = ({u} : NavBarProps) => {
                         </li>
                     </ul>
                 </li>
-                <li className='light'>
+                <li className='dark'>
                     <Link to='/summary' onClick={handleNavigate}>Summary</Link>
                 </li>
             </ul>

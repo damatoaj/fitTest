@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
     const navigate = useNavigate();
-    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/nutrition/results')
+    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/summary')
     const form = useRef<HTMLFormElement | null>(null)
     const { state: {user} } = useUserContext()
     let valid : boolean = Boolean(user.activityLevel && user.goalWeight) || false

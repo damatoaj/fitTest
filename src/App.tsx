@@ -13,7 +13,7 @@ import Results from './Screens/Results';
 import Home from './Screens/Home';
 import Loader from './Components/Loader';
 import Error from './Components/Error';
-
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/Forms/StrengthForm';
 import StrengthTable from './Components/Tables/StrengthTable';
@@ -37,29 +37,46 @@ import StepTestTime from './Screens/McArdleStepTest/stepTestTimer';
 import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions';
 import SummaryTable from './Components/Tables/SummaryTable';
 import StepTestResults from './Screens/McArdleStepTest/StepTestResults';
+import FourOhFourScreen from './Screens/404/404';
 function App() {
   const { state } = useUserContext()
-  
+  useEffect(()=> {
+    function handleHamburger() {
+        console.log(window.innerWidth, "<--inner width")
+
+        if (window.innerWidth > 800) {
+            console.log('set hamburger false')
+            // setShowHamburger(false);
+        } else {
+            console.log('set hamburger true')
+
+            // setShowHamburger(true);
+        };
+    }
+    window.addEventListener('resize', handleHamburger);
+    return window.removeEventListener('resize', handleHamburger);
+    
+}, [])
     return (
       <>
       {state.error && <Error message={state.error} />}
       {state.isLoading && <Loader />}
-      {window.innerWidth > 600 && <NavBar u={state.user} />}
-      {window.innerWidth <= 600 && <MobileNav />}
+      {<NavBar u={state.user} />}
+      {/* {window.innerWidth <= 600 && <MobileNav />} */}
         <Routes>
           <Route
             path='/'
             element={<Home />}
           />
             <Route path='/parq' element={<DemographicsScreen/>}></Route>
-          <Route
+          {/* <Route
             path='/nutrition' 
             element={<Form />}
-          >
+          > */}
             
-          </Route> 
+          {/* </Route>  */}
           {/* <Route path='/equipment' element={<EquipmentForm />} /> */}
-          {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
+          {/* {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>} */}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />
           <Route path='/bench-press'>
@@ -92,6 +109,8 @@ function App() {
             <Route path='results' element={<StepTestResults />} />
           </Route>
           <Route path='/summary' element={<SummaryTable/>}></Route>
+          <Route path="*" element={<FourOhFourScreen />}>
+          </Route>
         </Routes>
       </>
     )
