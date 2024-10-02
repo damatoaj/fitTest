@@ -1,9 +1,11 @@
 import { useRef, memo } from 'react';
 import useForm from '../../Hooks/useForm';
 import { useUserContext } from '../../Hooks/useUserContext';
+
+
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
-    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm('/equipment')
+    const { handleChange,handleSubmit,handleSelect, handleReset} = useForm();
     const { state : {user } } = useUserContext()
     let valid : boolean = Boolean(user.age && user.fname && user.lname && user.sex && user.height && user.currentWeight) || false
     
@@ -26,9 +28,10 @@ function DemoGraphicsForm() {
                 placeholder=''
                 required
                 type='text'
-                pattern="^[\w'\-,\.][^0-9_!¡?÷?¿\/\\+=@#$%^&*\(\)\{\}\|~<>;:\[\]]{2,}$"
+                pattern="^[a-zA-Z]+$"
                 onChange={handleChange}
                 defaultValue={user.fname || ''}
+                title="No special characters"
             />      
         </fieldset>
         <fieldset>
@@ -38,9 +41,10 @@ function DemoGraphicsForm() {
                 placeholder=''
                 required 
                 type='text'
-                pattern="^[\w'\-,\.][^0-9_!¡?÷?¿\/\\+=@#$%^&*\(\)\{\}\|~<>;:\[\]]{2,}$"
+                pattern='^[a-zA-Z]+$'
                 onChange={handleChange}
                 defaultValue={user.lname || ''}
+                title="No special characters"
             />
         </fieldset>
         <fieldset>
@@ -56,6 +60,7 @@ function DemoGraphicsForm() {
                 maxLength={3}
                 defaultValue={user.age || ''}
                 placeholder=''
+                title="Range is 20-69"
             />
         </fieldset>
         <fieldset>
@@ -71,6 +76,7 @@ function DemoGraphicsForm() {
                 maxLength={7}
                 defaultValue={user.currentWeight || ''}
                 placeholder='Measured In Pounds'
+                title="Range is 50 to 450"
             />
         </fieldset>
         <fieldset>
@@ -87,6 +93,7 @@ function DemoGraphicsForm() {
                 maxLength={6}
                 defaultValue={user.height || ''}
                 placeholder='Measured In Inches'
+                title="Range is 50 to 108"
             />
         </fieldset>
         <fieldset>

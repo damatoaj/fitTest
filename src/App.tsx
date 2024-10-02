@@ -58,7 +58,7 @@ function App() {
           >
             
           </Route> 
-          <Route path='/equipment' element={<EquipmentForm />} />
+          {/* <Route path='/equipment' element={<EquipmentForm />} /> */}
           {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>}
           <Route path='/strength' element={<StrengthForm />} />
           <Route path='/strength/results' element={<StrengthTable/>} />

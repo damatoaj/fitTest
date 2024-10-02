@@ -136,14 +136,11 @@ export const userReducer = (state : State, action: Action) => {
             sessionStorage.setItem('user', JSON.stringify( {...state.user, activityLevel}));
             return {error:null, isLoading:false, user:{...state.user, activityLevel}};
         case 'UPDATE_NAME':
-            const fname = validateName(payload.fname)
-            const lname = validateName(payload.lname)
-            sessionStorage.setItem('user', JSON.stringify( {...state.user, fname, lname}));
-            return {error:null, isLoading:false, user: {...state.user, fname, lname}}
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, fname: payload.fname, lname: payload.fname}));
+            return {error:null, isLoading:false, user: {...state.user, fname:  payload.fname, lname : payload.lname }}
         case 'UPDATE_SEX':
-            const sex = validateSex(payload)
-            sessionStorage.setItem('user', JSON.stringify( {...state.user, sex}));
-            return {error:null, isLoading:false, user: {...state.user, sex}}
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, sex : payload}));
+            return {error:null, isLoading:false, user: {...state.user, sex : payload}}
         case 'UPDATE_AGE':
             const age = validateAge(payload)
             sessionStorage.setItem('user', JSON.stringify( {...state.user, age}));

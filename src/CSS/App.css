@@ -29,6 +29,10 @@ main {
   width: 100vw;
 }
 
+section {
+  display: contents
+}
+
 header {
   padding: .5rem;
   margin-bottom: 1rem;

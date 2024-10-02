@@ -23,10 +23,13 @@ a:disabled {
 }
 
 nav button {
-   min-height: 40px;
+   height: 100%;
    margin: 0px;
    padding: clamp(3px, 1rem, 10px);
-   font-size: 16px
+   border:none;
+}
+.link {
+    min-height: 15px
 }
 
 button.link {
@@ -34,6 +37,8 @@ button.link {
     width: 100%;
     text-align: left;
     border-radius: 0%;
+    font-size: clamp(8px,1rem,16px);
+    overflow: hidden;
 }
 
 button.link[data-active="false"]::after {
@@ -47,7 +52,7 @@ button.link[data-active='true']::after {
 button.link:hover {
     border: none;
     background-color: darkblue;
-    width: 100%;
+    /* width: 100%; */
     text-align: left;
 }
 
@@ -83,6 +88,20 @@ nav > ul > li {
 
 li.subnav {
     background-color: transparent;
+    border:none;
+    width: clamp(150px, 10%, 250px);
+}
+
+.subnav button  {
+    width: clamp(200px, 10%, 250px);
+}
+
+.subnav li  {
+    width: clamp(200px, 10%, 250px);
+}
+
+.subnav > button {
+    width: 160px;
 }
 
 button.link[data-active="false"] + * {

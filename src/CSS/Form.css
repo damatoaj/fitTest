@@ -1,5 +1,6 @@
 form {
     width: clamp(300px, 100%, 600px);
+    min-height: 400px;
     border-width: 2px;
     border-style: solid;
     border-color: black;
@@ -7,6 +8,8 @@ form {
     box-shadow: 0 0 15px lightgrey;
     display: flex;
     flex-direction: column;
+    flex-grow: calc(1);
+    justify-content: space-between;
     padding: clamp(10px, 5%, 20px);
     margin: clamp(10px, 1rem, 30px);
     margin-top: 30px;
@@ -34,6 +37,10 @@ form:focus-within {
     border-color: lightblue;
 }
 
+form details {
+    color : black;
+    margin-left: clamp(5px, 5%, 15px);
+}
 summary {
     padding: clamp(5px, 1rem, 10px);
 }

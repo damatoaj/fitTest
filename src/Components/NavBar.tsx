@@ -81,13 +81,13 @@ const NavBar = ({u} : NavBarProps) => {
                 <li className='light'>
                     <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>
                 </li>
-                <li className='dark'>
+                {/* <li className='dark'>
                     <Link to='/equipment' onClick={handleNavigate}>Equipment</Link>
-                </li>
+                </li> */}
                 <li className='subnav'>
                     <button 
                         type="button" 
-                        className='link light' 
+                        className='link dark' 
                         data-active={state.tests}
                         onClick={()=> state.tests=== 'false' ? setState({...state, tests : 'true'}) : setState({...state, tests : 'false'})}
                     >
@@ -97,14 +97,14 @@ const NavBar = ({u} : NavBarProps) => {
                         <li className='sub-subnav'>
                             <button 
                                 type="button" 
-                                className='link dark' 
+                                className='link light' 
                                 data-active={state.muscularEndurance}
                                 onClick={()=> state.muscularEndurance === 'false' ? setState({...state, muscularEndurance : 'true'}) : setState({...state, muscularEndurance : 'false'})}
                             >
                                 Muscular Endurance
                             </button>
                             <ul>
-                                <li className='light'>
+                                <li className='dark'>
                                     <Link to='/pushups/instructions' onClick={handleNavigate}>Pushups</Link>
                                 </li>
                             </ul>
@@ -148,7 +148,7 @@ const NavBar = ({u} : NavBarProps) => {
                         </li>
                     </ul>
                 </li>
-                <li className='dark'>
+                <li className='light'>
                     <Link to='/summary' onClick={handleNavigate}>Summary</Link>
                 </li>
             </ul>

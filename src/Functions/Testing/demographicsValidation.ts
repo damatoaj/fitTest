@@ -1,4 +1,3 @@
-import { Sex } from "../../interfaces"
 const validateAge = (age:number) => {
     if (age < 18 || age > 100) throw new RangeError('Age Is Outside Of Acceptable Bounds')
     if (typeof age !== 'number') return parseInt(age)
@@ -12,7 +11,7 @@ const validateHeight = (height:number) => {
     return height
 }
 
-const validateSex = (sex: Sex) => {
+const validateSex = (sex: string) => {
     if (sex !== 'FEMALE' && sex !== 'MALE') throw new TypeError('Sex Is Outside Testing Types')
     return sex
 }
@@ -30,7 +29,8 @@ const validateGoalWeight = (weight:number) => {
 }
 
 const validateName = (name:string) => {
-    let result : boolean = /^[a-zA-Z ]+$/.test(name.trim())
+    let result : boolean = /^[a-zA-Z]+$/.test(name.trim())
+    console.log(result)
     if (!result) throw new Error('Check Name For Special Character')
     return name.trim()
 }
