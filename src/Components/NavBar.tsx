@@ -95,7 +95,7 @@ const NavBar = ({u} : NavBarProps) => {
                 </li> */}
                 <li className='subnav'>
                     <button 
-                        type="button" 
+                        // type="button" 
                         className='link light' 
                         data-active={state.tests}
                         onClick={()=> state.tests=== 'false' ? setState({...state, tests : 'true'}) : setState({...state, tests : 'false'})}
@@ -105,7 +105,7 @@ const NavBar = ({u} : NavBarProps) => {
                     <ul data-active='false'>
                         <li className='sub-subnav'>
                             <button 
-                                type="button" 
+                                // type="button" 
                                 className='link dark' 
                                 data-active={state.muscularEndurance}
                                 onClick={()=> state.muscularEndurance === 'false' ? setState({...state, muscularEndurance : 'true'}) : setState({...state, muscularEndurance : 'false'})}
@@ -121,7 +121,7 @@ const NavBar = ({u} : NavBarProps) => {
                         <li className='sub-subnav'>
                             <button 
                                 className='link light' 
-                                type='button'
+                                // type='button'
                                 data-active={state.muscularStrength}
                                 onClick={()=> state.muscularStrength === 'false' ? setState({...state, muscularStrength : 'true'}) : setState({...state, muscularStrength : 'false'})}
 
@@ -142,7 +142,7 @@ const NavBar = ({u} : NavBarProps) => {
                         </li>
                         <li className='sub-subnav'>
                             <button 
-                                type="button" 
+                                // type="und" 
                                 className='link dark' 
                                 data-active={state.cardiovascularEndurance}
                                 onClick={()=> state.cardiovascularEndurance === 'false' ? setState({...state, cardiovascularEndurance : 'true'}) : setState({...state, cardiovascularEndurance : 'false'})}

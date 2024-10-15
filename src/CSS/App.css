@@ -1,7 +1,31 @@
 
 :root {
+  --prm-drk-green : #012e01;
+  --prm-lgt-green: #04fac1;
+  --prm-drk-blue: #09179a;
+  --prm-lgt-blue: #9eccdc;
+  --prm-lgt-pink: #e0cbed;
+  --prm-drk-red: #710101;
+
   --bpm-animation-duration: 2.72s;
-}
+  --primary-blue : linear-gradient(45deg, #9eccdc, whitesmoke);
+  --secondary-blue : linear-gradient(-45deg, darkblue, whitesmoke);
+  --success-color: linear-gradient(135deg, #012e01 70%, #04fac1 );
+  --success-color-inverted: linear-gradient(135deg, #04fac1 70%, #012e01);
+
+  --error-color: linear-gradient(45deg, #710101 70%, #e0cbed );
+  --error-color-inverted: linear-gradient(45deg, #e0cbed  70%, #710101);
+
+  --reset-color : linear-gradient(45deg, #09179a 70%, #e0cbed);
+  --reset-color-inverted : linear-gradient(45deg, #e0cbed 70%, #09179a);
+
+  --neutral-btn-clr : linear-gradient(135deg, black 70%, white);
+  --neutral-btn-clr-inverted : linear-gradient(135deg, white 70%, black);
+ --text-shadow-standard : -1px 1px 0 #000,
+ 1px 1px 0 #000,
+ 1px -1px 0 #000,
+ -1px -1px 0 #000;
+} 
 * {
   box-sizing: border-box;
   font-family: 'Alegreya', serif;
@@ -13,7 +37,7 @@ html {
 
 body {
   margin: 0;
-  background: linear-gradient(45deg, lightblue, whitesmoke);
+  background: var(--primary-blue);
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -58,14 +82,14 @@ h2[data-direction="up"] {
   animation-name:blink;
   animation-duration:  var(--bpm-animation-duration);
   animation-iteration-count: infinite;
-  color:green
+  color: var(--success-color);
 }
 
 h2[data-direction="down"] {
   animation-name:blink;
   animation-duration:  var(--bpm-animation-duration);
   animation-iteration-count: infinite;
-  color:red;
+  color:var(--error-color);
 }
 
 @keyframes blink {

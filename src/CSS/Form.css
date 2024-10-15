@@ -25,16 +25,16 @@ form label {
 }
 
 form:invalid {
-    border-color: red;
+    border-color: var(--prm-drk-red);
 }
 
 form:valid {
-    border-color: green;
+    border-color: var(--prm-drk-green);
 }
 
 form:focus-within {
     box-shadow: 0 0 20px black; 
-    border-color: lightblue;
+    border-color: var(--prm-lgt-blue);
 }
 
 form details {
@@ -55,13 +55,13 @@ fieldset {
 }
 
 fieldset:invalid {
-    color: red;
-    border-color: red;
+    color: var(--prm-drk-red);
+    border-color: var(--prm-drk-red);
 }
 
 fieldset:valid {
-    color:green;
-    border-color:green;
+    color:var(--prm-drk-green);
+    border-color:var(--prm-drk-green);
 }
 
 fieldset:has(select) {
@@ -70,8 +70,8 @@ fieldset:has(select) {
 }
 
 fieldset:focus-within {
-    color:blue;
-    border-color:blue;
+    color:var(--prm-drk-blue);
+    border-color:var(--prm-drk-blue);
 }
 
 fieldset:has(input:placeholder-shown){
@@ -90,11 +90,11 @@ input {
 }
 
 input:invalid {
-    border-bottom-color: red;
+    border-bottom-color: var(--prm-drk-red);
 }
 
 input:valid {
-    border-bottom-color:green;
+    border-bottom-color:var(--prm-drk-green);
 }
 
 input:blank {
@@ -141,7 +141,7 @@ input[type='checkbox'] {
 }
 
 .validity-error {
-    color: red
+    color: var(--prm-drk-red)
 }
 
 .message-container {

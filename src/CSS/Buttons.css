@@ -1,11 +1,12 @@
 button {
     min-width: 50px;
-    transition: .3s;
+    transition: all .3s ease-in-out;
     padding: 10px;
     border-radius: 5%;
     max-width: 200px;
     border-width: 1px;
     border-style: solid;
+
 }
 
 button:hover {
@@ -13,45 +14,65 @@ button:hover {
 }
 
 button[type=submit]:enabled {
-    border-color:green;
-    color: green;
+    color: white;
+    background-image: var(--success-color);
+    text-shadow: var(--text-shadow-standard);
+
 }
 
 button[type = submit]:enabled:hover {
-    color: white;
-    background-color: green;
+    color: black;
+    text-shadow: none;
+    background-image: var(--success-color-inverted);
 }
+
 button[type = submit]:enabled:active {
-    color: white;
-    background-color: green;
+    color: black;
+    background-image: var(--success-color-inverted);
     transform: translateY(-5px);
     box-shadow: 0 4px 5px -2px grey;
 }
 
 button[type = submit]:disabled {
-    border-color: red;
-    color: red;
+    color: white;
+    text-shadow: var(--text-shadow-standard);
+    background-image: var(--error-color);
 }
 
 button[type = submit]:disabled:hover {
-    color: white;
-    background-color: red;
+    color: black;
+    background-image: var(--error-color-inverted);
+    text-shadow: none;
     cursor: not-allowed;
 }
 
+button[type = reset] {
+    color: white;
+    text-shadow: var(--text-shadow-standard);
+    background-image: var(--reset-color);
+}
+
 button[type = reset]:hover {
-    background-color: yellow;
+    color: black;
+    text-shadow: none;
+    background-image: var(--reset-color-inverted);
 }
 
 button[type = reset]:active {
-    background-color: yellow;
+    color: black;
+    background-image: var(--reset-color-inverted);
     transform: translateY(-5px);
     box-shadow: 0 4px 5px -2px grey;
 }
 
-button[type = button]:hover {
-    background-color: black;
+button[type = button] {
+    background-image: var(--neutral-btn-clr);
     color: white
+  }
+
+button[type = button]:hover {
+    background-image: var(--neutral-btn-clr-inverted);
+    color: black
   }
   
   button[type = button]:active {

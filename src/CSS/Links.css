@@ -2,19 +2,31 @@
 a {
     text-decoration: none;
     padding: clamp(3px, 1rem, 10px);
+    border: 2px solid var(--prm-lgt-blue);
+    background-color: var(--prm-lgt-blue);
+    transition: all .3s ease-in-out;
 }
 
 a:visited {
     text-decoration: line-through;
-    color: blue
+    color: black
 }
 
 a:hover {
+    /* text-decoration: underline; */
+    border-color: var(--prm-drk-blue)
+}
+
+a:focus {
     text-decoration: underline;
+    border-color: var(--prm-drk-blue);
+    outline: none;
 }
 
 a:active {
-    color: green;
+    background-color: var(--prm-lgt-green);
+    border-color: var(--prm-drk-green);
+    color: var(--prm-drk-green);
     text-decoration: underline;
 }
 
@@ -23,17 +35,17 @@ a:disabled {
 }
 
 nav button {
-   height: 100%;
    margin: 0px;
-   padding: clamp(3px, 1rem, 10px);
-   border:none;
+   padding: clamp(5px, 1rem, 10px);
+   border: 2px solid var(--prm-lgt-blue);
+   background-color: var(--prm-lgt-blue);
 }
 .link {
     min-height: 15px
 }
 
 button.link {
-    border: none;
+    border: 2px solid var(--prm-lgt-blue);
     width: 100%;
     text-align: left;
     border-radius: 0%;
@@ -50,11 +62,26 @@ button.link[data-active='true']::after {
 }
 
 button.link:hover {
-    border: none;
-    background-color: darkblue;
+    /* background-color: darkblue; */
+    /* text-decoration: underline; */
     /* width: 100%; */
     text-align: left;
 }
+
+button.link:focus{
+    text-decoration: underline;
+    outline: none;
+    border-color: var(--prm-drk-blue);
+}
+
+button.link:active{
+    text-decoration: underline;
+    outline: none;
+    background-color: var(--prm-lgt-green);
+    border-color: var(--prm-drk-green);
+    color: var(--prm-drk-green);
+}
+
 
 nav a {
     width: 100% !important;
@@ -79,11 +106,12 @@ nav > ul > li {
 } */
 
 .light {
-    background-color: lightgray;
+    background-color: var(--prm-lgt-blue);
 }
 
 .dark {
-    background-color: darkgray;
+    background-color: var(--prm-drk-blue);
+    color: white;
 }
 
 li.subnav {
