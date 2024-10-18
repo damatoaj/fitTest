@@ -43,6 +43,7 @@ function StepTestForm() {
                 step={1}
                 maxLength={3}
                 defaultValue={user.vo2Max?.vo2Max || ''}
+                autoFocus
             />
         </fieldset>
         <span>

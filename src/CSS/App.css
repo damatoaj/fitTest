@@ -83,6 +83,8 @@ h2[data-direction="up"] {
   animation-duration:  var(--bpm-animation-duration);
   animation-iteration-count: infinite;
   color: var(--success-color);
+  text-align: left;
+  width : clamp(100px, 50%, 300px);
 }
 
 h2[data-direction="down"] {
@@ -90,6 +92,24 @@ h2[data-direction="down"] {
   animation-duration:  var(--bpm-animation-duration);
   animation-iteration-count: infinite;
   color:var(--error-color);
+  text-align: left;
+  width : clamp(100px, 50%, 300px);
+}
+
+h2[data-direction="down"]::before {
+  content : '▼  ';
+}
+
+h2[data-foot="right"]::after {
+  content : '  right';
+}
+
+h2[data-direction="up"]::before {
+  content : '▲  ';
+}
+
+h2[data-foot="left"]::after {
+  content : '  left';
 }
 
 @keyframes blink {

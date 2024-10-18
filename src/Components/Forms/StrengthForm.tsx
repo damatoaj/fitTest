@@ -66,6 +66,7 @@ const StrengthForm = () => {
                     max='2000'
                     placeholder='Lbs'
                     defaultValue={state.user.legPress?.legPress || ''}
+                    autoFocus
                 />
             </fieldset>
             <fieldset>
@@ -108,7 +109,7 @@ const StrengthForm = () => {
                     />
             </fieldset>
             <span>
-                <button type='submit' disabled={!valid} autoFocus>Submit</button>
+                <button type='submit' disabled={!valid}>Submit</button>
                 <button type='reset'>Reset</button>
             </span>
         </form>

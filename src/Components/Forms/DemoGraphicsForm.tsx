@@ -6,7 +6,7 @@ import { useUserContext } from '../../Hooks/useUserContext';
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange,handleSubmit,handleSelect, handleReset} = useForm();
-    const { state : {user } } = useUserContext()
+    const { state : { user } } = useUserContext()
     let valid : boolean = Boolean(user.age && user.fname && user.lname && user.sex && user.height && user.currentWeight) || false
     
     if (form?.current !== null) {

@@ -54,11 +54,13 @@ button.link {
 }
 
 button.link[data-active="false"]::after {
-    content: '  >';
+    content: '  ►';
+    font-size: 10px;
 }
 
 button.link[data-active='true']::after {
-    content: '  v';
+    content: '  ▼';
+    font-size: 10px;
 }
 
 button.link:hover {

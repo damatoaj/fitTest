@@ -91,10 +91,13 @@ input {
 
 input:invalid {
     border-bottom-color: var(--prm-drk-red);
+    color: var(--prm-drk-red);
+
 }
 
 input:valid {
     border-bottom-color:var(--prm-drk-green);
+    color: var(--prm-drk-green);
 }
 
 input:blank {
@@ -103,7 +106,8 @@ input:blank {
 
 input:focus {
     border-bottom: none;
-    
+    outline-color: var(--prm-drk-blue);
+    color: var(--prm-drk-blue);
 }
 
 input:placeholder-shown {

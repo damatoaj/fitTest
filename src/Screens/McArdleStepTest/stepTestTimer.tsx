@@ -34,7 +34,7 @@ function StepTestTime() {
         return `${minutes} : ${seconds}`
     }, [state.phase, state.count]);
     const user = useUserContext();
-    const bpm : number = user.state.user.sex === 'MALE' ? Math.floor(60000 / 24) : Math.floor(60000 / 22);
+    const bpm : number = user.state.user.sex === 'MALE' ? Math.floor(60000 / 96) : Math.floor(60000 / 84);
 
     useEffect(()=> {
         const countInterval = setInterval(()=> {
@@ -69,7 +69,7 @@ function StepTestTime() {
         <progress value={progress} max='100'/>
         {/* <span>{state.count} </span> */}
         <span>{time}</span>
-    {state.phase === 1 && <h2 data-direction={step === 1 || step === 2 ? 'up' : 'down'}>{step > 2 ? 'Up' : 'Down'}</h2>}
+    {state.phase === 1 && <h2 data-direction={step === 1 || step === 2 ? 'up' : 'down'} data-foot={step === 1 || step === 3  ? 'left' : 'right'}>{step > 2 ? 'Down' : 'Up'}</h2>}
         {state.phase === 3 && progress === 100 && <button type='button' onClick={()=> navigate('/step-test/results')}>Click To Enter Your Results</button>}
     </main>
   )

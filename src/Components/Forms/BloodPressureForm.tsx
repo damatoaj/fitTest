@@ -10,8 +10,7 @@ const BenchPressForm = () => {
     
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
-        console.log(form.current, valid)
-    }
+    };
 
     return (
         <form
