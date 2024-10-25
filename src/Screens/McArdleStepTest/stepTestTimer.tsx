@@ -50,7 +50,13 @@ function StepTestTime() {
 
     useEffect(()=> {
         const stepInterval = setInterval(()=> {
-            if (state.phase !== 1) return 
+            if (state.phase !== 1) return;
+            let a : AudioContext = new AudioContext();
+            let o : OscillatorNode = a.createOscillator();
+            o.type = 'triangle';
+            o.start();
+            o.stop(a.currentTime + .2);
+            o.connect(a.destination);
             if (step === 4) {
                 setStep(1)
             } else {

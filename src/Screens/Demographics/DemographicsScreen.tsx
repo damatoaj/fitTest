@@ -22,7 +22,11 @@ const DemographicsScreen = () => {
             {stage === 3 && <Form />}
         </section>
         <span>
-            <button type='button' onClick={()=>{
+            <button 
+                type='button'
+                data-direction='previous'
+                title="Go back to the previous form"
+                onClick={()=>{
                 if (stage === 1) {
                     setStage(3)
                 } else {
@@ -30,7 +34,9 @@ const DemographicsScreen = () => {
                 }
             }}>Prev</button>
             <button 
+                title="Continue to the next form"
                 type='button'
+                data-direction='next'
                 onClick={()=> {
                     if (stage === 3) {
                         setStage(1)

@@ -80,3 +80,21 @@ button[type = button]:hover {
     box-shadow: 0 4px 5px -2px grey;
   }
 
+  span:has(button) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  button[data-direction="next"]::after {
+    content: '  ►';
+    font-size: 10px;
+    margin: 5px;
+  }
+
+  button[data-direction="previous"]::before {
+    content: '◀  ';
+    font-size: 10px;
+    margin: 5px;
+  }
