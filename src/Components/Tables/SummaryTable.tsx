@@ -27,32 +27,34 @@ const SummaryTable = () => {
     };
     return (
         <main id='summary-table'>
-            <h1>Your Fitness Summary on 
-                <time dateTime={today}> {date}, {month}, {year}</time>
-            </h1>
-            <h2>Demongraphic Data</h2>
-            {state.user.hrMax && <table>
-                <th>Heart Rate Max</th>
-                <tbody>
-                <tr><td>{state.user.hrMax}</td></tr>
-                </tbody>
-            </table>}
-            {state.user.bloodPressure && <table>
-                <th>Blood Pressure</th>
-                <tbody>
-                    <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
-                    <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
-                </tbody>
-            </table>}
-            <h2>Muscular Strength & Endurance</h2>
-            {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
-            {state.user.pushups && <PushupsTable />}
-            <h2>BMI and Weight</h2>
-            <BMITable />
-            <h2>Macro Nutrition Recommendations For Goal Weight</h2>
-            {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
-            <h2>Micro Nutrition Recommendations From The FDA</h2>
-            {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
+            <section id='summary-table'>
+                <h1>Your Fitness Summary on 
+                    <time dateTime={today}> {date}, {month}, {year}</time>
+                </h1>
+                <h2>Demographic Data</h2>
+                {state.user.hrMax && <table>
+                    <thead>Heart Rate Max</thead>
+                    <tbody>
+                    <tr><td>{state.user.hrMax}</td></tr>
+                    </tbody>
+                </table>}
+                {state.user.bloodPressure && <table>
+                    <thead>Blood Pressure</thead>
+                    <tbody>
+                        <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
+                        <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
+                    </tbody>
+                </table>}
+                <BMITable />
+                <h2>Muscular Strength & Endurance</h2>
+                {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
+                {state.user.pushups && <PushupsTable />}
+                <h2>Macro Nutrition Recommendations For Goal Weight</h2>
+                {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
+                <h2>Micro Nutrition Recommendations From The FDA</h2>
+                {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
+            </section>
+
             {state.user?.fname !== null && (
                 <section>
                     <h3>Want to save your session to compare for next time?</h3>
@@ -71,8 +73,8 @@ const SummaryTable = () => {
                     </span>
                     <dialog id='confirmationModal'>
                         <p>Are you sure? Clicking save will overwrite previous test data</p>
-                        <button autoFocus type='submit' onClick={handleSave}>I'm sure</button>
                         <span>
+                            <button autoFocus type='submit' onClick={handleSave}>I'm sure</button>
                             <button 
                                 type='button'
                                 onClick={()=> {
