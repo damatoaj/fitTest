@@ -1,6 +1,7 @@
 import { BenchPress, GripStrength, LegPress } from "../../interfaces"
 
 const menGripStrength = (age:number, kg:number): GripStrength => {
+    console.time('menGripStrength');
     const ageWeightThresholds = [
         { ageRange: { min: 14, max: 19 }, thresholds: [108, 98, 90, 79] },
         { ageRange: { min: 20, max: 29 }, thresholds: [115, 104, 95, 84] },
@@ -28,22 +29,23 @@ const menGripStrength = (age:number, kg:number): GripStrength => {
         );
 
         const categories: ('excellent' | 'very good' | 'good' | 'fair' | 'poor')[] = ['excellent', 'very good', 'good', 'fair', 'poor'];
+        console.timeEnd('menGripStrength');
         return {
             gripStrength: Math.round(kg),
             category: categories[categoryIndex],
         };  
     } catch (err: any) {
-        console.error(err)
+        console.error(err);
+        console.timeEnd('menGripStrength');
         return {
-            gripStrength: -1,
-            category: err.message
+            gripStrength: kg,
+            category: ''
         }
     }
 }
 
 const womenGripStrength = (age:number, kg:number) : GripStrength => {
-    console.log(age, kg)
-    console.time('women grip')
+    console.time('womenGripStrength')
     const ageWeightThresholds = [
         { ageRange: { min: 14, max: 19 }, thresholds: [68, 60, 53, 48] },
         { ageRange: { min: 20, max: 29 }, thresholds: [70, 63, 58, 52] },
@@ -71,19 +73,18 @@ const womenGripStrength = (age:number, kg:number) : GripStrength => {
             Number(kg >= thresholds[1]) +
             Number(kg >= thresholds[0]) 
         );
-        console.log(entry, thresholds, categoryIndex, '<--- category index')
         const categories: ('excellent' | 'very good' | 'good' | 'fair' | 'poor')[] = ['poor', 'fair', 'good', 'very good', 'excellent'];
-        console.timeEnd('women grip')
+        console.timeEnd('womenGripStrength')
         return {
             gripStrength: Math.round(kg),
             category: categories[categoryIndex % categories.length],
         };  
     } catch (err: any){
-        console.error(err)
-        console.timeEnd('women grip')
+        console.error(err);
+        console.timeEnd('womenGripStrength');
         return {
-            gripStrength: -1,
-            category: err.message,
+            gripStrength: kg,
+            category: '',
         }; 
     }
     
@@ -91,216 +92,172 @@ const womenGripStrength = (age:number, kg:number) : GripStrength => {
 
 const menBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPress => {
     //assumes pushed and bodyweight are both in kg or lbs
-    if (bodyWeight < 0 || bodyWeight > 700) throw new Error('Bodyweight is outside of acceptable range')
-    if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
-    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
-
-    const bpr = pushed / bodyWeight
+    console.time('menBenchPress');
+    const ageWeightThresholds = [
+        { ageRange: { min: 0, max: 19 }, thresholds: [1.76, 1.34, 1.19, 1.06, .89] },
+        { ageRange: { min: 20, max: 29 }, thresholds: [1.63, 1.32, 1.14, .99, .88] },
+        { ageRange: { min: 30, max: 39 }, thresholds: [1.35, 1.12, .98, .88, .78] },
+        { ageRange: { min: 40, max: 49 }, thresholds: [1.2, 1, .88, .8, .72] },
+        { ageRange: { min: 50, max: 59 }, thresholds: [1.05, .9, .79, .71, .63] },
+        { ageRange: { min: 60, max: 69 }, thresholds: [.94, .82, .72, .66, .55] }
+      ];
     
-    if (age < 20) {
-        if (bpr >= 1.76) return {category:'superior', benchPress: Math.floor(pushed)} 
-        if (bpr >= 1.34) return {category:'excellent',benchPress:Math.floor(pushed)} 
-        if (bpr >= 1.19) return {category:'good',benchPress:Math.floor(pushed)} 
-        if (bpr >= 1.06) return {category:'fair',benchPress:Math.floor(pushed)} 
-        if (bpr >= .89) return {category:'poor',benchPress:Math.floor(pushed)} 
-        return {category:'very poor',benchPress:Math.floor(pushed)} 
-    }
+    const bpr = pushed / bodyWeight;
+    try {
+        if (bodyWeight < 0 || bodyWeight > 700) throw new Error('Bodyweight is outside of acceptable range')
+        if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
+        if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
+        
+        const entry = ageWeightThresholds.find(
+            (entry) => age >= entry.ageRange.min && age <= entry.ageRange.max
+        );
 
-    if (age <= 29) {
-        if (bpr >= 1.63) return {category:'superior', benchPress: Math.floor(pushed)} 
-        if (bpr >= 1.32) return {category:'excellent',benchPress:Math.floor(pushed)} 
-        if (bpr >= 1.14) return {category:'good',benchPress:Math.floor(pushed)} 
-        if (bpr >= .99) return {category:'fair',benchPress:Math.floor(pushed)} 
-        if (bpr >= .88) return {category:'poor',benchPress:Math.floor(pushed)} 
-        return {category:'very poor',benchPress:Math.floor(pushed)} 
-    }
+        if (!entry) throw new Error('No matching age range found');
 
-    if (age <= 39) {
-        if (bpr >= 1.35) return {category:'superior', benchPress: Math.floor(pushed)} 
-        if (bpr >= 1.12) return {category:'excellent',benchPress:Math.floor(pushed)} 
-        if (bpr >= .98) return {category:'good',benchPress:Math.floor(pushed)} 
-        if (bpr >= .88) return {category:'fair',benchPress:Math.floor(pushed)} 
-        if (bpr >= .78) return {category:'poor',benchPress:Math.floor(pushed)} 
-        return {category:'very poor',benchPress:Math.floor(pushed)} 
-    }
-
-    if (age <= 49) {
-        if (bpr >= 1.2) return {category:'superior', benchPress: Math.floor(pushed)} 
-        if (bpr >= 1) return {category:'excellent',benchPress:Math.floor(pushed)} 
-        if (bpr >= .88) return {category:'good',benchPress:Math.floor(pushed)} 
-        if (bpr >= .8) return {category:'fair',benchPress:Math.floor(pushed)} 
-        if (bpr >= .72) return {category:'poor',benchPress:Math.floor(pushed)} 
-        return {category:'very poor',benchPress:Math.floor(pushed)} 
-    }
-
-    if (age <= 59) {
-        if (bpr >= 1.05) return {category:'superior', benchPress: Math.floor(pushed)} 
-        if (bpr >= .9) return {category:'excellent',benchPress:Math.floor(pushed)} 
-        if (bpr >= .79) return {category:'good',benchPress:Math.floor(pushed)} 
-        if (bpr >= .71) return {category:'fair',benchPress:Math.floor(pushed)} 
-        if (bpr >= .63) return {category:'poor',benchPress:Math.floor(pushed)} 
-        return {category:'very poor',benchPress:Math.floor(pushed)} 
-    }
-
-    if (bpr >= .94) return {category:'superior', benchPress: Math.floor(pushed)} 
-    if (bpr >= .82) return {category:'excellent',benchPress:Math.floor(pushed)} 
-    if (bpr >= .72) return {category:'good',benchPress:Math.floor(pushed)} 
-    if (bpr >= .66) return {category:'fair',benchPress:Math.floor(pushed)} 
-    if (bpr >= .57) return {category:'poor',benchPress:Math.floor(pushed)} 
-    return {category:'very poor',benchPress: Math.floor(pushed)} 
-}
+        const { thresholds } = entry;
+        const categoryIndex : number = (
+            0 +
+            Number(bpr >= thresholds[3]) +
+            Number(bpr >= thresholds[2]) +
+            Number(bpr >= thresholds[1]) +
+            Number(bpr >= thresholds[0]) 
+        );
+        const categories: ('superior' | 'excellent' | 'good' | 'fair' | 'poor')[] = ['poor', 'fair', 'good', 'excellent', 'superior'];
+        console.timeEnd('menBenchPress');
+        return { category : categories[categoryIndex % categories.length],benchPress:Math.floor(pushed), benchPressRatio: bpr} 
+    } catch (err: any) {
+        console.error(err);
+        console.timeEnd('menBenchPress')
+        return {category:'',benchPress:Math.floor(pushed), benchPressRatio: bpr} 
+    };  
+};
 
 const womenBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPress => {
     //assumes pushed and bodyweight are both in kg or lbs
-    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight is outside of acceptable range')
-    if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
-    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
-    
+    console.time('womenBenchPress');
+    const ageWeightThresholds = [
+        { ageRange: { min: 0, max: 19 }, thresholds: [.88, .77, .65, .58, .53] },
+        { ageRange: { min: 20, max: 29 }, thresholds: [1.01, .8, .7, .59, .51] },
+        { ageRange: { min: 30, max: 39 }, thresholds: [.82, .7, .6, .53, .47] },
+        { ageRange: { min: 40, max: 49 }, thresholds: [.77, .62, .54, .5, .43] },
+        { ageRange: { min: 50, max: 59 }, thresholds: [.68, .55, .48, .44, .39] },
+        { ageRange: { min: 60, max: 69 }, thresholds: [.72, .54, .47, .43, .38] }
+      ];
     const bpr = pushed / bodyWeight
-    
-    if (age < 20) {
-        if (bpr >= .88) return {category:'superior', benchPress: Math.floor(pushed)}
-        if (bpr >= .77) return {category:'excellent',benchPress:Math.floor(pushed)}
-        if (bpr >= .65) return {category:'good',benchPress:Math.floor(pushed)}
-        if (bpr >= .58) return {category:'fair',benchPress:Math.floor(pushed)}
-        if (bpr >= .53) return {category:'poor',benchPress:Math.floor(pushed)}
-        return {category:'very poor',benchPress:Math.floor(pushed)}
-    }
+    try {
+        if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight is outside of acceptable range')
+        if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
+        if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed is outside of acceptable range')
+            
+        const entry = ageWeightThresholds.find(
+            (entry) => age >= entry.ageRange.min && age <= entry.ageRange.max
+        );
 
-    if (age <= 29) {
-        if (bpr >= 1.01) return {category:'superior', benchPress: Math.floor(pushed)}
-        if (bpr >= .8) return {category:'excellent',benchPress:Math.floor(pushed)}
-        if (bpr >= .7) return {category:'good',benchPress:Math.floor(pushed)}
-        if (bpr >= .59) return {category:'fair',benchPress:Math.floor(pushed)}
-        if (bpr >= .51) return {category:'poor',benchPress:Math.floor(pushed)}
-        return {category:'very poor',benchPress:Math.floor(pushed)}
-    }
+        if (!entry) throw new Error('No matching age range found');
 
-    if (age <= 39) {
-        if (bpr >= .82) return {category:'superior', benchPress: Math.floor(pushed)}
-        if (bpr >= .7) return {category:'excellent',benchPress:Math.floor(pushed)}
-        if (bpr >= .6) return {category:'good',benchPress:Math.floor(pushed)}
-        if (bpr >= .53) return {category:'fair',benchPress:Math.floor(pushed)}
-        if (bpr >= .47) return {category:'poor',benchPress:Math.floor(pushed)}
-        return {category:'very poor',benchPress:Math.floor(pushed)}
-    }
-
-    if (age <= 49) {
-        if (bpr >= .77) return {category:'superior', benchPress: Math.floor(pushed)}
-        if (bpr >= .62) return {category:'excellent',benchPress:Math.floor(pushed)}
-        if (bpr >= .54) return {category:'good',benchPress:Math.floor(pushed)}
-        if (bpr >= .5) return {category:'fair',benchPress:Math.floor(pushed)}
-        if (bpr >= .43) return {category:'poor',benchPress:Math.floor(pushed)}
-        return {category:'very poor',benchPress:Math.floor(pushed)}
-    }
-
-    if (age <= 59) {
-        if (bpr >= .68) return {category:'superior', benchPress: Math.floor(pushed)}
-        if (bpr >= .55) return {category:'excellent',benchPress:Math.floor(pushed)}
-        if (bpr >= .48) return {category:'good',benchPress:Math.floor(pushed)}
-        if (bpr >= .44) return {category:'fair',benchPress:Math.floor(pushed)}
-        if (bpr >= .39) return {category:'poor',benchPress:Math.floor(pushed)}
-        return {category:'very poor',benchPress:Math.floor(pushed)}
-    }
-
-    if (bpr >= .72) return {category:'superior', benchPress: Math.floor(pushed)}
-    if (bpr >= .54) return {category:'excellent',benchPress:Math.floor(pushed)}
-    if (bpr >= .47) return {category:'good',benchPress:Math.floor(pushed)}
-    if (bpr >= .43) return {category:'fair',benchPress:Math.floor(pushed)}
-    if (bpr >= .38) return {category:'poor',benchPress:Math.floor(pushed)}
-    return {category:'very poor',benchPress:Math.floor(pushed)}
-}
+        const { thresholds } = entry;
+        const categoryIndex : number = (
+            0 +
+            Number(bpr >= thresholds[3]) +
+            Number(bpr >= thresholds[2]) +
+            Number(bpr >= thresholds[1]) +
+            Number(bpr >= thresholds[0]) 
+        );
+        const categories: ('superior' | 'excellent' | 'good' | 'fair' | 'poor')[] = ['poor', 'fair', 'good', 'excellent', 'superior'];
+        console.timeEnd('womenBenchPress');
+        return { category : categories[categoryIndex % categories.length],benchPress:Math.floor(pushed), benchPressRatio: bpr} 
+    } catch (err) {
+        console.error(err);
+        console.timeEnd('womenBenchPress');
+        return {category:'', benchPress: Math.floor(pushed), benchPressRatio:bpr}
+    };
+};
 
 const menLegPress = (age:number, pushed:number, bodyWeight:number) : LegPress => {
     //assumes pushed and bodyweight are both in kg or lbs
-    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight must be between 1 and 700')
-    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed must be between 1 and 1000')
-    if (age < 20 || age > 100) throw new RangeError('Age must be between 20 and 100');
+    console.time('menLegPress');
+
+    const ageWeightThresholds = [
+        { ageRange: { min: 20, max: 29 }, thresholds: [2.27, 2.05, 1.91, 1.74] },
+        { ageRange: { min: 30, max: 39 }, thresholds: [2.07, 1.85, 1.71, 1.59] },
+        { ageRange: { min: 40, max: 49 }, thresholds: [1.92, 1.74, 1.62, 1.51] },
+        { ageRange: { min: 50, max: 59 }, thresholds: [1.8, 1.64, 1.52, 1.39] },
+        { ageRange: { min: 60, max: 69 }, thresholds: [1.73, 1.56, 1.43, 1.3] }
+      ];
+
+    const r = pushed / bodyWeight;
+    try {
+        if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Body weight is outside of acceptable ranges');
+        if (pushed < 0 || pushed > 1000) throw new RangeError('Weight pushed is outside of acceptable ranges');
+        if (age < 20 || age > 100) throw new RangeError('Age is outside of acceptable ranges')
     
-    const ratio = pushed / bodyWeight;
-    if (age <= 29) {
-        if (ratio >= 2.27) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 2.05) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.91) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.74) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
+        const entry = ageWeightThresholds.find(
+            (entry) => age >= entry.ageRange.min && age <= entry.ageRange.max
+        );
 
-    if (age <= 39 && age >= 30) {
-        if (ratio >= 2.07) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.85) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.71) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.59) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
+        if (!entry) throw new Error('No matching age range found');
 
-    if (age <= 49 && age >= 40) {
-        if (ratio >= 1.92) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.74) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.62) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.51) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (age <= 59 && age >= 50) {
-        if (ratio >= 1.8) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.64) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.52) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.39) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (ratio >= 1.73) return {legPress:pushed, category:'well above average'}
-    if (ratio >= 1.56) return {legPress:pushed, category:'above average'}
-    if (ratio >= 1.43) return {legPress:pushed, category:'average'}
-    if (ratio >= 1.3) return {legPress:pushed, category:'below average'}
-    return {legPress:pushed, category: 'well below average'}
-}
+        const { thresholds } = entry;
+        const categoryIndex : number = (
+            0 +
+            Number(r >= thresholds[3]) +
+            Number(r >= thresholds[2]) +
+            Number(r >= thresholds[1]) +
+            Number(r >= thresholds[0]) 
+        );
+        const categories: ('well above average' | 'above average' | 'average' | 'below average' | 'well below average')[] = ['well below average', 'below average', 'average', 'above average', 'well above average'];
+        console.timeEnd('menLegPress');
+        return {legPress:pushed, category : categories[categoryIndex % categories.length], legPressRatio: r }
+    } catch (err : any) {
+        console.error(err);
+        console.timeEnd('menLegPress');
+        return {legPress:pushed, category:'', legPressRatio: r};
+    };
+};
 
 const womenLegPress = (age:number, pushed:number, bodyWeight:number) : LegPress => {
     //assumes pushed and bodyweight are both in kg or lbs
-    if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight must be between 1 and 700')
-    if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed must be between 1 and 1000')
-    if (age < 20 || age > 100) throw new RangeError('Age must be between 20 and 100');
+    console.time('womenLegPress');
+
+    const ageWeightThresholds = [
+        { ageRange: { min: 20, max: 29 }, thresholds: [1.82, 1.58, 1.44, 1.27] },
+        { ageRange: { min: 30, max: 39 }, thresholds: [1.61, 1.39, 1.27, 1.15] },
+        { ageRange: { min: 40, max: 49 }, thresholds: [1.48, 1.29, 1.18, 1.08] },
+        { ageRange: { min: 50, max: 59 }, thresholds: [1.37, 1.17, 1.05, .95] },
+        { ageRange: { min: 60, max: 69 }, thresholds: [1.32, 1.13, .99, .88] }
+      ];
+
+    const r = pushed / bodyWeight;
+
+    try {
+        if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Body weight outside acceptable range');
+        if (pushed < 0 || pushed > 1000) throw new RangeError('Pushed weight outside of acceptable range');
+        if (age < 20 || age > 100) throw new RangeError('Age is outside of acceptable range');
+            
+        const entry = ageWeightThresholds.find(
+            (entry) => age >= entry.ageRange.min && age <= entry.ageRange.max
+        );
+
+        if (!entry) throw new Error('No matching age range found');
+
+        const { thresholds } = entry;
+        const categoryIndex : number = (
+            0 +
+            Number(r >= thresholds[3]) +
+            Number(r >= thresholds[2]) +
+            Number(r >= thresholds[1]) +
+            Number(r >= thresholds[0]) 
+        );    
+
+        const categories: ('well above average' | 'above average' | 'average' | 'below average' | 'well below average')[] = ['well below average', 'below average', 'average', 'above average', 'well above average'];
+        console.timeEnd('womenLegPress');
+        return {legPress:pushed, category : categories[categoryIndex % categories.length], legPressRatio:r};
+    } catch (err: any) {
+        console.error(err);
+        console.timeEnd('womenLegPress');
+        return {legPress:pushed, category:'', legPressRatio:r};
+    };
     
-    const ratio = pushed / bodyWeight
-    if (age <= 29) {
-        if (ratio >= 1.82) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.58) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.44) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.27) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (age <= 39 && age >= 30) {
-        if (ratio >= 1.61) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.39) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.27) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.15) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (age <= 49 && age >= 40) {
-        if (ratio >= 1.48) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.29) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.18) return {legPress:pushed, category:'average'}
-        if (ratio >= 1.08) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (age <= 59 && age >= 50) {
-        if (ratio >= 1.37) return {legPress:pushed, category:'well above average'}
-        if (ratio >= 1.17) return {legPress:pushed, category:'above average'}
-        if (ratio >= 1.05) return {legPress:pushed, category:'average'}
-        if (ratio >= .95) return {legPress:pushed, category:'below average'}
-        return {legPress:pushed, category: 'well below average'}
-    }
-
-    if (ratio >= 1.32) return {legPress:pushed, category:'well above average'}
-    if (ratio >= 1.13) return {legPress:pushed, category:'above average'}
-    if (ratio >= .99) return {legPress:pushed, category:'average'}
-    if (ratio >= .88) return {legPress:pushed, category:'below average'}
-    return {legPress:pushed, category: 'well below average'}
 }
 
 export {

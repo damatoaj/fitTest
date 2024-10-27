@@ -93,26 +93,26 @@ type BloodPressureClassifications = 'normal' | 'prehypertension' | 'stage 1 hype
 
 type BloodPressure = { sbp : number, dbp : number, classification : BloodPressureClassifications };
 
-type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3';
+type BMIClassifications = 'underweight' | 'normal' | 'overweight' | 'obesity class 1' | 'obesity class 2' | 'obesity class 3' | '';
 
 type BMI = { bmi:number, classification: BMIClassifications };
 
 type Sex = 'MALE' | 'FEMALE'
 
-type FitnessCategory = 'very poor' | 'poor' | 'fair' | 'good' | 'very good' | 'excellent' | 'superior'
+type FitnessCategory = 'very poor' | 'poor' | 'fair' | 'good' | 'very good' | 'excellent' | 'superior' | ''
 
 type ActivityLevel = 'sedentary' | 'light activity' | 'moderately active' | 'very active' | 'extra active'
 
 type WeightGoal = 'lose' | 'maintain' | 'gain'
 
-type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high'
+type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high' | ''
 
-type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor'
+type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor' | ''
 
-type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor'}
-type LegPress = {legPress:number, category:'well above average'|'above average'|'average'|'below average'|'well below average'}
+type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor' | '', benchPressRatio: number}
+type LegPress = {legPress:number, category:'well above average'|'above average'|'average'|'below average'|'well below average' | '', legPressRatio:number}
 
-type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor'}
+type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor' | ''}
 
 
 interface Link {

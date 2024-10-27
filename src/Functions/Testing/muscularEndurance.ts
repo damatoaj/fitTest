@@ -1,5 +1,5 @@
 function pushupAge (age:number) {
-    if(age < 20 || age > 69) throw new Error('Age is outside of acceptable range');
+    if(age < 20 || age > 69) return '';
 }
 const menPushupCategories = (age:number, pushups:number) => {
     pushupAge(age)
