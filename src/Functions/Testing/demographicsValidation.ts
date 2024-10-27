@@ -30,7 +30,6 @@ const validateGoalWeight = (weight:number) => {
 
 const validateName = (name:string) => {
     let result : boolean = /^[a-zA-Z]+$/.test(name.trim())
-    console.log(result)
     if (!result) throw new Error('Check Name For Special Character')
     return name.trim()
 }

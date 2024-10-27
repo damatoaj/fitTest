@@ -17,7 +17,6 @@ function ResultsScreen({title, test, form} : Props) {
     if (error) {
         <Error message={error} />
     }
-    console.log('results screen: ', user, user[test])
     return (
     <main>
         <h1>{title}</h1>

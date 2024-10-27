@@ -52,8 +52,8 @@ function DemoGraphicsForm() {
             <input
                 type='number'
                 name='age'
-                min='20'
-                max='69'
+                min='0'
+                max='120'
                 required
                 onChange={handleChange}
                 step={1}

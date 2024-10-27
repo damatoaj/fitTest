@@ -76,9 +76,10 @@ const initialState = {
 }
 
 export const userReducer = (state : State, action: Action) => {
-    const { type, payload } = action 
-    console.info(`Type: ${type}`)
-    console.table(payload)
+    const { type, payload } = action
+    console.group(`Dispatch Type: ${type}`);
+    console.table(payload);
+    console.groupEnd();
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null}
@@ -260,15 +261,6 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     if (state.user?.uid === null) {
         dispatch({type: 'UPDATE_UID', payload: null})
     };
-    
-    console.log('user: ', {
-        ...state.user, 
-        bodyWeightGoal, 
-        bmi, 
-        macros,
-        micros,
-        hrMax
-    })
 
     return(
         <UserContext.Provider 
