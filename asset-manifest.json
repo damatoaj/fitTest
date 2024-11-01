@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/macro_micro_calculator/static/css/main.e4d0fce5.css",
+    "main.js": "/macro_micro_calculator/static/js/main.de50b788.js",
+    "index.html": "/macro_micro_calculator/index.html",
+    "main.e4d0fce5.css.map": "/macro_micro_calculator/static/css/main.e4d0fce5.css.map",
+    "main.de50b788.js.map": "/macro_micro_calculator/static/js/main.de50b788.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4d0fce5.css",
+    "static/js/main.de50b788.js"
+  ]
+}
