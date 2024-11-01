@@ -64,7 +64,7 @@ function App() {
       {/* {window.innerWidth <= 600 && <MobileNav />} */}
         <Routes>
           <Route
-            path='/'
+            path='/macro_micro_calculator/'
             element={<Home />}
           />
             <Route path='/parq' element={<DemographicsScreen/>}></Route>
