@@ -82,7 +82,7 @@ const NavBar = ({u} : NavBarProps) => {
             </button>
             <ul data-showall={state.showAll}>
                 <li className='light'>
-                    <Link to='/' onClick={handleNavigate}>Home</Link>
+                    <Link to='/macro_micro_calculator/' onClick={handleNavigate}>Home</Link>
                 </li>
                 <li className='dark'>
                     <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
