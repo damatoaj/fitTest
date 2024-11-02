@@ -17,3 +17,14 @@ table {
     margin: 20px;
     box-shadow: 0 0 15px grey;
 }
+
+tr[data-currentcategory='yes'] {
+    outline : 2px solid var(--prm-drk-green);
+    color: var(--prm-drk-green);
+}
+
+tr[data-currentcategory='yes']> td:first-child::before {
+    content: '▶ ';
+    color: var(--prm-drk-green);
+}
+

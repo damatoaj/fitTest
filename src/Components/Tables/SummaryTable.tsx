@@ -4,6 +4,7 @@ import PushupsTable from "./PushupsTable";
 import MacrosTable from "./MacrosTable";
 import MicrosTable from "./MicrosTable";
 import BMITable from "./BMITable";
+import BMIRiskTable from "./BMIRiskTable";
 import { printTable } from "../../Functions/printTable";
 
 const SummaryTable = () => {
@@ -41,11 +42,15 @@ const SummaryTable = () => {
                 {state.user.bloodPressure && <table>
                     <thead>Blood Pressure</thead>
                     <tbody>
-                        <tr><td>Systolic / Diastolic Ration</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
+                        <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
                         <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
                     </tbody>
                 </table>}
                 <BMITable />
+                <details>
+                    <summary>BMI Categories</summary>
+                    <BMIRiskTable />
+                </details>
                 <h2>Muscular Strength & Endurance</h2>
                 {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
                 {state.user.pushups && <PushupsTable />}
