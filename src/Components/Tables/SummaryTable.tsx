@@ -5,6 +5,8 @@ import MacrosTable from "./MacrosTable";
 import MicrosTable from "./MicrosTable";
 import BMITable from "./BMITable";
 import BMIRiskTable from "./BMIRiskTable";
+import PushupCategories from "./PushupCategories";
+import VO2MaxCategories from "./VO2MaxCategories";
 import { printTable } from "../../Functions/printTable";
 
 const SummaryTable = () => {
@@ -54,6 +56,14 @@ const SummaryTable = () => {
                 <h2>Muscular Strength & Endurance</h2>
                 {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
                 {state.user.pushups && <PushupsTable />}
+                <details>
+                    <summary>Pushup Categories</summary>
+                    <PushupCategories />
+                </details>
+                <details>
+                    <summary>VO2 Max Categories</summary>
+                    <VO2MaxCategories />
+                </details>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
                 {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
                 <h2>Micro Nutrition Recommendations From The FDA</h2>
