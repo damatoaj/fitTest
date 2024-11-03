@@ -40,7 +40,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1}>Excellent</td>
+                    <td colSpan={1} rowSpan={3}>Excellent</td>
                     <td colSpan={1}>61.8</td>
                     <td colSpan={1}>56.6</td>
                     <td colSpan={1}>52.1</td>
@@ -49,7 +49,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>85</td>
-                    <td colSpan={1}>Excellent</td>
+                    {/* <td colSpan={1}>Excellent</td> */}
                     <td colSpan={1}>59.3</td>
                     <td colSpan={1}>54.2</td>
                     <td colSpan={1}>49.3</td>
@@ -58,7 +58,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>80</td>
-                    <td colSpan={1}>Excellent</td>
+                    {/* <td colSpan={1}>Excellent</td> */}
                     <td colSpan={1}>57.1</td>
                     <td colSpan={1}>51.6</td>
                     <td colSpan={1}>46.7</td>
@@ -67,7 +67,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>75</td>
-                    <td colSpan={1}>Good</td>
+                    <td colSpan={1} rowSpan={4}>Good</td>
                     <td colSpan={1}>55.2</td>
                     <td colSpan={1}>49.2</td>
                     <td colSpan={1}>45.0</td>
@@ -76,7 +76,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>70</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>53.7</td>
                     <td colSpan={1}>48.0</td>
                     <td colSpan={1}>43.9</td>
@@ -85,7 +85,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>65</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>52.1</td>
                     <td colSpan={1}>46.6</td>
                     <td colSpan={1}>42.1</td>
@@ -94,7 +94,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>60</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>50.2</td>
                     <td colSpan={1}>45.2</td>
                     <td colSpan={1}>40.3</td>
@@ -103,7 +103,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1}>Fair</td>
+                    <td colSpan={1} rowSpan={4}>Fair</td>
                     <td colSpan={1}>49.0</td>
                     <td colSpan={1}>43.8</td>
                     <td colSpan={1}>38.9</td>
@@ -112,7 +112,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>50</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>48</td>
                     <td colSpan={1}>42.4</td>
                     <td colSpan={1}>37.8</td>
@@ -121,7 +121,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>45</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>46.5</td>
                     <td colSpan={1}>41.3</td>
                     <td colSpan={1}>36.7</td>
@@ -130,7 +130,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>40</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>44.9</td>
                     <td colSpan={1}>39.6</td>
                     <td colSpan={1}>35.7</td>
@@ -139,7 +139,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1}>Poor</td>
+                    <td colSpan={1} rowSpan={4}>Poor</td>
                     <td colSpan={1}>53.7</td>
                     <td colSpan={1}>48.0</td>
                     <td colSpan={1}>43.9</td>
@@ -148,7 +148,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>30</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>41.9</td>
                     <td colSpan={1}>37.4</td>
                     <td colSpan={1}>33.3</td>
@@ -157,7 +157,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>25</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>40.1</td>
                     <td colSpan={1}>35.9</td>
                     <td colSpan={1}>31.9</td>
@@ -166,7 +166,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>20</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>38.1</td>
                     <td colSpan={1}>34.1</td>
                     <td colSpan={1}>30.5</td>
@@ -175,7 +175,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1}>Very Poor</td>
+                    <td colSpan={1} rowSpan={3}>Very Poor</td>
                     <td colSpan={1}>35.4</td>
                     <td colSpan={1}>32.7</td>
                     <td colSpan={1}>29.0</td>
@@ -184,7 +184,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>10</td>
-                    <td colSpan={1}>Very Poor</td>
+                    {/* <td colSpan={1}>Very Poor</td> */}
                     <td colSpan={1}>32.1</td>
                     <td colSpan={1}>30.2</td>
                     <td colSpan={1}>26.8</td>
@@ -193,7 +193,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>5</td>
-                    <td colSpan={1}>Very Poor</td>
+                    {/* <td colSpan={1}>Very Poor</td> */}
                     <td colSpan={1}>29.0</td>
                     <td colSpan={1}>27.2</td>
                     <td colSpan={1}>24.2</td>
@@ -230,7 +230,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1}>Excellent</td>
+                    <td colSpan={1} rowSpan={3}>Excellent</td>
                     <td colSpan={1}>51.3</td>
                     <td colSpan={1}>41.4</td>
                     <td colSpan={1}>38.4</td>
@@ -239,7 +239,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>85</td>
-                    <td colSpan={1}>Excellent</td>
+                    {/* <td colSpan={1}>Excellent</td> */}
                     <td colSpan={1}>48.3</td>
                     <td colSpan={1}>39.3</td>
                     <td colSpan={1}>36.0</td>
@@ -248,7 +248,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>80</td>
-                    <td colSpan={1}>Excellent</td>
+                    {/* <td colSpan={1}>Excellent</td> */}
                     <td colSpan={1}>46.5</td>
                     <td colSpan={1}>37.5</td>
                     <td colSpan={1}>34.0</td>
@@ -257,7 +257,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>75</td>
-                    <td colSpan={1}>Good</td>
+                    <td colSpan={1} rowSpan={4}>Good</td>
                     <td colSpan={1}>44.7</td>
                     <td colSpan={1}>36.1</td>
                     <td colSpan={1}>32.4</td>
@@ -266,7 +266,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>70</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>43.2</td>
                     <td colSpan={1}>34.6</td>
                     <td colSpan={1}>31.1</td>
@@ -275,7 +275,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>65</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>41.6</td>
                     <td colSpan={1}>33.5</td>
                     <td colSpan={1}>30.0</td>
@@ -284,7 +284,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>60</td>
-                    <td colSpan={1}>Good</td>
+                    {/* <td colSpan={1}>Good</td> */}
                     <td colSpan={1}>40.6</td>
                     <td colSpan={1}>32.2</td>
                     <td colSpan={1}>28.7</td>
@@ -293,7 +293,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1}>Fair</td>
+                    <td colSpan={1} rowSpan={4}>Fair</td>
                     <td colSpan={1}>49.0</td>
                     <td colSpan={1}>43.8</td>
                     <td colSpan={1}>38.9</td>
@@ -302,7 +302,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>50</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>38.9</td>
                     <td colSpan={1}>31.2</td>
                     <td colSpan={1}>27.7</td>
@@ -311,7 +311,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>45</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>35.9</td>
                     <td colSpan={1}>29.3</td>
                     <td colSpan={1}>25.9</td>
@@ -320,7 +320,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>40</td>
-                    <td colSpan={1}>Fair</td>
+                    {/* <td colSpan={1}>Fair</td> */}
                     <td colSpan={1}>34.6</td>
                     <td colSpan={1}>28.2</td>
                     <td colSpan={1}>24.9</td>
@@ -329,7 +329,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1}>Poor</td>
+                    <td colSpan={1} rowSpan={4}>Poor</td>
                     <td colSpan={1}>33.6</td>
                     <td colSpan={1}>27.4</td>
                     <td colSpan={1}>24.1</td>
@@ -338,7 +338,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>30</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>32.0</td>
                     <td colSpan={1}>26.4</td>
                     <td colSpan={1}>23.3</td>
@@ -347,7 +347,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>25</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>30.5</td>
                     <td colSpan={1}>25.3</td>
                     <td colSpan={1}>22.1</td>
@@ -356,7 +356,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>20</td>
-                    <td colSpan={1}>Poor</td>
+                    {/* <td colSpan={1}>Poor</td> */}
                     <td colSpan={1}>28.6</td>
                     <td colSpan={1}>24.1</td>
                     <td colSpan={1}>21.3</td>
@@ -365,7 +365,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1}>Very Poor</td>
+                    <td colSpan={1} rowSpan={3}>Very Poor</td>
                     <td colSpan={1}>26.2</td>
                     <td colSpan={1}>22.5</td>
                     <td colSpan={1}>20.0</td>
@@ -374,7 +374,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>10</td>
-                    <td colSpan={1}>Very Poor</td>
+                    {/* <td colSpan={1}>Very Poor</td> */}
                     <td colSpan={1}>23.9</td>
                     <td colSpan={1}>20.9</td>
                     <td colSpan={1}>18.8</td>
@@ -383,7 +383,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>5</td>
-                    <td colSpan={1}>Very Poor</td>
+                    {/* <td colSpan={1}>Very Poor</td> */}
                     <td colSpan={1}>21.7</td>
                     <td colSpan={1}>19.0</td>
                     <td colSpan={1}>17.0</td>

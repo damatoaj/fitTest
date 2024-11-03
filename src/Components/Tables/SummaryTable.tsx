@@ -7,7 +7,9 @@ import BMITable from "./BMITable";
 import BMIRiskTable from "./BMIRiskTable";
 import PushupCategories from "./PushupCategories";
 import VO2MaxCategories from "./VO2MaxCategories";
+import LegPressCategories from "./LegPressCategories";
 import { printTable } from "../../Functions/printTable";
+import BenchPressCategories from "./BenchPressCategories";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -30,11 +32,11 @@ const SummaryTable = () => {
     };
     return (
         <main id='summary-table'>
-            <section id='summary-table'>
-                <h1>Your Fitness Summary on 
-                    <time dateTime={today}> {date}, {month}, {year}</time>
-                </h1>
-                <h2>Demographic Data</h2>
+            <h1>Your Fitness Summary on 
+                <time dateTime={today}> {date}, {month}, {year}</time>
+            </h1>
+            <section>
+            <h2>Demographic Data</h2>
                 {state.user.hrMax && <table>
                     <thead>Heart Rate Max</thead>
                     <tbody>
@@ -53,22 +55,36 @@ const SummaryTable = () => {
                     <summary>BMI Categories</summary>
                     <BMIRiskTable />
                 </details>
+            </section>
+            <section>
                 <h2>Muscular Strength & Endurance</h2>
-                {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
-                {state.user.pushups && <PushupsTable />}
-                <details>
-                    <summary>Pushup Categories</summary>
-                    <PushupCategories />
-                </details>
-                <details>
-                    <summary>VO2 Max Categories</summary>
-                    <VO2MaxCategories />
-                </details>
+                    {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
+                    <details>
+                        <summary>Bench Press Categories</summary>
+                        <BenchPressCategories />
+                    </details>
+                    <details>
+                        <summary>Leg Press Categories</summary>
+                        <LegPressCategories />
+                    </details>
+                    {state.user.pushups && <PushupsTable />}
+                    <details>
+                        <summary>Pushup Categories</summary>
+                        <PushupCategories />
+                    </details>
+                    <details>
+                        <summary>VO2 Max Categories</summary>
+                        <VO2MaxCategories />
+                    </details>
+                </section>
+            <section>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
                 {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
-                <h2>Micro Nutrition Recommendations From The FDA</h2>
-                {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
             </section>
+                <section>
+                    <h2>Micro Nutrition Recommendations From The FDA</h2>
+                    {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
+                </section>
 
             {state.user?.fname !== null && (
                 <section>
