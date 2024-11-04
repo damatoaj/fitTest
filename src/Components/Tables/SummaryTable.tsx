@@ -10,6 +10,7 @@ import VO2MaxCategories from "./VO2MaxCategories";
 import LegPressCategories from "./LegPressCategories";
 import { printTable } from "../../Functions/printTable";
 import BenchPressCategories from "./BenchPressCategories";
+import GripStrengthCategories from "./GripStrengthCategories";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -66,6 +67,10 @@ const SummaryTable = () => {
                     <details>
                         <summary>Leg Press Categories</summary>
                         <LegPressCategories />
+                    </details>
+                    <details>
+                        <summary>Grip Strength Categories</summary>
+                        <GripStrengthCategories />
                     </details>
                     {state.user.pushups && <PushupsTable />}
                     <details>

@@ -119,7 +119,7 @@ nav > ul > li {
 li.subnav {
     background-color: transparent;
     border:none;
-    width: clamp(150px, 10%, 250px);
+    width: clamp(160px, 10%, 250px);
 }
 
 .subnav button  {

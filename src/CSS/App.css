@@ -112,6 +112,15 @@ h2[data-foot="left"]::after {
   content : '  left';
 }
 
+summary:focus:hover{
+  cursor: pointer;
+}
+
+details {
+  overflow: auto; 
+  text-align: left;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;
