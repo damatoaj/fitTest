@@ -32,20 +32,28 @@ const SummaryTable = () => {
         return false
     };
     return (
-        <main id='summary-table'>
+        <main >
             <h1>Your Fitness Summary on 
                 <time dateTime={today}> {date}, {month}, {year}</time>
             </h1>
             <section>
             <h2>Demographic Data</h2>
                 {state.user.hrMax && <table>
-                    <thead>Heart Rate Max</thead>
+                    <thead>
+                        <th>
+                            <strong>Heart Rate Max</strong>
+                        </th>
+                    </thead>
                     <tbody>
-                    <tr><td>{state.user.hrMax}</td></tr>
+                        <tr><td>{state.user.hrMax}</td></tr>
                     </tbody>
                 </table>}
                 {state.user.bloodPressure && <table>
-                    <thead>Blood Pressure</thead>
+                    <thead>
+                        <th colSpan={2}>
+                            <strong>Blood Pressure</strong>
+                        </th>
+                    </thead>
                     <tbody>
                         <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
                         <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
@@ -105,7 +113,19 @@ const SummaryTable = () => {
                         >
                             {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
                         </button>
-                        <button type='button' onClick={()=> printTable('summary-table')}>Print Results</button>
+                        <button 
+                            type='button' 
+                            onClick={()=> {
+                                let d : HTMLDialogElement | null = document.querySelector('dialog#summary');
+                                if (d !== null) {
+                                    d.showModal();
+                                    printTable('summary-table')
+                                    d.close();
+                                };
+                            }}
+                        >
+                            Print Results
+                        </button>
                     </span>
                     <dialog id='confirmationModal'>
                         <p>Are you sure? Clicking save will overwrite previous test data</p>
@@ -121,6 +141,42 @@ const SummaryTable = () => {
                                 Close
                             </button>
                         </span>
+                    </dialog>
+                    <dialog id='summary'>
+                        <section id='summary-table'>
+                            <h1>Your Fitness Summary on 
+                                <time dateTime={today}> {date}, {month}, {year}</time>
+                            </h1>
+                            <hr></hr>
+                            {state.user.hrMax && <table>
+                                <thead>
+                                    <th>
+                                        <strong>Heart Rate Max</strong>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{state.user.hrMax}</td>
+                                    </tr>
+                                </tbody>
+                            </table>}
+                            {state.user.bloodPressure && <table>
+                                <thead>
+                                    <th>
+                                        <strong>Blood Pressure</strong>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
+                                    <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
+                                </tbody>
+                            </table>}
+                            {state.user.bmi && <BMITable />}
+                            {(state.user.benchPress || state.user.legPress || state.user.gripStrength) && <StrengthTable />}
+                            {state.user.pushups && <PushupsTable />}
+                            {state.user.macros && <MacrosTable  macros={state.user.macros} />}
+                            {state.user.micros && <MicrosTable  micros={state.user.micros}/>}
+                        </section>
                     </dialog>
                 </section>
             )}

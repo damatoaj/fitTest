@@ -28,3 +28,36 @@ tr[data-currentcategory='yes']> td:first-child::before {
     color: var(--prm-drk-green);
 }
 
+/* @media print {
+
+    table {
+        margin-bottom: 20px;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-transform: capitalize;
+    }
+    
+    table, thead, tbody, th, td {
+        border: 1px solid black;
+        padding: 4px 7px;
+        background-color: whitesmoke;
+    }
+    
+    table {
+        border-collapse: collapse;
+        margin: 20px;
+        box-shadow: 0 0 15px grey;
+    }
+    
+    tr[data-currentcategory='yes'] {
+        outline : 2px solid var(--prm-drk-green);
+        color: var(--prm-drk-green);
+    }
+    
+    tr[data-currentcategory='yes']> td:first-child::before {
+        content: '▶ ';
+        color: var(--prm-drk-green);
+    }
+
+} */

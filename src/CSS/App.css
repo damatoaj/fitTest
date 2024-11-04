@@ -125,3 +125,11 @@ h2[data-foot="left"]::after {
   }
 }
 
+@media print {
+  * {
+    box-shadow: none !important;
+  }
+  footer, header, nav, button {
+    display: none
+  }
+}
