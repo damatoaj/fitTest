@@ -3,7 +3,7 @@ import InstructionsScreen from '../../Components/Instructions/Instructions';
 
 function LegPressInstructions() {
     return <InstructionsScreen 
-        title={'One Rep Max Leg Press Test'} 
+        title={'Lower Body Strength'} 
         nextURL={'/leg-press/results'}
         heading={strenghtTests[1].heading}
         paragraphs={strenghtTests[1].steps}

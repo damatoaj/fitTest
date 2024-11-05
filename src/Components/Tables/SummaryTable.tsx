@@ -59,7 +59,7 @@ const SummaryTable = () => {
                         <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
                     </tbody>
                 </table>}
-                <BMITable />
+                {state.user.bmi?.bmi && <BMITable />}
                 <details>
                     <summary>BMI Categories</summary>
                     <BMIRiskTable />
@@ -171,7 +171,7 @@ const SummaryTable = () => {
                                     <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
                                 </tbody>
                             </table>}
-                            {state.user.bmi && <BMITable />}
+                            {state.user.bmi?.classification && <BMITable />}
                             {(state.user.benchPress || state.user.legPress || state.user.gripStrength) && <StrengthTable />}
                             {state.user.pushups && <PushupsTable />}
                             {state.user.macros && <MacrosTable  macros={state.user.macros} />}

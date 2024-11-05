@@ -3,7 +3,7 @@ import strenghtTests from '../../Text/strengthTests.json';
 
 function BenchInstructions() {
   return <InstructionsScreen 
-    title={'One Rep Max Bench Press Test'}
+    title={'Upper Body Strength'}
     nextURL={'/bench-press/results'}
     heading={strenghtTests[1].heading}
     paragraphs={strenghtTests[1].steps}
