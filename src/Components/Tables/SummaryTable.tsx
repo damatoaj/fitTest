@@ -113,6 +113,51 @@ const SummaryTable = () => {
                         >
                             {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
                         </button>
+                        <button type='button' onClick={()=> {
+                                let text : string = `Name: ${state.user.fname} ${state.user.lname}\nAge: ${state.user.age}\nHeight: ${state.user.height}"\nMax heart rate: ${state.user.hrMax} \nCurrent weight: ${state.user.currentWeight}`;
+
+                                if  (state.user.goalWeight) {
+                                    text = text.concat(`\nGoal weight: ${state.user.goalWeight}`)
+                                };
+
+                                if  (state.user.bmi) {
+                                    text = text.concat(`\nBMI: ${state.user.bmi?.bmi}, ${state.user.bmi?.classification}`);
+                                };
+                                if  (state.user.bloodPressure) {
+                                    text = text.concat(`\nBlood Pressure: ${state.user.bloodPressure.sbp}/${state.user.bloodPressure.dbp}, ${state.user.bloodPressure.classification}`)
+                                };
+
+                                if  (state.user.pushups) {
+                                    text = text.concat(`\nUpper Body Endurance: ${state.user.pushups.pushups} pushups, ${state.user.pushups.category}`)
+                                };
+
+                                if  (state.user.benchPress) {
+                                    text = text.concat(`\nUpper Body Strength: ${state.user.benchPress.benchPress}lbs, ${state.user.benchPress.category}`)
+                                };
+
+                                if  (state.user.legPress) {
+                                    text = text.concat(`\nLower Body Strength: ${state.user.legPress.legPress}lbs, ${state.user.legPress.category}`)
+                                };
+
+                                if  (state.user.gripStrength) {
+                                    text = text.concat(`\nGrip Strength: ${state.user.gripStrength.gripStrength}lbs, ${state.user.gripStrength.category}`)
+                                };
+
+                                if  (state.user.vo2Max) {
+                                    text = text.concat(`\nCardiovascular Endurance: ${state.user.vo2Max.vo2Max} l/o2, ${state.user.vo2Max.category}`)
+                                };
+
+                                console.log(text)
+                                navigator.share({text})
+                                .then((e) => {
+                                    console.log(e)
+                                })
+                                .catch((err)=> {
+                                    console.error(err)
+                                })
+                            }}>
+                                Share Your Results!
+                            </button>
                         <button 
                             type='button' 
                             onClick={()=> {
