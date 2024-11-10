@@ -10,11 +10,11 @@ const PushupsTable = () => {
                 </tr>
                 <tr>
                     <th>Category: </th>
-                    <th>{user.pushups?.category ? user.pushups.category : 'No Data'}</th>
+                    <th>{user.pushups?.category ? user.pushups.category : ''}</th>
                 </tr>
                 <tr>
                     <th>Repetitions: </th>
-                    <th>{user.pushups?.pushups ? user.pushups.pushups : 'No Data'}</th>
+                    <th>{user.pushups?.pushups ? user.pushups.pushups : ''}</th>
                 </tr>
             </thead>
         </table>

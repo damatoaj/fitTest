@@ -1,5 +1,7 @@
 
 :root {
+  --default-font-size: 16px;
+
   --prm-drk-green : #012e01;
   --prm-lgt-green: #04fac1;
   --prm-drk-blue: #09179a;
@@ -110,6 +112,10 @@ h2[data-direction="up"]::before {
 
 h2[data-foot="left"]::after {
   content : '  left';
+}
+
+p, input, a, button {
+  font-size: var(--default-font-size);
 }
 
 @keyframes blink {

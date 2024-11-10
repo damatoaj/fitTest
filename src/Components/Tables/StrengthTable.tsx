@@ -13,21 +13,21 @@ const StrengthTable = () => {
                 </tr>
                 <tr>
                     <th>Category: </th>
-                    <th>{user.legPress?.category ? user.legPress.category : 'No Data'}</th>
-                    <th>{user.benchPress?.category ? user.benchPress.category: 'No Data'}</th>
-                    <th>{user.gripStrength?.category ? user.gripStrength?.category : 'No Data'}</th>
+                    <th>{user.legPress?.category ? user.legPress.category : ''}</th>
+                    <th>{user.benchPress?.category ? user.benchPress.category: ''}</th>
+                    <th>{user.gripStrength?.category ? user.gripStrength?.category : ''}</th>
                 </tr>
                 <tr>
                     <th>Weight Moved(lbs): </th>
-                    <th>{user.legPress?.legPress ? user.legPress.legPress : 'No Data'}</th>
-                    <th>{user.benchPress?.benchPress ? Math.floor(user.benchPress.benchPress * 2.2): 'No Data'}</th>
-                    <th>{user.gripStrength?.gripStrength ? Math.floor(user.gripStrength?.gripStrength * 2.2) : 'No Data'}</th>
+                    <th>{user.legPress?.legPress ? user.legPress.legPress : ''}</th>
+                    <th>{user.benchPress?.benchPress ? Math.floor(user.benchPress.benchPress * 2.2): ''}</th>
+                    <th>{user.gripStrength?.gripStrength ? Math.floor(user.gripStrength?.gripStrength * 2.2) : ''}</th>
                 </tr>
                 <tr>
                     <th>Weight Moved / Body Mass</th>
-                    <th>{user.legPress?.legPress ? user.legPress.legPressRatio : 'No Data'}</th>
-                    <th>{user.benchPress?.benchPress ? user.benchPress.benchPressRatio: 'No Data'}</th>
-                    <th>{user.gripStrength?.gripStrength && user.currentWeight ? user.gripStrength.gripStrength * 2.2 / user.currentWeight : 'No Data'}</th>
+                    <th>{user.legPress?.legPress ? user.legPress.legPressRatio : ''}</th>
+                    <th>{user.benchPress?.benchPress ? user.benchPress.benchPressRatio: ''}</th>
+                    <th>{user.gripStrength?.gripStrength && user.currentWeight ? user.gripStrength.gripStrength * 2.2 / user.currentWeight : ''}</th>
                 </tr>
             </thead>
         </table>
