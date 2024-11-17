@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/macro_micro_calculator/static/css/main.cafe5366.css",
-    "main.js": "/macro_micro_calculator/static/js/main.35ff2758.js",
+    "main.js": "/macro_micro_calculator/static/js/main.1d74edad.js",
     "index.html": "/macro_micro_calculator/index.html",
     "main.cafe5366.css.map": "/macro_micro_calculator/static/css/main.cafe5366.css.map",
-    "main.35ff2758.js.map": "/macro_micro_calculator/static/js/main.35ff2758.js.map"
+    "main.1d74edad.js.map": "/macro_micro_calculator/static/js/main.1d74edad.js.map"
   },
   "entrypoints": [
     "static/css/main.cafe5366.css",
-    "static/js/main.35ff2758.js"
+    "static/js/main.1d74edad.js"
   ]
 }
