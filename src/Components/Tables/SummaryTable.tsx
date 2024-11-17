@@ -11,6 +11,7 @@ import LegPressCategories from "./LegPressCategories";
 import { printTable } from "../../Functions/printTable";
 import BenchPressCategories from "./BenchPressCategories";
 import GripStrengthCategories from "./GripStrengthCategories";
+import WaistCircumference from "./WaistCircumference";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -40,9 +41,11 @@ const SummaryTable = () => {
             <h2>Demographic Data</h2>
                 {state.user.hrMax && <table>
                     <thead>
-                        <th>
-                            <strong>Heart Rate Max</strong>
-                        </th>
+                        <tr>
+                            <th>
+                                <strong>Heart Rate Max</strong>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr><td>{state.user.hrMax}</td></tr>
@@ -50,9 +53,11 @@ const SummaryTable = () => {
                 </table>}
                 {state.user.bloodPressure && <table>
                     <thead>
-                        <th colSpan={2}>
-                            <strong>Blood Pressure</strong>
-                        </th>
+                        <tr>
+                            <th colSpan={2}>
+                                <strong>Blood Pressure</strong>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
@@ -63,6 +68,38 @@ const SummaryTable = () => {
                 <details>
                     <summary>BMI Categories</summary>
                     <BMIRiskTable />
+                </details>
+                {state.user.waistCircumference && <table>
+                    <thead>
+                        <tr>
+                            <th colSpan={2}>
+                                <strong>Waist Circumference Risk Category</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {'Circumference (cm)'}
+                            </td>
+                            <td>
+                                {'Category'}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {state.user.waistCircumference.wc}
+                            </td>
+                            <td>
+                                {state.user.waistCircumference.category}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>}
+                <details>
+                    <summary>Waist Circumference & Cardiovascular Risk</summary>
+                    <WaistCircumference />
                 </details>
             </section>
             <section>
@@ -160,12 +197,16 @@ const SummaryTable = () => {
                             </button>
                         <button 
                             type='button' 
-                            onClick={()=> {
+                            onClick={async ()=> {
                                 let d : HTMLDialogElement | null = document.querySelector('dialog#summary');
                                 if (d !== null) {
                                     d.showModal();
-                                    printTable('summary-table')
-                                    d.close();
+                                    
+                                    const s = await printTable('summary-table')
+                                    if (s === true) {
+                                        console.log('print')
+                                        // d.close();
+                                    };
                                 };
                             }}
                         >

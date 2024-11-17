@@ -83,6 +83,7 @@ interface User {
     uid: number | null;
     vo2Max: VO2Max | null;
     bloodPressure : BloodPressure | null;
+    waistCircumference: WaistCircumference | null;
 }
 
 type UserKeys = keyof User;
@@ -107,7 +108,11 @@ type WeightGoal = 'lose' | 'maintain' | 'gain'
 
 type WaistCircumferenceCategory = 'very low' | 'low' | 'high' | 'very high' | ''
 
+type WaistCircumference = { wc : number, category: WaistCircumferenceCategory }
+
 type  BodyCompCategory = 'very lean'|'excellent'|'good'|'fair'|'poor'|'very poor' | ''
+
+type BodyComp = { category : BodyCompCategory, percentage : number }
 
 type BenchPress = {benchPress:number, category:'superior'|'excellent'|'good'|'fair'|'poor'|'very poor' | '', benchPressRatio: number}
 type LegPress = {legPress:number, category:'well above average'|'above average'|'average'|'below average'|'well below average' | '', legPressRatio:number}
@@ -134,6 +139,8 @@ export type {
     BloodPressureClassifications,
     BloodPressure,
     WaistCircumferenceCategory,
+    WaistCircumference,
+    BodyComp,
     BodyCompCategory,
     BenchPress,
     LegPress,

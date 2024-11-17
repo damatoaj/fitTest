@@ -19,7 +19,8 @@ type Data = {
     sex: string,
     vo2Max:string,
     sbp : string,
-    dbp : string
+    dbp : string,
+    waistCircumference : string
 }
 
 const useForm = (url?:string) => {
@@ -41,7 +42,8 @@ const useForm = (url?:string) => {
         sex: '',
         vo2Max: '',
         sbp : '',
-        dbp : ''
+        dbp : '',
+        waistCircumference: ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +75,8 @@ const useForm = (url?:string) => {
             sex: '',
             vo2Max:'',
             sbp : '',
-            dbp : ''
+            dbp : '',
+            waistCircumference: ''
         }}) 
     }
 
@@ -107,6 +110,7 @@ const useForm = (url?:string) => {
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
+            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: parseInt(data.waistCircumference)})
             if (url) navigate(url);
         } catch (e:any) {
             const error = e.message;

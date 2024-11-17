@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
     const navigate = useNavigate();
-    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm('/summary')
+    const { handleChange, handleReset, handleSelect, handleSubmit} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const { state: {user} } = useUserContext()
     let valid : boolean = Boolean(user.activityLevel && user.goalWeight) || false
@@ -94,7 +94,7 @@ const Form = () => {
                 </span>
                 :
                 <span>
-                    <button type="button"  onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
+                    <button type="button">Please Fill Out Demographic Form</button>
                 </span>
             }
         </form>

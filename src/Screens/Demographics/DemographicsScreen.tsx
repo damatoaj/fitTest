@@ -1,5 +1,6 @@
 import DemoGraphicsForm from "../../Components/Forms/DemoGraphicsForm";
 import BloodPressureForm from "../../Components/Forms/BloodPressureForm";
+import WaistCircumferenceForm from "../../Components/Forms/WaistCircumferenceForm";
 import Form from "../../Components/Form";
 import { useState } from 'react';
 import Error from "../../Components/Error";
@@ -20,6 +21,7 @@ const DemographicsScreen = () => {
             {stage === 1 && <DemoGraphicsForm />}
             {stage === 2 && <BloodPressureForm />}
             {stage === 3 && <Form />}
+            {stage === 4 && <WaistCircumferenceForm />}
         </section>
         <span>
             <button 
@@ -28,7 +30,7 @@ const DemographicsScreen = () => {
                 title="Go back to the previous form"
                 onClick={()=>{
                 if (stage === 1) {
-                    setStage(3)
+                    setStage(4)
                 } else {
                     setStage(stage - 1)
                 }
@@ -38,7 +40,7 @@ const DemographicsScreen = () => {
                 type='button'
                 data-direction='next'
                 onClick={()=> {
-                    if (stage === 3) {
+                    if (stage === 4) {
                         setStage(1)
                     } else {
                         setStage(stage + 1)

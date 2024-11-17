@@ -17,6 +17,7 @@ import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
 import { bloodPressureCalculation } from "../Functions/BloodPressure";
+import { waistCircumferenceRiskFactor } from "../Functions/Testing/bodyComposition";
 
 const u : string | null = localStorage.getItem('user');
 
@@ -40,7 +41,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     micros: null,
     uid: null,
     vo2Max: null,
-    bloodPressure : null
+    bloodPressure : null,
+    waistCircumference : null
 };
 
 type State = {
@@ -68,6 +70,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_UID', payload: null}
     | {type: 'UPDATE HR_MAX', payload : number}
     | {type: 'UPDATE_BLOOD_PRESSURE', payload: [number, number]}
+    | {type: 'UPDATE_WAIST', payload: number}
 
 const initialState = {
     user: initialUser,
@@ -83,6 +86,10 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null}
+        case 'UPDATE_WAIST':
+            if (!state.user.sex) throw new Error('Sex is required before waist circumference can be calculated');
+            sessionStorage.setItem('user', JSON.stringify({...state.user, waistCircumference : waistCircumferenceRiskFactor(state.user.sex, payload)}));
+            return { user: {...state.user, waistCircumference: waistCircumferenceRiskFactor(state.user.sex, payload)}, isLoading: false, error: null}
         case 'UPDATE_BLOOD_PRESSURE':
             if (!payload[0] || !payload[1] || typeof payload[0] !== 'number' || typeof payload[1] !== 'number') throw new Error(`UserContext Error: Blood Pressure Payload Length is invalid: ${payload}`);
             sessionStorage.setItem('user', JSON.stringify( {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])}));

@@ -1,4 +1,4 @@
-import { Sex, BMI, BMIClassifications, WaistCircumferenceCategory, BodyCompCategory } from "../../interfaces";
+import { Sex, BMI, BMIClassifications, WaistCircumferenceCategory, BodyCompCategory, WaistCircumference } from "../../interfaces";
 
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)
@@ -21,24 +21,30 @@ const calculateBMI = (weight:number, height:number) => {
     };
 };
 
-const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) => {
+const waistCircumferenceRiskFactor = (sex:Sex = 'MALE', wc: number) : WaistCircumference => {
     try {
         if (sex !== 'MALE' && sex !== 'FEMALE') throw new TypeError('Sex must be MALE or FEMALE')
+        if (typeof wc !== 'number') throw new TypeError('WC must be a number')
         if (wc < 20 || wc > 500) throw new RangeError('WC must be between 20 and 500')
         //WC should be in centimeters
+
+        let category = '';
+
         if (sex === 'MALE') {
-            if (wc < 80) return 'very low' as WaistCircumferenceCategory;
-            if (wc <= 99 && wc >= 80) return 'low' as WaistCircumferenceCategory;
-            if (wc <= 120 && wc >= 100) return 'high' as WaistCircumferenceCategory;
-            if (wc > 120) return 'very high' as WaistCircumferenceCategory;
+            if (wc < 80) category = 'very low' ;
+            if (wc <= 99 && wc >= 80) category = 'low';
+            if (wc <= 120 && wc >= 100) category = 'high';
+            if (wc > 120) category = 'very high';
         }
-        if (wc <70) return 'very low' as WaistCircumferenceCategory;
-        if (wc <= 89 && wc >= 70) return 'low' as WaistCircumferenceCategory;
-        if (wc <= 110 && wc >= 90) return 'high' as WaistCircumferenceCategory; 
-        if (wc > 110) return 'very high' as WaistCircumferenceCategory;
+        if (wc <70) category = 'very low';
+        if (wc <= 89 && wc >= 70) category = 'low';
+        if (wc <= 110 && wc >= 90) category = 'high'; 
+        if (wc > 110) category = 'very high';
+
+        return  { wc, category } as WaistCircumference;
     } catch (err: any) {
         console.error(err);
-        return '';
+        return {wc, category: ''};
     };
 };
 
