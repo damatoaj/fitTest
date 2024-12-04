@@ -12,25 +12,45 @@ import { printTable } from "../../Functions/printTable";
 import BenchPressCategories from "./BenchPressCategories";
 import GripStrengthCategories from "./GripStrengthCategories";
 import WaistCircumference from "./WaistCircumference";
+import { addData } from "../../indexedDB";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
     const date : number = new Date().getDate();
     const month : number= new Date().getMonth();
     const year : number = new Date().getFullYear();
-    const today : string = `${year}-${month}-${date}`
+    const today : string = `${year}-${month}-${date}`;
 
-    const handleSave = () => {
-        const u : string | null = sessionStorage.getItem('user');
-        if (typeof u === 'string') {
-            localStorage.setItem('mostRecentSession', JSON.stringify({...JSON.parse(u), date: today}));
-            console.log('update localstorage');
-            let d : HTMLDialogElement | null= document.querySelector('dialog#confirmationModal');
+    const handleSave = async () => {
+        let u = state.user;
+        let data = {
+            'timestamp': Date.now(),
+            'date' : today,
+            'name' : u.fname + ' ' + u.lname,
+            'age' : u.age,
+            'sex' : u.sex,
+            'height' : u.height,
+            'current_weight': u.currentWeight,
+            'goal_weight' : u.goalWeight,
+            'activity_level' : u.activityLevel,
+            'bmi' : u.bmi?.bmi ? u.bmi.bmi : null,
+            'waist_circumference': u.waistCircumference?.wc ? u.waistCircumference.wc : null,
+            'max_heart_rate': u.hrMax,
+            'pushups' : u.pushups?.pushups ? u.pushups?.pushups : null,
+            'grip_strength' : u.gripStrength?.gripStrength ? u.gripStrength?.gripStrength : null,
+            'leg_press' : u.legPress?.legPress ? u.legPress.legPress : null,
+            'bench_press' : u.benchPress?.benchPress ? u.benchPress.benchPress : null,
+            'vo2_max' : u.vo2Max?.vo2Max ? u.vo2Max.vo2Max : null,
+            'systolic_blood_pressure' : u.bloodPressure?.sbp ? u.bloodPressure?.sbp : null,
+            'diastolic_blood_pressure' : u.bloodPressure?.dbp ? u.bloodPressure.dbp : null
+        };
+        try {
+            await addData('sessions', data);
+            let d : HTMLDialogElement | null = document.querySelector('dialog#confirmationModal');
             if (d !== null) d.close();
-            return true
+        } catch (error) {
+            console.error(error);
         }
-        
-        return false
     };
     return (
         <main >
@@ -202,11 +222,8 @@ const SummaryTable = () => {
                                 if (d !== null) {
                                     d.showModal();
                                     
-                                    const s = await printTable('summary-table')
-                                    if (s === true) {
-                                        console.log('print')
-                                        // d.close();
-                                    };
+                                    printTable('summary-table')
+                                    d.close();
                                 };
                             }}
                         >
@@ -234,11 +251,34 @@ const SummaryTable = () => {
                                 <time dateTime={today}> {date}, {month}, {year}</time>
                             </h1>
                             <hr></hr>
+                            <table>
+                                <thead><tr><th colSpan={2}>Subject</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{`${state.user.fname} ${state.user.lname}`}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Age</td>
+                                        <td>{state.user.age}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Height</td>
+                                        <td>{state.user.height}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sex</td>
+                                        <td>{state.user.sex}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             {state.user.hrMax && <table>
                                 <thead>
-                                    <th>
-                                        <strong>Heart Rate Max</strong>
-                                    </th>
+                                    <tr>
+                                        <th>
+                                            <strong>Heart Rate Max</strong>
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>

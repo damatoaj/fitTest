@@ -1,5 +1,6 @@
 import {memo} from "react"
 import { Link } from 'react-router-dom'
+import SessionsTable from "../Components/Tables/SessionsTable"
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
                 Test has all of the tests recommended for you!
             </p>
             <Link to='/parq'>Get Started</Link>
+            <SessionsTable />
         </main>
     )
 }
