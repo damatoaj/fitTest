@@ -5,10 +5,7 @@ import './CSS/Table.css';
 import './CSS/Links.css';
 import './CSS/Details.css';
 
-import Form from './Components/Form';
 import NavBar from './Components/NavBar';
-import MobileNav from './Components/MobileNav';
-import Results from './Screens/Results';
 import Home from './Screens/Home';
 import Loader from './Components/Loader';
 import Error from './Components/Error';
@@ -31,18 +28,15 @@ import BenchResults from './Screens/BenchPressProtocol/BenchResults';
 import BenchTest from './Screens/BenchPressProtocol/BenchTest';
 import LegPressResults from './Screens/LegPressProtocol/LegPressResults';
 import LegPressInstructions from './Screens/LegPressProtocol/LegPressInstructions';
-import EquipmentForm from './Components/Forms/EquipmentForm';
 import StepTestTime from './Screens/McArdleStepTest/stepTestTimer';
 import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions';
 import SummaryTable from './Components/Tables/SummaryTable';
 import StepTestResults from './Screens/McArdleStepTest/StepTestResults';
 import FourOhFourScreen from './Screens/404/404';
 function App() {
-  const { state } = useUserContext()
+  const { state } = useUserContext();
   useEffect(()=> {
     function handleHamburger() {
-        console.log(window.innerWidth, "<--inner width")
-
         if (window.innerWidth > 800) {
             console.log('set hamburger false')
             // setShowHamburger(false);

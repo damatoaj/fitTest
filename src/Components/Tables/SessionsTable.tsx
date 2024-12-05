@@ -1,32 +1,45 @@
 import { useState, memo, useEffect } from 'react';
-import { getStoreData } from '../../indexedDB';
+import { getStoreData, initDB } from '../../indexedDB';
 import Loader from '../Loader';
 
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
-
-    const handleGetSessions = async () => {
-        console.log('handleGetSessions')
-        const s  = await getStoreData('sessions');
-        console.table(s)
-        if (s.length && s.length > 0) {
-            setSessions(s);
-        }
-    };
+    const [dbReady, setDbReady] = useState<boolean>(false);
+    
+    // const handleGetSessions = async () => {
+    //     console.log('handleGetSessions')
+    //     await initDB(1)
+    //     const s  = await getStoreData('sessions');
+    //     console.table(s)
+    //     if (s.length && s.length > 0) {
+    //         setSessions(s);
+    //     }
+    // };
 
     useEffect(() => {
-        getStoreData('sessions')
-        .then((s) => {
-            if (s.length > 0) {
-                setSessions(s)
+        initDB(1)
+        .then((e)=> {
+            console.log(e, '<--- initDb complete')
+            if (e === true) {
+                getStoreData('sessions')
+                .then((s) => {
+                    if (s.length > 0) {
+                        setSessions(s)
+                    }
+                    setDbReady(true);
+                })
+                .catch((err) => {
+                    console.warn(err);
+                    setDbReady(true);
+                })
+            } else {
+                throw new Error('Init Not complete')
             }
         })
-        .catch((err) => {
-            console.warn(err);
-        })
+        .catch((err)=> console.error(err))
     }, [])
 
-    if (sessions.length === 0) return (
+    if (sessions.length === 0 && !dbReady) return (
         <Loader />
     )
 
