@@ -102,7 +102,7 @@ const menBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPres
         { ageRange: { min: 60, max: 69 }, thresholds: [.94, .82, .72, .66, .55] }
       ];
     
-    const bpr = pushed / bodyWeight;
+    const bpr = Math.floor(pushed / bodyWeight * 100) / 100;
     try {
         if (bodyWeight < 0 || bodyWeight > 700) throw new Error('Bodyweight is outside of acceptable range')
         if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
@@ -143,7 +143,7 @@ const womenBenchPress = (pushed:number, bodyWeight:number, age:number) : BenchPr
         { ageRange: { min: 50, max: 59 }, thresholds: [.68, .55, .48, .44, .39] },
         { ageRange: { min: 60, max: 69 }, thresholds: [.72, .54, .47, .43, .38] }
       ];
-    const bpr = pushed / bodyWeight
+    const bpr = Math.floor(pushed / bodyWeight * 100) / 100; 
     try {
         if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Bodyweight is outside of acceptable range')
         if (age < 0 || age > 100) throw new RangeError('Age is outside of acceptable range')
@@ -185,7 +185,7 @@ const menLegPress = (age:number, pushed:number, bodyWeight:number) : LegPress =>
         { ageRange: { min: 60, max: 69 }, thresholds: [1.73, 1.56, 1.43, 1.3] }
       ];
 
-    const r = pushed / bodyWeight;
+    const r = Math.floor(pushed / bodyWeight * 100) / 100;
     try {
         if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Body weight is outside of acceptable ranges');
         if (pushed < 0 || pushed > 1000) throw new RangeError('Weight pushed is outside of acceptable ranges');
@@ -227,7 +227,7 @@ const womenLegPress = (age:number, pushed:number, bodyWeight:number) : LegPress 
         { ageRange: { min: 60, max: 69 }, thresholds: [1.32, 1.13, .99, .88] }
       ];
 
-    const r = pushed / bodyWeight;
+    const r = Math.floor(pushed / bodyWeight * 100) / 100;
 
     try {
         if (bodyWeight < 0 || bodyWeight > 700) throw new RangeError('Body weight outside acceptable range');
