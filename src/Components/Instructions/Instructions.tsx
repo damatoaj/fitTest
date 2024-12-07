@@ -55,7 +55,7 @@ const InstructionsScreen = memo(({title, nextURL, heading, paragraphs}:instructi
             user.state.user.age &&
             user.state.user.sex ?
             <button type="button"  onClick={()=> navigate(nextURL)}>Click to Begin</button> :
-            <button type="button"  onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
+            <button type="button"  onClick={()=> navigate('/fitTest/parq')}>Please Fill Out Demographic Form</button>
         }
     </main>
 

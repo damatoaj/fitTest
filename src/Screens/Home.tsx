@@ -7,13 +7,13 @@ const Home = () => {
         <main>
             <h1>Home Page</h1>
             <p>
-                Welcome to Test! Your app for exercise testing.
+                Welcome to FitTest! Your app for exercise testing.
             </p>
             <p>
                 Whether you're a professional coach, physical therapist, or just curious about your fitness...
             </p>
             <p>
-                Test has all of the tests recommended for you!
+                FitTest has all of the tests recommended for you!
             </p>
             <Link to='/parq'>Get Started</Link>
             <SessionsTable />
