@@ -82,10 +82,10 @@ const NavBar = ({u} : NavBarProps) => {
             </button>
             <ul data-showall={state.showAll}>
                 <li className='light'>
-                    <Link to='/fitTest/' onClick={handleNavigate}>Home</Link>
+                    <Link to='/' onClick={handleNavigate}>Home</Link>
                 </li>
                 <li className='dark'>
-                    <Link to='/fitTest/#/parq' onClick={handleNavigate}>Demographics</Link>
+                    <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
                 </li>
                 {/* <li className='light'>
                     <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>
@@ -114,7 +114,7 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='light'>
-                                    <Link to='/fitTest/#/pushups/instructions' onClick={handleNavigate}>Pushups</Link>
+                                    <Link to='/pushups/instructions' onClick={handleNavigate}>Pushups</Link>
                                 </li>
                             </ul>
                         </li>
@@ -130,13 +130,13 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='dark'>
-                                    <Link to='/fitTest/#/bench-press/instructions' onClick={handleNavigate}>Bench Press</Link>
+                                    <Link to='/bench-press/instructions' onClick={handleNavigate}>Bench Press</Link>
                                 </li>
                                 <li className='light'>
-                                    <Link to='/fitTest/#/grip-strength/instructions' onClick={handleNavigate}>Grip Strength</Link>
+                                    <Link to='/grip-strength/instructions' onClick={handleNavigate}>Grip Strength</Link>
                                 </li>
                                 <li className='dark'>
-                                    <Link to='/fitTest/#/leg-press/instructions' onClick={handleNavigate}>Leg Press</Link>
+                                    <Link to='/leg-press/instructions' onClick={handleNavigate}>Leg Press</Link>
                                 </li>
                             </ul>
                         </li>
@@ -151,14 +151,14 @@ const NavBar = ({u} : NavBarProps) => {
                             </button>
                             <ul>
                                 <li className='light'>
-                                    <Link to='/fitTest/#/step-test/instructions' onClick={handleNavigate}>McArdle Step Test</Link>
+                                    <Link to='/step-test/instructions' onClick={handleNavigate}>McArdle Step Test</Link>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li className='dark'>
-                    <Link to='/fitTest/summary' onClick={handleNavigate}>Summary</Link>
+                    <Link to='/summary' onClick={handleNavigate}>Summary</Link>
                 </li>
             </ul>
         </nav>

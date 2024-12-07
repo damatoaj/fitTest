@@ -58,10 +58,10 @@ function App() {
       {/* {window.innerWidth <= 600 && <MobileNav />} */}
         <Routes>
           <Route
-            path='/fitTest/'
+            path='/'
             element={<Home />}
           />
-            <Route path='/fitTest/#/parq' element={<DemographicsScreen/>}></Route>
+            <Route path='/parq' element={<DemographicsScreen/>}></Route>
           {/* <Route
             path='/nutrition' 
             element={<Form />}
@@ -70,39 +70,39 @@ function App() {
           {/* </Route>  */}
           {/* <Route path='/equipment' element={<EquipmentForm />} /> */}
           {/* {state.user.macros && state.user.micros && <Route path='/nutrition/results' element={<Results macros={state.user.macros} micros={state.user.micros} />}/>} */}
-          <Route path='/fitTest/#/strength' element={<StrengthForm />} />
-          <Route path='/fitTest/#/strength/results' element={<StrengthTable/>} />
-          <Route path='/fitTest/#/bench-press'>
+          <Route path='/strength' element={<StrengthForm />} />
+          <Route path='/strength/results' element={<StrengthTable/>} />
+          <Route path='/bench-press'>
             <Route path='instructions' element={<BenchInstructions />} />
             <Route path='test' element={<BenchTest />} />
             <Route path='results' element={<BenchResults />} />
           </Route>
-          <Route path='/fitTest#/leg-press'>
+          <Route path='/leg-press'>
             <Route path='instructions' element={<LegPressInstructions />} />
             <Route path='test' element={<h1>hi</h1>} />
             <Route path='results' element={<LegPressResults />} />
           </Route>
-          <Route path='/fitTest/#/grip-strength'>
+          <Route path='/grip-strength'>
             <Route path='instructions' element={<GripStrengthInstructions />} />
             <Route path='test' element={<GripStrengthTest />} />
             <Route path='results' element={<GripStrengthResults />} />
           </Route>
-          <Route path='/fitTest/#/pushups'>
+          <Route path='/pushups'>
             <Route path='instructions' element={<PushupInstructions />} />
             <Route path='test' element={<PushupTest /> } />
             <Route path='results' element={<PushupResults /> } />
           </Route>
-          <Route path='/fitTest/#/treadmill-protocols'>
+          <Route path='/treadmill-protocols'>
             <Route path='bruce' element={<Bruce />} />
             <Route path='bruce/results' element={<TreadmillResults />} />
           </Route>
-          <Route path='/fitTest/#/step-test'>
+          <Route path='/step-test'>
             <Route path='instructions' element={<StepTestInstructions />} />
             <Route path='progress' element={<StepTestTime />} />
             <Route path='results' element={<StepTestResults />} />
           </Route>
-          <Route path='/fitTest/#/summary' element={<SummaryTable/>}></Route>
-          <Route path="/fitTest/*" element={<FourOhFourScreen />}>
+          <Route path='/summary' element={<SummaryTable/>}></Route>
+          <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>
       </>

@@ -15,7 +15,7 @@ const Home = () => {
             <p>
                 FitTest has all of the tests recommended for you!
             </p>
-            <Link to='/fitTest#/parq'>Get Started</Link>
+            <Link to='/parq'>Get Started</Link>
             <SessionsTable />
         </main>
     )

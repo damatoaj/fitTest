@@ -18,11 +18,11 @@ const MobileNav = () => {
             <div style={styles.rectangle}></div>
             <div style={styles.triangle}></div>
         </button>
-        <Link style={styles.link} to='/fitTest/nutrition' onClick={()=> setOpen(false)}>Nutrition</Link>
-        <Link style={styles.link} to='/fitTest/strength' onClick={()=> setOpen(false)}>Strength</Link>
-        <Link style={styles.link} to='/fitTest/endurance' onClick={()=> setOpen(false)}>Endurance</Link>
-        <Link style={styles.link} to='/fitTest/health' onClick={()=> setOpen(false)}>Health</Link>
-        <Link style={styles.link} to='/fitTest/treadmill-protocols/bruce' onClick={()=> setOpen(false)}>VO2 Max</Link>
+        <Link style={styles.link} to='/nutrition' onClick={()=> setOpen(false)}>Nutrition</Link>
+        <Link style={styles.link} to='/strength' onClick={()=> setOpen(false)}>Strength</Link>
+        <Link style={styles.link} to='/endurance' onClick={()=> setOpen(false)}>Endurance</Link>
+        <Link style={styles.link} to='/health' onClick={()=> setOpen(false)}>Health</Link>
+        <Link style={styles.link} to='/treadmill-protocols/bruce' onClick={()=> setOpen(false)}>VO2 Max</Link>
     </nav>
    )
 
