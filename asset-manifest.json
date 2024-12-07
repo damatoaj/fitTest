@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/macro_micro_calculator/static/css/main.cafe5366.css",
-    "main.js": "/macro_micro_calculator/static/js/main.18f3f8c5.js",
-    "index.html": "/macro_micro_calculator/index.html",
-    "main.cafe5366.css.map": "/macro_micro_calculator/static/css/main.cafe5366.css.map",
-    "main.18f3f8c5.js.map": "/macro_micro_calculator/static/js/main.18f3f8c5.js.map"
+    "main.css": "/fitTest/static/css/main.cafe5366.css",
+    "main.js": "/fitTest/static/js/main.18f3f8c5.js",
+    "index.html": "/fitTest/index.html",
+    "main.cafe5366.css.map": "/fitTest/static/css/main.cafe5366.css.map",
+    "main.18f3f8c5.js.map": "/fitTest/static/js/main.18f3f8c5.js.map"
   },
   "entrypoints": [
     "static/css/main.cafe5366.css",
