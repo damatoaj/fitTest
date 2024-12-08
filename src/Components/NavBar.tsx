@@ -13,6 +13,7 @@ const NavBar = ({u} : NavBarProps) => {
         muscularEndurance: 'false',
         muscularStrength: 'false',
         cardiovascularEndurance: 'false',
+        flexibility : 'false',
         showAll : window.innerWidth < 800 ? 'false' : 'true'
     });
 
@@ -59,6 +60,7 @@ const NavBar = ({u} : NavBarProps) => {
                 muscularEndurance: 'false',
                 muscularStrength: 'false',
                 cardiovascularEndurance: 'false',
+                flexibility: 'false',
                 showAll : 'false'
             });
         } else {
@@ -67,6 +69,7 @@ const NavBar = ({u} : NavBarProps) => {
                 muscularEndurance: 'false',
                 muscularStrength: 'false',
                 cardiovascularEndurance: 'false',
+                flexibility : 'false',
                 showAll : 'true'
             });
         };
@@ -152,6 +155,21 @@ const NavBar = ({u} : NavBarProps) => {
                             <ul>
                                 <li className='light'>
                                     <Link to='/step-test/instructions' onClick={handleNavigate}>McArdle Step Test</Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className='sub-subnav'>
+                            <button 
+                                // type="und" 
+                                className='link light' 
+                                data-active={state.flexibility}
+                                onClick={()=> state.flexibility === 'false' ? setState({...state, flexibility : 'true'}) : setState({...state, flexibility : 'false'})}
+                            >
+                                Flexibility
+                            </button>
+                            <ul>
+                                <li className='dark'>
+                                    <Link to='/sit-and-reach/instructions' onClick={handleNavigate}>Sit & Reach Test</Link>
                                 </li>
                             </ul>
                         </li>

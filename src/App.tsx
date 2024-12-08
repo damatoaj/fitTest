@@ -33,6 +33,9 @@ import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions
 import SummaryTable from './Components/Tables/SummaryTable';
 import StepTestResults from './Screens/McArdleStepTest/StepTestResults';
 import FourOhFourScreen from './Screens/404/404';
+import SitAndReachForm from './Components/Forms/SitAndReachForm';
+import SARInstructions from './Screens/SARProtocol/SARInstructions';
+import SARResults from './Screens/SARProtocol/SARResults';
 function App() {
   const { state } = useUserContext();
   useEffect(()=> {
@@ -100,6 +103,10 @@ function App() {
             <Route path='instructions' element={<StepTestInstructions />} />
             <Route path='progress' element={<StepTestTime />} />
             <Route path='results' element={<StepTestResults />} />
+          </Route>
+          <Route path='/sit-and-reach'>
+            <Route path='instructions' element={<SARInstructions />} />
+            <Route path='results' element={<SARResults />} />
           </Route>
           <Route path='/summary' element={<SummaryTable/>}></Route>
           <Route path="/*" element={<FourOhFourScreen />}>

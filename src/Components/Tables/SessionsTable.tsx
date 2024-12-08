@@ -5,19 +5,9 @@ import Loader from '../Loader';
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
     const [dbReady, setDbReady] = useState<boolean>(false);
-    
-    // const handleGetSessions = async () => {
-    //     console.log('handleGetSessions')
-    //     await initDB(1)
-    //     const s  = await getStoreData('sessions');
-    //     console.table(s)
-    //     if (s.length && s.length > 0) {
-    //         setSessions(s);
-    //     }
-    // };
 
     useEffect(() => {
-        initDB(1)
+        initDB(2)
         .then((e)=> {
             console.log(e, '<--- initDb complete')
             if (e === true) {
@@ -66,6 +56,7 @@ const SessionsTable = () => {
                         <th>Bench Press</th>
                         <th>Leg Press</th>
                         <th>Grip Strength</th>
+                        <th>Sit & Reach (cm)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +80,7 @@ const SessionsTable = () => {
                             <td>{session.bench_press || '-'}</td>
                             <td>{session.leg_press || '-'}</td>
                             <td>{session.grip_strength || '-'}</td>
+                            <td>{session.sit_and_reach || '-'}</td>
                         </tr>
                     )})}
                 </tbody>

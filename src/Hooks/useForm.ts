@@ -20,7 +20,8 @@ type Data = {
     vo2Max:string,
     sbp : string,
     dbp : string,
-    waistCircumference : string
+    waistCircumference : string,
+    sar : string
 }
 
 const useForm = (url?:string) => {
@@ -43,7 +44,8 @@ const useForm = (url?:string) => {
         vo2Max: '',
         sbp : '',
         dbp : '',
-        waistCircumference: ''
+        waistCircumference: '',
+        sar : '' //inches
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +78,8 @@ const useForm = (url?:string) => {
             vo2Max:'',
             sbp : '',
             dbp : '',
-            waistCircumference: ''
+            waistCircumference: '',
+            sar : ''
         }}) 
     }
 
@@ -90,6 +93,7 @@ const useForm = (url?:string) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
+            if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar) * 2.54})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
             if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});

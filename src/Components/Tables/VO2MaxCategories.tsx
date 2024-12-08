@@ -17,7 +17,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <th colSpan={7}>
-                        <h4>A Group (yr)</h4>
+                        <h4>Age Group (yr)</h4>
                     </th>
                 </tr>
                 <tr>
@@ -207,7 +207,7 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <th colSpan={7}>
-                        <h4>A Group (yr)</h4>
+                        <h4>Age Group (yr)</h4>
                     </th>
                 </tr>
                 <tr>

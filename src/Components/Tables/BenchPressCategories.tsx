@@ -26,7 +26,7 @@ const BenchPressCategories = () => {
                 </tr>
                 <tr>
                     <th colSpan={8}>
-                        <h4>A Group (yr)</h4>
+                        <h4>Age Group (yr)</h4>
                     </th>
                 </tr>
                 <tr>
@@ -241,7 +241,7 @@ const BenchPressCategories = () => {
                 </tr>
                 <tr>
                     <th colSpan={8}>
-                        <h4>A Group (yr)</h4>
+                        <h4>Age Group (yr)</h4>
                     </th>
                 </tr>
                 <tr>

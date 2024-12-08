@@ -5,10 +5,8 @@ import { womenCardioFitnessClassification, menCardioFitnessClassification } from
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
 import { astrandEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
 import { 
-    validateName, 
     validateAge, 
     validateHeight, 
-    validateSex, 
     validateCurrentWeight, 
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
@@ -18,7 +16,7 @@ import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
 import { bloodPressureCalculation } from "../Functions/BloodPressure";
 import { waistCircumferenceRiskFactor } from "../Functions/Testing/bodyComposition";
-
+import { mensSitAndReach, womensSitAndReach } from "../Functions/Testing/flexibilityTests";
 const u : string | null = localStorage.getItem('user');
 
 const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
@@ -42,7 +40,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     uid: null,
     vo2Max: null,
     bloodPressure : null,
-    waistCircumference : null
+    waistCircumference : null,
+    sar : null
 };
 
 type State = {
@@ -71,6 +70,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE HR_MAX', payload : number}
     | {type: 'UPDATE_BLOOD_PRESSURE', payload: [number, number]}
     | {type: 'UPDATE_WAIST', payload: number}
+    | {type : 'UPDATE_SAR', payload: number}
 
 const initialState = {
     user: initialUser,
@@ -86,6 +86,19 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null}
+        case 'UPDATE_SAR':
+            let sar = null;
+            if (state.user.sex === 'MALE' && state.user.age) {
+                sar = mensSitAndReach(state.user.age, payload);
+                sessionStorage.setItem('user', JSON.stringify({...state.user, sar : mensSitAndReach(state.user.age, payload)}));
+
+            };
+            if (state.user.sex === 'FEMALE' && state.user.age) {
+                sar = womensSitAndReach(state.user.age, payload);
+                sessionStorage.setItem('user', JSON.stringify({...state.user, sar : womensSitAndReach(state.user.age, payload)}));
+            };
+
+            return {isLoading: false, error: null, user : {...state.user, sar}}
         case 'UPDATE_WAIST':
             if (!state.user.sex) throw new Error('Sex is required before waist circumference can be calculated');
             sessionStorage.setItem('user', JSON.stringify({...state.user, waistCircumference : waistCircumferenceRiskFactor(state.user.sex, payload)}));

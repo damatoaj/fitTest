@@ -84,6 +84,7 @@ interface User {
     vo2Max: VO2Max | null;
     bloodPressure : BloodPressure | null;
     waistCircumference: WaistCircumference | null;
+    sar : SitAndReach | null;
 }
 
 type UserKeys = keyof User;
@@ -119,6 +120,7 @@ type LegPress = {legPress:number, category:'well above average'|'above average'|
 
 type GripStrength = {gripStrength: number, category:'excellent'|'very good'|'good'|'fair'|'poor' | ''}
 
+type SitAndReach = {unit : string, value: number, category : 'excellent' | 'very good' | 'good' | 'fair'|'poor' | ''}
 
 interface Link {
     label:string;
@@ -151,5 +153,6 @@ export type {
     Equipment,
     VO2Max,
     UserKeys,
-    Link
+    Link,
+    SitAndReach
 }

@@ -13,6 +13,8 @@ import BenchPressCategories from "./BenchPressCategories";
 import GripStrengthCategories from "./GripStrengthCategories";
 import WaistCircumference from "./WaistCircumference";
 import { addData } from "../../indexedDB";
+import SARCategories from "./SARCategories";
+import SARTable from "./SARTable";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -42,7 +44,8 @@ const SummaryTable = () => {
             'bench_press' : u.benchPress?.benchPress ? u.benchPress.benchPress : null,
             'vo2_max' : u.vo2Max?.vo2Max ? u.vo2Max.vo2Max : null,
             'systolic_blood_pressure' : u.bloodPressure?.sbp ? u.bloodPressure?.sbp : null,
-            'diastolic_blood_pressure' : u.bloodPressure?.dbp ? u.bloodPressure.dbp : null
+            'diastolic_blood_pressure' : u.bloodPressure?.dbp ? u.bloodPressure.dbp : null,
+            'sit_and_reach' : u.sar?.value ? u.sar.value : null
         };
         try {
             await addData('sessions', data);
@@ -148,6 +151,16 @@ const SummaryTable = () => {
                     </details>
                 </section>
             <section>
+            <section>
+                <h2>Flexibility</h2>
+                <details>
+                    <summary>Sit & Reach Categories</summary>
+                    <SARCategories />
+                </details>
+                {state.user.sar && (
+                    <SARTable />
+                )}
+            </section>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
                 {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
             </section>
@@ -300,6 +313,7 @@ const SummaryTable = () => {
                             {state.user.bmi?.classification && <BMITable />}
                             {(state.user.benchPress || state.user.legPress || state.user.gripStrength) && <StrengthTable />}
                             {state.user.pushups && <PushupsTable />}
+                            {state.user.sar && <SARTable />}
                             {state.user.macros && <MacrosTable  macros={state.user.macros} />}
                             {state.user.micros && <MicrosTable  micros={state.user.micros}/>}
                         </section>
