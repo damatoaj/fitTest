@@ -39,23 +39,23 @@ const SessionsTable = () => {
                     <tr><th colSpan={18}>Previous Sessions On This Browser</th></tr>
                     <tr>
                         <th>Time Stamp</th>
-                        <th>Date</th>
+                        <th>Date (YYYY-MM-DD)</th>
                         <th>Name</th>
-                        <th>Age</th>
+                        <th>Age (Yrs)</th>
                         <th>Sex</th>
-                        <th>Height</th>
+                        <th>Height (In)</th>
                         <th>Blood Pressure</th>
-                        <th>Current Weight</th>
-                        <th>Goal Weight</th>
+                        <th>Current Weight (lbs)</th>
+                        <th>Goal Weight (lbs)</th>
                         <th>BMI</th>
-                        <th>Waist Circumference</th>
+                        <th>Waist Circumference (In)</th>
                         <th>Max Heart Rate</th>
                         <th>Activity Level</th>
                         <th>VO2 Max</th>
                         <th>Pushups</th>
-                        <th>Bench Press</th>
-                        <th>Leg Press</th>
-                        <th>Grip Strength</th>
+                        <th>Bench Press (lbs)</th>
+                        <th>Leg Press (lbs)</th>
+                        <th>Grip Strength (lbs)</th>
                         <th>Sit & Reach (cm)</th>
                     </tr>
                 </thead>

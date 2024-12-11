@@ -36,6 +36,7 @@ import FourOhFourScreen from './Screens/404/404';
 import SitAndReachForm from './Components/Forms/SitAndReachForm';
 import SARInstructions from './Screens/SARProtocol/SARInstructions';
 import SARResults from './Screens/SARProtocol/SARResults';
+import SessionsTable from './Components/Tables/SessionsTable';
 function App() {
   const { state } = useUserContext();
   useEffect(()=> {
@@ -108,7 +109,8 @@ function App() {
             <Route path='instructions' element={<SARInstructions />} />
             <Route path='results' element={<SARResults />} />
           </Route>
-          <Route path='/summary' element={<SummaryTable/>}></Route>
+          <Route path='/current-session' element={<SummaryTable/>}></Route>
+          <Route path='/sessions' element={<SessionsTable />}></Route>
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>

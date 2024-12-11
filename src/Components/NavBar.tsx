@@ -176,7 +176,10 @@ const NavBar = ({u} : NavBarProps) => {
                     </ul>
                 </li>
                 <li className='dark'>
-                    <Link to='/summary' onClick={handleNavigate}>Summary</Link>
+                    <Link to='/current-session' onClick={handleNavigate}>Current Session</Link>
+                </li>
+                <li className='light'>
+                    <Link to='/sessions' onClick={handleNavigate}>Past Sessions</Link>
                 </li>
             </ul>
         </nav>

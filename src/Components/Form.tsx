@@ -76,7 +76,8 @@ const Form = () => {
                         Extra Active    
                     </option>
                 </select>
-                <details className='popover'>
+                <details open>
+                    <summary>Activity Level Definitions</summary>
                     <ol>
                         <li>Sedentary: Little or no exercise</li>
                         <li>Light Activity: Light exercise/sports 1-3 days/week</li>

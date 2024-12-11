@@ -1,20 +1,35 @@
 details {
-    padding-left: 5px;
-    padding-right: 5px;
-    overflow: auto; 
+    overflow: hidden; 
     text-align: left;
     width: 100%;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-details.popover[open] > * {
+    /* margin-top: 1rem;
+    margin-bottom: 1rem; */
+    background-color: var(--prm-lgt-blue);
     border: 2px solid black;
-    position: absolute;
-    padding: 15px 15px 15px 25px;
-    background-color: whitesmoke;
+    border-radius: 1rem;
+    transition: height .3s ease-in-out;
 }
 
-summary:focus:hover{
+details > table {
+    width:100%;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-style: hidden;
+}
+
+
+
+
+summary {
+    background-color: var(--prm-drk-blue);
+    color : white;
+}
+
+summary:hover{
     cursor: pointer;
+}
+
+summary::marker {
+    background-color: var(--prm-lgt-blue);
 }

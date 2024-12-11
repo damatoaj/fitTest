@@ -118,6 +118,14 @@ p, input, a, button {
   font-size: var(--default-font-size);
 }
 
+main > h1 {
+  text-decoration: underline;
+}
+
+article > p {
+  text-align: left;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;

@@ -88,10 +88,12 @@ const SummaryTable = () => {
                     </tbody>
                 </table>}
                 {state.user.bmi?.bmi && <BMITable />}
+                <br></br>
                 <details>
                     <summary>BMI Categories</summary>
                     <BMIRiskTable />
                 </details>
+                <br></br>
                 {state.user.waistCircumference && <table>
                     <thead>
                         <tr>
@@ -124,6 +126,8 @@ const SummaryTable = () => {
                     <summary>Waist Circumference & Cardiovascular Risk</summary>
                     <WaistCircumference />
                 </details>
+                <br></br>
+
             </section>
             <section>
                 <h2>Muscular Strength & Endurance</h2>
@@ -132,19 +136,24 @@ const SummaryTable = () => {
                         <summary>Bench Press Categories</summary>
                         <BenchPressCategories />
                     </details>
+                    <br></br>
                     <details>
                         <summary>Leg Press Categories</summary>
                         <LegPressCategories />
                     </details>
+                    <br></br>
                     <details>
                         <summary>Grip Strength Categories</summary>
                         <GripStrengthCategories />
                     </details>
+                    <br></br>
+
                     {state.user.pushups && <PushupsTable />}
                     <details>
                         <summary>Pushup Categories</summary>
                         <PushupCategories />
                     </details>
+                    <br></br>
                     <details>
                         <summary>VO2 Max Categories</summary>
                         <VO2MaxCategories />
@@ -214,7 +223,11 @@ const SummaryTable = () => {
                                 };
 
                                 if  (state.user.vo2Max) {
-                                    text = text.concat(`\nCardiovascular Endurance: ${state.user.vo2Max.vo2Max} l/o2, ${state.user.vo2Max.category}`)
+                                    text = text.concat(`\nCardiovascular Endurance: ${state.user.vo2Max.vo2Max}ml/o2, ${state.user.vo2Max.category}`)
+                                };
+
+                                if (state.user.sar) {
+                                    text = text.concat(`\nLow Back/Hamstring Flexibility: ${state.user.sar.value}cm, ${state.user.sar.category}`)
                                 };
 
                                 console.log(text)
@@ -244,7 +257,7 @@ const SummaryTable = () => {
                         </button>
                     </span>
                     <dialog id='confirmationModal'>
-                        <p>Are you sure? Clicking save will overwrite previous test data</p>
+                        <p>Are you sure? Clicking save add the session to the "Previous Sessions" table</p>
                         <span>
                             <button autoFocus type='submit' onClick={handleSave}>I'm sure</button>
                             <button 
