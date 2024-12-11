@@ -162,6 +162,10 @@ button[data-showhamburger="false"] {
         flex-direction: row-reverse;
         height: clamp(10px, 10rem, 40px);
     }
+
+    main {
+        padding-top: 100px;
+    }
 }
 
 @media screen and (max-width : 800px) {

@@ -110,7 +110,7 @@ function App() {
             <Route path='results' element={<SARResults />} />
           </Route>
           <Route path='/current-session' element={<SummaryTable/>}></Route>
-          <Route path='/sessions' element={<SessionsTable />}></Route>
+          <Route path='/sessions' element={<main><SessionsTable /></main>}></Route>
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>

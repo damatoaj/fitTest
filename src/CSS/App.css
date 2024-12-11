@@ -126,6 +126,15 @@ article > p {
   text-align: left;
 }
 
+.logo {
+  font-weight: bold;
+  font-stretch: expanded;
+  letter-spacing: .5rem;
+  text-shadow: 1px 1px 2px var(--prm-drk-red), 0 0 1em var(--prm-drk-blue), 0 0 0.2em var(--prm-drk-blue);
+  padding-left: 5%;
+  font-size: 30px;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;
