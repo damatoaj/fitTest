@@ -1,12 +1,10 @@
 import { useRef, memo } from 'react'
-import { useNavigate } from 'react-router-dom';
 import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext'
 const WaistCircumferenceForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const { state : {user } } = useUserContext()
-    const navigate = useNavigate()
     let valid : boolean = Boolean(user.benchPress?.benchPress) || false
     
     if(form.current && form.current !== null) {
@@ -41,7 +39,7 @@ const WaistCircumferenceForm = () => {
                 {user.sex ? 
                 <span>
                     <button type='submit' disabled={!valid}>{user.waistCircumference ?  'Update' : 'Submit' }</button>
-                    <button type='reset'>Reset</button>
+                    <button type='reset' disabled={user.waistCircumference !== null ? true : false}>Reset</button>
                 </span>
                 :
                 <button type="button">Please Fill Out Demographic Form</button>

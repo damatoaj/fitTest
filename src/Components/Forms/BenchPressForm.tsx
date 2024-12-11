@@ -38,7 +38,7 @@ const BenchPressForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>{user.benchPress ?  'Update' : 'Submit' }</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={user.benchPress !== null ? true : false}>Reset</button>
             </span>
         </form>
     )

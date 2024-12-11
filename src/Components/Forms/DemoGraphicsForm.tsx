@@ -111,7 +111,7 @@ function DemoGraphicsForm() {
     </fieldset>
         <span>
             <button type='submit' disabled={!valid}>{user.fname ?  'Update' : 'Submit' }</button>
-            <button type='reset'>Reset</button>
+            <button type='reset' disabled={user.fname !== null ? true : false}>Reset</button>
         </span>
     </form>
   )

@@ -54,7 +54,7 @@ const BenchPressForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>{user.bloodPressure ?  'Update' : 'Submit' }</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={user.bloodPressure !== null ? true : false}>Reset</button>
             </span>
         </form>
     )

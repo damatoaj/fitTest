@@ -43,7 +43,6 @@ button[type = submit]:disabled:hover {
     color: black;
     background-image: var(--error-color-inverted);
     text-shadow: none;
-    cursor: not-allowed;
 }
 
 button[type = reset] {
@@ -78,6 +77,10 @@ button[type = button]:hover {
   button[type = button]:active {
     transform: translateY(-5px);
     box-shadow: 0 4px 5px -2px grey;
+  }
+
+  button[disabled]:hover, button[disabled]:active {
+    cursor: not-allowed;
   }
 
   span:has(button) {

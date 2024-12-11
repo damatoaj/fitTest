@@ -49,7 +49,7 @@ const LegPressForm = () => {
             </div>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={user.legPress !== null ? true : false}>Reset</button>
             </span>
         </form>
     )

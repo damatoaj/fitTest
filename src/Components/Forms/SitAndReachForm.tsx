@@ -39,7 +39,7 @@ const SitAndReachForm = () => {
             {user.age && user.sex ? 
             <span>
                 <button type='submit' disabled={!valid}>{user.sar ?  'Update' : 'Submit' }</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={user.sar !== null ? true : false}>Reset</button>
             </span>
             :
             <span>

@@ -1,8 +1,10 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
+import { useUserContext } from '../../Hooks/useUserContext';
 const GripForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
+    const { state : {user } } = useUserContext()
     let valid : boolean = false
     if (form.current && form.current !== null) {
         valid = form.current.checkValidity()
@@ -48,7 +50,7 @@ const GripForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={user.gripStrength !== null ? true : false}>Reset</button>
             </span>
         </form>
     )

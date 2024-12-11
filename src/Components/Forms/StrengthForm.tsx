@@ -110,7 +110,7 @@ const StrengthForm = () => {
             </fieldset>
             <span>
                 <button type='submit' disabled={!valid}>Submit</button>
-                <button type='reset'>Reset</button>
+                <button type='reset' disabled={state.user.benchPress !== null ? true : false}>Reset</button>
             </span>
         </form>
     )

@@ -91,7 +91,7 @@ const Form = () => {
             {user.currentWeight ? 
                 <span>
                     <button type='submit' disabled={!valid}>Submit</button>
-                    <button type='reset' onClick={handleReset}>Reset</button>
+                    <button type='reset' onClick={handleReset} disabled={user.bodyWeightGoal !== null ? true : false}>Reset</button>
                 </span>
                 :
                 <span>
