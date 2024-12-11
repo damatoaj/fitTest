@@ -9,7 +9,6 @@ import NavBar from './Components/NavBar';
 import Home from './Screens/Home';
 import Loader from './Components/Loader';
 import Error from './Components/Error';
-import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/Forms/StrengthForm';
 import StrengthTable from './Components/Tables/StrengthTable';
@@ -33,27 +32,26 @@ import StepTestInstructions from './Screens/McArdleStepTest/StepTestInstructions
 import SummaryTable from './Components/Tables/SummaryTable';
 import StepTestResults from './Screens/McArdleStepTest/StepTestResults';
 import FourOhFourScreen from './Screens/404/404';
-import SitAndReachForm from './Components/Forms/SitAndReachForm';
 import SARInstructions from './Screens/SARProtocol/SARInstructions';
 import SARResults from './Screens/SARProtocol/SARResults';
 import SessionsTable from './Components/Tables/SessionsTable';
 function App() {
   const { state } = useUserContext();
-  useEffect(()=> {
-    function handleHamburger() {
-        if (window.innerWidth > 800) {
-            console.log('set hamburger false')
-            // setShowHamburger(false);
-        } else {
-            console.log('set hamburger true')
+  // useEffect(()=> {
+  //   function handleHamburger() {
+  //       if (window.innerWidth > 800) {
+  //           console.log('set hamburger false')
+  //           // setShowHamburger(false);
+  //       } else {
+  //           console.log('set hamburger true')
 
-            // setShowHamburger(true);
-        };
-    }
-    window.addEventListener('resize', handleHamburger);
-    return window.removeEventListener('resize', handleHamburger);
+  //           // setShowHamburger(true);
+  //       };
+  //   }
+  //   window.addEventListener('resize', handleHamburger);
+  //   return window.removeEventListener('resize', handleHamburger);
     
-}, [])
+// }, [])
     return (
       <>
       {state.error && <Error message={state.error} />}
