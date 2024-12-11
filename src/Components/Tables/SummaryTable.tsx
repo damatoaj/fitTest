@@ -4,16 +4,8 @@ import PushupsTable from "./PushupsTable";
 import MacrosTable from "./MacrosTable";
 import MicrosTable from "./MicrosTable";
 import BMITable from "./BMITable";
-import BMIRiskTable from "./BMIRiskTable";
-import PushupCategories from "./PushupCategories";
-import VO2MaxCategories from "./VO2MaxCategories";
-import LegPressCategories from "./LegPressCategories";
 import { printTable } from "../../Functions/printTable";
-import BenchPressCategories from "./BenchPressCategories";
-import GripStrengthCategories from "./GripStrengthCategories";
-import WaistCircumference from "./WaistCircumference";
 import { addData } from "../../indexedDB";
-import SARCategories from "./SARCategories";
 import SARTable from "./SARTable";
 
 const SummaryTable = () => {
