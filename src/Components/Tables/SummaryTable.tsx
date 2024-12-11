@@ -80,8 +80,6 @@ const SummaryTable = () => {
                     </tbody>
                 </table>}
                 {state.user.bmi?.bmi && <BMITable />}
-                <br></br>
-                <br></br>
                 {state.user.waistCircumference && <table>
                     <thead>
                         <tr>
@@ -110,13 +108,10 @@ const SummaryTable = () => {
                         </tr>
                     </tbody>
                 </table>}
-                <br></br>
-
             </section>
             <section>
                 <h2>Muscular Strength & Endurance</h2>
                     {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : ''}
-                    <br></br>
                     {state.user.pushups && <PushupsTable />}
                 </section>
             <section>
