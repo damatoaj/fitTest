@@ -6,6 +6,14 @@ table {
     text-transform: capitalize;
 }
 
+table * {
+    text-align: center !important;
+}
+
+table h1, table h2, table h3, table h4, table h5, table h6 {
+    margin: 0;
+}
+
 table, thead, tbody, th, td {
     border: 1px solid black;
     padding: 4px 7px;
