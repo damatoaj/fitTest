@@ -26,7 +26,7 @@ const Home = () => {
                     The recommended order is: VO2 Max, flexibility, muscular strength, and then end with muscular endurance tests.
                 </p>
             </article>
-            <Link to='/parq'>Get Started</Link>
+            <Link to='/parq' style={{textAlign:'center'}}>Get Started</Link>
         </main>
     )
 }

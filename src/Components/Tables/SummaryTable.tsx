@@ -89,10 +89,6 @@ const SummaryTable = () => {
                 </table>}
                 {state.user.bmi?.bmi && <BMITable />}
                 <br></br>
-                <details>
-                    <summary>BMI Categories</summary>
-                    <BMIRiskTable />
-                </details>
                 <br></br>
                 {state.user.waistCircumference && <table>
                     <thead>
@@ -122,60 +118,28 @@ const SummaryTable = () => {
                         </tr>
                     </tbody>
                 </table>}
-                <details>
-                    <summary>Waist Circumference & Cardiovascular Risk</summary>
-                    <WaistCircumference />
-                </details>
                 <br></br>
 
             </section>
             <section>
                 <h2>Muscular Strength & Endurance</h2>
-                    {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : <h3>No Summary Yet</h3>}
-                    <details>
-                        <summary>Bench Press Categories</summary>
-                        <BenchPressCategories />
-                    </details>
+                    {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : ''}
                     <br></br>
-                    <details>
-                        <summary>Leg Press Categories</summary>
-                        <LegPressCategories />
-                    </details>
-                    <br></br>
-                    <details>
-                        <summary>Grip Strength Categories</summary>
-                        <GripStrengthCategories />
-                    </details>
-                    <br></br>
-
                     {state.user.pushups && <PushupsTable />}
-                    <details>
-                        <summary>Pushup Categories</summary>
-                        <PushupCategories />
-                    </details>
-                    <br></br>
-                    <details>
-                        <summary>VO2 Max Categories</summary>
-                        <VO2MaxCategories />
-                    </details>
                 </section>
             <section>
             <section>
                 <h2>Flexibility</h2>
-                <details>
-                    <summary>Sit & Reach Categories</summary>
-                    <SARCategories />
-                </details>
                 {state.user.sar && (
                     <SARTable />
                 )}
             </section>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
-                {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : <h3>No Summary Yet</h3>}
+                {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : ''}
             </section>
                 <section>
                     <h2>Micro Nutrition Recommendations From The FDA</h2>
-                    {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : <h3>No Summary Yet</h3>}
+                    {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : ''}
                 </section>
 
             {state.user?.fname !== null && (

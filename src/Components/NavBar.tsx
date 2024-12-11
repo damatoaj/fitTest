@@ -181,6 +181,9 @@ const NavBar = ({u} : NavBarProps) => {
                 <li className='light'>
                     <Link to='/sessions' onClick={handleNavigate}>Past Sessions</Link>
                 </li>
+                <li className='dark'>
+                    <Link to='/categories' onClick={handleNavigate}>Fitness Categories</Link>
+                </li>
             </ul>
         </nav>
     )

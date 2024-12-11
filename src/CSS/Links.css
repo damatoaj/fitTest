@@ -163,9 +163,6 @@ button[data-showhamburger="false"] {
         height: clamp(10px, 10rem, 40px);
     }
 
-    main {
-        padding-top: 100px;
-    }
 }
 
 @media screen and (max-width : 800px) {
@@ -202,4 +199,13 @@ button[data-showhamburger="false"] {
     ul[data-showAll="false"] {
         display: none;
     }
+
+    main {
+        padding-top: 100px;
+    }
+
+    main h1,main h2,main h3, main h4, main h5, main h6,main p {
+        text-align: left;
+        width:100%;
+    } 
 }
