@@ -2,7 +2,7 @@
 a {
     text-decoration: none;
     padding: clamp(3px, 1rem, 10px);
-    border: 2px solid var(--prm-lgt-blue);
+    border: none;
     background-color: var(--prm-lgt-blue);
     transition: all .3s ease-in-out;
 }
@@ -109,11 +109,43 @@ nav > ul > li {
 
 .light {
     background-color: var(--prm-lgt-blue);
+    margin:0;
+    padding:0;
+    max-height: 42px;
+    width: clamp(50px, 15%, 140px);
+}
+
+.light > a {
+    background-color: inherit;
+    color: inherit;
+    margin: 0;
+    height: 100%;
+    padding: 5%;
+    max-height: 42px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .dark {
     background-color: var(--prm-drk-blue);
+    margin:0;
     color: white;
+    padding:0;
+    max-height:42px;
+    width: clamp(50px, 15%, 140px);
+}
+.dark > a {
+    background-color: inherit;
+    color: inherit;
+    height: 100%;
+    padding: 5%;
+    margin: 0;
+    max-height:42px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width:inherit;
 }
 
 li.subnav {
@@ -124,14 +156,29 @@ li.subnav {
 
 .subnav button  {
     width: clamp(200px, 10%, 250px);
+    height: 100%;
+    border:none;
+    padding: 5%;
 }
 
 .subnav li  {
     width: clamp(200px, 10%, 250px);
+    margin: 0;
+    padding: 0;
 }
 
 .subnav > button {
     width: 160px;
+    margin:0;
+}
+
+.subnav {
+    margin:0;
+    padding:0;
+}
+
+.link {
+    width: clamp(50px, 15%, 140px);
 }
 
 button.link[data-active="false"] + * {
@@ -145,6 +192,15 @@ button.link[data-active="true"] + * {
 
 button[data-showhamburger="false"] {
     display: none;
+}
+
+ul {
+    width:100%;
+}
+
+a {
+    text-overflow: ellipsis;
+    text-wrap: 'nowrap';
 }
 
 @media screen and (min-width : 800px) {
@@ -163,11 +219,17 @@ button[data-showhamburger="false"] {
         height: clamp(10px, 10rem, 40px);
     }
 
+    nav > ul > li, nav > ul >button,
+    nav a {
+        padding: clamp(0px, 1%, 10px);
+        margin: clamp(0px, 1%, 10px);
+    }
+
 }
 
-@media screen and (max-width : 800px) {
+@media (max-width : 800px) {
     nav {
-        position: absolute;
+        position: relative;
         z-index: 10;
         display: flex;
         flex-direction: column;
@@ -175,19 +237,21 @@ button[data-showhamburger="false"] {
 
         /* left: -5%; */
         /* top: 5%; */
-        width: 100%;
+        /* width: 100%; */
         padding: 0;
         margin: 0;
     }
     nav > button {
         /* transform: rotate(90deg); */
         width: 160px;
-        height: 100px;
+        /* height: 100px; */
         opacity: .5;
         /* position: relative;
         top: -25px;
         margin: 0;
         left: 70px; */
+        overflow-wrap:break-all;
+        /* word-wrap: break-word; */
     }
     nav > ul {
         margin: 0;
@@ -200,12 +264,28 @@ button[data-showhamburger="false"] {
         display: none;
     }
 
-    main {
+    /* main {
         padding-top: 100px;
-    }
+    } */
 
     main h1,main h2,main h3, main h4, main h5, main h6,main p {
         text-align: left;
         width:100%;
     } 
+
+    header {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+
+      .dark,.light {
+        min-width:160px;
+        /* max-width:140px; */
+        height: auto;
+      }
+    
+      .logo {
+        width: 160px;
+        border-radius: 5%;
+      }
 }

@@ -6,7 +6,7 @@ button {
     max-width: 200px;
     border-width: 1px;
     border-style: solid;
-
+  text-wrap: nowrap;
 }
 
 button:hover {
@@ -100,4 +100,8 @@ button[type = button]:hover {
     content: '◀  ';
     font-size: 10px;
     margin: 5px;
+  }
+
+  button[data-showhamburger="true"] {
+    min-height:100px;
   }

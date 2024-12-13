@@ -58,6 +58,7 @@ function App() {
       {state.error && <Error message={state.error} />}
       {state.isLoading && <Loader />}
       {<NavBar u={state.user} />}
+
       {/* {window.innerWidth <= 600 && <MobileNav />} */}
         <Routes>
           <Route
