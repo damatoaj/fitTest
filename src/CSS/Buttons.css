@@ -6,7 +6,7 @@ button {
     max-width: 200px;
     border-width: 1px;
     border-style: solid;
-  text-wrap: nowrap;
+  text-wrap: wrap;
 }
 
 button:hover {
