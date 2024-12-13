@@ -23,6 +23,9 @@ const Home = () => {
                     Then navigate to the fitness test options. Follow the instructions, record your results, and we will tell you how well you do compared to your peers.
                 </p>
                 <p>
+                    As you fill out the forms, your results will be visible in the Current Session tab, and you can Save, Share, or Print your results!
+                </p>
+                <p>
                     The recommended order is: VO2 Max, flexibility, muscular strength, and then end with muscular endurance tests.
                 </p>
             </article>

@@ -128,11 +128,11 @@ const SummaryTable = () => {
                     <h2>Micro Nutrition Recommendations From The FDA</h2>
                     {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : ''}
                 </section>
-
+            {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>
             {state.user?.fname !== null && (
                 <section>
                     <h3>Want to save your session to compare for next time?</h3>
-                    <p>Clicking the "Save" button below will push your results into a cache that you can refer back to the next time you visit the site. That way, as long as you are using the same browser you can compare your previous performance to this session.
+                    <p>Clicking the "Save" button below will push your results into a cache that you can refer back to the next time you visit the site. That way, as long as you are using the same browser you can compare your previous performance to this session. You can view those results in the Previous Sessions tab.
                     </p>
                     <span>
                         <button type='button' onClick={()=> {
