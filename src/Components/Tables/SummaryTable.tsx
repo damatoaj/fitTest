@@ -128,7 +128,7 @@ const SummaryTable = () => {
                     <h2>Micro Nutrition Recommendations From The FDA</h2>
                     {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : ''}
                 </section>
-            {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>
+            {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>}
             {state.user?.fname !== null && (
                 <section>
                     <h3>Want to save your session to compare for next time?</h3>
