@@ -100,7 +100,7 @@ const useForm = (url?:string) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
-            if (data.inches.length > 0 && data.inches.length > 0) await  await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseInt(data.inches)});
+            if (data.inches.length > 0 && data.inches.length > 0) await  await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseFloat(data.inches)});
             if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
@@ -122,7 +122,7 @@ const useForm = (url?:string) => {
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
-            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseInt(data.waistCircumference) : Math.round(parseInt(data.waistCircumference) / 2.54 * 100) / 100 })
+            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) / 2.54 * 100) / 100 })
             if (url) navigate(url);
         } catch (e:any) {
             const error = e.message;

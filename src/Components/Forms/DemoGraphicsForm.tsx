@@ -119,6 +119,7 @@ function DemoGraphicsForm() {
             <select 
                 id='feet' 
                 name='feet'
+                onChange={handleChange}
                 required
             >
                 <option value='3'>3</option>
@@ -132,6 +133,7 @@ function DemoGraphicsForm() {
             <select
                 id='inches'
                 name='inches'
+                onChange={handleChange}
                 required
             >
                 <option value='0'>0</option>
