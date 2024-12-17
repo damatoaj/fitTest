@@ -226,6 +226,10 @@ fieldset:has(select:required:empty) legend::after {
     margin-right: 5px;
 }
 
+#metric-switcher {
+    max-width: 165px;
+}
+
 @media screen and (max-width:400px) {
     form {
         width:100%;

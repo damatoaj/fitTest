@@ -5,8 +5,8 @@ const MetricSwitcher = () => {
     const { handleChangeMetric } = useMetric();
 
     return (
-        <fieldset>
-            <legend>Do you prefer metric or imperial?</legend>
+        <fieldset id='metric-switcher'>
+            <legend>Metric or Imperial?</legend>
             <select name='prefers_metric' onChange={handleChangeMetric}>
                 <option value="true" defaultChecked={true}>Metric</option>
                 <option value="false">Imperial</option>
