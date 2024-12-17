@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import useMetric from '../Hooks/useMetric';
-
+import { useUserContext } from '../Hooks/useUserContext';
 const MetricSwitcher = () => {
-    const { handleChangeMetric, metric } = useMetric();
-
+    const { handleChangeMetric } = useMetric();
+    const { state : {user } } = useUserContext()
     return (
         <fieldset id='metric-switcher'>
             <legend>Metric or Imperial?</legend>
-            {metric === true ?
+            {user.prefers_metric === true ?
                 <select name='prefers_metric' onChange={handleChangeMetric}>               
                 <option value="true" defaultChecked={true}>Metric</option>
                 <option value="false">Imperial</option>
