@@ -9,7 +9,14 @@ const WaistCircumferenceForm = () => {
     
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
-    }
+    };
+
+    let defaultValue : string = '';
+    if (user.waistCircumference && user.prefers_metric) {
+        defaultValue = String(user.waistCircumference.wc);
+    } else if (user.waistCircumference) {
+        defaultValue = String(user.waistCircumference.wc / 2.54);
+    };
 
     return (
         <form
@@ -27,12 +34,12 @@ const WaistCircumferenceForm = () => {
                     name='waistCircumference'
                     min='0'
                     max='500' 
-                    placeholder='Measured in centimeters'
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
                     autoFocus={true}
                     step={.5}
                     maxLength={3}
                     required
-                    defaultValue={user.waistCircumference?.wc || ''}
+                    defaultValue={defaultValue}
                 />
             </fieldset>
             <span>

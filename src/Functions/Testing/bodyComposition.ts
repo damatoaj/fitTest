@@ -1,4 +1,4 @@
-import { Sex, BMI, BMIClassifications, WaistCircumferenceCategory, BodyCompCategory, WaistCircumference } from "../../interfaces";
+import { Sex, BMI, BMIClassifications, BodyCompCategory, WaistCircumference } from "../../interfaces";
 
 const calculateBMI = (weight:number, height:number) => {
     //this equation assumes that weight (kg), height (m)

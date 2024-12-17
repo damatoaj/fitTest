@@ -12,6 +12,13 @@ const SitAndReachForm = () => {
         valid = form.current.checkValidity()
     }
 
+    let defaultValue : string = '';
+    if (user.sar && user.prefers_metric) {
+        defaultValue = String(user.sar.value);
+    } else if (user.sar) {
+        defaultValue = String(user.sar.value / 2.54);
+    };
+
     return (
         <form
             ref={form}
@@ -28,12 +35,12 @@ const SitAndReachForm = () => {
                     name='sar'
                     min='0'
                     max='30' 
-                    placeholder='Measured in Inches'
+                    placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured in Inches'}
                     autoFocus={true}
                     step={.5}
                     maxLength={2}
                     required
-                    defaultValue={user.sar?.value || ''}
+                    defaultValue={defaultValue}
                 />
             </fieldset>
             {user.age && user.sex ? 

@@ -12,6 +12,13 @@ const BenchPressForm = () => {
         valid = form.current.checkValidity()
     }
 
+    let defaultValue : string = '';
+    if (user.benchPress && user.prefers_metric) {
+        defaultValue = String(user.benchPress.benchPress);
+    } else if (user.benchPress) {
+        defaultValue = String(user.benchPress.benchPress * 2.2);
+    };
+
     return (
         <form
             ref={form}
@@ -28,12 +35,12 @@ const BenchPressForm = () => {
                     name='benchPress'
                     min='0'
                     max='2000' 
-                    placeholder='Measured in Pounds'
+                    placeholder={user.prefers_metric ? 'Measured in Kiligrams' :'Measured in Pounds'}
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
                     required
-                    defaultValue={user.benchPress?.benchPress || ''}
+                    defaultValue={defaultValue}
                 />
             </fieldset>
             <span>

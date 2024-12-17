@@ -26,15 +26,16 @@ type Data = {
 
 const useForm = (url?:string) => {
     const navigate : Function = useNavigate()
+    const { state : {user } } = useUserContext()
     const { dispatch} = useUserContext()
     const [data, setData] = useState<Data>({
         age: '',
         activityLevel: '',
         benchPress:'',
-        currentWeight: '', //pounds
+        currentWeight: '',
         fname:'',
-        goalWeight: '', //pounds
-        height: '', //inches
+        goalWeight: '',
+        height: '',
         leftHand:'',
         legPress:'',
         lname:'',
@@ -45,7 +46,7 @@ const useForm = (url?:string) => {
         sbp : '',
         dbp : '',
         waistCircumference: '',
-        sar : '' //inches
+        sar : ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -93,28 +94,28 @@ const useForm = (url?:string) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
-            if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar) * 2.54})
+            if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
             if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});
-            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: Math.round(parseInt(data.benchPress))});
-            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: parseInt(data.currentWeight)});
+            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: user.prefers_metric ? Math.round(parseInt(data.benchPress)) : Math.round(parseInt(data.benchPress) / 2.2) });
+            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: user.prefers_metric ? parseInt(data.currentWeight) : parseInt(data.currentWeight)/2.2 });
             if (data.fname.length > 0 && data.lname.length > 0) {
                 let f = validateName(data.fname);
                 let l = validateName(data.lname);
                 await dispatch({type: 'UPDATE_NAME', payload: {fname:f,lname:l}});
             };
-            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload:data.goalWeight});
-            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.height)});
-            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2)});
-            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: Math.round(parseInt(data.legPress))});
+            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload: user.prefers_metric ? parseInt(data.goalWeight) : parseInt(data.goalWeight) / 2.2 });
+            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: user.prefers_metric ? parseInt(data.height) : Math.round(parseInt(data.height) / 2.54 * 100 ) / 100});
+            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: user.prefers_metric ?  Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2) : (Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2)) / 2.2 });
+            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: user.prefers_metric ? Math.round(parseInt(data.legPress)) : Math.round(parseInt(data.legPress)) / 2.2});
             if (data.sex.length > 0) {
                 const sex = validateSex(data.sex);
                 await dispatch({type:'UPDATE_SEX', payload: sex});
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
-            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: parseInt(data.waistCircumference)})
+            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseInt(data.waistCircumference) : Math.round(parseInt(data.waistCircumference) / 2.54 * 100) / 100 })
             if (url) navigate(url);
         } catch (e:any) {
             const error = e.message;

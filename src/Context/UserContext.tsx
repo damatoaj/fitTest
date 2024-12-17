@@ -6,7 +6,6 @@ import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, men
 import { astrandEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
 import { 
     validateAge, 
-    validateHeight, 
     validateCurrentWeight, 
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
@@ -41,7 +40,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     vo2Max: null,
     bloodPressure : null,
     waistCircumference : null,
-    sar : null
+    sar : null,
+    prefers_metric: true
 };
 
 type State = {
@@ -71,6 +71,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_BLOOD_PRESSURE', payload: [number, number]}
     | {type: 'UPDATE_WAIST', payload: number}
     | {type : 'UPDATE_SAR', payload: number}
+    | {type : 'UPDATE_METRIC', payload : boolean}
 
 const initialState = {
     user: initialUser,
@@ -167,7 +168,7 @@ export const userReducer = (state : State, action: Action) => {
             sessionStorage.setItem('user', JSON.stringify( {...state.user, age}));
             return {error:null, isLoading: false, user: {...state.user, age}}
         case 'UPDATE_HEIGHT':
-            const height = validateHeight(payload)
+            const height = payload;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, height}));
             return {error: null, isLoading: false, user: {...state.user, height}}
         case 'UPDATE_GOAL_WEIGHT':
@@ -199,6 +200,9 @@ export const userReducer = (state : State, action: Action) => {
 
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             }
+        case 'UPDATE_METRIC':
+            console.log(payload, '<----- update metric')
+            return {error:null, isLoading:false, user: {...state.user, prefers_metric: payload}}
         case 'UPDATE_UID':
             return {error: null, isLoading:false, user:{...state.user, uid: Math.floor(Math.random() * Date.now()) }}
         case 'ERROR':
@@ -220,9 +224,14 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState);
     
     const bmi : BMI | null = useMemo(()=> {
-        if (state.user.height && state.user.currentWeight) {
+        if (state.user.height && state.user.currentWeight && state.user.prefers_metric === false) {
             sessionStorage.setItem('user', JSON.stringify({...state.user, bmi : calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)))}));
             return calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)));
+        }
+
+        if (state.user.height && state.user.currentWeight && state.user.prefers_metric === true) {
+            sessionStorage.setItem('user', JSON.stringify({...state.user, bmi : calculateBMI(state.user.currentWeight, cmToM(state.user.height))}));
+            return calculateBMI(state.user.currentWeight, cmToM(state.user.height));
         }
         return null
     }, [state.user.height, state.user.currentWeight]);
@@ -244,9 +253,21 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             && state.user.currentWeight
             && state.user.height
             && state.user.activityLevel
-            && bodyWeightGoal) {
+            && bodyWeightGoal
+            && state.user.prefers_metric === false) {
             sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)}));
             return calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal);
+        }
+
+        if (state.user.age 
+            && state.user.sex 
+            && state.user.currentWeight
+            && state.user.height
+            && state.user.activityLevel
+            && bodyWeightGoal
+            && state.user.prefers_metric) {
+            sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
         }
         return null;
     }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height]);

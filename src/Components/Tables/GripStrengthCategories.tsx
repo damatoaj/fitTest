@@ -1,5 +1,6 @@
-import { memo } from 'react'
+import { memo } from 'react';
 const GripStrengthCategories = () => {
+
     if (window.innerWidth > 460) {
         return (
             <table>

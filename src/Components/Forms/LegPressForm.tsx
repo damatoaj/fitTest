@@ -16,9 +16,16 @@ const LegPressForm = () => {
     let valid : boolean = Boolean(user.legPress?.legPress) || false
     let message : string = ''
     if (form.current && form.current !== null) {
-        valid = form.current.checkValidity()
+        valid = form.current.checkValidity();
         if(input.current) {message = checkInput(input.current)}
-    }
+    };
+
+    let defaultValue : string = '';
+    if (user.legPress && user.prefers_metric) {
+        defaultValue = String(user.legPress?.legPress);
+    } else if (user.legPress) {
+        defaultValue = String(user.legPress.legPress * 2.2);
+    };
 
     return (
         <form
@@ -37,11 +44,11 @@ const LegPressForm = () => {
                     name='legPress'
                     min='1'
                     max='2000'
-                    placeholder='Measured in Pounds'
+                    placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured in Pounds'}
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
-                    defaultValue={user.legPress?.legPress || '' }
+                    defaultValue={defaultValue}
                 />
             </fieldset>
             <div className='message-container'>

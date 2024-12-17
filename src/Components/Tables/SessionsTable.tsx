@@ -1,11 +1,12 @@
 import { useState, memo, useEffect } from 'react';
 import { getStoreData, initDB } from '../../indexedDB';
+import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
 
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
     const [dbReady, setDbReady] = useState<boolean>(false);
-
+    const { state : {user} } = useUserContext();
     useEffect(() => {
         initDB(2)
         .then((e)=> {
@@ -41,22 +42,22 @@ const SessionsTable = () => {
                         <th>Time Stamp</th>
                         <th>Date (YYYY-MM-DD)</th>
                         <th>Name</th>
-                        <th>Age (Yrs)</th>
+                        <th>Age (YRS)</th>
                         <th>Sex</th>
-                        <th>Height (In)</th>
+                        {user.prefers_metric ? <th>Height (CM)</th> : <th>Height (IN)</th>}
                         <th>Blood Pressure</th>
-                        <th>Current Weight (lbs)</th>
-                        <th>Goal Weight (lbs)</th>
+                        {user.prefers_metric ? <th>Current Weight (KG)</th> :<th>Current Weight (LBS)</th>} 
+                        {user.prefers_metric ? <th>Goal Weight (KG)</th> : <th>Goal Weight (LBS)</th>}
                         <th>BMI</th>
-                        <th>Waist Circumference (In)</th>
+                        {user.prefers_metric ? <th>Waist Circumference (CM)</th> : <th>Waist Circumference (IN)</th>}
                         <th>Max Heart Rate</th>
                         <th>Activity Level</th>
                         <th>VO2 Max</th>
                         <th>Pushups</th>
-                        <th>Bench Press (lbs)</th>
-                        <th>Leg Press (lbs)</th>
-                        <th>Grip Strength (lbs)</th>
-                        <th>Sit & Reach (cm)</th>
+                        {user.prefers_metric ? <th>Bench Press (KG)</th> : <th>Bench Press (LBS)</th> }
+                        {user.prefers_metric  ? <th>Leg Press (KG)</th> : <th>Leg Press (LBS)</th>}
+                        {user.prefers_metric ? <th>Grip Strength (KG)</th> : <th>Grip Strength (LBS)</th>}
+                        {user.prefers_metric ? <th>Sit & Reach (CM)</th> : <th>Sit & Reach (IN)</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -67,20 +68,20 @@ const SessionsTable = () => {
                             <td>{session.name || '-'}</td>
                             <td>{session.age || '-'}</td>
                             <td>{session.sex || '-'}</td>
-                            <td>{session.height || '-'}</td>
+                            {user.prefers_metric ? <td>{session.height || '-'}</td> : <td>{session.height / 2.54 || '-'}</td>}
                             <td>{session.systolic_blood_pressure && session.diastolic_blood_pressure ? `${session.systolic_blood_pressure} / ${session.diastolic_blood_pressure}` : '-'}</td>
-                            <td>{session.current_weight || '-'}</td>
-                            <td>{session.goal_weight || '-'}</td>
+                            {user.prefers_metric ? <td>{session.current_weight || '-'}</td> : <td>{session.current_weight * 2.2 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.goal_weight || '-'}</td> : <td>{session.goal_weight * 2.2 || '-'}</td>}
                             <td>{session.bmi || '-'}</td>
-                            <td>{session.waist_circumference || '-'}</td>
+                            {user.prefers_metric ? <td>{session.waist_circumference || '-'}</td> : <td>{session.waist_circumference / 2.54 || '-'}</td>}
                             <td>{session.max_heart_rate || '-'}</td>
                             <td>{session.activity_level || '-'}</td>
                             <td>{session.vo2_max || '-'}</td>
                             <td>{session.pushups || '-'}</td>
-                            <td>{session.bench_press || '-'}</td>
-                            <td>{session.leg_press || '-'}</td>
-                            <td>{session.grip_strength || '-'}</td>
-                            <td>{session.sit_and_reach || '-'}</td>
+                            {user.prefers_metric ? <td>{session.bench_press || '-'}</td> : <td>{session.bench_press * 2.2 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.leg_press || '-'}</td> : <td>{session.leg_press * 2.2|| '-'}</td>}
+                            {user.prefers_metric ? <td>{session.grip_strength || '-'}</td> : <td>{session.grip_strength * 2.2 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.sit_and_reach || '-'}</td> : <td>{session.sit_and_reach / 2.54 || '-'}</td>}
                         </tr>
                     )})}
                 </tbody>

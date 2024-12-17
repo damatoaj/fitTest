@@ -10,6 +10,20 @@ const StrengthForm = () => {
         valid = form.current.checkValidity()
     }
 
+    let defaultBench : string = '';
+    if (state.user.benchPress && state.user.prefers_metric) {
+        defaultBench = String(state.user.benchPress.benchPress);
+    } else if (state.user.benchPress) {
+        defaultBench = String(state.user.benchPress.benchPress * 2.2);
+    };
+
+    let defaultLeg : string = '';
+    if (state.user.legPress && state.user.prefers_metric) {
+        defaultLeg = String(state.user.legPress.legPress);
+    } else if (state.user.legPress) {
+        defaultLeg = String(state.user.legPress.legPress * 2.2);
+    };
+
     return (
         <form
             ref={form}
@@ -64,8 +78,8 @@ const StrengthForm = () => {
                     name='legPress'
                     min='0'
                     max='2000'
-                    placeholder='Lbs'
-                    defaultValue={state.user.legPress?.legPress || ''}
+                    placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
+                    defaultValue={defaultLeg}
                     autoFocus
                 />
             </fieldset>
@@ -77,8 +91,8 @@ const StrengthForm = () => {
                     name='benchPress'
                     min='0'
                     max='2000' 
-                    placeholder='Lbs'
-                    defaultValue={state.user.benchPress?.benchPress || ''}
+                    placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
+                    defaultValue={defaultBench}
                 />
             </fieldset>
             <fieldset>
@@ -92,7 +106,7 @@ const StrengthForm = () => {
                         name='leftHand'
                         min='0'
                         max='2000'
-                        placeholder='Lbs'
+                        placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                         defaultValue={''}
                     />
                 <label htmlFor='rightHand'>
@@ -104,7 +118,7 @@ const StrengthForm = () => {
                         name='rightHand'
                         min='0'
                         max='2000'
-                        placeholder='Lbs'
+                        placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                         defaultValue={''}
                     />
             </fieldset>

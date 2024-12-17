@@ -85,6 +85,7 @@ interface User {
     bloodPressure : BloodPressure | null;
     waistCircumference: WaistCircumference | null;
     sar : SitAndReach | null;
+    prefers_metric : Boolean;
 }
 
 type UserKeys = keyof User;

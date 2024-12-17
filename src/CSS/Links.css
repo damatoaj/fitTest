@@ -162,7 +162,6 @@ li.subnav {
 }
 
 .subnav li  {
-    width: clamp(200px, 10%, 250px);
     margin: 0;
     padding: 0;
 }

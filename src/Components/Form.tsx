@@ -12,6 +12,13 @@ const Form = () => {
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
     }
+
+    let defaultValue : string = '';
+    if (user.prefers_metric && user.goalWeight) {
+        defaultValue = String(user.goalWeight)
+    } else if (user.goalWeight && user.prefers_metric === false) {
+        defaultValue = String(user.goalWeight * 2.2)
+    };
     return (
         <form
             onSubmit={(e)=>handleSubmit(e)}
@@ -20,7 +27,9 @@ const Form = () => {
         >
             <h2>Calculate Your Basal Metabolic Rate</h2>
             <fieldset>
-                <legend>Goal Weight in Pounds</legend>
+                <legend>
+                    {user.prefers_metric ? 'Goal Weight in Kilograms' : 'Goal Weight in Pounds'}
+                </legend>
                 <input 
                     autoFocus={true}
                     type='number' 
@@ -31,7 +40,7 @@ const Form = () => {
                     required
                     step={.5}
                     maxLength={6}
-                    defaultValue={user.goalWeight || ''}
+                    defaultValue={defaultValue}
                 />
             </fieldset>
             <fieldset>

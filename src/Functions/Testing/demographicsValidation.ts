@@ -6,7 +6,7 @@ const validateAge = (age:number) => {
 
 const validateHeight = (height:number) => {
     //assumes inches
-    if (height < 36 || height >= 96) throw new RangeError('Height is Outside of Bounds')
+    if (height < 36 || height >= 274) throw new RangeError('Height is Outside of Bounds')
     if (typeof height !== 'number') return parseFloat(height)
     return height
 }

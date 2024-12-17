@@ -1,17 +1,30 @@
 import { useRef, memo } from 'react';
 import useForm from '../../Hooks/useForm';
 import { useUserContext } from '../../Hooks/useUserContext';
-
-
+import MetricSwitcher from '../MetricSwitcher';
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange,handleSubmit,handleSelect, handleReset} = useForm();
-    const { state : { user } } = useUserContext()
+    const { state : { user } } = useUserContext();
     let valid : boolean = Boolean(user.age && user.fname && user.lname && user.sex && user.height && user.currentWeight) || false
     
     if (form?.current !== null) {
         valid = form.current.checkValidity()
     }
+
+    let defaultWeight : string = '';
+    if (user.currentWeight && user.prefers_metric) {
+        defaultWeight = String(user.currentWeight);
+    } else if (user.currentWeight) {
+        defaultWeight = String(user.currentWeight * 2.2);
+    };
+
+    let defaultHeight : string = '';
+    if (user.height && user.prefers_metric) {
+        defaultHeight = String(user.height);
+    } else if (user.height) {
+        defaultHeight = String(user.height / 2.54);
+    };
 
   return (
     <form 
@@ -19,7 +32,10 @@ function DemoGraphicsForm() {
         onSubmit={handleSubmit}
         onReset={handleReset}
     >
-        <h2>Your Demographics</h2>
+        <span>
+            <h2>Your Demographics</h2>
+            <MetricSwitcher />
+        </span>
         <fieldset>
             <legend>First Name</legend>
             <input 
@@ -74,8 +90,8 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={.5}
                 maxLength={7}
-                defaultValue={user.currentWeight || ''}
-                placeholder='Measured In Pounds'
+                defaultValue={defaultWeight}
+                placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured In Pounds'}
                 title="Range is 50 to 450"
             />
         </fieldset>
@@ -86,13 +102,13 @@ function DemoGraphicsForm() {
                 type='number'
                 name='height'
                 min='50'
-                max='108'
+                max='250'
                 required
                 onChange={handleChange}
                 step={.5}
                 maxLength={6}
-                defaultValue={user.height || ''}
-                placeholder='Measured In Inches'
+                defaultValue={defaultHeight}
+                placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured In Inches'}
                 title="Range is 50 to 108"
             />
         </fieldset>

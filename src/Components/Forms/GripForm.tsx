@@ -3,12 +3,12 @@ import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext';
 const GripForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
-    const form = useRef<HTMLFormElement | null>(null)
-    const { state : {user } } = useUserContext()
-    let valid : boolean = false
+    const form = useRef<HTMLFormElement | null>(null);
+    const { state : {user } } = useUserContext();
+    let valid : boolean = false;
     if (form.current && form.current !== null) {
         valid = form.current.checkValidity()
-    }
+    };
 
     return (
         <form

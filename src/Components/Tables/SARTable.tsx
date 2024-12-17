@@ -13,7 +13,7 @@ const SARTable = () => {
             <tbody>
                 <tr>
                     <td>
-                        Distance in CM
+                        {user.prefers_metric ? 'Distance in CM' : 'Disctance in IN' }
                     </td>
                     <td>
                         Category
@@ -21,7 +21,11 @@ const SARTable = () => {
                 </tr>
                 <tr>
                     <td>
-                        {user?.sar?.value || ''}
+                        {user.prefers_metric ? 
+                        user?.sar?.value || ''
+                        :
+                        user?.sar?.value ? user?.sar?.value / 2.54 : ''
+                        }
                     </td>
                     <td>
                         {user?.sar?.category || ''}

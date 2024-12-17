@@ -1,5 +1,8 @@
-import { memo } from 'react'
+import { memo } from 'react';
+import { useUserContext } from '../../Hooks/useUserContext';
 const LegPressCategories = () => {
+    const { state : {user} } = useUserContext()
+    
     return (
         <table>
             <thead>
@@ -12,7 +15,11 @@ const LegPressCategories = () => {
                     <th colSpan={8}>
                         <h3>
                             <strong>
-                                Leg Press Weight Ratio = weight pushed in lbs / body weight in lbs
+                                {user.prefers_metric ? 
+                                'Leg Press Weight Ratio = weight pushed in KG / body weight in KG' 
+                                : 
+                                'Leg Press Weight Ratio = weight pushed in LBS / body weight in LBS'
+                                }
                             </strong>
                         </h3>
                     </th>
