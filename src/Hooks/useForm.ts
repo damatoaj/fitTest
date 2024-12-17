@@ -21,7 +21,9 @@ type Data = {
     sbp : string,
     dbp : string,
     waistCircumference : string,
-    sar : string
+    sar : string,
+    feet : string,
+    inches : string
 }
 
 const useForm = (url?:string) => {
@@ -43,10 +45,12 @@ const useForm = (url?:string) => {
         rightHand:'',
         sex: '',
         vo2Max: '',
-        sbp : '',
-        dbp : '',
+        sbp: '',
+        dbp: '',
         waistCircumference: '',
-        sar : ''
+        sar: '',
+        feet: '',
+        inches: ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +84,9 @@ const useForm = (url?:string) => {
             sbp : '',
             dbp : '',
             waistCircumference: '',
-            sar : ''
+            sar : '',
+            inches: '',
+            feet: ''
         }}) 
     }
 
@@ -94,6 +100,7 @@ const useForm = (url?:string) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
+            if (data.inches.length > 0 && data.inches.length > 0) await  await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseInt(data.inches)});
             if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});

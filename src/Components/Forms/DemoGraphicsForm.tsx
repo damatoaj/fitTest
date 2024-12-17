@@ -95,23 +95,73 @@ function DemoGraphicsForm() {
                 title="Range is 50 to 450"
             />
         </fieldset>
-        <fieldset>
+        {user.prefers_metric ? 
+            <fieldset>
+                <legend>Height</legend>
+                <input 
+                    data-title='In Centimeters'
+                    type='number'
+                    name='height'
+                    min='50'
+                    max='250'
+                    required
+                    onChange={handleChange}
+                    step={.5}
+                    maxLength={6}
+                    defaultValue={defaultHeight}
+                    placeholder={'Measured in centimeters'}
+                    title="Range is 50 to 300"
+                />
+            </fieldset>
+            :
+            <fieldset>
             <legend>Height</legend>
-            <input 
-                data-title='In Inches'
-                type='number'
-                name='height'
-                min='50'
-                max='250'
+            <select 
+                id='feet' 
+                name='feet'
                 required
-                onChange={handleChange}
-                step={.5}
-                maxLength={6}
-                defaultValue={defaultHeight}
-                placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured In Inches'}
-                title="Range is 50 to 108"
-            />
+            >
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+                <option value='6'>6</option>
+                <option value='7'>7</option>
+            </select>
+            <label htmlFor='feet' style={{marginRight : '15px', marginLeft: '10px'}}>Feet</label>
+
+            <select
+                id='inches'
+                name='inches'
+                required
+            >
+                <option value='0'>0</option>
+                <option value='.5'>.5</option>
+                <option value='1'>1</option>
+                <option value='1.5'>1.5</option>
+                <option value='2'>2</option>
+                <option value='2.5'>2.5</option>
+                <option value='3'>3</option>
+                <option value='3.5'>3.5</option>
+                <option value='4'>4</option>
+                <option value='4.5'>4.5</option>
+                <option value='5'>5</option>
+                <option value='5.5'>5.5</option>
+                <option value='6'>6</option>
+                <option value='6.5'>6.5</option>
+                <option value='7'>7</option>
+                <option value='7.5'>7.5</option>
+                <option value='8'>8</option>
+                <option value='8.5'>8.5</option>
+                <option value='9'>9</option>
+                <option value='9.5'>9.5</option>
+                <option value='10'>10</option>
+                <option value='10.5'>10.5</option>
+                <option value='11'>11</option>
+                <option value='11.5'>11.5</option>
+            </select>
+            <label htmlFor='inches'  style={{marginLeft: '10px'}}>Inches</label>
         </fieldset>
+        }
         <fieldset>
         <legend>Sex</legend>
         <select
