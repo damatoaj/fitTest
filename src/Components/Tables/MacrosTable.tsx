@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Macros } from '../../interfaces';
 
 type Props = {
-    macros : Macros
+    macros : Macros | null
 };
 
 const MacrosTable = ({macros} : Props) => {
@@ -10,13 +10,22 @@ const MacrosTable = ({macros} : Props) => {
         return(
             <table>
                 <thead>
-                    <tr>
-                        <th>Macro Nutrients</th>
+                    <tr >
+                        <th colSpan={2}>Macro Nutrients</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>No Data</td>
+                        <td>Carbohydrates</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Fats</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Protein</td>
+                        <td>-</td>
                     </tr>
                 </tbody>
             </table>

@@ -7,7 +7,8 @@ import BMITable from "./BMITable";
 import { printTable } from "../../Functions/printTable";
 import { addData } from "../../indexedDB";
 import SARTable from "./SARTable";
-
+import DemographicTable from "./DemographicTable";
+import WaistTable from "./WaistTable";
 const SummaryTable = () => {
     const { state } = useUserContext();
     const date : number = new Date().getDate();
@@ -49,84 +50,32 @@ const SummaryTable = () => {
     };
     return (
         <main >
-            <h1>Your Fitness Summary on 
+            <h1>
+                {state.user.fname ? `${state.user.fname} ${state.user.lname}'s ` : 'Your '}
+                Fitness Summary on 
                 <time dateTime={today}> {date}, {month}, {year}</time>
             </h1>
             <section>
-            <h2>Demographic Data</h2>
-                {state.user.hrMax && <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                <strong>Heart Rate Max</strong>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>{state.user.hrMax}</td></tr>
-                    </tbody>
-                </table>}
-                {state.user.bloodPressure && <table>
-                    <thead>
-                        <tr>
-                            <th colSpan={2}>
-                                <strong>Blood Pressure</strong>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
-                        <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
-                    </tbody>
-                </table>}
-                {state.user.bmi?.bmi && <BMITable />}
-                {state.user.waistCircumference && <table>
-                    <thead>
-                        <tr>
-                            <th colSpan={2}>
-                                <strong>Waist Circumference Risk Category</strong>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {'Circumference (cm)'}
-                            </td>
-                            <td>
-                                {'Category'}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                {state.user.waistCircumference.wc}
-                            </td>
-                            <td>
-                                {state.user.waistCircumference.category}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>}
+                <DemographicTable />
+                <BMITable />
+                <WaistTable />
             </section>
             <section>
                 <h2>Muscular Strength & Endurance</h2>
-                    {(state.user.benchPress || state.user.legPress || state.user.gripStrength) ? <StrengthTable /> : ''}
-                    {state.user.pushups && <PushupsTable />}
+                    <StrengthTable />
+                    <PushupsTable />
                 </section>
             <section>
             <section>
                 <h2>Flexibility</h2>
-                {state.user.sar && (
-                    <SARTable />
-                )}
+                <SARTable />
             </section>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
-                {state.user.macros ? <MacrosTable  macros={state.user.macros} /> : ''}
+                <MacrosTable  macros={state.user.macros} />
             </section>
                 <section>
                     <h2>Micro Nutrition Recommendations From The FDA</h2>
-                    {state.user.micros ? <MicrosTable  micros={state.user.micros}/>  : ''}
+                    <MicrosTable  micros={state.user.micros}/> 
                 </section>
             {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>}
             {state.user?.fname !== null && (

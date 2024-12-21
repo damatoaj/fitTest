@@ -34,7 +34,7 @@ function DemoGraphicsForm() {
     >
         <span>
             <h2>Your Demographics</h2>
-            <MetricSwitcher />
+            <MetricSwitcher prefers_metric={user.prefers_metric} />
         </span>
         <fieldset>
             <legend>First Name</legend>

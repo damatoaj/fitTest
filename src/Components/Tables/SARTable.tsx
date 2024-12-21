@@ -22,13 +22,13 @@ const SARTable = () => {
                 <tr>
                     <td>
                         {user.prefers_metric ? 
-                        user?.sar?.value || ''
+                        user?.sar?.value || '-'
                         :
-                        user?.sar?.value ? user?.sar?.value / 2.54 : ''
+                        user?.sar?.value ? Math.round(user?.sar?.value / 2.54 * 100) / 100 : ''
                         }
                     </td>
                     <td>
-                        {user?.sar?.category || ''}
+                        {user?.sar?.category || '-'}
                     </td>
                 </tr>
             </tbody>

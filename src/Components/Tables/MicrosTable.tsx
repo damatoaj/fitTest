@@ -2,10 +2,136 @@ import {memo} from 'react';
 import {Micros} from '../../interfaces';
 
 type Props = {
-    micros: Micros
+    micros: Micros | null
 };
 
 const MicrosTable = ({micros}:Props) => {
+    if (!micros) return (
+        <>
+        <table>
+        <thead>
+            <tr>
+                <th colSpan={3}>Fat Soluble Vitamins</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Amount</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Vitamin A</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Vitamin D</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Vitamin E</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Vitamin K</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th colSpan={3}>Water Soluble Vitamins</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Amount</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Vitamin C</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Vitamin B6</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Vitamin B12</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Folate</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Riboflavin</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th colSpan={3}>Minerals</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Amount</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Calcium</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Chromium</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Iodine</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Iron</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Magnesium</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Selenium</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Zinc</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    </>
+    )
     return (
         <>
             <table>

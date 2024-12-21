@@ -8,15 +8,17 @@ const PushupsTable = () => {
                 <tr>
                     <th colSpan={2}>Pushup Test</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <th>Category: </th>
-                    <th>{user.pushups?.category ? user.pushups.category : ''}</th>
+                    <th>{user.pushups?.category ? user.pushups.category : '-'}</th>
                 </tr>
                 <tr>
                     <th>Repetitions: </th>
-                    <th>{user.pushups?.pushups ? user.pushups.pushups : ''}</th>
+                    <th>{user.pushups?.pushups ? user.pushups.pushups : '-'}</th>
                 </tr>
-            </thead>
+            </tbody>
         </table>
     )
 }

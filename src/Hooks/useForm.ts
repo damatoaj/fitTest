@@ -112,10 +112,10 @@ const useForm = (url?:string) => {
                 let l = validateName(data.lname);
                 await dispatch({type: 'UPDATE_NAME', payload: {fname:f,lname:l}});
             };
-            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload: user.prefers_metric ? parseInt(data.goalWeight) : parseInt(data.goalWeight) / 2.2 });
-            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: user.prefers_metric ? parseInt(data.height) : Math.round(parseInt(data.height) / 2.54 * 100 ) / 100});
-            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: user.prefers_metric ?  Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2) : (Math.round((parseInt(data.leftHand) + parseInt(data.rightHand))/2)) / 2.2 });
-            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: user.prefers_metric ? Math.round(parseInt(data.legPress)) : Math.round(parseInt(data.legPress)) / 2.2});
+            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload: user.prefers_metric ? parseFloat(data.goalWeight) : Math.round(parseFloat(data.goalWeight) / 2.2 * 100 ) / 100 });
+            if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: user.prefers_metric ? parseFloat(data.height) : Math.round(parseFloat(data.height) / 2.54 * 100 ) / 100 });
+            if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: user.prefers_metric ?  Math.round((parseFloat(data.leftHand) + parseFloat(data.rightHand)) / 2 ) : (Math.round((parseFloat(data.leftHand) + parseFloat(data.rightHand)) / 2 / 2.2 * 100)) / 100 });
+            if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: user.prefers_metric ? Math.round(parseFloat(data.legPress)) : Math.round(parseFloat(data.legPress) / 2.2 * 100) / 100 });
             if (data.sex.length > 0) {
                 const sex = validateSex(data.sex);
                 await dispatch({type:'UPDATE_SEX', payload: sex});

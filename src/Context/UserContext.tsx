@@ -9,7 +9,7 @@ import {
     validateCurrentWeight, 
     validateGoalWeight 
 } from "../Functions/Testing/demographicsValidation";
-import { poundsToKg,inchesToCm, cmToM } from "../Functions/Conversions";
+import { cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
 import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
@@ -139,11 +139,11 @@ export const userReducer = (state : State, action: Action) => {
             }
         case 'UPDATE_GRIP_STRENGTH':
             if (state.user.sex === 'MALE' && state.user.age) {
-                const gripStrength = menGripStrength(state.user.age, poundsToKg(payload))
+                const gripStrength = menGripStrength(state.user.age, payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, gripStrength}));
                 return {error:null, isLoading:false, user: {...state.user,gripStrength}}
             } else if (state.user.sex === 'FEMALE' && state.user.age) {
-                const gripStrength = womenGripStrength(state.user.age,poundsToKg(payload))
+                const gripStrength = womenGripStrength(state.user.age,payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, gripStrength}));
                 return {error:null, isLoading:false, user: {...state.user, gripStrength}}
             } else {
@@ -168,7 +168,7 @@ export const userReducer = (state : State, action: Action) => {
             sessionStorage.setItem('user', JSON.stringify( {...state.user, age}));
             return {error:null, isLoading: false, user: {...state.user, age}}
         case 'UPDATE_HEIGHT':
-            const height = payload;
+            const height = state.user.prefers_metric ? payload : payload * 2.54;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, height}));
             return {error: null, isLoading: false, user: {...state.user, height}}
         case 'UPDATE_GOAL_WEIGHT':
@@ -190,12 +190,12 @@ export const userReducer = (state : State, action: Action) => {
         case 'UPDATE_BENCH_PRESS':
             if (!state.user.sex || !state.user.age || !state.user.currentWeight) return {...state, isLoading:false}
             if (state.user.sex === 'MALE') {
-                const benchPress = menBenchPress(poundsToKg(payload), poundsToKg(state.user.currentWeight), state.user.age)
+                const benchPress = menBenchPress(payload, state.user.currentWeight, state.user.age)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, benchPress}));
 
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
             } else {
-                const benchPress = womenBenchPress(poundsToKg(payload), poundsToKg(state.user.currentWeight), state.user.age)
+                const benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, benchPress}));
 
                 return {error:null, isLoading:false, user:{...state.user, benchPress}}
@@ -224,12 +224,9 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState);
     
     const bmi : BMI | null = useMemo(()=> {
-        if (state.user.height && state.user.currentWeight && state.user.prefers_metric === false) {
-            sessionStorage.setItem('user', JSON.stringify({...state.user, bmi : calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)))}));
-            return calculateBMI(poundsToKg(state.user.currentWeight), cmToM(inchesToCm(state.user.height)));
-        }
+        console.log(state.user.height, state.user.currentWeight)
 
-        if (state.user.height && state.user.currentWeight && state.user.prefers_metric === true) {
+        if (state.user.height && state.user.currentWeight) {
             sessionStorage.setItem('user', JSON.stringify({...state.user, bmi : calculateBMI(state.user.currentWeight, cmToM(state.user.height))}));
             return calculateBMI(state.user.currentWeight, cmToM(state.user.height));
         }
@@ -255,8 +252,8 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             && state.user.activityLevel
             && bodyWeightGoal
             && state.user.prefers_metric === false) {
-            sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal)}));
-            return calculateMacros(state.user.sex,state.user.age, poundsToKg(state.user.currentWeight), inchesToCm(state.user.height), state.user.activityLevel, bodyWeightGoal);
+            sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
         }
 
         if (state.user.age 

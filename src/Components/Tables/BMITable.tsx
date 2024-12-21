@@ -12,19 +12,23 @@ const BMITable = () => {
             <tbody>
                 <tr>
                     <th>Classification:</th>
-                    <td>{user.bmi?.classification ? user.bmi.classification.charAt(0).toUpperCase() + user.bmi.classification.substring(1) : 'No Data'}</td>
+                    <td>{user.bmi?.classification ? user.bmi.classification.charAt(0).toUpperCase() + user.bmi.classification.substring(1) : '-'}</td>
                 </tr>
                 <tr>
                     <th>Body Mass Index</th>
-                    <td>{user.bmi?.bmi ? user.bmi.bmi : 'No Data'}</td>
+                    <td>{user.bmi?.bmi ? user.bmi.bmi : '-'}</td>
                 </tr>
                 <tr>
-                    <th>Current Weight</th>
-                    <td>{user.currentWeight ? user.currentWeight : 'No Data'}</td>
+                    <th>{user.prefers_metric ? 'Height in CM' : 'Height in In'}</th>
+                    <td>{user.height ? user.height : '-'}</td>
                 </tr>
                 <tr>
-                    <th>Goal Weight</th>
-                    <td>{user.goalWeight ? user.goalWeight : 'No Data'}</td>
+                    <th>{user.prefers_metric ? 'Current weight in KG' : 'Current weight in LBs'}</th>
+                    <td>{user.currentWeight ? user.currentWeight : '-'}</td>
+                </tr>
+                <tr>
+                    <th>{user.prefers_metric ? 'Goal weight in KG' : 'Goal weight in LBs'}</th>
+                    <td>{user.goalWeight ? user.goalWeight : '-'}</td>
                 </tr>
             </tbody>
         </table>
