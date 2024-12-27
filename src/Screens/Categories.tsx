@@ -37,6 +37,7 @@ const Categories = () => {
                         <VO2MaxCategories />
                     </details>
             </section>
+            <hr />
             <section>
                 <h2>Strength Metrics</h2>
                 <details open id='bench-press'>

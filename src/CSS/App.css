@@ -56,9 +56,23 @@ main {
   height:auto;
   overflow-x: auto;
 }
+hr {
+  overflow: visible; /* For IE */
+
+  border-width: 3px 2px 0px 3px;
+  border-color: black;
+  border-style: dotted;
+  width: 95%;
+  height: 30px;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+
 
 section {
-  display: contents
+  display: contents;
+  margin-bottom: 5vh;
+  border-bottom: 2px dashed black;
 }
 
 header {
