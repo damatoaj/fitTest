@@ -112,7 +112,7 @@ nav > ul > li {
     margin:0;
     padding:0;
     max-height: 42px;
-    min-width: 160px;
+    /* min-width: 160px; */
 }
 
 .light > a {
@@ -133,7 +133,7 @@ nav > ul > li {
     color: white;
     padding:0;
     max-height:42px;
-    min-width: 160px;
+    /* min-width: 160px; */
 }
 .dark > a {
     background-color: inherit;
@@ -151,7 +151,7 @@ nav > ul > li {
 li.subnav {
     background-color: transparent;
     border:none;
-    width: clamp(160px, 10%, 250px);
+    width: clamp(120px, 10%, 250px);
 }
 
 .subnav button  {
@@ -278,7 +278,7 @@ a {
       }
 
       .dark,.light {
-        min-width:160px;
+        /* min-width:160px; */
         /* max-width:140px; */
         height: auto;
       }
