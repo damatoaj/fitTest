@@ -26,6 +26,29 @@ const WaistCircumferenceForm = () => {
             name='waistCircumference'
         >
             <h2>Calculate Your Cardio Vascular Risk</h2>
+            <h3>How To Find Your Waist Circumference</h3>
+            <ol>
+                <li>
+                    <p>
+                        Find the top of your hip bone and the bottom of your ribs.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Breathe out normally.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Place the tape measure midway between these points, in line with your belly button, and wrap it around your waist loose enough to fit one finger inside the tape.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Check your measurement. 
+                    </p>
+                </li>
+            </ol>
             <fieldset>
                 <legend>What is your waist circumference?</legend>
                 <input 

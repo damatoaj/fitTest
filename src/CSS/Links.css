@@ -112,7 +112,7 @@ nav > ul > li {
     margin:0;
     padding:0;
     max-height: 42px;
-    /* min-width: 160px; */
+    min-width: 140px;
 }
 
 .light > a {
@@ -133,7 +133,7 @@ nav > ul > li {
     color: white;
     padding:0;
     max-height:42px;
-    /* min-width: 160px; */
+    min-width: 140px;
 }
 .dark > a {
     background-color: inherit;
