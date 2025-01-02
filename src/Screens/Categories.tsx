@@ -7,6 +7,7 @@ import BenchPressCategories from '../Components/Tables/BenchPressCategories';
 import GripStrengthCategories from '../Components/Tables/GripStrengthCategories';
 import SARCategories from '../Components/Tables/SARCategories';
 import WaistCircumference from '../Components/Tables/WaistCircumference';
+import BodyfatCategories from '../Components/Tables/BodyfatCategories';
 
 const Categories = () => {
     return (
@@ -14,6 +15,11 @@ const Categories = () => {
             <h1>Fitness Categories</h1>
             <section>
                 <h2>Health Metrics</h2>
+                <details open id='bodyfat'>
+                    <summary>Body Fat Categories</summary>
+                    <BodyfatCategories />
+                </details>
+                <br></br>
                 <details open id='bmi'>
                     <summary>BMI Categories</summary>
                     <BMIRiskTable />
