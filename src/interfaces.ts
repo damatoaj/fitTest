@@ -86,6 +86,15 @@ interface User {
     waistCircumference: WaistCircumference | null;
     sar : SitAndReach | null;
     prefers_metric : Boolean;
+    abdomenCircumference : number | null;
+    armCircumference : number | null;
+    buttocksCircumference : number | null;
+    calfCircumference : number | null;
+    forearmCircumference : number | null;
+    hipsCircumference : number | null;
+    midthighCircumference : number | null;
+    waistHipRatio : number;
+    waistHeightRatio : number;
 }
 
 type UserKeys = keyof User;

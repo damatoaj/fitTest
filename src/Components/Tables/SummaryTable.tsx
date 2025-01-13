@@ -38,7 +38,14 @@ const SummaryTable = () => {
             'vo2_max' : u.vo2Max?.vo2Max ? u.vo2Max.vo2Max : null,
             'systolic_blood_pressure' : u.bloodPressure?.sbp ? u.bloodPressure?.sbp : null,
             'diastolic_blood_pressure' : u.bloodPressure?.dbp ? u.bloodPressure.dbp : null,
-            'sit_and_reach' : u.sar?.value ? u.sar.value : null
+            'sit_and_reach' : u.sar?.value ? u.sar.value : null,
+            'abdomen_circumference' : u.abdomenCircumference ? u.abdomenCircumference : null,
+            'arm_circumference' : u.armCircumference ? u.armCircumference : null,
+            'buttocks_circumference' : u.buttocksCircumference ? u.buttocksCircumference : null,
+            'calf_circumference' : u.calfCircumference ? u.calfCircumference : null,
+            'forearm_circumference' : u.forearmCircumference ? u.forearmCircumference : null,
+            'hips_circumference' : u.hipsCircumference ? u.hipsCircumference : null,
+            'midthigh_circumference' : u.midthighCircumference ? u.midthighCircumference : null,
         };
         try {
             await addData('sessions', data);

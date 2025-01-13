@@ -8,13 +8,32 @@ const DemographicTable = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>
-                                <strong>Heart Rate Max</strong>
+                            <th colSpan={2}>
+                                <strong>{state.user.fname} {state.user.lname}</strong>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td>
+                               Age: 
+                            </td>
+                            <td>
+                                {state.user.age ? state.user.age : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Activity Level: 
+                            </td>
+                            <td>
+                                {state.user.activityLevel ? state.user.activityLevel : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Heart Rate Max:
+                            </td>
                             <td>
                                 {state.user.hrMax ? state.user.hrMax : '-'}
                             </td>

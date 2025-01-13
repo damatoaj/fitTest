@@ -95,6 +95,77 @@ function DemoGraphicsForm() {
                 title="Range is 50 to 450"
             />
         </fieldset>
+        <fieldset>
+                <legend>
+                    {user.prefers_metric ? 'Goal Weight in Kilograms' : 'Goal Weight in Pounds'}
+                </legend>
+                <input 
+                    autoFocus={true}
+                    type='number' 
+                    onChange={handleChange}
+                    name='goalWeight'
+                    min='50'
+                    max='400'
+                    required
+                    step={.5}
+                    maxLength={6}
+                    // defaultValue={defaultValue}
+                />
+            </fieldset>
+            <fieldset>
+                <legend>Activity Level</legend>
+                <span>
+                <select 
+                    name='activityLevel'
+                    onChange={handleSelect}
+                    defaultValue={user.activityLevel || 'default'}
+                >
+                    <option value='default' disabled>
+                        --Select One--
+                    </option>
+                    <option 
+                        title='Little or no exercise'
+                        value='sedentary'
+                    >
+                        Sedentary
+                    </option>
+                    <option 
+                        title='Light exercise/sports 1-3 days/week'
+                        value='light activity'
+                    >
+                        Light Activity
+                    </option>
+                    <option 
+                        title='Moderate exercise/sports 3-5 days/week'
+                        value='moderately active'
+                    >
+                        Moderately Active
+                    </option>
+                    <option 
+                        title='Hard exercise/sports 6-7 days/week'
+                        value='very active'
+                    >
+                        Very Active
+                    </option>
+                    <option 
+                        title='Very hard exercise/sports and a physical job'
+                        value='extra active'
+                    >
+                        Extra Active    
+                    </option>
+                </select>
+                <details open>
+                    <summary>Activity Level Definitions</summary>
+                    <ol>
+                        <li>Sedentary: Little or no exercise</li>
+                        <li>Light Activity: Light exercise/sports 1-3 days/week</li>
+                        <li>Moderately Active: Moderate exercise/sports 3-5 days/week</li>
+                        <li>Very Active: Hard exercise/sports 6-7 days/week</li>
+                        <li>Extra Active: Very hard exercise/sports and a physical job</li>
+                    </ol>
+                </details>
+                </span>
+        </fieldset>
         {user.prefers_metric ? 
             <fieldset>
                 <legend>Height</legend>

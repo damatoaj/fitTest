@@ -36,6 +36,8 @@ import SARInstructions from './Screens/SARProtocol/SARInstructions';
 import SARResults from './Screens/SARProtocol/SARResults';
 import SessionsTable from './Components/Tables/SessionsTable';
 import Categories from './Screens/Categories';
+import BodyCircumference from './Screens/BodyCircumference/BodyCircumference';
+import BloodPressureScreen from './Screens/BloodPressure/BloodPressureScreen';
 function App() {
   const { state } = useUserContext();
   // useEffect(()=> {
@@ -112,6 +114,8 @@ function App() {
           <Route path='/current-session' element={<SummaryTable/>}></Route>
           <Route path='/sessions' element={<main style={{alignItems:'start'}}><SessionsTable /></main>}></Route>
           <Route path='/categories' element={<Categories />}></Route>
+          <Route path='/circumferences' element={<BodyCircumference />}></Route>
+          <Route path='/blood-pressure' element={<BloodPressureScreen />}></Route>
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>

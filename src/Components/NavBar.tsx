@@ -9,6 +9,7 @@ interface NavBarProps {
 
 const NavBar = ({u} : NavBarProps) => {
     const [state, setState] = useState({
+        userInfo: 'false',
         tests: 'false',
         muscularEndurance: 'false',
         muscularStrength: 'false',
@@ -56,6 +57,7 @@ const NavBar = ({u} : NavBarProps) => {
     const handleNavigate = () => {
         if (window.innerWidth < 800) {
             setState({
+                userInfo: 'false',
                 tests: 'false',
                 muscularEndurance: 'false',
                 muscularStrength: 'false',
@@ -65,6 +67,7 @@ const NavBar = ({u} : NavBarProps) => {
             });
         } else {
             setState({
+                userInfo : 'false',
                 tests: 'false',
                 muscularEndurance: 'false',
                 muscularStrength: 'false',
@@ -89,21 +92,33 @@ const NavBar = ({u} : NavBarProps) => {
                     <li className='light'>
                         <Link to='/' onClick={handleNavigate}>Home</Link>
                     </li>
-                    <li className='dark'>
-                        <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
-                    </li>
-                    {/* <li className='light'>
-                        <Link to='/nutrition' onClick={handleNavigate}>Nutrition</Link>
-                    </li> */}
-                    {/* <li className='dark'>
-                        <Link to='/equipment' onClick={handleNavigate}>Equipment</Link>
-                    </li> */}
                     <li className='subnav'>
                         <button 
-                            // type="button" 
+                            className='link dark'
+                            data-active={state.userInfo}
+                            onClick={()=> state.userInfo === 'false' ? setState({...state, userInfo : 'true'}) : setState({...state, userInfo : 'false'})}
+
+                        >
+                            User Info
+                        </button>
+                        <ul>
+                            <li className='light'>
+                                <Link to='/parq' onClick={handleNavigate}>Demographics</Link>
+                            </li>
+                            <li className='dark'>
+                                <Link to='/circumferences' onClick={handleNavigate}>Body Circumferences</Link>
+                            </li>
+                            <li className='light'>
+                                <Link to='/blood-pressure' onClick={handleNavigate}>Blood Pressure</Link>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li className='subnav'>
+                        <button 
                             className='link light' 
                             data-active={state.tests}
-                            onClick={()=> state.tests=== 'false' ? setState({...state, tests : 'true'}) : setState({...state, tests : 'false'})}
+                            onClick={()=> state.tests === 'false' ? setState({...state, tests : 'true'}) : setState({...state, tests : 'false'})}
                         >
                             Tests
                         </button>

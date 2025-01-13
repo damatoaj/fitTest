@@ -11,23 +11,130 @@ const WaistCircumferenceForm = () => {
         valid = form.current.checkValidity()
     };
 
-    let defaultValue : string = '';
-    if (user.waistCircumference && user.prefers_metric) {
-        defaultValue = String(user.waistCircumference.wc);
-    } else if (user.waistCircumference) {
-        defaultValue = String(user.waistCircumference.wc / 2.54);
-    };
+    // let defaultValue : string = '';
+    // if (user.waistCircumference && user.prefers_metric) {
+    //     defaultValue = String(user.waistCircumference.wc);
+    // } else if (user.waistCircumference) {
+    //     defaultValue = String(Math.floor(user.waistCircumference.wc / 2.54 * 100) / 100);
+    // };
 
     return (
         <form
             ref={form}
             onSubmit={handleSubmit}
             onReset={handleReset}
-            name='waistCircumference'
+            name='circumferences'
         >
-            <h2>Calculate Your Cardio Vascular Risk</h2>
-            <h3>How To Find Your Waist Circumference</h3>
-            <ol>
+            <h2>Record Your Body Circumferences</h2>
+            <fieldset>
+                <legend>Abdomen</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='abdomenCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                    />
+            </fieldset>
+            <fieldset>
+                <legend>Arm</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='armCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                    />
+            </fieldset>
+            <fieldset>
+                <legend>Buttocks</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='buttocksCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                />
+            </fieldset>
+            <fieldset>
+                <legend>Calf</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='calfCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                />
+            </fieldset>
+            <fieldset>
+                <legend>Forearm</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='forearmCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                    />
+            </fieldset>
+            <fieldset>
+                <legend>Hips</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='hipsCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                />
+            </fieldset>
+            <fieldset>
+                <legend>Mid Thigh</legend>
+                <input 
+                    onChange={handleChange}
+                    type='number'
+                    name='midthighCircumference'
+                    min='0'
+                    max='500' 
+                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                    step={.5}
+                    maxLength={3}
+                    required
+                    // defaultValue={defaultValue}
+                />
+            </fieldset>
+            <fieldset>
+                <legend>Waist</legend>
+                <h4>Additional Directions</h4>
+                <ol>
                 <li>
                     <p>
                         Find the top of your hip bone and the bottom of your ribs.
@@ -49,8 +156,6 @@ const WaistCircumferenceForm = () => {
                     </p>
                 </li>
             </ol>
-            <fieldset>
-                <legend>What is your waist circumference?</legend>
                 <input 
                     onChange={handleChange}
                     type='number'
@@ -58,11 +163,10 @@ const WaistCircumferenceForm = () => {
                     min='0'
                     max='500' 
                     placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
-                    autoFocus={true}
                     step={.5}
                     maxLength={3}
                     required
-                    defaultValue={defaultValue}
+                    // defaultValue={defaultValue}
                 />
             </fieldset>
             <span>

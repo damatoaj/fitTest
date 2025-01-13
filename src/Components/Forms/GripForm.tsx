@@ -29,7 +29,7 @@ const GripForm = () => {
                         name='leftHand'
                         min='0'
                         max='2000'
-                        placeholder='Measure in Lbs'
+                        placeholder={user.prefers_metric ? 'Measured in KG' : 'Measure in Lbs'}
                         autoFocus={true}
                         step={.5}
                         maxLength={6}
@@ -43,7 +43,7 @@ const GripForm = () => {
                         name='rightHand'
                         min='0'
                         max='2000'
-                        placeholder='Measure in Lbs'
+                        placeholder={user.prefers_metric ? 'Measured in KG' : 'Measure in Lbs'}
                         step={.5}
                         maxLength={6}
                     />

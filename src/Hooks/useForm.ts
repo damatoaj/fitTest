@@ -23,7 +23,14 @@ type Data = {
     waistCircumference : string,
     sar : string,
     feet : string,
-    inches : string
+    inches : string,
+    abdomenCircumference : string,
+    armCircumference : string,
+    calfCircumference : string,
+    buttocksCircumference : string,
+    forearmCircumference : string,
+    hipsCircumference : string,
+    midthighCircumference : string
 }
 
 const useForm = (url?:string) => {
@@ -50,7 +57,14 @@ const useForm = (url?:string) => {
         waistCircumference: '',
         sar: '',
         feet: '',
-        inches: ''
+        inches: '',
+        abdomenCircumference : '',
+        armCircumference : '',
+        calfCircumference : '',
+        buttocksCircumference : '',
+        forearmCircumference : '',
+        hipsCircumference : '',
+        midthighCircumference : ''
     })
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +100,14 @@ const useForm = (url?:string) => {
             waistCircumference: '',
             sar : '',
             inches: '',
-            feet: ''
+            feet: '',
+            abdomenCircumference : '',
+            armCircumference : '',
+            calfCircumference : '',
+            buttocksCircumference : '',
+            forearmCircumference : '',
+            hipsCircumference : '',
+            midthighCircumference : ''
         }}) 
     }
 
@@ -100,13 +121,20 @@ const useForm = (url?:string) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
-            if (data.inches.length > 0 && data.inches.length > 0) await  await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseFloat(data.inches)});
+            if (data.abdomenCircumference.length > 0) await dispatch({type: 'UPDATE_ABDOMEN', payload: user.prefers_metric ? parseFloat(data.abdomenCircumference) : Math.floor(parseFloat(data.abdomenCircumference) * 2.54 * 100) / 100 });
+            if (data.armCircumference.length > 0) await dispatch({type: 'UPDATE_ARM', payload: user.prefers_metric ? parseFloat(data.armCircumference) : Math.floor(parseFloat(data.armCircumference) * 2.54 * 100) / 100 });
+            if (data.buttocksCircumference.length > 0) await dispatch({type: 'UPDATE_BUTTOCKS', payload: user.prefers_metric ? parseFloat(data.buttocksCircumference) : Math.floor(parseFloat(data.buttocksCircumference) * 2.54 * 100) / 100 });
+            if (data.calfCircumference.length > 0) await dispatch({type: 'UPDATE_CALF', payload: user.prefers_metric ? parseFloat(data.calfCircumference) : Math.floor(parseFloat(data.calfCircumference) * 2.54 * 100) / 100 });
+            if (data.forearmCircumference.length > 0) await dispatch({type: 'UPDATE_FOREARM', payload: user.prefers_metric ? parseFloat(data.forearmCircumference) : Math.floor(parseFloat(data.forearmCircumference) * 2.54 * 100) / 100 });
+            if (data.hipsCircumference.length > 0) await dispatch({type: 'UPDATE_HIPS', payload: user.prefers_metric ? parseFloat(data.hipsCircumference) : Math.floor(parseFloat(data.hipsCircumference) * 2.54 * 100) / 100 });
+            if (data.midthighCircumference.length > 0) await dispatch({type: 'UPDATE_MIDTHIGH', payload: user.prefers_metric ? parseFloat(data.midthighCircumference) : Math.floor(parseFloat(data.midthighCircumference) * 2.54 * 100) / 100 });
+            if (data.inches.length > 0 && data.inches.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseFloat(data.inches)});
             if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
             if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});
-            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: user.prefers_metric ? Math.round(parseInt(data.benchPress)) : Math.round(parseInt(data.benchPress) / 2.2) });
-            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: user.prefers_metric ? parseInt(data.currentWeight) : parseInt(data.currentWeight)/2.2 });
+            if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: user.prefers_metric ? Math.round(parseFloat(data.benchPress)) : Math.floor(parseFloat(data.benchPress) / 2.2 * 100) / 100 });
+            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: user.prefers_metric ? parseFloat(data.currentWeight) : Math.floor(parseFloat(data.currentWeight) / 2.2 * 100) / 100 });
             if (data.fname.length > 0 && data.lname.length > 0) {
                 let f = validateName(data.fname);
                 let l = validateName(data.lname);
@@ -122,7 +150,7 @@ const useForm = (url?:string) => {
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
-            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) / 2.54 * 100) / 100 })
+            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) * 2.54 * 100) / 100 })
             if (url) navigate(url);
         } catch (e:any) {
             const error = e.message;

@@ -28,7 +28,7 @@ const StrengthTable = () => {
                     <th>Weight Moved / Body Mass</th>
                     <th>{user.legPress?.legPress ? user.legPress.legPressRatio : '-'}</th>
                     <th>{user.benchPress?.benchPress ? user.benchPress.benchPressRatio : '-'}</th>
-                    <th>{user.gripStrength?.gripStrength && user.currentWeight ? user.gripStrength.gripStrength  / user.currentWeight : '-'}</th>
+                    <th>{user.gripStrength?.gripStrength && user.currentWeight ? Math.floor(user.gripStrength.gripStrength  / user.currentWeight * 100) / 100: '-'}</th>
                 </tr>
             </thead>
         </table>

@@ -41,7 +41,16 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     bloodPressure : null,
     waistCircumference : null,
     sar : null,
-    prefers_metric: true
+    prefers_metric: true,
+    abdomenCircumference : null,
+    armCircumference : null,
+    buttocksCircumference : null,
+    calfCircumference : null,
+    forearmCircumference : null,
+    hipsCircumference : null,
+    midthighCircumference : null,
+    waistHipRatio : 0,
+    waistHeightRatio : 0
 };
 
 type State = {
@@ -72,6 +81,14 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type: 'UPDATE_WAIST', payload: number}
     | {type : 'UPDATE_SAR', payload: number}
     | {type : 'UPDATE_METRIC', payload : boolean}
+    | {type : 'UPDATE_ABDOMEN', payload: number}
+    | {type : 'UPDATE_ARM', payload: number}
+    | {type : 'UPDATE_BUTTOCKS', payload: number}
+    | {type : 'UPDATE_CALF', payload: number}
+    | {type : 'UPDATE_FOREARM', payload: number}
+    | {type : 'UPDATE_HIPS', payload: number}
+    | {type : 'UPDATE_MIDTHIGH', payload: number}
+
 
 const initialState = {
     user: initialUser,
@@ -87,6 +104,27 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null}
+        case 'UPDATE_ABDOMEN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, abdomenCircumference : payload}));
+            return { user: {...state.user, abdomenCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_ARM':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, armCircumference : payload}));
+            return { user: {...state.user, armCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_BUTTOCKS':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, buttocksCircumference : payload}));
+            return { user: {...state.user, buttocksCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_CALF':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, calfCircumference : payload}));
+            return { user: {...state.user, calfCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_FOREARM':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, forearmCircumference : payload}));
+            return { user: {...state.user, forearmCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_HIPS':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, hipsCircumference : payload}));
+            return { user: {...state.user, hipsCircumference: payload}, isLoading: false, error: null};
+        case 'UPDATE_MIDTHIGH':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, midthighCircumference : payload}));
+            return { user: {...state.user, midthighCircumference: payload}, isLoading: false, error: null};
         case 'UPDATE_SAR':
             let sar = null;
             if (state.user.sex === 'MALE' && state.user.age) {
@@ -98,7 +136,6 @@ export const userReducer = (state : State, action: Action) => {
                 sar = womensSitAndReach(state.user.age, payload);
                 sessionStorage.setItem('user', JSON.stringify({...state.user, sar : womensSitAndReach(state.user.age, payload)}));
             };
-
             return {isLoading: false, error: null, user : {...state.user, sar}}
         case 'UPDATE_WAIST':
             if (!state.user.sex) throw new Error('Sex is required before waist circumference can be calculated');
@@ -244,6 +281,17 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         return null;
     }, [state.user.currentWeight, state.user.goalWeight]);
 
+    const waistHipRatio : number = useMemo(()=> {
+        if (!state.user.waistCircumference || !state.user.hipsCircumference) return 0;
+        return Math.floor(state.user.waistCircumference.wc / state.user.hipsCircumference * 100) / 100;
+
+    }, [state.user.waistCircumference, state.user.hipsCircumference]);
+
+    const waistHeightRatio : number = useMemo(()=> {
+        if (!state.user.height || !state.user.waistCircumference) return 0;
+        return Math.floor(state.user.waistCircumference.wc / state.user.height * 100) /100;
+    }, [state.user.height, state.user.waistCircumference])
+
     const macros : Macros | null = useMemo(()=> {
         if (state.user.age 
             && state.user.sex 
@@ -309,7 +357,10 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                         bodyWeightGoal, 
                         bmi, 
                         macros,
-                        micros
+                        micros,
+                        hrMax,
+                        waistHipRatio,
+                        waistHeightRatio
                     }, 
                     error:state.error, 
                     isLoading:state.isLoading

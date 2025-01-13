@@ -1,5 +1,5 @@
 let request : IDBOpenDBRequest;
-let version = 2;
+let version = 3;
 let db : IDBDatabase;
 
 export const initDB = (v:number): Promise<boolean> => {
@@ -30,6 +30,13 @@ export const initDB = (v:number): Promise<boolean> => {
             objectStore.createIndex('systolic_blood_pressure', 'systolic_blood_pressure', { unique: false })
             objectStore.createIndex('diastolic_blood_pressure', 'diastolic_blood_pressure', { unique: false })
             objectStore.createIndex('sit_and_reach', 'sit_and_reach', { unique: false })
+            objectStore.createIndex('abdomen_circumference', 'abdomen_circumference', { unique: false })
+            objectStore.createIndex('arm_circumference', 'arm_circumference', { unique: false })
+            objectStore.createIndex('buttocks_circumference', 'buttocks_circumference', { unique: false })
+            objectStore.createIndex('calf_circumference', 'calf_circumference', { unique: false })
+            objectStore.createIndex('forearm_circumference', 'forearm_circumference', { unique: false })
+            objectStore.createIndex('hips_circumference', 'hips_circumference', { unique: false })
+            objectStore.createIndex('midthigh_circumference', 'midthigh_circumference', { unique: false })
         };
 
         request.onsuccess = (event:any) => {

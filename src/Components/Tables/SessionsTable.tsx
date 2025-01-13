@@ -8,7 +8,7 @@ const SessionsTable = () => {
     const [dbReady, setDbReady] = useState<boolean>(false);
     const { state : {user} } = useUserContext();
     useEffect(() => {
-        initDB(2)
+        initDB(3)
         .then((e)=> {
             console.log(e, '<--- initDb complete')
             if (e === true) {
@@ -49,6 +49,13 @@ const SessionsTable = () => {
                         {user.prefers_metric ? <th>Current Weight (KG)</th> :<th>Current Weight (LBS)</th>} 
                         {user.prefers_metric ? <th>Goal Weight (KG)</th> : <th>Goal Weight (LBS)</th>}
                         <th>BMI</th>
+                        {user.prefers_metric ? <th>Abdomen Circumference (CM)</th> : <th>Abdomen Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Arm Circumference (CM)</th> : <th>Arm Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Buttocks Circumference (CM)</th> : <th>Buttocks Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Calf Circumference (CM)</th> : <th>Calf Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Forearm Circumference (CM)</th> : <th>Forearm Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Hip Circumference (CM)</th> : <th>Hip Circumference (IN)</th>}
+                        {user.prefers_metric ? <th>Mid Thigh Circumference (CM)</th> : <th>Midthigh Circumference (IN)</th>}
                         {user.prefers_metric ? <th>Waist Circumference (CM)</th> : <th>Waist Circumference (IN)</th>}
                         <th>Max Heart Rate</th>
                         <th>Activity Level</th>
@@ -73,6 +80,13 @@ const SessionsTable = () => {
                             {user.prefers_metric ? <td>{session.current_weight || '-'}</td> : <td>{session.current_weight * 2.2 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.goal_weight || '-'}</td> : <td>{session.goal_weight * 2.2 || '-'}</td>}
                             <td>{session.bmi || '-'}</td>
+                            {user.prefers_metric ? <td>{session.abdomen_circumference || '-'}</td> : <td>{session.abdomen_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.arm_circumference || '-'}</td> : <td>{session.arm_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.buttocks_circumference || '-'}</td> : <td>{session.buttocks_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.calf_circumference || '-'}</td> : <td>{session.calf_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.forearm_circumference || '-'}</td> : <td>{session.forearm_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.hips_circumference || '-'}</td> : <td>{session.hips_circumference / 2.54 || '-'}</td>}
+                            {user.prefers_metric ? <td>{session.midthigh_circumference || '-'}</td> : <td>{session.midthigh_circumference / 2.54 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.waist_circumference || '-'}</td> : <td>{session.waist_circumference / 2.54 || '-'}</td>}
                             <td>{session.max_heart_rate || '-'}</td>
                             <td>{session.activity_level || '-'}</td>

@@ -34,8 +34,8 @@ const SitAndReachForm = () => {
                     type='number'
                     name='sar'
                     min='0'
-                    max='30' 
-                    placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured in Inches'}
+                    max='100' 
+                    placeholder={user.prefers_metric ? 'Measured in CM' : 'Measured in Inches'}
                     autoFocus={true}
                     step={.5}
                     maxLength={2}
