@@ -100,7 +100,6 @@ function DemoGraphicsForm() {
                     {user.prefers_metric ? 'Goal Weight in Kilograms' : 'Goal Weight in Pounds'}
                 </legend>
                 <input 
-                    autoFocus={true}
                     type='number' 
                     onChange={handleChange}
                     name='goalWeight'

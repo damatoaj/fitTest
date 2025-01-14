@@ -183,7 +183,6 @@ const SummaryTable = () => {
                             <h1>Your Fitness Summary on 
                                 <time dateTime={today}> {date}, {month}, {year}</time>
                             </h1>
-                            <hr></hr>
                             <table>
                                 <thead><tr><th colSpan={2}>Subject</th></tr></thead>
                                 <tbody>
