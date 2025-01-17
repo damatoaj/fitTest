@@ -95,6 +95,17 @@ interface User {
     midthighCircumference : number | null;
     waistHipRatio : number;
     waistHeightRatio : number;
+    abdominalSkin: number;
+    bicepSkin: number;
+    chestSkin: number;
+    calfSkin: number;
+    midaxillarySkin: number;
+    subscapSkin: number;
+    supraIliacSkin: number;
+    thighSkin: number;
+    tricepSkin: number;
+    bodyDensity: number;
+    bodyComp: BodyComp
 }
 
 type UserKeys = keyof User;

@@ -1,5 +1,5 @@
 let request : IDBOpenDBRequest;
-let version = 3;
+let version = 5;
 let db : IDBDatabase;
 
 export const initDB = (v:number): Promise<boolean> => {
@@ -37,6 +37,16 @@ export const initDB = (v:number): Promise<boolean> => {
             objectStore.createIndex('forearm_circumference', 'forearm_circumference', { unique: false })
             objectStore.createIndex('hips_circumference', 'hips_circumference', { unique: false })
             objectStore.createIndex('midthigh_circumference', 'midthigh_circumference', { unique: false })
+            objectStore.createIndex('abdominal_skin', 'abdominal_skin', { unique: false })
+            objectStore.createIndex('biceps_skin', 'biceps_skin', { unique: false })
+            objectStore.createIndex('calf_skin', 'calf_skin', { unique: false })
+            objectStore.createIndex('chest_skin', 'chest_skin', { unique: false })
+            objectStore.createIndex('midaxillary_skin', 'midaxillary_skin', { unique: false })
+            objectStore.createIndex('subscapular_skin', 'subscapular_skin', { unique: false })
+            objectStore.createIndex('suprailiac_skin', 'suprailiac_skin', { unique: false })
+            objectStore.createIndex('thigh_skin', 'thigh_skin', { unique: false })
+            objectStore.createIndex('triceps_skin', 'triceps_skin', { unique: false })
+
         };
 
         request.onsuccess = (event:any) => {

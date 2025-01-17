@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, Dispatch, useReducer, useMemo } from "react";
-import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI } from "../interfaces";
+import { User, ActivityLevel, Macros, Micros, WeightGoal, BMI, BodyCompCategory, BodyComp } from "../interfaces";
 import { menPushupCategories, womenPushupCategories } from "../Functions/Testing/muscularEndurance";
 import { womenCardioFitnessClassification, menCardioFitnessClassification } from "../Functions/Testing/cardioFitness";
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
@@ -16,6 +16,7 @@ import { calculateMicros } from "../Functions/Nutrition/calculateMicros";
 import { bloodPressureCalculation } from "../Functions/BloodPressure";
 import { waistCircumferenceRiskFactor } from "../Functions/Testing/bodyComposition";
 import { mensSitAndReach, womensSitAndReach } from "../Functions/Testing/flexibilityTests";
+import { menBodyComp, womenBodyComp } from "../Functions/Testing/bodyComposition";
 const u : string | null = localStorage.getItem('user');
 
 const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
@@ -50,7 +51,16 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     hipsCircumference : null,
     midthighCircumference : null,
     waistHipRatio : 0,
-    waistHeightRatio : 0
+    waistHeightRatio : 0,
+    abdominalSkin : 0,
+    bicepSkin : 0,
+    tricepSkin : 0,
+    chestSkin : 0,
+    calfSkin : 0,
+    midaxillarySkin : 0,
+    subscapSkin : 0,
+    supraIliacSkin : 0,
+    thighSkin : 0
 };
 
 type State = {
@@ -88,6 +98,15 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type : 'UPDATE_FOREARM', payload: number}
     | {type : 'UPDATE_HIPS', payload: number}
     | {type : 'UPDATE_MIDTHIGH', payload: number}
+    | {type : 'UPDATE_ABDOMINAL_SKIN', payload: number}
+    | {type : 'UPDATE_BICEPS_SKIN', payload: number}
+    | {type : 'UPDATE_CALF_SKIN', payload: number}
+    | {type : 'UPDATE_CHEST_SKIN', payload: number}
+    | {type : 'UPDATE_MIDAXILLARY_SKIN', payload: number}
+    | {type : 'UPDATE_SUBSCAP_SKIN', payload: number}
+    | {type : 'UPDATE_SUPRAILIAC_SKIN', payload: number}
+    | {type : 'UPDATE_THIGH_SKIN', payload: number}
+    | {type : 'UPDATE_TRICEPS_SKIN', payload: number}
 
 
 const initialState = {
@@ -104,6 +123,33 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null}
+        case 'UPDATE_ABDOMINAL_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, abdominalSkin : payload}));
+            return { user: {...state.user, abdominalSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_BICEPS_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, bicepSkin : payload}));
+            return { user: {...state.user, bicepSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_CALF_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, calfSkin : payload}));
+            return { user: {...state.user, calfSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_CHEST_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, chestSkin : payload}));
+            return { user: {...state.user, chestSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_MIDAXILLARY_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, midaxillarySkin : payload}));
+            return { user: {...state.user, midaxillarySkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_SUBSCAP_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, subscapSkin : payload}));
+            return { user: {...state.user, subscapSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_SUPRAILIAC_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, supraIliacSkin : payload}));
+            return { user: {...state.user, supraIliacSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_THIGH_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, thighSkin : payload}));
+            return { user: {...state.user, thighSkin: payload}, isLoading: false, error: null};
+        case 'UPDATE_TRICEPS_SKIN':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, tricepSkin : payload}));
+            return { user: {...state.user, tricepSkin: payload}, isLoading: false, error: null};
         case 'UPDATE_ABDOMEN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, abdomenCircumference : payload}));
             return { user: {...state.user, abdomenCircumference: payload}, isLoading: false, error: null};
@@ -290,41 +336,111 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
     const waistHeightRatio : number = useMemo(()=> {
         if (!state.user.height || !state.user.waistCircumference) return 0;
         return Math.floor(state.user.waistCircumference.wc / state.user.height * 100) /100;
-    }, [state.user.height, state.user.waistCircumference])
+    }, [state.user.height, state.user.waistCircumference]);
+
+    const bodyDensity : number = useMemo(()=> {
+        const {
+            chestSkin,
+            midaxillarySkin,
+            tricepSkin,
+            subscapSkin,
+            abdominalSkin,
+            supraIliacSkin,
+            thighSkin
+        } = state.user;
+        let d = 0;
+        if (state.user?.sex === 'MALE' && state.user.age) {
+            console.log('Branch A')
+            if (chestSkin &&
+                midaxillarySkin &&
+                tricepSkin &&
+                subscapSkin &&
+                abdominalSkin &&
+                supraIliacSkin &&
+                thighSkin) {
+                    d = (1.112 - .00043499 * (chestSkin+midaxillarySkin+tricepSkin+subscapSkin+abdominalSkin+supraIliacSkin+thighSkin)) + (.00000055 * (chestSkin+midaxillarySkin+tricepSkin+subscapSkin+abdominalSkin+supraIliacSkin+thighSkin)**2) - (.00028826 * state.user.age);
+                } else if (chestSkin && abdominalSkin && thighSkin) {
+                    d = 1.10938 - .0008267 * (chestSkin+abdominalSkin+thighSkin) + .00000016 * (chestSkin+abdominalSkin+thighSkin)**2 - .0002574 * state.user.age;
+                } else if (chestSkin && tricepSkin && subscapSkin) {
+                    d = 1.1125025 - .0013125 * (chestSkin+tricepSkin+subscapSkin) + .0000055 * (chestSkin+tricepSkin+subscapSkin)**2 - .000244 * state.user.age;
+                }
+        } else if (state.user?.sex === 'FEMALE' && state.user.age) {
+            if (chestSkin &&
+                midaxillarySkin &&
+                tricepSkin &&
+                subscapSkin &&
+                abdominalSkin &&
+                supraIliacSkin &&
+                thighSkin) {
+                    d = 1.097 - .00046971 * (chestSkin+midaxillarySkin+tricepSkin+subscapSkin+abdominalSkin+supraIliacSkin+thighSkin) + (.00000056 * (chestSkin+midaxillarySkin+tricepSkin+subscapSkin+abdominalSkin+supraIliacSkin+thighSkin)**2) - .00012828 * state.user.age;
+                } else if (tricepSkin && supraIliacSkin && thighSkin) {
+                    d = 1.0994921 - .0009929 * (tricepSkin+supraIliacSkin+thighSkin) + .0000023 * (tricepSkin+supraIliacSkin+thighSkin)**2 - .0001329 * state.user.age;
+                } else if (abdominalSkin && tricepSkin && supraIliacSkin) {
+                    d = 1.089733 - .0009245 * (abdominalSkin+tricepSkin+supraIliacSkin) + .0000025 * (abdominalSkin+tricepSkin+supraIliacSkin)**2 - .0000979 * state.user.age;
+                };
+        };
+        return d > 0 ? Math.floor(d * 100)/100 : d;
+    }, [state.user.sex, state.user.age, state.user.abdominalSkin, state.user.bicepSkin,state.user.calfSkin,state.user.chestSkin,state.user.midaxillarySkin,state.user.subscapSkin,state.user.supraIliacSkin,state.user.thighSkin,state.user.tricepSkin]);
+
+    const bodyComp : BodyComp = useMemo(()=> {
+        let bf : number = 0;
+        let c : BodyCompCategory = '';
+        if (bodyDensity) {
+            bf = ((4.95 / bodyDensity) - 4.5) * 100;
+            if (state.user.sex === 'MALE' && state.user.age) {
+                c = menBodyComp(state.user.age, bf)
+            };
+            if (state.user.sex === 'FEMALE' && state.user.age) {
+                c = womenBodyComp(state.user.age, bf)
+            };
+        };
+        return { percentage : Math.floor(bf * 100) / 100, category : c }
+    }, [bodyDensity, state.user]);
 
     const macros : Macros | null = useMemo(()=> {
-        if (state.user.age 
-            && state.user.sex 
-            && state.user.currentWeight
-            && state.user.height
-            && state.user.activityLevel
-            && bodyWeightGoal
-            && state.user.prefers_metric === false) {
-            sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
-            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
+        try {
+            if (state.user.age 
+                && state.user.sex 
+                && state.user.currentWeight
+                && state.user.height
+                && state.user.activityLevel
+                && bodyWeightGoal
+                && state.user.prefers_metric === false) {
+                sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+                return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
+            }
+    
+            if (state.user.age 
+                && state.user.sex 
+                && state.user.currentWeight
+                && state.user.height
+                && state.user.activityLevel
+                && bodyWeightGoal
+                && state.user.prefers_metric) {
+                sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+                return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
+            }
+            return null;
+        } catch (err: any) {
+            console.error(err)
+            return null
         }
-
-        if (state.user.age 
-            && state.user.sex 
-            && state.user.currentWeight
-            && state.user.height
-            && state.user.activityLevel
-            && bodyWeightGoal
-            && state.user.prefers_metric) {
-            sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
-            return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
-        }
-        return null;
+        
     }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height]);
 
     const micros : Micros | null = useMemo(()=> {
-        if (state.user.age && state.user.sex) {
-            if (!sessionStorage.getItem('user') || sessionStorage.getItem('user')?.includes('fiber')) {
-                sessionStorage.setItem('user',JSON.stringify({...state.user, micros : JSON.stringify(calculateMicros(state.user.sex,state.user.age))}));
+        try {
+            if (state.user.age && state.user.sex) {
+                if (!sessionStorage.getItem('user') || sessionStorage.getItem('user')?.includes('fiber')) {
+                    sessionStorage.setItem('user',JSON.stringify({...state.user, micros : JSON.stringify(calculateMicros(state.user.sex,state.user.age))}));
+                }
+                return calculateMicros(state.user.sex,state.user.age)
             }
-            return calculateMicros(state.user.sex,state.user.age)
+            return null
+        } catch (err: any) {
+            console.error(err)
+            return null;
         }
-        return null
     }, [state.user.age, state.user.sex]);
 
     const hrMax : number | null= useMemo(()=> {
@@ -360,7 +476,9 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                         micros,
                         hrMax,
                         waistHipRatio,
-                        waistHeightRatio
+                        waistHeightRatio,
+                        bodyDensity,
+                        bodyComp
                     }, 
                     error:state.error, 
                     isLoading:state.isLoading

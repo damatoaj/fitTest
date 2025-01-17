@@ -37,7 +37,7 @@ const SessionsTable = () => {
     return (
             <table>
                 <thead>
-                    <tr><th colSpan={18}>Previous Sessions On This Browser</th></tr>
+                    <tr><th colSpan={26}>Previous Sessions On This Browser</th></tr>
                     <tr>
                         <th>Time Stamp</th>
                         <th>Date (YYYY-MM-DD)</th>

@@ -12,19 +12,7 @@ function DemoGraphicsForm() {
         valid = form.current.checkValidity()
     }
 
-    let defaultWeight : string = '';
-    if (user.currentWeight && user.prefers_metric) {
-        defaultWeight = String(user.currentWeight);
-    } else if (user.currentWeight) {
-        defaultWeight = String(user.currentWeight * 2.2);
-    };
 
-    let defaultHeight : string = '';
-    if (user.height && user.prefers_metric) {
-        defaultHeight = String(user.height);
-    } else if (user.height) {
-        defaultHeight = String(user.height / 2.54);
-    };
 
   return (
     <form 
@@ -46,7 +34,6 @@ function DemoGraphicsForm() {
                 type='text'
                 pattern="^[a-zA-Z]+$"
                 onChange={handleChange}
-                defaultValue={user.fname || ''}
                 title="No special characters"
             />      
         </fieldset>
@@ -59,7 +46,6 @@ function DemoGraphicsForm() {
                 type='text'
                 pattern='^[a-zA-Z]+$'
                 onChange={handleChange}
-                defaultValue={user.lname || ''}
                 title="No special characters"
             />
         </fieldset>
@@ -74,7 +60,6 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={1}
                 maxLength={3}
-                defaultValue={user.age || ''}
                 placeholder=''
                 title="Range is 20-69"
             />
@@ -90,7 +75,6 @@ function DemoGraphicsForm() {
                 onChange={handleChange}
                 step={.5}
                 maxLength={7}
-                defaultValue={defaultWeight}
                 placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured In Pounds'}
                 title="Range is 50 to 450"
             />
@@ -117,7 +101,6 @@ function DemoGraphicsForm() {
                 <select 
                     name='activityLevel'
                     onChange={handleSelect}
-                    defaultValue={user.activityLevel || 'default'}
                 >
                     <option value='default' disabled>
                         --Select One--
@@ -178,7 +161,6 @@ function DemoGraphicsForm() {
                     onChange={handleChange}
                     step={.5}
                     maxLength={6}
-                    defaultValue={defaultHeight}
                     placeholder={'Measured in centimeters'}
                     title="Range is 50 to 300"
                 />
@@ -240,7 +222,7 @@ function DemoGraphicsForm() {
             name='sex'
             onChange={handleSelect}
             required
-            defaultValue={user.sex || 'default'}
+            defaultValue={'default'}
         >
             <option disabled value='default' >--Select--</option>
             <option value='FEMALE'>Female</option>
@@ -249,7 +231,7 @@ function DemoGraphicsForm() {
     </fieldset>
         <span>
             <button type='submit' disabled={!valid}>{user.fname ?  'Update' : 'Submit' }</button>
-            <button type='reset' disabled={user.fname !== null ? true : false}>Reset</button>
+            <button type='reset'>Reset</button>
         </span>
     </form>
   )

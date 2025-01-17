@@ -38,6 +38,7 @@ import SessionsTable from './Components/Tables/SessionsTable';
 import Categories from './Screens/Categories';
 import BodyCircumference from './Screens/BodyCircumference/BodyCircumference';
 import BloodPressureScreen from './Screens/BloodPressure/BloodPressureScreen';
+import SkinfoldScreen from './Screens/SkinFolds/SkinfoldScreen';
 function App() {
   const { state } = useUserContext();
   // useEffect(()=> {
@@ -116,6 +117,7 @@ function App() {
           <Route path='/categories' element={<Categories />}></Route>
           <Route path='/circumferences' element={<BodyCircumference />}></Route>
           <Route path='/blood-pressure' element={<BloodPressureScreen />}></Route>
+          <Route path='/skinfolds' element={<SkinfoldScreen />} ></Route>
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>

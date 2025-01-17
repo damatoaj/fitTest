@@ -8,7 +8,10 @@ const DemographicTable = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th colSpan={2}>
+                        <th colSpan={1}>
+                                <strong>Name:</strong>
+                            </th>
+                            <th colSpan={1}>
                                 <strong>{state.user.fname} {state.user.lname}</strong>
                             </th>
                         </tr>
@@ -44,7 +47,7 @@ const DemographicTable = () => {
                     <thead>
                         <tr>
                             <th colSpan={2}>
-                                <strong>Blood Pressure</strong>
+                                <strong>Blood Pressure & Body Density</strong>
                             </th>
                         </tr>
                     </thead>
@@ -57,9 +60,33 @@ const DemographicTable = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td>Classification: </td>
+                            <td>BP Classification: </td>
                             <td>
                                 {state.user.bloodPressure?.classification ? state.user.bloodPressure.classification : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Body Density: 
+                            </td>
+                            <td>
+                                {state.user.bodyDensity !== 0 ? state.user.bodyDensity : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Body Fat Percentage: 
+                            </td>
+                            <td>
+                                {state.user.bodyComp.percentage ? `${state.user.bodyComp.percentage}%` : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Body Fat Category: 
+                            </td>
+                            <td>
+                                {state.user.bodyComp.category ? state.user.bodyComp.category : '-'}
                             </td>
                         </tr>
                     </tbody>

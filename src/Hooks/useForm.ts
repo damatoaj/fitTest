@@ -30,7 +30,55 @@ type Data = {
     buttocksCircumference : string,
     forearmCircumference : string,
     hipsCircumference : string,
-    midthighCircumference : string
+    midthighCircumference : string,
+    abdominalSkin : string,
+    bicepSkin : string,
+    calfSkin : string,
+    chestSkin : string,
+    midaxillarySkin : string,
+    subscapSkin: string,
+    supraIliacSkin: string,
+    thighSkin: string,
+    tricepSkin: string
+}
+
+const d = {
+    age: '',
+    activityLevel: '',
+    benchPress:'',
+    currentWeight: '',
+    fname:'',
+    goalWeight: '',
+    height: '',
+    leftHand:'',
+    legPress:'',
+    lname:'',
+    pushups:'',
+    rightHand:'',
+    sex: '',
+    vo2Max: '',
+    sbp: '',
+    dbp: '',
+    waistCircumference: '',
+    sar: '',
+    feet: '',
+    inches: '',
+    abdomenCircumference : '',
+    armCircumference : '',
+    calfCircumference : '',
+    buttocksCircumference : '',
+    forearmCircumference : '',
+    hipsCircumference : '',
+    midthighCircumference : '',
+    abdominalSkin : '',
+    bicepSkin : '',
+    calfSkin : '',
+    chestSkin : '',
+    midaxillarySkin : '',
+    subscapSkin: '',
+    supraIliacSkin: '',
+    thighSkin: '',
+    tricepSkin: ''
 }
 
 const useForm = (url?:string) => {
@@ -64,63 +112,54 @@ const useForm = (url?:string) => {
         buttocksCircumference : '',
         forearmCircumference : '',
         hipsCircumference : '',
-        midthighCircumference : ''
-    })
+        midthighCircumference : '',
+        abdominalSkin : '',
+        bicepSkin : '',
+        calfSkin : '',
+        chestSkin : '',
+        midaxillarySkin : '',
+        subscapSkin: '',
+        supraIliacSkin: '',
+        thighSkin: '',
+        tricepSkin: ''
+    });
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]: e.target.value}
         })
-    }
+    };
 
     const handleSelect : ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setData((prev)=> {
             return {...prev, [e.target.name]:e.target.value}
         })
-    }
+    };
 
-    const handleReset : FormEventHandler = () => {
-        setData(()=> { return {
-            age: '',
-            activityLevel: '',
-            benchPress:'',
-            currentWeight: '', //pounds
-            fname:'',
-            goalWeight: '', //pounds
-            height: '', //inches
-            leftHand:'',
-            legPress:'',
-            lname:'',
-            pushups:'',
-            rightHand:'',
-            sex: '',
-            vo2Max:'',
-            sbp : '',
-            dbp : '',
-            waistCircumference: '',
-            sar : '',
-            inches: '',
-            feet: '',
-            abdomenCircumference : '',
-            armCircumference : '',
-            calfCircumference : '',
-            buttocksCircumference : '',
-            forearmCircumference : '',
-            hipsCircumference : '',
-            midthighCircumference : ''
-        }}) 
-    }
+    const handleReset : FormEventHandler = (e:FormEvent) => {
+        setData(d);
+    };
 
     const customChange = (field:string, value:string) => {
         setData(prev => {
             return {...prev, [field]:value}
         })
-    }
+    };
 
-    const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent,) => {
+    const handleSubmit : FormEventHandler<HTMLFormElement> = async (e:FormEvent) => {
         e.preventDefault()
         dispatch({type: 'LOADING', payload : null})
         try {
+            if (data.abdominalSkin.length > 0) await dispatch({type: 'UPDATE_ABDOMINAL_SKIN', payload: parseFloat(data.abdominalSkin) });
+            if (data.bicepSkin.length > 0) await dispatch({type: 'UPDATE_BICEPS_SKIN', payload: parseFloat(data.bicepSkin)});
+            if (data.calfSkin.length > 0) await dispatch({type: 'UPDATE_CALF_SKIN', payload: parseFloat(data.calfSkin)});
+            if (data.chestSkin.length > 0) await dispatch({type: 'UPDATE_CHEST_SKIN', payload: parseFloat(data.chestSkin)});
+            if (data.midaxillarySkin.length > 0) await dispatch({type: 'UPDATE_MIDAXILLARY_SKIN', payload: parseFloat(data.midaxillarySkin)});
+            if (data.subscapSkin.length > 0) await dispatch({type: 'UPDATE_SUBSCAP_SKIN', payload: parseFloat(data.subscapSkin)});
+            if (data.supraIliacSkin.length > 0) await dispatch({type: 'UPDATE_SUPRAILIAC_SKIN', payload: parseFloat(data.supraIliacSkin)});
+            if (data.thighSkin.length > 0) await dispatch({type: 'UPDATE_THIGH_SKIN', payload: parseFloat(data.thighSkin)});
+            if (data.tricepSkin.length > 0) await dispatch({type: 'UPDATE_TRICEPS_SKIN', payload: parseFloat(data.tricepSkin)});
+
             if (data.abdomenCircumference.length > 0) await dispatch({type: 'UPDATE_ABDOMEN', payload: user.prefers_metric ? parseFloat(data.abdomenCircumference) : Math.floor(parseFloat(data.abdomenCircumference) * 2.54 * 100) / 100 });
             if (data.armCircumference.length > 0) await dispatch({type: 'UPDATE_ARM', payload: user.prefers_metric ? parseFloat(data.armCircumference) : Math.floor(parseFloat(data.armCircumference) * 2.54 * 100) / 100 });
             if (data.buttocksCircumference.length > 0) await dispatch({type: 'UPDATE_BUTTOCKS', payload: user.prefers_metric ? parseFloat(data.buttocksCircumference) : Math.floor(parseFloat(data.buttocksCircumference) * 2.54 * 100) / 100 });
@@ -128,6 +167,7 @@ const useForm = (url?:string) => {
             if (data.forearmCircumference.length > 0) await dispatch({type: 'UPDATE_FOREARM', payload: user.prefers_metric ? parseFloat(data.forearmCircumference) : Math.floor(parseFloat(data.forearmCircumference) * 2.54 * 100) / 100 });
             if (data.hipsCircumference.length > 0) await dispatch({type: 'UPDATE_HIPS', payload: user.prefers_metric ? parseFloat(data.hipsCircumference) : Math.floor(parseFloat(data.hipsCircumference) * 2.54 * 100) / 100 });
             if (data.midthighCircumference.length > 0) await dispatch({type: 'UPDATE_MIDTHIGH', payload: user.prefers_metric ? parseFloat(data.midthighCircumference) : Math.floor(parseFloat(data.midthighCircumference) * 2.54 * 100) / 100 });
+
             if (data.inches.length > 0 && data.inches.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: parseInt(data.feet) * 12 + parseFloat(data.inches)});
             if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
@@ -151,14 +191,17 @@ const useForm = (url?:string) => {
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
             if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) * 2.54 * 100) / 100 })
+            setData(d);
+            (e.target as HTMLFormElement).reset();
             if (url) navigate(url);
         } catch (e:any) {
             const error = e.message;
+            setData(d);
             dispatch({type:'ERROR', payload:error});
         }
     }
 
     return { data, handleChange, handleSelect, handleReset, handleSubmit, customChange }
-}
+};
 
 export default useForm

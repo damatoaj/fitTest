@@ -111,6 +111,9 @@ const NavBar = ({u} : NavBarProps) => {
                             <li className='light'>
                                 <Link to='/blood-pressure' onClick={handleNavigate}>Blood Pressure</Link>
                             </li>
+                            <li className='dark'>
+                                <Link to='/skinfolds' onClick={handleNavigate}>Skinfold Sites</Link>
+                            </li>
                         </ul>
                     </li>
 

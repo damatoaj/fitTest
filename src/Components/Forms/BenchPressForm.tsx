@@ -11,14 +11,6 @@ const BenchPressForm = () => {
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
     }
-
-    let defaultValue : string = '';
-    if (user.benchPress && user.prefers_metric) {
-        defaultValue = String(user.benchPress.benchPress);
-    } else if (user.benchPress) {
-        defaultValue = String(user.benchPress.benchPress * 2.2);
-    };
-
     return (
         <form
             ref={form}
@@ -40,7 +32,6 @@ const BenchPressForm = () => {
                     step={.5}
                     maxLength={6}
                     required
-                    defaultValue={defaultValue}
                 />
             </fieldset>
             <span>

@@ -9,6 +9,7 @@ import { addData } from "../../indexedDB";
 import SARTable from "./SARTable";
 import DemographicTable from "./DemographicTable";
 import WaistTable from "./WaistTable";
+import SkinFoldTable from "./SkinFoldTable";
 const SummaryTable = () => {
     const { state } = useUserContext();
     const date : number = new Date().getDate();
@@ -46,6 +47,15 @@ const SummaryTable = () => {
             'forearm_circumference' : u.forearmCircumference ? u.forearmCircumference : null,
             'hips_circumference' : u.hipsCircumference ? u.hipsCircumference : null,
             'midthigh_circumference' : u.midthighCircumference ? u.midthighCircumference : null,
+            'abdominal_skin' : u.abdominalSkin ? u.abdominalSkin : null,
+            'biceps_skin' : u.bicepSkin ? u.bicepSkin : null,
+            'chest_skin' : u.chestSkin ? u.chestSkin : null,
+            'calf_skin' : u.calfSkin ? u.calfSkin : null,
+            'midaxillary_skin' : u.midaxillarySkin ? u.midaxillarySkin : null,
+            'subscapular_skin' : u.subscapSkin ? u.subscapSkin : null,
+            'suprailiac_skin' : u.supraIliacSkin ? u.supraIliacSkin : null,
+            'thigh_skin' : u.thighSkin ? u.thighSkin : null,
+            'triceps_skin' : u.tricepSkin ? u.tricepSkin : null,
         };
         try {
             await addData('sessions', data);
@@ -65,6 +75,7 @@ const SummaryTable = () => {
             <section>
                 <DemographicTable />
                 <BMITable />
+                <SkinFoldTable />
                 <WaistTable />
             </section>
             <section>
@@ -111,6 +122,22 @@ const SummaryTable = () => {
                                 };
                                 if  (state.user.bloodPressure) {
                                     text = text.concat(`\nBlood Pressure: ${state.user.bloodPressure.sbp}/${state.user.bloodPressure.dbp}, ${state.user.bloodPressure.classification}`)
+                                };
+
+                                if  (state.user.bodyDensity) {
+                                    text = text.concat(`\nBody Density: ${state.user.bodyDensity}`);
+                                };
+
+                                if  (state.user.bodyComp) {
+                                    text = text.concat(`\nBody Fat: ${state.user.bodyComp.percentage}; ${state.user.bodyComp.category}`);
+                                };
+
+                                if  (state.user.waistCircumference) {
+                                    text = text.concat(`\nWaist Circumference: ${state.user.waistCircumference.wc}; ${state.user.waistCircumference.category}`);
+                                };
+
+                                if  (state.user.hrMax) {
+                                    text = text.concat(`\nHeart Rate Max: ${state.user.hrMax}`);
                                 };
 
                                 if  (state.user.pushups) {
@@ -226,7 +253,7 @@ const SummaryTable = () => {
                                 </thead>
                                 <tbody>
                                     <tr><td>Systolic / Diastolic Ratio</td><td>{state.user.bloodPressure.sbp}/{state.user.bloodPressure.dbp}</td></tr>
-                                    <tr><td>Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
+                                    <tr><td>BP Classification: </td><td>{state.user.bloodPressure.classification}</td></tr>
                                 </tbody>
                             </table>}
                             {state.user.bmi?.classification && <BMITable />}
