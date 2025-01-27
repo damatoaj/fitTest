@@ -1,6 +1,7 @@
 import React, {memo} from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../Hooks/useUserContext";
+import MetricSwitcher from "../MetricSwitcher";
 
 type instructionsScreenProps = {
     heading: string;
@@ -57,6 +58,7 @@ const InstructionsScreen = memo(({title, nextURL, heading, paragraphs}:instructi
             <button type="button"  onClick={()=> navigate(nextURL)}>Click to Begin</button> :
             <button type="button"  onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
         }
+        <MetricSwitcher />
     </main>
 
 });

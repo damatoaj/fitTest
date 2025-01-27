@@ -12,7 +12,7 @@ import BodyfatCategories from '../Components/Tables/BodyfatCategories';
 const Categories = () => {
     return (
         <main>
-            <h1>Fitness Categories</h1>
+            <h1>Fitness Categories & Percentiles</h1>
             <section>
                 <h2>Health Metrics</h2>
                 <details open id='bodyfat'>
@@ -43,7 +43,7 @@ const Categories = () => {
                         <VO2MaxCategories />
                     </details>
             </section>
-            <hr />
+ 
             <section>
                 <h2>Strength Metrics</h2>
                 <details open id='bench-press'>

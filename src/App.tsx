@@ -39,6 +39,7 @@ import Categories from './Screens/Categories';
 import BodyCircumference from './Screens/BodyCircumference/BodyCircumference';
 import BloodPressureScreen from './Screens/BloodPressure/BloodPressureScreen';
 import SkinfoldScreen from './Screens/SkinFolds/SkinfoldScreen';
+
 function App() {
   const { state } = useUserContext();
   // useEffect(()=> {
@@ -61,7 +62,6 @@ function App() {
       {state.error && <Error message={state.error} />}
       {state.isLoading && <Loader />}
       {<NavBar u={state.user} />}
-
       {/* {window.innerWidth <= 600 && <MobileNav />} */}
         <Routes>
           <Route

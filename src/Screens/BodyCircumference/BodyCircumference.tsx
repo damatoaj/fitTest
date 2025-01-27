@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import WaistCircumferenceForm from '../../Components/Forms/WaistCircumferenceForm';
+import MetricSwitcher from '../../Components/MetricSwitcher';
+
 const BodyCircumference = () => {
     return (
         <main>
@@ -141,6 +143,7 @@ const BodyCircumference = () => {
             <section id="body-circumerference-form">
                 <WaistCircumferenceForm />
             </section>
+            <MetricSwitcher />
         </main>
     )
 };

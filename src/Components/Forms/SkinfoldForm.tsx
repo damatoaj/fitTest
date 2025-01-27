@@ -1,15 +1,14 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext'
+import { useNavigate } from 'react-router-dom';
+
 const SkinfoldForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const { state : {user } } = useUserContext()
-    // let valid : boolean = Boolean(user.benchPress?.benchPress) || false
+    const navigate = useNavigate()
     
-    // if(form.current && form.current !== null) {
-    //     valid = form.current.checkValidity()
-    // };
     return (
         <form
             ref={form}
@@ -135,7 +134,7 @@ const SkinfoldForm = () => {
                     <button type='reset' disabled={user.sex !== null ? true : false}>Reset</button>
                 </span>
                 :
-                <button type="button">Please Fill Out Demographic Form</button>
+                <button type="button" onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
             }
             </span>
         </form>

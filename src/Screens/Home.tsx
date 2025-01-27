@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     return (
         <main>
-            <h1>Home Page</h1>
             <article>
-
+                <h1> Welcome to FitTest!</h1>
                 <p>
-                    Welcome to FitTest! Your app for exercise testing.
+                 Your app for exercise testing.
                 </p>
                 <p>
                     Whether you're a professional coach, physical therapist, or just curious about your fitness...
