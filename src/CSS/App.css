@@ -144,7 +144,7 @@ article {
   margin: 1rem;
   border: 2px solid black;
   box-shadow: 0 0 15px lightgrey;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 article > h2, article > h1 {
@@ -170,7 +170,7 @@ header {
 .logo {
   height: 100px;
   width: 10%;
-  border-radius: 15%;
+  border-radius: 25px;
 }
 
 #metric-switcher {

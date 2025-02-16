@@ -39,6 +39,7 @@ import Categories from './Screens/Categories';
 import BodyCircumference from './Screens/BodyCircumference/BodyCircumference';
 import BloodPressureScreen from './Screens/BloodPressure/BloodPressureScreen';
 import SkinfoldScreen from './Screens/SkinFolds/SkinfoldScreen';
+import FieldTests from './Screens/FieldTests/FieldTests';
 
 function App() {
   const { state } = useUserContext();
@@ -108,6 +109,7 @@ function App() {
             <Route path='progress' element={<StepTestTime />} />
             <Route path='results' element={<StepTestResults />} />
           </Route>
+          <Route path='/field-tests' element={<FieldTests />} />
           <Route path='/sit-and-reach'>
             <Route path='instructions' element={<SARInstructions />} />
             <Route path='results' element={<SARResults />} />
