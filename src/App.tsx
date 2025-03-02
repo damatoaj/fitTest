@@ -6,6 +6,7 @@ import './CSS/Links.css';
 import './CSS/Details.css';
 
 import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 import Home from './Screens/Home';
 import Loader from './Components/Loader';
 import Error from './Components/Error';
@@ -123,6 +124,7 @@ function App() {
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>
+        <Footer />
       </>
     )
 }

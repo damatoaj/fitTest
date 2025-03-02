@@ -202,6 +202,15 @@ a {
     text-wrap: 'nowrap';
 }
 
+footer  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    flex-grow: 0;
+    max-width: 600px;
+}
+
 @media screen and (min-width : 800px) {
     nav {
         display: flex;
