@@ -10,6 +10,7 @@ import SARTable from "./SARTable";
 import DemographicTable from "./DemographicTable";
 import WaistTable from "./WaistTable";
 import SkinFoldTable from "./SkinFoldTable";
+import Vo2Maxtable from "./Vo2Maxtable";
 const SummaryTable = () => {
     const { state } = useUserContext();
     const date : number = new Date().getDate();
@@ -82,6 +83,7 @@ const SummaryTable = () => {
                 <h2>Muscular Strength & Endurance</h2>
                     <StrengthTable />
                     <PushupsTable />
+                    <Vo2Maxtable />
                 </section>
             <section>
             <section>

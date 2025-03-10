@@ -146,6 +146,7 @@ article {
   border: 2px solid black;
   box-shadow: 0 0 15px lightgrey;
   border-radius: 10px;
+  width: 100%;
 }
 
 article > h2, article > h1 {

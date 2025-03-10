@@ -176,6 +176,9 @@ const NavBar = ({u} : NavBarProps) => {
                                     <li className='light'>
                                         <Link to='/step-test/instructions' onClick={handleNavigate}>McArdle Step Test</Link>
                                     </li>
+                                    <li className='dark'>
+                                        <Link to='/field-tests' onClick={handleNavigate}>Field Tests</Link>
+                                    </li>
                                 </ul>
                             </li>
                             <li className='sub-subnav'>

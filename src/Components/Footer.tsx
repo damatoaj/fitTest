@@ -60,14 +60,13 @@ const affiliateLinks = [{
 
 const Footer = () => {
     const links = affiliateLinks.map((link, i) => {
-        return (<a href={link[0]} title={link[1]} key={i}>
+        return (<a href={link[0]} title={link[1]} key={i} target='_blank' rel='noreferrer'>
             {link[2]} - {link[1]}
         </a>)
     })
 
     return (
         <footer>
-           
             <address>
                 <h4>
                     <a href='mailto:mr.arthurdamato@gmail.com'>
@@ -84,7 +83,6 @@ const Footer = () => {
                     {links}
                 </ul>
             </details>
-
         </footer>
     )
 };
