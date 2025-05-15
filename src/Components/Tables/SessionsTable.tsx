@@ -8,7 +8,7 @@ const SessionsTable = () => {
     const [dbReady, setDbReady] = useState<boolean>(false);
     const { state : {user} } = useUserContext();
     useEffect(() => {
-        initDB(3)
+        initDB(6)
         .then((e)=> {
             console.log(e, '<--- initDb complete')
             if (e === true) {

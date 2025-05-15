@@ -67,13 +67,6 @@ const Footer = () => {
 
     return (
         <footer>
-            <address>
-                <h4>
-                    <a href='mailto:mr.arthurdamato@gmail.com'>
-                        Contact here for support or feedback
-                    </a>
-                </h4>
-            </address>
             <details>
                 <summary>
                     <h3>Considering checking out some of our affiliate links below!</h3>

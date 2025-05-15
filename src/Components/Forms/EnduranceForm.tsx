@@ -29,7 +29,7 @@ const EnduranceForm = () => {
                     autoFocus={true}
                     step={1}
                     maxLength={3}
-                    defaultValue={user.pushups?.pushups || ''}
+                    defaultValue={0}
                 />
             </fieldset>
             <span>

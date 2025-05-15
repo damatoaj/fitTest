@@ -83,7 +83,7 @@ const d = {
 
 const useForm = (url?:string) => {
     const navigate : Function = useNavigate()
-    const { state : {user } } = useUserContext()
+    const { state : { user } } = useUserContext()
     const { dispatch} = useUserContext()
     const [data, setData] = useState<Data>({
         age: '',
@@ -194,6 +194,7 @@ const useForm = (url?:string) => {
             setData(d);
             (e.target as HTMLFormElement).reset();
             if (url) navigate(url);
+            dispatch({type:'ALERT', payload: {type:'success', message: 'form submitted'}});
         } catch (e:any) {
             const error = e.message;
             setData(d);

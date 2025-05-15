@@ -10,13 +10,6 @@ const SitAndReachForm = () => {
     
     if(form.current && form.current !== null) {
         valid = form.current.checkValidity()
-    }
-
-    let defaultValue : string = '';
-    if (user.sar && user.prefers_metric) {
-        defaultValue = String(user.sar.value);
-    } else if (user.sar) {
-        defaultValue = String(user.sar.value / 2.54);
     };
 
     return (
@@ -40,7 +33,7 @@ const SitAndReachForm = () => {
                     step={.5}
                     maxLength={2}
                     required
-                    defaultValue={defaultValue}
+                    defaultValue={0}
                 />
             </fieldset>
             {user.age && user.sex ? 

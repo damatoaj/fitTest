@@ -4,12 +4,13 @@ import './CSS/Form.css';
 import './CSS/Table.css';
 import './CSS/Links.css';
 import './CSS/Details.css';
+import './CSS/Alert.css';
 
+import Alert from './Components/Alert';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import Home from './Screens/Home';
 import Loader from './Components/Loader';
-import Error from './Components/Error';
 import { Route, Routes } from 'react-router-dom';
 import StrengthForm from './Components/Forms/StrengthForm';
 import StrengthTable from './Components/Tables/StrengthTable';
@@ -61,7 +62,13 @@ function App() {
 // }, [])
     return (
       <>
-      {state.error && <Error message={state.error} />}
+      <address>
+          <a href='mailto:mr.arthurdamato@gmail.com'>
+              FeedBack
+          </a>
+      </address>
+      {state.error && <Alert message={state.error} type={'error'} />}
+      {state.alert && <Alert message={state.alert.message} type={state.alert.type} />}
       {state.isLoading && <Loader />}
       {<NavBar u={state.user} />}
       {/* {window.innerWidth <= 600 && <MobileNav />} */}

@@ -1,0 +1,36 @@
+dialog.alert {
+    width: 200px;
+    height: 100px;
+    border-radius: 20px;
+    border: 2px solid black;
+    font-size: 1.3rem;
+    font-weight: 200;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+    text-transform: capitalize;
+    position: fixed;
+    top: 1%;
+    right:450%;
+    z-index: 1000;
+}
+
+dialog.alert[data-type="warning"] {
+    border-color: var(--prm-drk-yellow);
+    background-color: var(--prm-lgt-yellow);
+}
+
+dialog.alert[data-type="success"] {
+    border-color: var(--prm-drk-green);
+    background-color: var(--prm-lgt-green);
+}
+
+dialog.alert[data-type="error"] {
+    border-color: var(--prm-drk-red);
+    background-color: var(--prm-lgt-pink);
+}
+
+dialog.alert[data-type="info"] {
+    border-color: var(--prm-drk-blue);
+    background-color: var(--prm-lgt-blue);
+}

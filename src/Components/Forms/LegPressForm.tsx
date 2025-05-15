@@ -20,13 +20,6 @@ const LegPressForm = () => {
         if(input.current) {message = checkInput(input.current)}
     };
 
-    let defaultValue : string = '';
-    if (user.legPress && user.prefers_metric) {
-        defaultValue = String(user.legPress?.legPress);
-    } else if (user.legPress) {
-        defaultValue = String(user.legPress.legPress * 2.2);
-    };
-
     return (
         <form
             ref={form}
@@ -42,13 +35,12 @@ const LegPressForm = () => {
                     onChange={handleChange}
                     type='number'
                     name='legPress'
-                    min='1'
+                    min='0'
                     max='2000'
                     placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured in Pounds'}
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
-                    defaultValue={defaultValue}
                 />
             </fieldset>
             <div className='message-container'>

@@ -66,7 +66,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
 type State = {
     user : User;
     isLoading:boolean;
-    error:string | null
+    error:string | null;
+    alert: {message: string, type: string} | null;
 }
 
 type Action = {type: 'UPDATE_PUSHUPS', payload: number}
@@ -107,12 +108,15 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type : 'UPDATE_SUPRAILIAC_SKIN', payload: number}
     | {type : 'UPDATE_THIGH_SKIN', payload: number}
     | {type : 'UPDATE_TRICEPS_SKIN', payload: number}
+    | {type: 'ALERT', payload : {type: string, message: string}}
+    | {type: 'REMOVEALERT', payload: null}
 
 
 const initialState = {
     user: initialUser,
     error: null,
-    isLoading: false
+    isLoading: false,
+    alert: null
 }
 
 export const userReducer = (state : State, action: Action) => {
@@ -122,55 +126,55 @@ export const userReducer = (state : State, action: Action) => {
     console.groupEnd();
     switch (type) {
         case 'LOADING':
-            return {...state, isLoading: true, error: null}
+            return {...state, isLoading: true, error: null, alert: null}
         case 'UPDATE_ABDOMINAL_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, abdominalSkin : payload}));
-            return { user: {...state.user, abdominalSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, abdominalSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_BICEPS_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, bicepSkin : payload}));
-            return { user: {...state.user, bicepSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, bicepSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_CALF_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, calfSkin : payload}));
-            return { user: {...state.user, calfSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, calfSkin: payload}, isLoading: false, error: null, alert: null};
         case 'UPDATE_CHEST_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, chestSkin : payload}));
-            return { user: {...state.user, chestSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, chestSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_MIDAXILLARY_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, midaxillarySkin : payload}));
-            return { user: {...state.user, midaxillarySkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, midaxillarySkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_SUBSCAP_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, subscapSkin : payload}));
-            return { user: {...state.user, subscapSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, subscapSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_SUPRAILIAC_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, supraIliacSkin : payload}));
-            return { user: {...state.user, supraIliacSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, supraIliacSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_THIGH_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, thighSkin : payload}));
-            return { user: {...state.user, thighSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, thighSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_TRICEPS_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, tricepSkin : payload}));
-            return { user: {...state.user, tricepSkin: payload}, isLoading: false, error: null};
+            return { user: {...state.user, tricepSkin: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_ABDOMEN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, abdomenCircumference : payload}));
-            return { user: {...state.user, abdomenCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, abdomenCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_ARM':
             sessionStorage.setItem('user', JSON.stringify({...state.user, armCircumference : payload}));
-            return { user: {...state.user, armCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, armCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_BUTTOCKS':
             sessionStorage.setItem('user', JSON.stringify({...state.user, buttocksCircumference : payload}));
-            return { user: {...state.user, buttocksCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, buttocksCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_CALF':
             sessionStorage.setItem('user', JSON.stringify({...state.user, calfCircumference : payload}));
-            return { user: {...state.user, calfCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, calfCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_FOREARM':
             sessionStorage.setItem('user', JSON.stringify({...state.user, forearmCircumference : payload}));
-            return { user: {...state.user, forearmCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, forearmCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_HIPS':
             sessionStorage.setItem('user', JSON.stringify({...state.user, hipsCircumference : payload}));
-            return { user: {...state.user, hipsCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, hipsCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_MIDTHIGH':
             sessionStorage.setItem('user', JSON.stringify({...state.user, midthighCircumference : payload}));
-            return { user: {...state.user, midthighCircumference: payload}, isLoading: false, error: null};
+            return { user: {...state.user, midthighCircumference: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_SAR':
             let sar = null;
             if (state.user.sex === 'MALE' && state.user.age) {
@@ -182,29 +186,29 @@ export const userReducer = (state : State, action: Action) => {
                 sar = womensSitAndReach(state.user.age, payload);
                 sessionStorage.setItem('user', JSON.stringify({...state.user, sar : womensSitAndReach(state.user.age, payload)}));
             };
-            return {isLoading: false, error: null, user : {...state.user, sar}}
+            return {isLoading: false, error: null, user : {...state.user, sar},  alert: null}
         case 'UPDATE_WAIST':
             if (!state.user.sex) throw new Error('Sex is required before waist circumference can be calculated');
             sessionStorage.setItem('user', JSON.stringify({...state.user, waistCircumference : waistCircumferenceRiskFactor(state.user.sex, payload)}));
-            return { user: {...state.user, waistCircumference: waistCircumferenceRiskFactor(state.user.sex, payload)}, isLoading: false, error: null}
+            return { user: {...state.user, waistCircumference: waistCircumferenceRiskFactor(state.user.sex, payload)}, isLoading: false, error: null, alert: null}
         case 'UPDATE_BLOOD_PRESSURE':
             if (!payload[0] || !payload[1] || typeof payload[0] !== 'number' || typeof payload[1] !== 'number') throw new Error(`UserContext Error: Blood Pressure Payload Length is invalid: ${payload}`);
             sessionStorage.setItem('user', JSON.stringify( {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])}));
-            return { error : null, isLoading : false, user: {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])}}
+            return { error : null, isLoading : false, user: {...state.user, bloodPressure : bloodPressureCalculation(payload[0], payload[1])},  alert: null}
         case 'UPDATE HR_MAX':
             if (typeof payload !== 'number') throw new TypeError(`UserContext Error: HR MAX must use number, but received ${payload}`);
             if (payload > 220 || payload < 0) throw new Error('UserContext Error: HR MAX falls outside of acceptable range, check inputs');
             sessionStorage.setItem('user', JSON.stringify( {...state.user, hrMax: payload}));
-            return { error: null, isLoading: false, user : {...state.user, hrMax: payload}}
+            return { alert: null, error: null, isLoading: false, user : {...state.user, hrMax: payload}}
         case 'UPDATE_VO2MAX':
             if (state.user.sex === 'MALE' && state.user.age) {
                 const vo2Max = menCardioFitnessClassification(state.user.age, payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, vo2Max}));
-                return { error: null, isLoading: false, user: {...state.user, vo2Max}}
+                return { alert: null, error: null, isLoading: false, user: {...state.user, vo2Max}}
             } else if (state.user.sex === 'FEMALE' && state.user.age) {
                 const vo2Max = womenCardioFitnessClassification(state.user.age, payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, vo2Max}));
-                return { error: null, isLoading: false, user: {...state.user, vo2Max}}
+                return {alert: null, error: null, isLoading: false, user: {...state.user, vo2Max}}
             } else {
                 return {...state, isLoading:false}
             }
@@ -212,11 +216,11 @@ export const userReducer = (state : State, action: Action) => {
             if (state.user.sex === 'MALE' && state.user.age && state.user.currentWeight) {
                 const legPress = menLegPress(state.user.age, payload, state.user.currentWeight)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, legPress}));
-                return { error: null, isLoading: false, user: {...state.user, legPress}}
+                return { alert: null, error: null, isLoading: false, user: {...state.user, legPress}}
             } else if (state.user.sex === 'FEMALE' && state.user.age && state.user.currentWeight) {
                 const legPress = womenLegPress(state.user.age, payload, state.user.currentWeight)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, legPress}));
-                return { error: null, isLoading: false, user: {...state.user, legPress}}
+                return { alert: null, error: null, isLoading: false, user: {...state.user, legPress}}
             } else {
                 return {...state, isLoading:false}
             }
@@ -224,49 +228,49 @@ export const userReducer = (state : State, action: Action) => {
             if (state.user.sex === 'MALE' && state.user.age) {
                 const gripStrength = menGripStrength(state.user.age, payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, gripStrength}));
-                return {error:null, isLoading:false, user: {...state.user,gripStrength}}
+                return { alert: null, error:null, isLoading:false, user: {...state.user,gripStrength}}
             } else if (state.user.sex === 'FEMALE' && state.user.age) {
                 const gripStrength = womenGripStrength(state.user.age,payload)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, gripStrength}));
-                return {error:null, isLoading:false, user: {...state.user, gripStrength}}
+                return { alert: null, error:null, isLoading:false, user: {...state.user, gripStrength}}
             } else {
                 return {...state, isLoading:false}
             }
         case 'UPDATE_CURRENT_WEIGHT':
             const currentWeight = validateCurrentWeight(payload)
             sessionStorage.setItem('user', JSON.stringify( {...state.user, currentWeight}));
-            return {error:null, isLoading:false, user: {...state.user, currentWeight}}
+            return { alert: null, error:null, isLoading:false, user: {...state.user, currentWeight}}
         case "UPDATE_ACTIVITY_LEVEL":
             const activityLevel = payload;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, activityLevel}));
-            return {error:null, isLoading:false, user:{...state.user, activityLevel}};
+            return { alert: null, error:null, isLoading:false, user:{...state.user, activityLevel}};
         case 'UPDATE_NAME':
             sessionStorage.setItem('user', JSON.stringify( {...state.user, fname: payload.fname, lname: payload.fname}));
-            return {error:null, isLoading:false, user: {...state.user, fname:  payload.fname, lname : payload.lname }}
+            return { alert: null, error:null, isLoading:false, user: {...state.user, fname:  payload.fname, lname : payload.lname }}
         case 'UPDATE_SEX':
             sessionStorage.setItem('user', JSON.stringify( {...state.user, sex : payload}));
-            return {error:null, isLoading:false, user: {...state.user, sex : payload}}
+            return { alert: null, error:null, isLoading:false, user: {...state.user, sex : payload}}
         case 'UPDATE_AGE':
             const age = validateAge(payload)
             sessionStorage.setItem('user', JSON.stringify( {...state.user, age}));
-            return {error:null, isLoading: false, user: {...state.user, age}}
+            return { alert: null, error:null, isLoading: false, user: {...state.user, age}}
         case 'UPDATE_HEIGHT':
             const height = state.user.prefers_metric ? payload : payload * 2.54;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, height}));
-            return {error: null, isLoading: false, user: {...state.user, height}}
+            return { alert: null, error: null, isLoading: false, user: {...state.user, height}}
         case 'UPDATE_GOAL_WEIGHT':
             const goalWeight = validateGoalWeight(payload)
             sessionStorage.setItem('user', JSON.stringify( {...state.user, goalWeight}));
-            return {error:null, isLoading:false, user:{...state.user, goalWeight}}
+            return {alert: null, error:null, isLoading:false, user:{...state.user, goalWeight}}
         case 'UPDATE_PUSHUPS':
             if (state.user.sex === 'FEMALE' && state.user.age) {
                 const pushups = Object.freeze({pushups:payload, category: womenPushupCategories(state.user.age, payload)})
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, pushups}));
-                return {error:null, isLoading: false, user:{...state.user, pushups }}
+                return { alert: null, error:null, isLoading: false, user:{...state.user, pushups }}
             } else if (state.user.sex === 'MALE' && state.user.age){
                 const pushups = Object.freeze({pushups:payload, category: menPushupCategories(state.user.age, payload)})
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, pushups}));
-                return {error:null, isLoading: false, user:{...state.user, pushups }}
+                return { alert: null, error:null, isLoading: false, user:{...state.user, pushups }}
             } else {
                 return {...state, isLoading:false}
             }
@@ -276,18 +280,22 @@ export const userReducer = (state : State, action: Action) => {
                 const benchPress = menBenchPress(payload, state.user.currentWeight, state.user.age)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, benchPress}));
 
-                return {error:null, isLoading:false, user:{...state.user, benchPress}}
+                return { alert: null, error:null, isLoading:false, user:{...state.user, benchPress}}
             } else {
                 const benchPress = womenBenchPress(payload, state.user.currentWeight, state.user.age)
                 sessionStorage.setItem('user', JSON.stringify( {...state.user, benchPress}));
 
-                return {error:null, isLoading:false, user:{...state.user, benchPress}}
+                return { alert: null, error:null, isLoading:false, user:{...state.user, benchPress}}
             }
         case 'UPDATE_METRIC':
             console.log(payload, '<----- update metric')
-            return {error:null, isLoading:false, user: {...state.user, prefers_metric: payload}}
+            return { alert: null, error:null, isLoading:false, user: {...state.user, prefers_metric: payload}}
         case 'UPDATE_UID':
-            return {error: null, isLoading:false, user:{...state.user, uid: Math.floor(Math.random() * Date.now()) }}
+            return { alert: null, error: null, isLoading:false, user:{...state.user, uid: Math.floor(Math.random() * Date.now()) }}
+        case 'ALERT':
+            return {...state, alert: payload}
+        case 'REMOVEALERT':
+            return {...state, alert: null}
         case 'ERROR':
             const error = payload
             return {...state, error, isLoading:false}
@@ -481,7 +489,8 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                         bodyComp
                     }, 
                     error:state.error, 
-                    isLoading:state.isLoading
+                    isLoading:state.isLoading,
+                    alert: state.alert
                 }, 
                 dispatch
             }}

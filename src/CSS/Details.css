@@ -18,8 +18,20 @@ details > table {
     border-style: hidden;
 }
 
+details > ul, details a {
+    background-color: whitesmoke;
+}
 
+details > ul{
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 
+details[open]::details-content {
+    background-color: whitesmoke;
+}
 
 summary {
     background-color: var(--prm-drk-blue);
@@ -32,4 +44,13 @@ summary:hover{
 
 summary::marker {
     background-color: var(--prm-lgt-blue);
+}
+
+@media screen and (min-width:600px) {
+    details > ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        max-height: 350px;
+    }
 }

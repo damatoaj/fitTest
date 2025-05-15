@@ -1,5 +1,5 @@
 let request : IDBOpenDBRequest;
-let version = 5;
+let version = 6;
 let db : IDBDatabase;
 
 export const initDB = (v:number): Promise<boolean> => {
@@ -76,6 +76,7 @@ export const addData = <T>(storeName:string, data:T):Promise<T|string|null>=> {
         request.onsuccess = (event: any) => {
             console.log('request.onsuccess - addData');
             db =  event.target.result || request.result;
+            console.log('DB: ', db)
             const tx : IDBTransaction = db.transaction('sessions', 'readwrite');
             const store : IDBObjectStore = tx.objectStore(storeName);
             store.add(data);
@@ -103,6 +104,7 @@ export const getStoreData = <T>(storeName: string): Promise<T[]> => {
         console.log('request.onsuccess - getAllData', storeName);
         db = event.target.result || request.result;
         if (db) {
+            console.log('DB: ', db)
             const tx : IDBTransaction = db.transaction(storeName, 'readonly');
             const store : IDBObjectStore = tx.objectStore(storeName);
             const res : IDBRequest<any[]> = store.getAll();
