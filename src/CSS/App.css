@@ -211,6 +211,7 @@ address {
   display: flex;
   flex-direction: column;
   writing-mode: vertical-rl;
+  z-index: 100;
 }
 
 address > a {

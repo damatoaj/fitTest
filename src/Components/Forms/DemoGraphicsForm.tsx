@@ -101,8 +101,11 @@ function DemoGraphicsForm() {
                     name='activityLevel'
                     onChange={handleSelect}
                 >
-                    <option value='default' disabled>
-                        --Select One--
+                    <option 
+                        disabled 
+                        value='default'
+                    >
+                        --Select--
                     </option>
                     <option 
                         title='Little or no exercise'
