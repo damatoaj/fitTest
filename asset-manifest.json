@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/fitTest/static/css/main.9f222f9d.css",
-    "main.js": "/fitTest/static/js/main.a83eef5e.js",
+    "main.css": "/fitTest/static/css/main.d13c0a3d.css",
+    "main.js": "/fitTest/static/js/main.ad299af9.js",
     "static/media/fittest_logo_2.jpg": "/fitTest/static/media/fittest_logo_2.0b1fcbd5b70ad0a7a56e.jpg",
     "index.html": "/fitTest/index.html",
-    "main.9f222f9d.css.map": "/fitTest/static/css/main.9f222f9d.css.map",
-    "main.a83eef5e.js.map": "/fitTest/static/js/main.a83eef5e.js.map"
+    "main.d13c0a3d.css.map": "/fitTest/static/css/main.d13c0a3d.css.map",
+    "main.ad299af9.js.map": "/fitTest/static/js/main.ad299af9.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f222f9d.css",
-    "static/js/main.a83eef5e.js"
+    "static/css/main.d13c0a3d.css",
+    "static/js/main.ad299af9.js"
   ]
 }
