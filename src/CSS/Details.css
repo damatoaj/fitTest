@@ -2,6 +2,7 @@ details {
     /* overflow: auto;  */
     text-align: left;
     width: 100%;
+    /* max-width: fit-content; */
     /* margin-top: 1rem;
     margin-bottom: 1rem; */
     background-color: whitesmoke;
@@ -36,11 +37,11 @@ details > ul {
 
 details[open]::details-content {
     background-color: whitesmoke;
-    width:100%;
 }
 details[open]{
     padding-bottom:15px;
-    /* padding-top: 15px; */
+    min-width: 100%;
+    width:  fit-content;
 }
 
 summary {

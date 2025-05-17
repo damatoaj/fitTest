@@ -2,7 +2,7 @@ import { useState, ChangeEventHandler, ChangeEvent, FormEventHandler, FormEvent}
 import { useUserContext } from './useUserContext';
 import { useNavigate } from 'react-router-dom';
 import { validateName, validateSex } from '../Functions/Testing/demographicsValidation';
-
+import { validateCurrentWeight,validateGoalWeight, validateAge } from '../Functions/Testing/demographicsValidation';
 type Data = {
     activityLevel: string,
     age: string,
@@ -40,7 +40,7 @@ type Data = {
     supraIliacSkin: string,
     thighSkin: string,
     tricepSkin: string
-}
+};
 
 const d = {
     age: '',
@@ -79,7 +79,7 @@ const d = {
     supraIliacSkin: '',
     thighSkin: '',
     tricepSkin: ''
-}
+};
 
 const useForm = (url?:string) => {
     const navigate : Function = useNavigate()
@@ -172,21 +172,31 @@ const useForm = (url?:string) => {
             if (data.sar.length > 0) await dispatch({type: 'UPDATE_SAR', payload : Number(data.sar)})
             if (data.sbp.length > 0 && data.dbp.length > 0) await dispatch({type: 'UPDATE_BLOOD_PRESSURE', payload: [parseInt(data.sbp), parseInt(data.dbp)]});
             if (data.activityLevel.length > 0) await dispatch({type: "UPDATE_ACTIVITY_LEVEL", payload: data.activityLevel});
-            if (data.age.length > 0) await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});
+            if (data.age.length > 0) {
+                validateAge(parseInt(data.age));
+                await dispatch({type:'UPDATE_AGE', payload: parseInt(data.age)});
+            };
             if (data.benchPress.length > 0) await dispatch({type:'UPDATE_BENCH_PRESS', payload: user.prefers_metric ? Math.round(parseFloat(data.benchPress)) : Math.floor(parseFloat(data.benchPress) / 2.2 * 100) / 100 });
-            if (data.currentWeight.length > 0) await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: user.prefers_metric ? parseFloat(data.currentWeight) : Math.floor(parseFloat(data.currentWeight) / 2.2 * 100) / 100 });
+            if (data.currentWeight.length > 0) {
+                user.prefers_metric ? validateCurrentWeight(parseFloat(data.currentWeight)) : validateCurrentWeight(Math.floor(parseFloat(data.currentWeight) / 2.2 * 100) / 100);
+                
+                await dispatch({type: 'UPDATE_CURRENT_WEIGHT', payload: user.prefers_metric ? parseFloat(data.currentWeight) : Math.floor(parseFloat(data.currentWeight) / 2.2 * 100) / 100 })
+            };
             if (data.fname.length > 0 && data.lname.length > 0) {
                 let f = validateName(data.fname);
                 let l = validateName(data.lname);
                 await dispatch({type: 'UPDATE_NAME', payload: {fname:f,lname:l}});
             };
-            if (data.goalWeight.length > 0) await dispatch({type:'UPDATE_GOAL_WEIGHT', payload: user.prefers_metric ? parseFloat(data.goalWeight) : Math.round(parseFloat(data.goalWeight) / 2.2 * 100 ) / 100 });
+            if (data.goalWeight.length > 0) {
+                user.prefers_metric ? validateGoalWeight(parseFloat(data.goalWeight)) : validateGoalWeight(Math.round(parseFloat(data.goalWeight) / 2.2 * 100 ) / 100); 
+                await dispatch({type:'UPDATE_GOAL_WEIGHT', payload: user.prefers_metric ? parseFloat(data.goalWeight) : Math.round(parseFloat(data.goalWeight) / 2.2 * 100 ) / 100 });
+            };
             if (data.height.length > 0) await dispatch({type:'UPDATE_HEIGHT', payload: user.prefers_metric ? parseFloat(data.height) : Math.round(parseFloat(data.height) / 2.54 * 100 ) / 100 });
             if (data.leftHand.length > 0 && data.rightHand.length > 0) await dispatch({type:'UPDATE_GRIP_STRENGTH', payload: user.prefers_metric ?  Math.round((parseFloat(data.leftHand) + parseFloat(data.rightHand)) / 2 ) : (Math.round((parseFloat(data.leftHand) + parseFloat(data.rightHand)) / 2 / 2.2 * 100)) / 100 });
             if (data.legPress.length > 0) await dispatch({type: 'UPDATE_LEG_PRESS', payload: user.prefers_metric ? Math.round(parseFloat(data.legPress)) : Math.round(parseFloat(data.legPress) / 2.2 * 100) / 100 });
             if (data.sex.length > 0) {
-                const sex = validateSex(data.sex);
-                await dispatch({type:'UPDATE_SEX', payload: sex});
+                validateSex(data.sex);
+                await dispatch({type:'UPDATE_SEX', payload: data.sex});
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});

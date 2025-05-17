@@ -237,9 +237,8 @@ export const userReducer = (state : State, action: Action) => {
                 return {...state, isLoading:false}
             }
         case 'UPDATE_CURRENT_WEIGHT':
-            const currentWeight = validateCurrentWeight(payload)
-            sessionStorage.setItem('user', JSON.stringify( {...state.user, currentWeight}));
-            return { alert: null, error:null, isLoading:false, user: {...state.user, currentWeight}}
+            sessionStorage.setItem('user', JSON.stringify({...state.user, currentWeight: payload}));
+            return { alert: null, error:null, isLoading:false, user: {...state.user, currentWeight: payload}}
         case "UPDATE_ACTIVITY_LEVEL":
             const activityLevel = payload;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, activityLevel}));
@@ -251,17 +250,15 @@ export const userReducer = (state : State, action: Action) => {
             sessionStorage.setItem('user', JSON.stringify( {...state.user, sex : payload}));
             return { alert: null, error:null, isLoading:false, user: {...state.user, sex : payload}}
         case 'UPDATE_AGE':
-            const age = validateAge(payload)
-            sessionStorage.setItem('user', JSON.stringify( {...state.user, age}));
-            return { alert: null, error:null, isLoading: false, user: {...state.user, age}}
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, age: payload}));
+            return { alert: null, error:null, isLoading: false, user: {...state.user, age: payload}}
         case 'UPDATE_HEIGHT':
             const height = state.user.prefers_metric ? payload : payload * 2.54;
             sessionStorage.setItem('user', JSON.stringify( {...state.user, height}));
             return { alert: null, error: null, isLoading: false, user: {...state.user, height}}
         case 'UPDATE_GOAL_WEIGHT':
-            const goalWeight = validateGoalWeight(payload)
-            sessionStorage.setItem('user', JSON.stringify( {...state.user, goalWeight}));
-            return {alert: null, error:null, isLoading:false, user:{...state.user, goalWeight}}
+            sessionStorage.setItem('user', JSON.stringify( {...state.user, goalWeight: payload}));
+            return {alert: null, error:null, isLoading:false, user:{...state.user, goalWeight: payload}}
         case 'UPDATE_PUSHUPS':
             if (state.user.sex === 'FEMALE' && state.user.age) {
                 const pushups = Object.freeze({pushups:payload, category: womenPushupCategories(state.user.age, payload)})
@@ -288,7 +285,6 @@ export const userReducer = (state : State, action: Action) => {
                 return { alert: null, error:null, isLoading:false, user:{...state.user, benchPress}}
             }
         case 'UPDATE_METRIC':
-            console.log(payload, '<----- update metric')
             return { alert: null, error:null, isLoading:false, user: {...state.user, prefers_metric: payload}}
         case 'UPDATE_UID':
             return { alert: null, error: null, isLoading:false, user:{...state.user, uid: Math.floor(Math.random() * Date.now()) }}
