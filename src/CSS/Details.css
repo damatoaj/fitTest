@@ -44,6 +44,11 @@ details[open]{
     width:  fit-content;
 }
 
+select + details {
+    margin-top: 15px;
+    margin-left: 0;
+}
+
 summary {
     background-color: var(--prm-drk-blue);
     color : white;

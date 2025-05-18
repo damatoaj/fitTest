@@ -38,7 +38,7 @@ const affiliateLinks = [{
 
 },{
     0 : 'https://partners.simplygoodcoffee.com/Arthur-Damato',
-    1 : 'Get $25 off of Simply Good Coffee\s incredible brewer! I have had one for two years now and it is incredible.',
+    1 : 'Get $25 off of Simply Good Coffee\'s incredible brewer! I have had one for two years now and it is incredible.',
     2 : 'Simply Good Coffee'
 
 },

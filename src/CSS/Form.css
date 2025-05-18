@@ -238,6 +238,8 @@ fieldset:has(select:required:empty) legend::after {
         width:100%;
         border: none;
         border-radius: 0;
+        box-shadow: none;
+        margin:0;
     }
 }
 

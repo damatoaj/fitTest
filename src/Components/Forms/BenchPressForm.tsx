@@ -26,8 +26,8 @@ const BenchPressForm = () => {
                     type='number'
                     name='benchPress'
                     min='0'
-                    max='2000' 
-                    placeholder={user.prefers_metric ? 'Measured in Kiligrams' :'Measured in Pounds'}
+                    max='2000'
+                    placeholder={user.prefers_metric ? 'Measured in Kilograms' :'Measured in Pounds'}
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
