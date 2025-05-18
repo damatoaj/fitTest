@@ -37,7 +37,7 @@ const LegPressForm = () => {
                     name='legPress'
                     min='0'
                     max='2000'
-                    placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured in Pounds'}
+                    placeholder={user.prefers_metric ? 'Measured in KGs' : 'Measured in Pounds'}
                     autoFocus={true}
                     step={.5}
                     maxLength={6}

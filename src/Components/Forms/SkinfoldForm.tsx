@@ -39,7 +39,8 @@ const SkinfoldForm = () => {
                     name='bicepSkin'
                     min='0'
                     max='50' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -51,7 +52,8 @@ const SkinfoldForm = () => {
                     name='chestSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -63,7 +65,8 @@ const SkinfoldForm = () => {
                     name='calfSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -75,7 +78,8 @@ const SkinfoldForm = () => {
                     name='midaxillarySkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                     />
             </fieldset>
@@ -87,7 +91,8 @@ const SkinfoldForm = () => {
                     name='subscapSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -99,7 +104,8 @@ const SkinfoldForm = () => {
                     name='supraIliacSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -111,7 +117,8 @@ const SkinfoldForm = () => {
                     name='thighSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>
@@ -123,7 +130,8 @@ const SkinfoldForm = () => {
                     name='tricepSkin'
                     min='0'
                     max='500' 
-                    placeholder={'Measured in millimeters'}                    step={.5}
+                    placeholder={'Measured in millimeters'}                    
+                    step={.5}
                     maxLength={3}
                 />
             </fieldset>

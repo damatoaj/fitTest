@@ -68,8 +68,8 @@ function DemoGraphicsForm() {
             <input 
                 type='number'
                 name='currentWeight'
-                min='50'
-                max='450'
+                min={user.prefers_metric ? '40' : '88'}
+                max={user.prefers_metric ? '200' : '400'}
                 required
                 onChange={handleChange}
                 step={.5}
@@ -86,8 +86,8 @@ function DemoGraphicsForm() {
                     type='number' 
                     onChange={handleChange}
                     name='goalWeight'
-                    min='50'
-                    max='400'
+                    min={user.prefers_metric ? '40' : '88'}
+                    max={user.prefers_metric ? '200' : '400'}
                     required
                     step={.5}
                     maxLength={6}

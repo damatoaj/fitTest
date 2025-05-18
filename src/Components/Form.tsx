@@ -35,8 +35,8 @@ const Form = () => {
                     type='number' 
                     onChange={handleChange}
                     name='goalWeight'
-                    min='50'
-                    max='400'
+                    min={user.prefers_metric ? '40' : '88'}
+                    max={user.prefers_metric ? '200' : '400'}
                     required
                     step={.5}
                     maxLength={6}

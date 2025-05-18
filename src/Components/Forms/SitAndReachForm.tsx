@@ -28,7 +28,7 @@ const SitAndReachForm = () => {
                     name='sar'
                     min='0'
                     max='100' 
-                    placeholder={user.prefers_metric ? 'Measured in CM' : 'Measured in Inches'}
+                    placeholder={user.prefers_metric ? 'Measured in CMs' : 'Measured in Inches'}
                     autoFocus={true}
                     step={.5}
                     maxLength={2}
