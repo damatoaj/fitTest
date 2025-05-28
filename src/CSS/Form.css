@@ -139,6 +139,11 @@ form span {
     justify-content: space-evenly;
 }
 
+article > form, article > form:focus-within {
+    border: none;
+    box-shadow: none;
+}
+
 label:has(input[type='checkbox']) {
     display: flex;
     flex-direction: row;

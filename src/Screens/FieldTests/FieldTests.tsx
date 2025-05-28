@@ -210,7 +210,7 @@ const FieldTests = () => {
                     
                     <form onSubmit={handle12Submit}>
                         <fieldset>
-                            <legend>Distance Cover in 12 Minutes</legend>
+                            <legend>Distance Covered In 12 Minutes</legend>
                             <input 
                                 placeholder="In meters"
                                 type='number' 
@@ -239,7 +239,7 @@ const FieldTests = () => {
                     
                     <form onSubmit={rockportSubmit}>
                         <fieldset>
-                            <legend>Time To Complete 1.5 Mile (2.45km)</legend>
+                            <legend>Time To Complete 1 Mile (1.6km)</legend>
                             <span>
                                 <span>
                                     <input list='min' name='rmin' onChange={handleInput} onFocus={(e)=> e.target.value = ''}/>
@@ -277,7 +277,7 @@ const FieldTests = () => {
                     <h2>6 Minute Walk Test</h2>
                     <p>The objective of the test is to cover the most distance as possible within six minutes</p>
                     <p>With a stopwatch or clock, walk or run as quickly as possible.</p>
-                    <p>After the 12 minutes are up, records your distance in meters below</p>
+                    <p>After the six minutes are up, records your distance in meters below</p>
                     
                     <form onSubmit={handleSixSubmit}>
                         <fieldset>
