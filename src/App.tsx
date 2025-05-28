@@ -6,6 +6,7 @@ import './CSS/Links.css';
 import './CSS/Details.css';
 import './CSS/Alert.css';
 
+import { useState } from 'react';
 import Alert from './Components/Alert';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
@@ -45,6 +46,7 @@ import FieldTests from './Screens/FieldTests/FieldTests';
 
 function App() {
   const { state } = useUserContext();
+  const [feedback, showFeedback] = useState(true);
   // useEffect(()=> {
   //   function handleHamburger() {
   //       if (window.innerWidth > 800) {
@@ -62,11 +64,17 @@ function App() {
 // }, [])
     return (
       <>
-      <address>
+      {feedback && (
+        <address>
+          <button type='button' title='Close feedback widget' onClick={()=> {
+            showFeedback(false);
+          }}>X</button>
           <a href='mailto:mr.arthurdamato@gmail.com'>
+          
               FeedBack
           </a>
       </address>
+      )}
       {state.error && <Alert message={state.error} type={'error'} />}
       {state.alert && <Alert message={state.alert.message} type={state.alert.type} />}
       {state.isLoading && <Loader />}

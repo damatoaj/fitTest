@@ -211,6 +211,10 @@ footer  ul {
     max-width: 600px;
 }
 
+footer a {
+    width: clamp(200px, 100%, 300px);
+}
+
 @media screen and (min-width : 800px) {
     nav {
         display: flex;
