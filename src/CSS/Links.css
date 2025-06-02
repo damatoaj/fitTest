@@ -201,7 +201,7 @@ a {
     text-overflow: ellipsis;
     text-wrap: 'nowrap';
 }
-
+/* 
 footer  ul {
     display: flex;
     flex-direction: row;
@@ -209,10 +209,12 @@ footer  ul {
     justify-content: start;
     flex-grow: 0;
     max-width: 600px;
-}
+} */
 
 footer a {
     width: clamp(200px, 100%, 300px);
+    text-align: center;
+    line-height:100%;
 }
 
 @media screen and (min-width : 800px) {
