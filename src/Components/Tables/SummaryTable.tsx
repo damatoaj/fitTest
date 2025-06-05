@@ -73,6 +73,7 @@ const SummaryTable = () => {
                 Fitness Summary on 
                 <time dateTime={today}> {date}, {month}, {year}</time>
             </h1>
+            <article>
             <section>
                 <DemographicTable />
                 <BMITable />
@@ -90,8 +91,10 @@ const SummaryTable = () => {
                 <h2>Flexibility</h2>
                 <SARTable />
             </section>
+            <section>
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
                 <MacrosTable  macros={state.user.macros} />
+            </section>
             </section>
                 <section>
                     <h2>Micro Nutrition Recommendations From The FDA</h2>
@@ -268,6 +271,7 @@ const SummaryTable = () => {
                     </dialog>
                 </section>
             )}
+            </article>
         </main>
     )
 };

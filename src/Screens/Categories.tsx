@@ -13,7 +13,8 @@ const Categories = () => {
     return (
         <main>
             <h1>Fitness Categories & Percentiles</h1>
-            <section>
+            <article>
+            <section className='col'>
                 <h2>Health Metrics</h2>
                 <details open id='bodyfat'>
                     <summary>Body Fat Categories</summary>
@@ -31,7 +32,7 @@ const Categories = () => {
                 </details>
                 <br></br>
             </section>
-            <section>
+            <section  className='col'>
                 <h2>Endurance Metrics</h2>
                 <details open id='pushups'>
                         <summary>Pushup Categories</summary>
@@ -44,7 +45,7 @@ const Categories = () => {
                     </details>
             </section>
  
-            <section>
+            <section  className='col'>
                 <h2>Strength Metrics</h2>
                 <details open id='bench-press'>
                         <summary>Bench Press Categories</summary>
@@ -62,13 +63,15 @@ const Categories = () => {
                 </details>
                 <br></br>
             </section>
-            <section>
+            <section  className='col'>
                 <h2>Flexibility Metrics</h2>
                 <details open id='sar'>
                     <summary>Sit & Reach Categories</summary>
                     <SARCategories />
                 </details>
             </section>
+            </article>
+
         </main>
     )
 };

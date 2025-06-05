@@ -1,7 +1,6 @@
 import { useRef, memo } from 'react';
 import useForm from '../../Hooks/useForm';
 import { useUserContext } from '../../Hooks/useUserContext';
-import MetricSwitcher from '../MetricSwitcher';
 function DemoGraphicsForm() {
     const form = useRef<HTMLFormElement | null>(null)
     const { handleChange,handleSubmit,handleSelect, handleReset} = useForm();

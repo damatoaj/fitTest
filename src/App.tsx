@@ -43,6 +43,7 @@ import BodyCircumference from './Screens/BodyCircumference/BodyCircumference';
 import BloodPressureScreen from './Screens/BloodPressure/BloodPressureScreen';
 import SkinfoldScreen from './Screens/SkinFolds/SkinfoldScreen';
 import FieldTests from './Screens/FieldTests/FieldTests';
+import RelativeIntensity from './Screens/RelativeIntensity/RelativeIntensity';
 
 function App() {
   const { state } = useUserContext();
@@ -136,6 +137,8 @@ function App() {
           <Route path='/circumferences' element={<BodyCircumference />}></Route>
           <Route path='/blood-pressure' element={<BloodPressureScreen />}></Route>
           <Route path='/skinfolds' element={<SkinfoldScreen />} ></Route>
+          <Route path='/relative-intensity' element={<RelativeIntensity />} ></Route>
+
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>
