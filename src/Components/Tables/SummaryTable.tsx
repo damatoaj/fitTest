@@ -85,8 +85,7 @@ const SummaryTable = () => {
                     <StrengthTable />
                     <PushupsTable />
                     <Vo2Maxtable />
-                </section>
-            <section>
+            </section>
             <section>
                 <h2>Flexibility</h2>
                 <SARTable />
@@ -95,11 +94,10 @@ const SummaryTable = () => {
                 <h2>Macro Nutrition Recommendations For Goal Weight</h2>
                 <MacrosTable  macros={state.user.macros} />
             </section>
+            <section>
+                <h2>Micro Nutrition Recommendations From The FDA</h2>
+                <MicrosTable  micros={state.user.micros}/> 
             </section>
-                <section>
-                    <h2>Micro Nutrition Recommendations From The FDA</h2>
-                    <MicrosTable  micros={state.user.micros}/> 
-                </section>
             {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>}
             {state.user?.fname !== null && (
                 <section>
