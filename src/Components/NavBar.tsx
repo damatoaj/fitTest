@@ -112,6 +112,9 @@ const NavBar = ({u} : NavBarProps) => {
                                 <Link to='/blood-pressure' onClick={handleNavigate}>Blood Pressure</Link>
                             </li>
                             <li className='dark'>
+                                <Link to='/resting-hr' onClick={handleNavigate}>Resting Heart Rate</Link>
+                            </li>
+                            <li className='light'>
                                 <Link to='/skinfolds' onClick={handleNavigate}>Skinfold Sites</Link>
                             </li>
                         </ul>

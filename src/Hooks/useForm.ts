@@ -39,7 +39,8 @@ type Data = {
     subscapSkin: string,
     supraIliacSkin: string,
     thighSkin: string,
-    tricepSkin: string
+    tricepSkin: string,
+    restingHR: string
 };
 
 const d = {
@@ -78,7 +79,8 @@ const d = {
     subscapSkin: '',
     supraIliacSkin: '',
     thighSkin: '',
-    tricepSkin: ''
+    tricepSkin: '',
+    restingHR: ''
 };
 
 const useForm = (url?:string) => {
@@ -121,7 +123,8 @@ const useForm = (url?:string) => {
         subscapSkin: '',
         supraIliacSkin: '',
         thighSkin: '',
-        tricepSkin: ''
+        tricepSkin: '',
+        restingHR: ''
     });
 
     const handleChange : ChangeEventHandler = (e : ChangeEvent<HTMLInputElement>) => {
@@ -200,7 +203,8 @@ const useForm = (url?:string) => {
             };
             if (data.pushups.length > 0) await dispatch({ type:'UPDATE_PUSHUPS', payload: parseInt(data.pushups)});
             if (data.vo2Max.length > 0) await dispatch({type:'UPDATE_VO2MAX', payload: parseInt(data.vo2Max)});
-            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) * 2.54 * 100) / 100 })
+            if (data.waistCircumference.length > 0) await dispatch({type:'UPDATE_WAIST', payload: user.prefers_metric ? parseFloat(data.waistCircumference) : Math.round(parseFloat(data.waistCircumference) * 2.54 * 100) / 100 });
+            if (data.restingHR.length > 0) await dispatch({type: 'UPDATE_RESTING_HR', payload: parseInt(data.restingHR)});
             setData(d);
             (e.target as HTMLFormElement).reset();
             if (url) navigate(url);

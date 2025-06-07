@@ -1,5 +1,6 @@
 import {memo} from 'react';
 import Percentages from '../../Components/Tables/Percentages';
+import ReserveTable from '../../Components/Tables/ReserveTable';
 import { useUserContext } from '../../Hooks/useUserContext';
 
 const RelativeIntensity = () => {
@@ -29,17 +30,38 @@ const RelativeIntensity = () => {
                             title='Percentage Of Heart Rate Max'
                         />
                     ) : <Percentages max={0} title='Percentage Of Heart Rate Max' />}
+                    
+                    
+            </section>
+            <section id='heart-rate-reserve'>
+                <div>
+                    <h2>Percent of Heart Rate Reserve</h2>
+                    <ul>
+                        <li>Very light: less than 30%</li>
+                        <li>Light: 30% to 39%</li>
+                        <li>Moderate: 40% to 59%</li>
+                        <li>Vigorous: 60% to 89%</li>
+                        <li>Near maximal to maximal: greater than 89%</li>
+                    </ul>
+                </div>
+                {(state.user.hrMax && state.user.hrMax >  0) && (state.user.restingHR > 0)? (
+                    <ReserveTable 
+                        max={state.user.hrMax}
+                        min={state.user.restingHR}
+                        title='Percentage Of Heart Rate Reserve'
+                    />
+                ) : <ReserveTable max={0} min={0} title='Percentage Of Heart Rate Reserve' />}
             </section>
             <section id='vo2-max'>
                 <div>
                     <h2>Percent of VO2 Max Intensities</h2>
-                        <ul>
-                            <li>Very light: less than 37%</li>
-                            <li>Light: 37% to 45%</li>
-                            <li>Moderate: 46% to 63%</li>
-                            <li>Vigorous: 64% to 90%</li>
-                            <li>Near maximal to maximal: greater than 90%</li>
-                        </ul>
+                    <ul>
+                        <li>Very light: less than 37%</li>
+                        <li>Light: 37% to 45%</li>
+                        <li>Moderate: 46% to 63%</li>
+                        <li>Vigorous: 64% to 90%</li>
+                        <li>Near maximal to maximal: greater than 90%</li>
+                    </ul>
                 </div>
                         {state.user.vo2Max?.vo2Max ? (
                         <Percentages 

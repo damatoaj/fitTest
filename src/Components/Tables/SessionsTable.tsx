@@ -88,6 +88,7 @@ const SessionsTable = () => {
                             {user.prefers_metric ? <td>{session.hips_circumference || '-'}</td> : <td>{session.hips_circumference / 2.54 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.midthigh_circumference || '-'}</td> : <td>{session.midthigh_circumference / 2.54 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.waist_circumference || '-'}</td> : <td>{session.waist_circumference / 2.54 || '-'}</td>}
+                            <td>{session.resting_heart_rate || '-'}</td>
                             <td>{session.max_heart_rate || '-'}</td>
                             <td>{session.activity_level || '-'}</td>
                             <td>{session.vo2_max || '-'}</td>

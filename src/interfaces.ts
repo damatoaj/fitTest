@@ -105,7 +105,8 @@ interface User {
     thighSkin: number;
     tricepSkin: number;
     bodyDensity: number;
-    bodyComp: BodyComp
+    bodyComp: BodyComp;
+    restingHR : number;
 }
 
 type UserKeys = keyof User;

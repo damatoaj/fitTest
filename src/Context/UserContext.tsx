@@ -4,11 +4,6 @@ import { menPushupCategories, womenPushupCategories } from "../Functions/Testing
 import { womenCardioFitnessClassification, menCardioFitnessClassification } from "../Functions/Testing/cardioFitness";
 import { menBenchPress, womenBenchPress, menGripStrength, womenGripStrength, menLegPress, womenLegPress } from "../Functions/Testing/muscularFitness";
 import { astrandEquation, gellishEquation, } from "../Functions/Intensity/heartRateFunctions";
-import { 
-    validateAge, 
-    validateCurrentWeight, 
-    validateGoalWeight 
-} from "../Functions/Testing/demographicsValidation";
 import { cmToM } from "../Functions/Conversions";
 import { calculateBMI } from "../Functions/Testing/bodyComposition";
 import { calculateMacros } from "../Functions/Nutrition/calculateMacros";
@@ -60,7 +55,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     midaxillarySkin : 0,
     subscapSkin : 0,
     supraIliacSkin : 0,
-    thighSkin : 0
+    thighSkin : 0,
+    restingHR: 0
 };
 
 type State = {
@@ -109,6 +105,7 @@ type Action = {type: 'UPDATE_PUSHUPS', payload: number}
     | {type : 'UPDATE_THIGH_SKIN', payload: number}
     | {type : 'UPDATE_TRICEPS_SKIN', payload: number}
     | {type: 'ALERT', payload : {type: string, message: string}}
+    | {type: 'UPDATE_RESTING_HR', payload: number}
     | {type: 'REMOVEALERT', payload: null}
 
 
@@ -127,6 +124,9 @@ export const userReducer = (state : State, action: Action) => {
     switch (type) {
         case 'LOADING':
             return {...state, isLoading: true, error: null, alert: null}
+        case 'UPDATE_RESTING_HR':
+            sessionStorage.setItem('user', JSON.stringify({...state.user, restingHR : payload}));
+            return { user: {...state.user, restingHR: payload}, isLoading: false, error: null,  alert: null};
         case 'UPDATE_ABDOMINAL_SKIN':
             sessionStorage.setItem('user', JSON.stringify({...state.user, abdominalSkin : payload}));
             return { user: {...state.user, abdominalSkin: payload}, isLoading: false, error: null,  alert: null};

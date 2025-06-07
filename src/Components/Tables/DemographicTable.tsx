@@ -35,6 +35,14 @@ const DemographicTable = () => {
                         </tr>
                         <tr>
                             <td>
+                                Resting Heart Rate:
+                            </td>
+                            <td>
+                                {state.user.restingHR ? state.user.restingHR : '-'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 Heart Rate Max:
                             </td>
                             <td>
