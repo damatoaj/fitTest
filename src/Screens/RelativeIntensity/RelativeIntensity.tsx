@@ -28,8 +28,25 @@ const RelativeIntensity = () => {
                         <Percentages 
                             max={state.user.hrMax}
                             title='Percentage Of Heart Rate Max'
+                            categories={{
+                                vl : 57,
+                                l : 63,
+                                mo : 76,
+                                h : 95,
+                                max : 100
+                            }}
                         />
-                    ) : <Percentages max={0} title='Percentage Of Heart Rate Max' />}
+                    ) : <Percentages 
+                        max={0} 
+                        title='Percentage Of Heart Rate Max' 
+                        categories={{
+                            vl : 57,
+                            l : 63,
+                            mo : 76,
+                            h : 95,
+                            max : 100
+                        }}
+                    />}
                     
                     
             </section>
@@ -49,6 +66,7 @@ const RelativeIntensity = () => {
                         max={state.user.hrMax}
                         min={state.user.restingHR}
                         title='Percentage Of Heart Rate Reserve'
+                             
                     />
                 ) : <ReserveTable max={0} min={0} title='Percentage Of Heart Rate Reserve' />}
             </section>
@@ -67,8 +85,25 @@ const RelativeIntensity = () => {
                         <Percentages 
                             max={state.user.vo2Max?.vo2Max}
                             title='Percentage Of VO2 Max'
+                            categories={{
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
+                            max : 100
+                            }}
                         />
-                        ) : <Percentages max={0} title='Percentage Of VO2 Max' />}
+                        ) : <Percentages 
+                            max={0} 
+                            title='Percentage Of VO2 Max' 
+                            categories={{
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
+                            max : 100
+                        }}
+                        />}
 
             </section>
             <section id='one-rep-max'>
@@ -87,14 +122,48 @@ const RelativeIntensity = () => {
                     <Percentages 
                         max={state.user.prefers_metric ? state.user.benchPress?.benchPress : Math.round(state.user.benchPress?.benchPress * 2.2 * 100) / 100}
                         title='Percentage Of 1RM Bench Press'
+                        categories={{
+                        vl : 30,
+                        l : 49,
+                        mo : 69,
+                        h : 84,
+                        max : 100
+                        }}
                     />
-                    ) : <Percentages max={0} title='Percentage Of 1RM Bench Press' />}
+                    ) : <Percentages 
+                        max={0} 
+                        title='Percentage Of 1RM Bench Press' 
+                        categories={{
+                        vl : 30,
+                        l : 49,
+                        mo : 69,
+                        h : 84,
+                        max : 100
+                        }}
+                    />}
                     {state.user.legPress?.legPress ? (
                     <Percentages 
                         max={state.user.prefers_metric ? state.user.legPress?.legPress : Math.round(state.user.legPress.legPress * 2.2 * 100) / 100}
                         title='Percentage Of 1RM Leg Press'
+                        categories={{
+                        vl : 30,
+                        l : 49,
+                        mo : 69,
+                        h : 84,
+                        max : 100
+                        }}
                     />
-                    ) : <Percentages max={0} title='Percentage Of 1RM Leg Press' />} 
+                    ) : <Percentages 
+                    max={0} 
+                    title='Percentage Of 1RM Leg Press' 
+                    categories={{
+                        vl : 30,
+                        l : 49,
+                        mo : 69,
+                        h : 84,
+                        max : 100
+                    }}
+                    />} 
             </section>
         </article>
 

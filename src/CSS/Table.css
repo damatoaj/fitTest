@@ -37,6 +37,10 @@ tr[data-currentcategory='yes']> td:first-child::before {
     color: var(--prm-drk-green);
 }
 
+/* tr[data-category='very-low'] > * {
+    background-color: red;
+} */
+
 /* @media print {
 
     table {

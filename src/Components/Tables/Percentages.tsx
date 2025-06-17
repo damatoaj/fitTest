@@ -2,93 +2,61 @@ import {memo} from 'react';
 
 type PercentageTableProps = {
     max : number,
-    title : string
-}
+    title : string,
+    categories : {
+        vl : number,
+        l : number,
+        mo: number,
+        h : number,
+        max: number
+    }
+};
 
-const PercentageTable = ({ max, title } : PercentageTableProps ) => {
+const determineIntensity = (i : number, categories : {
+        vl : number,
+        l : number,
+        mo: number,
+        h : number,
+        max: number
+    }) => {
+    let c = 'moderate';
+    if (i > categories['mo']) {
+        if (i > categories['h']) {
+            c = 'maximal';
+        } else {
+            c = 'high'
+        }
+    } else {
+        if (i < categories['vl']) {
+            c = 'very-low';
+        } else if (i < categories['l']){
+            c = 'low'
+        }
+    };
+    return c;
+};
+
+const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => {
+    let array : [number] = [100];
+
+    for (let i = 100; i > 1; i--) {
+        array.push(i);
+    };
+
+    const rows = array.map((row, i) => {
+        const intensity = Math.round(max * ((i + 1)/100));
+        const category = determineIntensity(i+1, categories);
+
+        return (<tr data-category={category}>
+            <td>{i + 1 + '%'}</td>
+            <td>{intensity} </td>
+        </tr>)
+    });
+
     return <table>
         <thead><th colSpan={2}>{title}</th></thead>
         <tbody>
-            <tr>
-                <td>
-                    100%
-                </td>
-                <td>
-                    {max}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    90%
-                </td>
-                <td>
-                    {Math.round(max * .9 * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    80%
-                </td>
-                <td>
-                    {Math.round(max * .8 * 100)/100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    70%
-                </td>
-                <td>
-                    {Math.round(max * .7 * 100) / 100 }
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    60%
-                </td>
-                <td>
-                    {Math.round(max * .6 * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    50%
-                </td>
-                <td>
-                    {Math.round(max * .5 * 100) / 100 }
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    40%
-                </td>
-                <td>
-                    {Math.round(max * .4 * 100)/100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    30%
-                </td>
-                <td>
-                    {Math.round(max * .3 * 100)/100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    20%
-                </td>
-                <td>
-                    {Math.round(max * .2 * 100)/100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    10%
-                </td>
-                <td>
-                    {Math.round(max * .1 * 100)/100}
-                </td>
-            </tr>
+            {rows}
         </tbody>
     </table>
 }
