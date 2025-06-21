@@ -1,4 +1,5 @@
 import {memo} from 'react';
+import { useState, ChangeEvent } from 'react';
 
 type PercentageTableProps = {
     max : number,
@@ -18,7 +19,7 @@ const determineIntensity = (i : number, categories : {
         mo: number,
         h : number,
         max: number
-    }) => {
+    }) => {    
     let c = 'moderate';
     if (i > categories['mo']) {
         if (i > categories['h']) {
@@ -37,24 +38,48 @@ const determineIntensity = (i : number, categories : {
 };
 
 const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => {
-    let array : [number] = [100];
+    const [steps, setSteps] = useState<number>(10);
 
-    for (let i = 100; i > 1; i--) {
+    let array = [];
+
+    for (let i = 100; i > 0; i = i - steps) {
         array.push(i);
     };
 
     const rows = array.map((row, i) => {
-        const intensity = Math.round(max * ((i + 1)/100));
-        const category = determineIntensity(i+1, categories);
+        const intensity = Math.round(max * ((row )/100));
+        const category = determineIntensity(row, categories);
 
         return (<tr data-category={category}>
-            <td>{i + 1 + '%'}</td>
+            <td>{row + '%'}</td>
             <td>{intensity} </td>
         </tr>)
     });
 
     return <table>
-        <thead><th colSpan={2}>{title}</th></thead>
+        <thead>
+            <tr>
+                <th colSpan={2}>{title}</th>
+            </tr>
+            <tr>
+                <th colSpan={1}>Select your percentage layout</th>
+                <th colSpan={1}>
+                    <select onChange={(event:  ChangeEvent<HTMLSelectElement>)=> {
+                        return setSteps(parseInt(event.target.value))      
+                    }}>
+                        <option value='10'>
+                            10
+                        </option>
+                        <option value='5'>
+                            5
+                        </option>
+                        <option value='1'>
+                            1
+                        </option>
+                    </select>
+                </th>
+            </tr> 
+        </thead>
         <tbody>
             {rows}
         </tbody>
