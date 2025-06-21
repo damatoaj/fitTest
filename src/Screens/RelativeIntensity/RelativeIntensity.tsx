@@ -66,9 +66,24 @@ const RelativeIntensity = () => {
                         max={state.user.hrMax}
                         min={state.user.restingHR}
                         title='Percentage Of Heart Rate Reserve'
-                             
+                        categories={{
+                            vl : 30,
+                            l : 39,
+                            mo : 59,
+                            h : 89,
+                            max : 100
+                        }}
                     />
-                ) : <ReserveTable max={0} min={0} title='Percentage Of Heart Rate Reserve' />}
+                ) : <ReserveTable 
+                        max={0} min={0} 
+                        title='Percentage Of Heart Rate Reserve' 
+                        categories={{
+                            vl : 30,
+                            l : 39,
+                            mo : 59,
+                            h : 89,
+                            max : 100
+                        }}/>}
             </section>
             <section id='vo2-max'>
                 <div>

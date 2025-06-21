@@ -1,95 +1,88 @@
 import {memo} from 'react';
+import { useState, ChangeEvent } from 'react';
 
 type ReserveTableProps = {
     max : number,
     min : number,
-    title : string
+    title : string,
+    categories : {
+    vl : number,
+    l : number,
+    mo: number,
+    h : number,
+    max: number
+    }
 }
 
-const ReserveTable = ({ max, min, title } : ReserveTableProps ) => {
+const determineIntensity = (i : number, categories : {
+        vl : number,
+        l : number,
+        mo: number,
+        h : number,
+        max: number
+    }) => {    
+    let c = 'moderate';
+    if (i > categories['mo']) {
+        if (i > categories['h']) {
+            c = 'maximal';
+        } else {
+            c = 'high'
+        }
+    } else {
+        if (i < categories['vl']) {
+            c = 'very-low';
+        } else if (i < categories['l']){
+            c = 'low'
+        }
+    };
+    return c;
+};
+
+const ReserveTable = ({ max, min, title, categories } : ReserveTableProps ) => {
+       const [steps, setSteps] = useState<number>(10);
+    
+        let array = [];
+    
+        for (let i = 100; i > 0; i = i - steps) {
+            array.push(i);
+        };
+    
+        const rows = array.map((row, i) => {
+            const intensity = Math.round(max * ((row )/100));
+            const category = determineIntensity(row, categories);
+    
+            return (<tr data-category={category}>
+                <td>{row + '%'}</td>
+                <td>{intensity} </td>
+            </tr>)
+        });
+    
     return <table>
-        <thead><th colSpan={2}>{title}</th></thead>
+        <thead>
+            <tr>
+                <th colSpan={2}>{title}</th>
+            </tr>
+            <tr>
+                <th colSpan={1}>Select your percentage layout</th>
+                <th colSpan={1}>
+                    <select onChange={(event:  ChangeEvent<HTMLSelectElement>)=> {
+                        return setSteps(parseInt(event.target.value))      
+                    }}>
+                        <option value='10'>
+                            10
+                        </option>
+                        <option value='5'>
+                            5
+                        </option>
+                        <option value='1'>
+                            1
+                        </option>
+                    </select>
+                </th>
+            </tr> 
+        </thead>
         <tbody>
-            <tr>
-                <td>
-                    100%
-                </td>
-                <td>
-                    {Math.round(((max - min) * 1 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    90%
-                </td>
-                <td>
-                    {Math.round(((max - min) * .9 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    80%
-                </td>
-                <td>
-                    {Math.round(((max - min) * .8 + min ) * 100) / 100}                
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    70%
-                </td>
-                <td>
-                {Math.round(((max - min) * .7 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    60%
-                </td>
-                <td>
-                {Math.round(((max - min) * .6 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    50%
-                </td>
-                <td>
-                {Math.round(((max - min) * .5 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    40%
-                </td>
-                <td>
-                {Math.round(((max - min) * .4 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    30%
-                </td>
-                <td>
-                {Math.round(((max - min) * .3 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    20%
-                </td>
-                <td>
-                {Math.round(((max - min) * .2 + min ) * 100) / 100}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    10%
-                </td>
-                <td>
-                    {Math.round(((max - min) * .1 + min ) * 100) / 100}
-                </td>
-            </tr>
+            {rows}
         </tbody>
     </table>
 }
