@@ -15,8 +15,16 @@ const Vo2MaxTable = () => {
                     <th>{user.vo2Max?.category ? user.vo2Max.category : '-'}</th>
                 </tr>
                 <tr>
-                    <th>Value: </th>
-                    <th>{user.vo2Max?.vo2Max ? user.vo2Max.vo2Max : '-'}</th>
+                    <th>Value</th>
+                    <th>{user.vo2Max?.vo2Max ? user.vo2Max.vo2Max + 'ml/kg/minute': '-'}</th>
+                </tr>
+                <tr>
+                    <th> Resting O2 Consumption </th>
+                    <th>{sessionStorage.getItem('restingV02') ? sessionStorage.getItem('restingV02') + ' ml/minute': '-'}</th>
+                </tr>
+                <tr>
+                    <th> Maximal O2 Consumption </th>
+                    <th>{sessionStorage.getItem('rawV02')? sessionStorage.getItem('rawV02') + ' ml/minute': '-'}</th>
                 </tr>
             </tbody>
         </table>

@@ -107,6 +107,7 @@ interface User {
     bodyDensity: number;
     bodyComp: BodyComp;
     restingHR : number;
+    restingV02 : number;
 }
 
 type UserKeys = keyof User;

@@ -121,6 +121,41 @@ const RelativeIntensity = () => {
                         />}
 
             </section>
+            {/* <section id='vo2-max-reserve'>
+                <div>
+                    <h2>Percent of V02 Max Reserve</h2>
+                    <ul>
+                        <li>Very light: less than 30%</li>
+                        <li>Light: 30% to 39%</li>
+                        <li>Moderate: 40% to 59%</li>
+                        <li>Vigorous: 60% to 89%</li>
+                        <li>Near maximal to maximal: greater than 89%</li>
+                    </ul>
+                </div>
+                {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) && (state.user.restingHR > 0)? (
+                    <ReserveTable 
+                        max={state.user.hrMax}
+                        min={state.user.restingHR}
+                        title='Percentage Of Heart Rate Reserve'
+                        categories={{
+                            vl : 30,
+                            l : 39,
+                            mo : 59,
+                            h : 89,
+                            max : 100
+                        }}
+                    />
+                ) : <ReserveTable 
+                        max={0} min={0} 
+                        title='Percentage Of Heart Rate Reserve' 
+                        categories={{
+                            vl : 30,
+                            l : 39,
+                            mo : 59,
+                            h : 89,
+                            max : 100
+                        }}/>}
+            </section> */}
             <section id='one-rep-max'>
                 <div>
                     <h2>Percent of 1 Rep Max Intensities</h2>

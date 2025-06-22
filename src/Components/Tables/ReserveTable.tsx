@@ -62,7 +62,7 @@ const ReserveTable = ({ max, min, title, categories } : ReserveTableProps ) => {
             <tr>
                 <th colSpan={2}>{title}</th>
             </tr>
-            <tr>
+            <tr className='no-print'>
                 <th colSpan={1}>Select your percentage layout</th>
                 <th colSpan={1}>
                     <select onChange={(event:  ChangeEvent<HTMLSelectElement>)=> {

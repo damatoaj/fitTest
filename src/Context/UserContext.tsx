@@ -56,7 +56,8 @@ const initialUser: User = typeof u === 'string' ? JSON.parse(u) : {
     subscapSkin : 0,
     supraIliacSkin : 0,
     thighSkin : 0,
-    restingHR: 0
+    restingHR: 0,
+    restingV02 : 0,
 };
 
 type State = {
@@ -310,6 +311,7 @@ export const UserContext = createContext<UserContextType>({state:initialState, d
 export const UserProvider = (props:PropsWithChildren<{}>) => {
     const [state, dispatch] = useReducer(userReducer, initialState);
     
+
     const bmi : BMI | null = useMemo(()=> {
         console.log(state.user.height, state.user.currentWeight)
 
@@ -464,6 +466,22 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
         }
     }, [state.user.age]);
 
+    const restingV02 : number = useMemo(()=> {
+        if(state.user.currentWeight) {
+            if (!sessionStorage.getItem('restingV02')) sessionStorage.setItem('restingV02', JSON.stringify(state.user.currentWeight * 3.5));
+            return state.user.currentWeight * 3.5;
+        }
+        return 0;
+    }, [state.user.currentWeight]);
+
+    const rawV02 : number = useMemo(()=> {
+        if(state.user.currentWeight && state.user.vo2Max) {
+            if (!sessionStorage.getItem('rawV02')) sessionStorage.setItem('rawV02', JSON.stringify(state.user.currentWeight * state.user.vo2Max.vo2Max));
+            return state.user.currentWeight * state.user.vo2Max.vo2Max;
+        }
+        return 0;
+    }, [state.user.currentWeight, state.user.vo2Max]);
+
     if (state.user?.uid === null) {
         dispatch({type: 'UPDATE_UID', payload: null})
     };
@@ -482,7 +500,8 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                         waistHipRatio,
                         waistHeightRatio,
                         bodyDensity,
-                        bodyComp
+                        bodyComp,
+                        restingV02
                     }, 
                     error:state.error, 
                     isLoading:state.isLoading,
