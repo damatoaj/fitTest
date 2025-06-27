@@ -54,11 +54,26 @@ const absoluteIntensity = (mets:number) => {
     return 'near maximal or maximal';
 };
 
+const restingMlPerKg02PerMinute = (kg:number) => {
+    return kg * 3.5;
+};
+
+const restingCalPerKgPerMinute = (kg:number) => {
+    return kg * 3.5 * .0005;
+};
+
+const calPerMinute = (kg: number, mo2: number) => {
+    return mo2 / 1000 * kg * 5;
+};
+
 export {
     percentHRRorVO2R,
     percentHeartRateMax,
     percentVO2Max,
     borgRPE,
     percentOneRepMax,
-    absoluteIntensity
+    absoluteIntensity,
+    calPerMinute,
+    restingCalPerKgPerMinute,
+    restingMlPerKg02PerMinute
 }

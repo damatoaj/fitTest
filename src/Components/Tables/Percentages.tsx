@@ -1,5 +1,7 @@
 import {memo} from 'react';
 import { useState, ChangeEvent } from 'react';
+import { calPerMinute } from '../../Functions/Intensity/Intensity';
+import { useUserContext } from '../../Hooks/useUserContext';
 
 type PercentageTableProps = {
     max : number,
@@ -39,7 +41,7 @@ const determineIntensity = (i : number, categories : {
 
 const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => {
     const [steps, setSteps] = useState<number>(10);
-
+    const { state } = useUserContext();
     let array = [];
 
     for (let i = 100; i > 0; i = i - steps) {
@@ -49,12 +51,62 @@ const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => 
     const rows = array.map((row, i) => {
         const intensity = Math.round(max * ((row )/100));
         const category = determineIntensity(row, categories);
-
-        return (<tr data-category={category}>
+        console.log(title)
+        if (title.includes('VO2')) {
+            return (<tr data-category={category}>
+                <td>{row + '%'}</td>
+                <td>{intensity} </td>
+                <td>{ state.user.currentWeight ?
+                    Math.round(calPerMinute(state.user.currentWeight, row)) : 
+                    '0'
+                    }</td>
+            </tr>)
+        } else {
+            return (<tr data-category={category}>
             <td>{row + '%'}</td>
             <td>{intensity} </td>
-        </tr>)
+            </tr>)
+        }
     });
+
+    if (title.includes('VO2')) {
+        return <table>
+        <thead>
+            <tr>
+                <th colSpan={3}>{title}</th>
+            </tr>
+            <tr className='no-print'>
+                <th colSpan={2}>Select your percentage layout</th>
+                <th colSpan={1}>
+                    <select onChange={(event:  ChangeEvent<HTMLSelectElement>)=> {
+                        return setSteps(parseInt(event.target.value))      
+                    }}>
+                        <option value='10'>
+                            10
+                        </option>
+                        <option value='5'>
+                            5
+                        </option>
+                        <option value='1'>
+                            1
+                        </option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th colSpan={2}>
+                    Milliliters of O2 per kg per minutes
+                </th>
+                <th colSpan={1}>
+                    Cal / Minute
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {rows}
+        </tbody>
+    </table>
+    }
 
     return <table>
         <thead>
