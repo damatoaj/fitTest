@@ -50,7 +50,6 @@ const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => 
         };
     
         const rows = array.map((row, i) => {
-            console.log(row, max, rest, i)
             const intensity = Math.round((max - rest) * row * .01 + rest);
             const category = determineIntensity(row, categories);
 

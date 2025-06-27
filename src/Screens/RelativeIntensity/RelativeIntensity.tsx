@@ -158,34 +158,67 @@ const RelativeIntensity = () => {
             <section id='percentage-mets'>
                 <div>
                     <h2>Percent of Maximal MET score</h2>
+                    <p>The percentage categories are dictated by your V02 Max and therefore your maximal MET</p>
+                    <p>One MET is 3.5 milliliters per kilogram per minute, the METs are multiple of that base value </p>
+                    <h4>If your maximal MET score tops out at 5 or fewer METs</h4>
+                    <ul>
+                        <li>Very light: less than 44%</li>
+                        <li>Light: 44% to 51%</li>
+                        <li>Moderate: 52% to 67%</li>
+                        <li>Vigorous: 68% to 91%</li>
+                        <li>Near maximal to maximal: greater than 92%</li>
+                    </ul>
+                    <h4>If your maximal MET score is between 5 and 10 METs</h4>
                     <ul>
                         <li>Very light: less than 37%</li>
                         <li>Light: 37% to 45%</li>
                         <li>Moderate: 45% to 63%</li>
-                        <li>Vigorous: 63% to 90%</li>
-                        <li>Near maximal to maximal: greater than 90%</li>
+                        <li>Vigorous: 64% to 90%</li>
+                        <li>Near maximal to maximal: greater than 91%</li>
+                    </ul>
+                    <h4>If your maximal MET score is between 10 and 20 METs</h4>
+                    <ul>
+                        <li>Very light: less than 34%</li>
+                        <li>Light: 34% to 42%</li>
+                        <li>Moderate: 43% to 61%</li>
+                        <li>Vigorous: 62% to 90%</li>
+                        <li>Near maximal to maximal: greater than 91%</li>
                     </ul>
                 </div>
                 {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) ? (
                     <Percentages
                         max={state.user.vo2Max.vo2Max / 3.5}
                         title='Percentage METs'
-                        categories={{
+                        categories={ state.user.vo2Max.vo2Max / 3.5 >= 5 ? {
+                            vl : 44,
+                            l : 51,
+                            mo : 67,
+                            h : 91,
+                            max : 100
+                        } : state.user.vo2Max.vo2Max / 3.5 >= 10 ? {
                             vl : 37,
                             l : 45,
                             mo : 63,
                             h : 90,
                             max : 100
-                        }}
+                        } :
+                    {
+                            vl : 34,
+                            l : 42,
+                            mo : 61,
+                            h : 91,
+                            max : 100
+                        }
+                    }
                     />
                 ) : <Percentages 
                         max={0} 
                         title='Percentage Of METs' 
                         categories={{
-                            vl : 37,
-                            l : 45,
-                            mo : 63,
-                            h : 90,
+                             vl : 44,
+                            l : 51,
+                            mo : 67,
+                            h : 91,
                             max : 100
                         }}/>}
             </section>

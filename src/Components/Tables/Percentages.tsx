@@ -51,7 +51,6 @@ const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => 
     const rows = array.map((row, i) => {
         const intensity = Math.round(max * ((row )/100));
         const category = determineIntensity(row, categories);
-        console.log(title)
         if (title.includes('VO2')) {
             return (<tr data-category={category}>
                 <td>{row + '%'}</td>
