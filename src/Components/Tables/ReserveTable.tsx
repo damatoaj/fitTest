@@ -1,9 +1,11 @@
 import {memo} from 'react';
 import { useState, ChangeEvent } from 'react';
+import { calPerMinute } from '../../Functions/Intensity/Intensity';
+import { useUserContext } from '../../Hooks/useUserContext';
 
 type ReserveTableProps = {
     max : number,
-    min : number,
+    rest : number,
     title : string,
     categories : {
     vl : number,
@@ -38,9 +40,9 @@ const determineIntensity = (i : number, categories : {
     return c;
 };
 
-const ReserveTable = ({ max, min, title, categories } : ReserveTableProps ) => {
+const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => {
        const [steps, setSteps] = useState<number>(10);
-    
+        const { state } = useUserContext();
         let array = [];
     
         for (let i = 100; i > 0; i = i - steps) {
@@ -48,14 +50,62 @@ const ReserveTable = ({ max, min, title, categories } : ReserveTableProps ) => {
         };
     
         const rows = array.map((row, i) => {
-            const intensity = Math.round(max * ((row )/100));
+            console.log(row, max, rest, i)
+            const intensity = Math.round((max - rest) * row * .01 + rest);
             const category = determineIntensity(row, categories);
-    
+
+            if(title.includes('V02')) {
+                return (<tr data-category={category}>
+                <td>{row + '%'}</td>
+                <td>{intensity} </td>
+                <td>{state.user.currentWeight ? Math.round(calPerMinute(state.user.currentWeight,intensity)): '0'}</td>
+            </tr>)
+            }
+            
             return (<tr data-category={category}>
                 <td>{row + '%'}</td>
                 <td>{intensity} </td>
             </tr>)
         });
+    
+    if (title.includes('V02')) {
+        return <table>
+                <thead>
+                    <tr>
+                        <th colSpan={3}>{title}</th>
+                    </tr>
+                    <tr className='no-print'>
+                        <th colSpan={2}>Select your percentage layout</th>
+                        <th colSpan={1}>
+                            <select onChange={(event:  ChangeEvent<HTMLSelectElement>)=> {
+                                return setSteps(parseInt(event.target.value))      
+                            }}>
+                                <option value='10'>
+                                    10
+                                </option>
+                                <option value='5'>
+                                    5
+                                </option>
+                                <option value='1'>
+                                    1
+                                </option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colSpan={2}>
+                            ml/kg/minute
+                        </th>
+                        <th colSpan={1}>
+                            cal / min
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
+    }
     
     return <table>
         <thead>

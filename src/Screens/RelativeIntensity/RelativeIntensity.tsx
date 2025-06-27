@@ -64,7 +64,7 @@ const RelativeIntensity = () => {
                 {(state.user.hrMax && state.user.hrMax >  0) && (state.user.restingHR > 0)? (
                     <ReserveTable 
                         max={state.user.hrMax}
-                        min={state.user.restingHR}
+                        rest={state.user.restingHR}
                         title='Percentage Of Heart Rate Reserve'
                         categories={{
                             vl : 30,
@@ -75,7 +75,7 @@ const RelativeIntensity = () => {
                         }}
                     />
                 ) : <ReserveTable 
-                        max={0} min={0} 
+                        max={0} rest={0} 
                         title='Percentage Of Heart Rate Reserve' 
                         categories={{
                             vl : 30,
@@ -96,7 +96,7 @@ const RelativeIntensity = () => {
                         <li>Near maximal to maximal: greater than 90%</li>
                     </ul>
                 </div>
-                        {state.user.vo2Max?.vo2Max ? (
+                    {state.user.vo2Max?.vo2Max ? (
                         <Percentages 
                             max={state.user.vo2Max?.vo2Max}
                             title='Percentage Of VO2 Max'
@@ -119,43 +119,76 @@ const RelativeIntensity = () => {
                             max : 100
                         }}
                         />}
-
             </section>
-            {/* <section id='vo2-max-reserve'>
+            <section id='vo2-max-reserve'>
                 <div>
                     <h2>Percent of V02 Max Reserve</h2>
                     <ul>
-                        <li>Very light: less than 30%</li>
-                        <li>Light: 30% to 39%</li>
-                        <li>Moderate: 40% to 59%</li>
-                        <li>Vigorous: 60% to 89%</li>
-                        <li>Near maximal to maximal: greater than 89%</li>
+                        <li>Very light: less than 37%</li>
+                        <li>Light: 37% to 45%</li>
+                        <li>Moderate: 45% to 63%</li>
+                        <li>Vigorous: 63% to 90%</li>
+                        <li>Near maximal to maximal: greater than 90%</li>
                     </ul>
                 </div>
-                {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) && (state.user.restingHR > 0)? (
+                {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) ? (
                     <ReserveTable 
-                        max={state.user.hrMax}
-                        min={state.user.restingHR}
-                        title='Percentage Of Heart Rate Reserve'
+                        max={state.user.vo2Max.vo2Max}
+                        rest={state.user.restingV02}
+                        title='Percentage V02 Rate Reserve'
                         categories={{
-                            vl : 30,
-                            l : 39,
-                            mo : 59,
-                            h : 89,
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
                             max : 100
                         }}
                     />
                 ) : <ReserveTable 
-                        max={0} min={0} 
-                        title='Percentage Of Heart Rate Reserve' 
+                        max={0} rest={0} 
+                        title='Percentage Of V02 Rate Reserve' 
                         categories={{
-                            vl : 30,
-                            l : 39,
-                            mo : 59,
-                            h : 89,
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
                             max : 100
                         }}/>}
-            </section> */}
+            </section>
+            <section id='percentage-mets'>
+                <div>
+                    <h2>Percent of Maximal MET score</h2>
+                    <ul>
+                        <li>Very light: less than 37%</li>
+                        <li>Light: 37% to 45%</li>
+                        <li>Moderate: 45% to 63%</li>
+                        <li>Vigorous: 63% to 90%</li>
+                        <li>Near maximal to maximal: greater than 90%</li>
+                    </ul>
+                </div>
+                {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) ? (
+                    <Percentages
+                        max={state.user.vo2Max.vo2Max / 3.5}
+                        title='Percentage METs'
+                        categories={{
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
+                            max : 100
+                        }}
+                    />
+                ) : <Percentages 
+                        max={0} 
+                        title='Percentage Of METs' 
+                        categories={{
+                            vl : 37,
+                            l : 45,
+                            mo : 63,
+                            h : 90,
+                            max : 100
+                        }}/>}
+            </section>
             <section id='one-rep-max'>
                 <div>
                     <h2>Percent of 1 Rep Max Intensities</h2>

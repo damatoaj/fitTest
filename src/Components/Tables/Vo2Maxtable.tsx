@@ -16,15 +16,19 @@ const Vo2MaxTable = () => {
                 </tr>
                 <tr>
                     <th>Value</th>
-                    <th>{user.vo2Max?.vo2Max ? user.vo2Max.vo2Max + 'ml/kg/minute': '-'}</th>
+                    <th>{user.vo2Max?.vo2Max ? user.vo2Max.vo2Max + ' ml/kg/minute': '-'}</th>
                 </tr>
                 <tr>
                     <th> Resting O2 Consumption </th>
                     <th>{sessionStorage.getItem('restingV02') ? sessionStorage.getItem('restingV02') + ' ml/minute': '-'}</th>
                 </tr>
                 <tr>
-                    <th> Maximal O2 Consumption </th>
+                    <th>Maximal O2 Consumption </th>
                     <th>{sessionStorage.getItem('rawV02')? sessionStorage.getItem('rawV02') + ' ml/minute': '-'}</th>
+                </tr>
+                 <tr>
+                    <th>Maximal Metabolic Equivalents (METs) </th>
+                    <th>{user.vo2Max && user.vo2Max !== null ? Math.round(user.vo2Max.vo2Max / 3.5 * 100) / 100 : '-'}</th>
                 </tr>
             </tbody>
         </table>
