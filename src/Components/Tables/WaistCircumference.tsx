@@ -20,10 +20,10 @@ const WaistCircumference = () => {
                         Risk Category
                     </td>
                     <td>
-                        Women
+                        Female
                     </td>
                     <td>
-                        Men
+                        Male
                     </td>
                 </tr>
                 <tr>

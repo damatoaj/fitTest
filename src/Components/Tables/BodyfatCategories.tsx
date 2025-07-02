@@ -12,7 +12,7 @@ const BodyfatCategories = () => {
             <tbody>
                 <tr>
                     <th colSpan={8}>
-                        <h3>MEN</h3>
+                        <h3>Male</h3>
                     </th>
                 </tr>
                 <tr>
@@ -227,7 +227,7 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <th colSpan={8}>
-                        <h3>WOMEN</h3>
+                        <h3>Female</h3>
                     </th>
                 </tr>
                 <tr>
