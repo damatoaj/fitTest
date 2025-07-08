@@ -169,11 +169,11 @@ const naughtonProtocol = (stage : number) => {
         console.time('Naughton Protocol');
         if (stage > 6 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
         const mets = [
-            1,
             2,
             3,
             4,
             5,
+            6,
             7,
             8
         ];
@@ -184,6 +184,76 @@ const naughtonProtocol = (stage : number) => {
     };
 };
 
+const modifiedNaughtonProtocol = (stage : number) => {
+    try {
+        console.time('Modified Naughton Protocol');
+        if (stage > 12 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
+        const mets = [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13
+        ];
+        console.timeEnd('Modified Naughton Protocol');
+        return mets[stage]; 
+    } catch (err) {
+        console.error(err);
+    };
+};
+
+const rampProtocol = (stage : number) => {
+    try {
+        console.time('Ramp Protocol');
+        if (stage > 30 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
+        const mets = [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            8,
+            9,
+            9,
+            10,
+            10,
+            10,
+            11,
+            11,
+            12,
+            12,
+            13,
+            13
+        ];
+        console.timeEnd('Ramp Protocol');
+        return mets[stage]; 
+    } catch (err) {
+        console.error(err);
+    };
+};
+
+
 export {
     menCardioFitnessClassification,
     womenCardioFitnessClassification,
@@ -191,5 +261,7 @@ export {
     womenMcArdleTest,
     bruceProtocol,
     modifiedBruceProtocol,
-    naughtonProtocol
+    naughtonProtocol,
+    modifiedNaughtonProtocol,
+    rampProtocol
 };
