@@ -122,9 +122,74 @@ const womenCardioFitnessClassification = (age:number, vo2Max:number) : VO2Max =>
     };
 };
 
+const bruceProtocol = (stage : number) => {
+    try {
+        console.time('Bruce Protocol');
+        if (stage > 6 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
+        const mets = [
+            5,
+            7,
+            10,
+            13,
+            15,
+            18,
+            20
+        ];
+        console.timeEnd('Bruce Protocol');
+        return mets[stage]; 
+    } catch (err) {
+        console.error(err);
+    };
+};
+
+const modifiedBruceProtocol = (stage : number) => {
+    try {
+        console.time('Modified Bruce Protocol');
+        if (stage > 8 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
+        const mets = [
+            2,
+            3,
+            5,
+            7,
+            10,
+            13,
+            15,
+            18,
+            20
+        ];
+        console.timeEnd('Modified Bruce Protocol');
+        return mets[stage]; 
+    } catch (err) {
+        console.error(err);
+    };
+};
+
+const naughtonProtocol = (stage : number) => {
+    try {
+        console.time('Naughton Protocol');
+        if (stage > 6 || stage < 0) throw new RangeError('Only seven stage in a Bruce Protocol');
+        const mets = [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+        ];
+        console.timeEnd('Naughton Protocol');
+        return mets[stage]; 
+    } catch (err) {
+        console.error(err);
+    };
+};
+
 export {
     menCardioFitnessClassification,
     womenCardioFitnessClassification,
     menMcArdleTest,
-    womenMcArdleTest
+    womenMcArdleTest,
+    bruceProtocol,
+    modifiedBruceProtocol,
+    naughtonProtocol
 };
