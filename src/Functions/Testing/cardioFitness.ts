@@ -253,6 +253,9 @@ const rampProtocol = (stage : number) => {
     };
 };
 
+const metsToVo2 = (mets : number) => {
+    return Math.round(mets * 3.5 * 100) / 100;
+};
 
 export {
     menCardioFitnessClassification,
@@ -263,5 +266,6 @@ export {
     modifiedBruceProtocol,
     naughtonProtocol,
     modifiedNaughtonProtocol,
-    rampProtocol
+    rampProtocol,
+    metsToVo2
 };
