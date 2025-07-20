@@ -1,5 +1,6 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
+import { Link } from 'react-router-dom';
 import { useUserContext } from '../../Hooks/useUserContext'
 const SitAndReachForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
@@ -43,7 +44,7 @@ const SitAndReachForm = () => {
             </span>
             :
             <span>
-                <button type='button'>Please Fill Out The Demographic Form</button>
+                <h3>Please fill out the <Link to='/parq'>Demographic Form</Link></h3>
             </span>
             }
         </form>

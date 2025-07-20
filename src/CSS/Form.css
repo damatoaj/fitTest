@@ -37,6 +37,10 @@ form:focus-within {
     border-color: var(--prm-lgt-blue);
 }
 
+form > table {
+    box-shadow: none;
+}
+
 form details {
     color : black;
     margin-left: clamp(5px, 5%, 15px);

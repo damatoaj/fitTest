@@ -1,13 +1,11 @@
 import { useRef, memo } from 'react'
 import useForm from '../../Hooks/useForm'
 import { useUserContext } from '../../Hooks/useUserContext'
-import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const SkinfoldForm = () => {
     const { handleChange, handleSubmit, handleReset} = useForm()
     const form = useRef<HTMLFormElement | null>(null)
     const { state : {user } } = useUserContext()
-    const navigate = useNavigate()
     
     return (
         <form
@@ -142,7 +140,7 @@ const SkinfoldForm = () => {
                     <button type='reset' disabled={user.sex !== null ? true : false}>Reset</button>
                 </span>
                 :
-                <button type="button" onClick={()=> navigate('/parq')}>Please Fill Out Demographic Form</button>
+                <h3>Please fill out the <Link to='/parq'>Demographic Form</Link></h3>
             }
             </span>
         </form>

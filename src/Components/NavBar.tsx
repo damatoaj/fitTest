@@ -182,6 +182,9 @@ const NavBar = ({u} : NavBarProps) => {
                                     <li className='dark'>
                                         <Link to='/field-tests' onClick={handleNavigate}>Field Tests</Link>
                                     </li>
+                                    <li className='light'>
+                                        <Link to='/treadmill-protocols'onClick={handleNavigate}>Treadmill Protocols</Link>
+                                    </li>
                                 </ul>
                             </li>
                             <li className='sub-subnav'>

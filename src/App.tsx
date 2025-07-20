@@ -45,6 +45,7 @@ import SkinfoldScreen from './Screens/SkinFolds/SkinfoldScreen';
 import FieldTests from './Screens/FieldTests/FieldTests';
 import RelativeIntensity from './Screens/RelativeIntensity/RelativeIntensity';
 import RestingHeartRate from './Components/Forms/RestingHeartRate';
+import MaximalTreadmillTests from './Screens/TreadmillProtocals/MaximalTreadmillTests';
 
 function App() {
   const { state } = useUserContext();
@@ -118,7 +119,7 @@ function App() {
             <Route path='test' element={<PushupTest /> } />
             <Route path='results' element={<PushupResults /> } />
           </Route>
-          <Route path='/treadmill-protocols'>
+          <Route path='/treadmill-protocols' element={<MaximalTreadmillTests />}>
             <Route path='bruce' element={<Bruce />} />
             <Route path='bruce/results' element={<TreadmillResults />} />
           </Route>
