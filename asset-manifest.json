@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.1e17d8ae.css",
-    "main.js": "/static/js/main.c7c74844.js",
+    "main.css": "/static/css/main.ddefefcc.css",
+    "main.js": "/static/js/main.18b26dac.js",
     "static/media/fittest_logo_2.jpg": "/static/media/fittest_logo_2.0b1fcbd5b70ad0a7a56e.jpg",
     "index.html": "/index.html",
-    "main.1e17d8ae.css.map": "/static/css/main.1e17d8ae.css.map",
-    "main.c7c74844.js.map": "/static/js/main.c7c74844.js.map"
+    "main.ddefefcc.css.map": "/static/css/main.ddefefcc.css.map",
+    "main.18b26dac.js.map": "/static/js/main.18b26dac.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e17d8ae.css",
-    "static/js/main.c7c74844.js"
+    "static/css/main.ddefefcc.css",
+    "static/js/main.18b26dac.js"
   ]
 }
