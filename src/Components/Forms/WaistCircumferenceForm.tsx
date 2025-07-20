@@ -158,18 +158,18 @@ const WaistCircumferenceForm = () => {
                     </p>
                 </li>
             </ol>
-                <input 
-                    onChange={handleChange}
-                    type='number'
-                    name='waistCircumference'
-                    min='0'
-                    max='500' 
-                    placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
-                    step={.5}
-                    maxLength={3}
-                    required
-                    // defaultValue={defaultValue}
-                />
+            <input 
+                onChange={handleChange}
+                type='number'
+                name='waistCircumference'
+                min='0'
+                max='500' 
+                placeholder={user.prefers_metric ? 'Measured in centimeters' : 'Measured in inches'}
+                step={.5}
+                maxLength={3}
+                required
+                // defaultValue={defaultValue}
+            />
             </fieldset>
             <span>
                 {user.sex ? 
