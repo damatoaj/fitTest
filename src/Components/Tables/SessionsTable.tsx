@@ -2,13 +2,16 @@ import { useState, memo, useEffect } from 'react';
 import { getStoreData, initDB } from '../../indexedDB';
 import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
+import 'dotenv/config'
+
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
     const [dbReady, setDbReady] = useState<boolean>(false);
     const { state : {user} } = useUserContext();
+    let version = 7;
 
     useEffect(() => {
-        initDB(6)
+        initDB(version)
         .then((e)=> {
             console.log(e, '<--- initDb complete')
             if (e === true) {
