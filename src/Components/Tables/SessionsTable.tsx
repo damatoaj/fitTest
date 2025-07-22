@@ -2,7 +2,6 @@ import { useState, memo, useEffect } from 'react';
 import { getStoreData, initDB } from '../../indexedDB';
 import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
-import 'dotenv/config'
 
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);

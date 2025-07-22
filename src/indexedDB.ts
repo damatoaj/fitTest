@@ -1,4 +1,3 @@
-import 'dotenv/config'
 let request : IDBOpenDBRequest;
 let version = 7;
 let db : IDBDatabase;
