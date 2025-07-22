@@ -62,8 +62,10 @@ export const initDB = (v:number): Promise<boolean> => {
             let error = request.error?.message;
             if (error) {
                 console.error(`request.onerror - initDB: ${error}`)
+                alert(`request.onerror - initDB: ${error}`)
             } else {
                 console.error(`request.onerror - initDB: Unknown Error`)
+                alert(`request.onerror - initDB: Unknown Error`)
             }
             resolve(false);
         };

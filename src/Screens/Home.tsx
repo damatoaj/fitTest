@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <main>
             <article>
-                <h1> Welcome to FitTest!</h1>
+                <h1> Welcome to Fit Tests!</h1>
                 <p>
                  Your app for exercise testing.
                 </p>

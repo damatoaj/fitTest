@@ -2,11 +2,11 @@ import { useState, memo, useEffect } from 'react';
 import { getStoreData, initDB } from '../../indexedDB';
 import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
-
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
     const [dbReady, setDbReady] = useState<boolean>(false);
     const { state : {user} } = useUserContext();
+
     useEffect(() => {
         initDB(6)
         .then((e)=> {
@@ -27,7 +27,11 @@ const SessionsTable = () => {
                 throw new Error('Init Not complete')
             }
         })
-        .catch((err)=> console.error(err))
+        .catch((err)=> {
+            console.error(err);
+            alert(err);
+            setDbReady(true);
+        })
     }, [])
 
     if (sessions.length === 0 && !dbReady) return (
