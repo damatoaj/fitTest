@@ -43,13 +43,13 @@ const SessionsTable = () => {
     return (
             <table>
                 <thead>
-                    <tr><th colSpan={28}>Previous Sessions On This Browser</th></tr>
+                    <tr><th colSpan={30}>Previous Sessions On This Browser</th></tr>
                     <tr>
                         <th colSpan={2}></th>
                         <th colSpan={4}>Demographics</th>
-                        <th colSpan={4}>Body Composition</th>
+                        <th colSpan={5}>Body Composition</th>
                         <th colSpan={8}>Body Circumferences</th>
-                        <th colSpan={4}>Heart & Cardio Related</th>
+                        <th colSpan={6}>Heart & Cardio Related</th>
                         <th colSpan={1}>Musc Endurance</th>
                         <th colSpan={3}>Muscular Strength</th>
                         <th colSpan={1}>Flexibility</th>
@@ -70,7 +70,7 @@ const SessionsTable = () => {
                         {user.prefers_metric ? <th>Current Weight (KG)</th> :<th>Current Weight (LBS)</th>} 
                         {user.prefers_metric ? <th>Goal Weight (KG)</th> : <th>Goal Weight (LBS)</th>}
                         <th>BMI</th>
-
+                        <th>Body Fat Percentage</th>
                         {user.prefers_metric ? <th>Abdomen Circumference (CM)</th> : <th>Abdomen Circumference (IN)</th>}
                         {user.prefers_metric ? <th>Arm Circumference (CM)</th> : <th>Arm Circumference (IN)</th>}
                         {user.prefers_metric ? <th>Buttocks Circumference (CM)</th> : <th>Buttocks Circumference (IN)</th>}
@@ -82,8 +82,10 @@ const SessionsTable = () => {
 
                         <th>Resting Heart Rate</th>
                         <th>Max Heart Rate</th>
+                        <th>Resting VO2 Uptake (ml/minute)</th>
+                        <th>Maximal O2 Uptake (ml/minute)</th>
+                        <th>VO2 Max (ml/kg/min)</th>
                         <th>Blood Pressure</th>
-                        <th>VO2 Max</th>
 
                         
                         <th>Pushups</th>
@@ -109,6 +111,7 @@ const SessionsTable = () => {
                             {user.prefers_metric ? <td>{session.current_weight || '-'}</td> : <td>{session.current_weight * 2.2 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.goal_weight || '-'}</td> : <td>{session.goal_weight * 2.2 || '-'}</td>}
                             <td>{session.bmi || '-'}</td>
+                            <td>-</td>
 
                             {user.prefers_metric ? <td>{session.abdomen_circumference || '-'}</td> : <td>{session.abdomen_circumference / 2.54 || '-'}</td>}
                             {user.prefers_metric ? <td>{session.arm_circumference || '-'}</td> : <td>{session.arm_circumference / 2.54 || '-'}</td>}
@@ -121,8 +124,10 @@ const SessionsTable = () => {
 
                             <td>{session.resting_heart_rate || '-'}</td>
                             <td>{session.max_heart_rate || '-'}</td>
-                            <td>{session.systolic_blood_pressure && session.diastolic_blood_pressure ? `${session.systolic_blood_pressure} / ${session.diastolic_blood_pressure}` : '-'}</td>
+                            <td>{session.current_weight ? Math.round(session.current_weight * 3.5 * 100) / 100 : '-'}</td>
+                            <td>{session.current_weight && session.vo2_max ? Math.round(session.current_weight * session.vo2_max * 100) / 100 : '-'}</td>
                             <td>{session.vo2_max || '-'}</td>
+                            <td>{session.systolic_blood_pressure && session.diastolic_blood_pressure ? `${session.systolic_blood_pressure} / ${session.diastolic_blood_pressure}` : '-'}</td>
                             
                             <td>{session.pushups || '-'}</td>
 
