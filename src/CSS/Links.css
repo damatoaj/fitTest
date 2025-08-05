@@ -256,6 +256,7 @@ footer a {
         margin: 0;
     }
     nav > button {
+        border-radius:0;
         /* transform: rotate(90deg); */
         width: 160px;
         /* height: 100px; */
@@ -265,6 +266,7 @@ footer a {
         margin: 0;
         left: 70px; */
         overflow-wrap:break-all;
+
         /* word-wrap: break-word; */
     }
     nav > ul {
