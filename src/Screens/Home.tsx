@@ -29,25 +29,34 @@ const Home = () => {
 
                 <p>
                     Feel like you need assistance taking these tests? Try reaching out to a 
-                    <a 
-                        target='_blank'
-                        rel='noreferrer'
-                        href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=personal+trainers+near+me'>
-                        personal trainer
-                    </a>,
-                    <a 
-                        target='_blank'
-                        rel='noreferrer'
-                        href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=exercise+physiologist+near+me'>
-                        exercise physiologist
-                    </a>,
-                    or
-                    <a 
-                        target='_blank'
-                        rel='noreferrer'
-                        href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=strength+and+conditioning+coach+near+me'>
-                        strength & conditioning coach
-                    </a>
+                    <ul>
+                        <li>
+                            <a 
+                                target='_blank'
+                                rel='noreferrer'
+                                href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=personal+trainers+near+me'>
+                                personal trainer
+                            </a>
+                        </li>
+                        <br></br>
+                        <li>
+                            <a 
+                                target='_blank'
+                                rel='noreferrer'
+                                href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=exercise+physiologist+near+me'>
+                                exercise physiologist
+                            </a>
+                        </li>
+                        <br></br>
+                        <li>
+                            <a 
+                                target='_blank'
+                                rel='noreferrer'
+                                href='https://www.ecosia.org/search?addon=opensearch&addonversion=7.1.0&q=strength+and+conditioning+coach+near+me'>
+                                strength & conditioning coach
+                            </a>
+                        </li>
+                    </ul>
                 </p>
                 <p>
                     Otherwise, click the link below to start
