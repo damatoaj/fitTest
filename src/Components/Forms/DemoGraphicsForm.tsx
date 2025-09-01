@@ -35,6 +35,8 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
+                autoComplete='true'
+                autoCapitalize='true'
             />      
         </fieldset>
         <fieldset>
@@ -49,6 +51,8 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
+                autoComplete='true'
+                autoCapitalize='true'
             />
         </fieldset>
         <fieldset>
@@ -83,6 +87,7 @@ function DemoGraphicsForm() {
                 title="Range is 50 to 450"
                 inputMode='numeric'
                 enterKeyHint='next'
+                autoComplete='false'
             />
         </fieldset>
         <fieldset>
@@ -100,6 +105,7 @@ function DemoGraphicsForm() {
                     maxLength={6}
                     inputMode='numeric'
                     enterKeyHint='done'
+                    autoComplete='false'
                     // defaultValue={defaultValue}
                 />
             </fieldset>
