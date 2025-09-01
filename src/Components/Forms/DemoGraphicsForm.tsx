@@ -35,8 +35,8 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
-                autoComplete='true'
-                autoCapitalize='true'
+                autoComplete='on'
+                autoCapitalize='words'
             />      
         </fieldset>
         <fieldset>
@@ -51,8 +51,8 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
-                autoComplete='true'
-                autoCapitalize='true'
+                autoComplete='on'
+                autoCapitalize='words'
             />
         </fieldset>
         <fieldset>
