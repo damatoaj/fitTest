@@ -74,3 +74,60 @@ tr[data-currentcategory='yes']> td:first-child::before {
     }
 
 } */
+
+@media screen and (max-width:400px) {
+    main {
+        padding: 3px;
+    }
+    article {
+        padding: 1px;
+        width:100%;
+    }
+
+    details {
+        margin: 0px;
+        border: none;
+        max-width: 380px;
+    }
+
+    details[open] {
+        border: none;
+        max-width: 380px;
+    }
+    
+    table {
+        width: 100%;
+        box-shadow: none;
+        max-width: 380px;
+        margin: 15px 0px;
+        padding: 0px;
+        border-right: none;
+        border-left: none;
+        outline: .5px solid black;
+
+    }
+    thead {
+        padding: 0px;
+        border: none;
+        /* outline: 1px solid black; */
+
+    }
+
+    td {
+        width: 7px;
+        overflow: hidden;
+        word-break: normal;
+        padding: 1px;
+        margin: 0px;
+        border-width:0px;
+        outline: .5px solid black;
+    }
+    tr{
+        max-width: 380px;
+        padding: 0px;
+    }
+    tbody {
+        outline: 1px solid black;
+
+    }
+}
