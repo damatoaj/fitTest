@@ -27,6 +27,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                     />
             </fieldset>
             <fieldset>
@@ -40,6 +42,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -53,6 +57,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -66,6 +72,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -79,6 +87,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                     />
             </fieldset>
             <fieldset>
@@ -92,6 +102,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -105,6 +117,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -118,6 +132,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='next'
+                    inputMode='numeric'
                 />
             </fieldset>
             <fieldset>
@@ -131,6 +147,8 @@ const SkinfoldForm = () => {
                     placeholder={'Measured in millimeters'}                    
                     step={.5}
                     maxLength={3}
+                    enterKeyHint='done'
+                    inputMode='numeric'
                 />
             </fieldset>
             <span>

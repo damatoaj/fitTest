@@ -30,6 +30,8 @@ const EnduranceForm = () => {
                     step={1}
                     maxLength={3}
                     defaultValue={0}
+                    enterKeyHint='done'
+                    inputMode='numeric'
                 />
             </fieldset>
             <span>

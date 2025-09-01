@@ -33,6 +33,8 @@ function DemoGraphicsForm() {
                 pattern="^[a-zA-Z]+$"
                 onChange={handleChange}
                 title="No special characters"
+                inputMode='text'
+                enterKeyHint='next'
             />      
         </fieldset>
         <fieldset>
@@ -45,6 +47,8 @@ function DemoGraphicsForm() {
                 pattern='^[a-zA-Z]+$'
                 onChange={handleChange}
                 title="No special characters"
+                inputMode='text'
+                enterKeyHint='next'
             />
         </fieldset>
         <fieldset>
@@ -60,6 +64,8 @@ function DemoGraphicsForm() {
                 maxLength={3}
                 placeholder=''
                 title="Range is 20-69"
+                inputMode='numeric'
+                enterKeyHint='next'
             />
         </fieldset>
         <fieldset>
@@ -75,6 +81,8 @@ function DemoGraphicsForm() {
                 maxLength={7}
                 placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured In Pounds'}
                 title="Range is 50 to 450"
+                inputMode='numeric'
+                enterKeyHint='next'
             />
         </fieldset>
         <fieldset>
@@ -90,6 +98,8 @@ function DemoGraphicsForm() {
                     required
                     step={.5}
                     maxLength={6}
+                    inputMode='numeric'
+                    enterKeyHint='done'
                     // defaultValue={defaultValue}
                 />
             </fieldset>
@@ -163,6 +173,7 @@ function DemoGraphicsForm() {
                     maxLength={6}
                     placeholder={'Measured in centimeters'}
                     title="Range is 50 to 300"
+                    inputMode='numeric'
                 />
             </fieldset>
             :

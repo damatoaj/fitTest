@@ -44,7 +44,8 @@ function StepTestForm() {
                 maxLength={3}
                 defaultValue={user.vo2Max?.vo2Max || ''}
                 autoFocus
-            />
+                enterKeyHint='done'
+                inputMode='numeric'            />
         </fieldset>
         <span>
             <button type='submit' disabled={!valid}>Submit</button>

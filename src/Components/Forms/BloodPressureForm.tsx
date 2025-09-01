@@ -34,6 +34,8 @@ const BenchPressForm = () => {
                     maxLength={3}
                     required
                     defaultValue={''}
+                    inputMode='numeric'
+                    enterKeyHint='next'
                 />
             </fieldset>
             <fieldset>
@@ -50,6 +52,8 @@ const BenchPressForm = () => {
                     maxLength={3}
                     required
                     defaultValue={''}
+                    inputMode='numeric'
+                    enterKeyHint='done'
                 />
             </fieldset>
             <span>

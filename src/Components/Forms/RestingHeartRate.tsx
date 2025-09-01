@@ -46,6 +46,8 @@ function RestingHeartRate() {
                 maxLength={3}
                 placeholder=''
                 title="Resting Heart Rate"
+                enterKeyHint='done'
+                inputMode='numeric'
             />
         </fieldset>
    

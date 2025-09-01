@@ -40,6 +40,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                     />
             </fieldset>
@@ -55,6 +57,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                     />
             </fieldset>
@@ -70,6 +74,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                 />
             </fieldset>
@@ -85,6 +91,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                 />
             </fieldset>
@@ -100,6 +108,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                     />
             </fieldset>
@@ -115,6 +125,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                 />
             </fieldset>
@@ -130,6 +142,8 @@ const WaistCircumferenceForm = () => {
                     step={.5}
                     maxLength={3}
                     required
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                     // defaultValue={defaultValue}
                 />
             </fieldset>
@@ -168,6 +182,8 @@ const WaistCircumferenceForm = () => {
                 step={.5}
                 maxLength={3}
                 required
+                enterKeyHint='done'
+                inputMode='numeric' 
                 // defaultValue={defaultValue}
             />
             </fieldset>

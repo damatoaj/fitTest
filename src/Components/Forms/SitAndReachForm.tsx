@@ -35,6 +35,8 @@ const SitAndReachForm = () => {
                     maxLength={2}
                     required
                     defaultValue={0}
+                    enterKeyHint='done'
+                    inputMode='numeric'
                 />
             </fieldset>
             {user.age && user.sex ? 

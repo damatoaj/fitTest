@@ -54,6 +54,8 @@ const StrengthForm = () => {
                         min='14'
                         max='125'
                         required
+                        enterKeyHint='next'
+                        inputMode='numeric' 
                     />
                 </fieldset>
             )}
@@ -67,6 +69,8 @@ const StrengthForm = () => {
                         min='50'
                         max='400'
                         required
+                        enterKeyHint='next'
+                        inputMode='numeric' 
                     />
                 </fieldset>
             )}
@@ -81,6 +85,8 @@ const StrengthForm = () => {
                     placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                     defaultValue={defaultLeg}
                     autoFocus
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                 />
             </fieldset>
             <fieldset>
@@ -93,6 +99,8 @@ const StrengthForm = () => {
                     max='2000' 
                     placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                     defaultValue={defaultBench}
+                    enterKeyHint='next'
+                    inputMode='numeric' 
                 />
             </fieldset>
             <fieldset>
@@ -108,6 +116,8 @@ const StrengthForm = () => {
                         max='2000'
                         placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                         defaultValue={''}
+                        enterKeyHint='next'
+                        inputMode='numeric' 
                     />
                 <label htmlFor='rightHand'>
                     Right Hand
@@ -120,6 +130,8 @@ const StrengthForm = () => {
                         max='2000'
                         placeholder={state.user.prefers_metric ? 'Weight Moved In KGS' : 'Weight Moved In LBS'}
                         defaultValue={''}
+                        enterKeyHint='done'
+                        inputMode='numeric' 
                     />
             </fieldset>
             <span>

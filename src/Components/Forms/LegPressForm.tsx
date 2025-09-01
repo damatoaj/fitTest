@@ -41,6 +41,8 @@ const LegPressForm = () => {
                     autoFocus={true}
                     step={.5}
                     maxLength={6}
+                    inputMode='numeric'
+                    enterKeyHint='done'
                 />
             </fieldset>
             <div className='message-container'>

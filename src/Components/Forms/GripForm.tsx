@@ -33,6 +33,8 @@ const GripForm = () => {
                         autoFocus={true}
                         step={.5}
                         maxLength={6}
+                        enterKeyHint='next'
+                        inputMode='numeric'
                     />
                 <label htmlFor='rightHand'>
                     Right Hand
@@ -46,6 +48,8 @@ const GripForm = () => {
                         placeholder={user.prefers_metric ? 'Measured in KG' : 'Measure in Lbs'}
                         step={.5}
                         maxLength={6}
+                        enterKeyHint='done'
+                        inputMode='numeric'
                     />
             </fieldset>
             <span>
