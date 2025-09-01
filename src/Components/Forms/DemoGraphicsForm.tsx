@@ -35,7 +35,7 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
-                autoComplete='on'
+                autoComplete='given-name'
                 autoCapitalize='words'
             />      
         </fieldset>
@@ -51,7 +51,7 @@ function DemoGraphicsForm() {
                 title="No special characters"
                 inputMode='text'
                 enterKeyHint='next'
-                autoComplete='on'
+                autoComplete='family-name'
                 autoCapitalize='words'
             />
         </fieldset>
