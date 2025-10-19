@@ -55,6 +55,10 @@ summary {
     border-radius: 10px;
 }
 
+details:open > summary {
+    border-radius: 10px 10px 0 0;
+}
+
 summary:hover{
     cursor: pointer;
 }

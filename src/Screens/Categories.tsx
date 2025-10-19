@@ -43,6 +43,7 @@ const Categories = () => {
                         <summary>VO2 Max Categories</summary>
                         <VO2MaxCategories />
                     </details>
+                    <br></br>
             </section>
  
             <section  className='col'>
