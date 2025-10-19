@@ -69,8 +69,8 @@ const Footer = () => {
         <footer>
             <details>
                 <summary>
-                    <h3>Considering checking out some of our affiliate links below!</h3>
-                    <p>FitTest is a free application and any support is appreciated, which will help the project grow and provide more functionality to users.</p>
+                    Considering checking out some of our affiliate links below!
+                    FitTest is a free application and any support is appreciated, which will help the project grow and provide more functionality to users.
                 </summary>
                 <ul>
                     {links}

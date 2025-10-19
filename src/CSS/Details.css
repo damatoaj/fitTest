@@ -63,9 +63,11 @@ summary::marker {
     background-color: var(--prm-lgt-blue);
 }
 
-/* footer > details > ul {
-    margin-right: 15px;
-} */
+
+footer > details, footer > details > summary {
+    border-radius: 0;
+    border: none;
+}
 
 @media screen and (min-width:500px) {
     details > ul {

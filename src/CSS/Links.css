@@ -112,7 +112,7 @@ nav > ul > li {
     margin:0;
     padding:0;
     max-height: 42px;
-    min-width: 140px;
+    width: clamp(120px, 10%, 250px)
 }
 
 .light > a {

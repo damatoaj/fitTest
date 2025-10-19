@@ -44,6 +44,11 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  width:100%;
+}
+
+#root{
+  width:100%;
 }
 
 main {
@@ -204,9 +209,9 @@ header {
 }
 
 footer {
-  padding : 20px;
   position: relative;
   bottom: 0;
+  width: 100%;
 }
 
 address {
