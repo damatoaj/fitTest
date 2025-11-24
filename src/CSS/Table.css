@@ -27,16 +27,28 @@ table {
     box-shadow: 0 0 15px grey;
 }
 
-tr[data-currentcategory='yes'] {
+tr[data-currentcategory='yes'], td[data-currentcategory='yes'] {
     outline : 2px solid var(--prm-drk-green);
     color: var(--prm-drk-green);
 }
 
-tr[data-currentcategory='yes']> td:first-child::before {
+tr[data-currentcategory='yes'], td[data-currentcategory='yes']::before {
     content: '▶ ';
     color: var(--prm-drk-green);
 }
 
+
+td[data-age="1"] {
+    background-color: green;
+}
+
+table[data-male="1"] > thead, tbody{
+    border-color: green;
+}
+
+table[data-female="1"] > thead, tbody{
+    border-color: green;
+}
 /* tr[data-category='very-low'] > * {
     background-color: red;
 } */
@@ -104,8 +116,11 @@ tr[data-currentcategory='yes']> td:first-child::before {
         border-right: none;
         border-left: none;
         outline: .5px solid black;
-
     }
+
+
+
+ 
     thead {
         padding: 0px;
         border: none;

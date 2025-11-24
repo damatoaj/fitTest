@@ -47,7 +47,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={1}>Well Above Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={1}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'well above average' && user.sex === 'MALE' ? 'yes' : 'no'}                                         
+                        >Well Above Average</td>
                     <td colSpan={1}>2.27</td>
                     <td colSpan={1}>2.07</td>
                     <td colSpan={1}>1.92</td>
@@ -56,7 +60,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>80</td>
-                    <td colSpan={1} rowSpan={2}>Above Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'above average' && user.sex === 'MALE' ? 'yes' : 'no'}                                         
+                    >Above Average</td>
                     <td colSpan={1}>2.13</td>
                     <td colSpan={1}>1.93</td>
                     <td colSpan={1}>1.82</td>
@@ -73,7 +81,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>60</td>
-                    <td colSpan={1} rowSpan={2}>Average</td>
+                    <td 
+                        colSpan={1}  
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'average' && user.sex === 'MALE' ? 'yes' : 'no'}                                         
+                        >Average</td>
                     <td colSpan={1}>1.97</td>
                     <td colSpan={1}>1.77</td>
                     <td colSpan={1}>1.68</td>
@@ -90,7 +102,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>40</td>
-                    <td colSpan={1} rowSpan={2}>Below Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'below average' && user.sex === 'MALE' ? 'yes' : 'no'}                                                                 
+                    >Below Average</td>
                     <td colSpan={1}>1.83</td>
                     <td colSpan={1}>1.65</td>
                     <td colSpan={1}>1.57</td>
@@ -107,7 +123,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>20</td>
-                    <td colSpan={1} rowSpan={2}>Well Below Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'well below average' && user.sex === 'MALE' ? 'yes' : 'no'}                                         
+                    >Well Below Average</td>
                     <td colSpan={1}>1.63</td>
                     <td colSpan={1}>1.52</td>
                     <td colSpan={1}>1.44</td>
@@ -143,7 +163,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={1}>Well Above Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={1}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'well above average' && user.sex === 'FEMALE' ? 'yes' : 'no'}                                         
+                        >Well Above Average</td>
                     <td colSpan={1}>1.82</td>
                     <td colSpan={1}>1.61</td>
                     <td colSpan={1}>1.48</td>
@@ -152,7 +176,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>80</td>
-                    <td colSpan={1} rowSpan={2}>Above Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'above average' && user.sex === 'FEMALE' ? 'yes' : 'no'}                                         
+                        >Above Average</td>
                     <td colSpan={1}>1.68</td>
                     <td colSpan={1}>1.47</td>
                     <td colSpan={1}>1.37</td>
@@ -169,7 +197,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>60</td>
-                    <td colSpan={1} rowSpan={2}>Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'average' && user.sex === 'FEMALE' ? 'yes' : 'no'}                                         
+                    >Average</td>
                     <td colSpan={1}>1.50</td>
                     <td colSpan={1}>1.33</td>
                     <td colSpan={1}>1.23</td>
@@ -186,7 +218,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>40</td>
-                    <td colSpan={1} rowSpan={2}>Below Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'below average' && user.sex === 'FEMALE' ? 'yes' : 'no'}                                             
+                    >Below Average</td>
                     <td colSpan={1}>1.37</td>
                     <td colSpan={1}>1.21</td>
                     <td colSpan={1}>1.13</td>
@@ -203,7 +239,11 @@ const LegPressCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>20</td>
-                    <td colSpan={1} rowSpan={2}>Well Below Average</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.legPress?.category && user.legPress?.category === 'well below average' && user.sex === 'FEMALE' ? 'yes' : 'no'}                                         
+                    >Well Below Average</td>
                     <td colSpan={1}>1.22</td>
                     <td colSpan={1}>1.09</td>
                     <td colSpan={1}>1.02</td>

@@ -1,5 +1,9 @@
-import { memo } from 'react'
+import { memo } from 'react';
+import { useUserContext } from '../../Hooks/useUserContext';
+
 const BodyfatCategories = () => {
+    const { state : {user} } = useUserContext();
+
     return (
         <table>
             <thead>
@@ -32,7 +36,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>99</td>
-                    <td colSpan={1} rowSpan={2}>Very Lean</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={2}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'very lean' && user.sex === 'MALE' ? 'yes' : 'no'}
+                    >Very Lean</td>
                     <td colSpan={1}>4.2</td>
                     <td colSpan={1}>7.3</td>
                     <td colSpan={1}>9.5</td>
@@ -51,7 +59,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={3}>Excellent</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={3}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'excellent' && user.sex === 'MALE' ? 'yes' : 'no'}
+                    >Excellent</td>
                     <td colSpan={1}>7.9</td>
                     <td colSpan={1}>12.4</td>
                     <td colSpan={1}>15.0</td>
@@ -79,7 +91,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>75</td>
-                    <td colSpan={1} rowSpan={4}>Good</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'good' && user.sex === 'MALE' ? 'yes' : 'no'}                        
+                        >Good</td>
                     <td colSpan={1}>11.5</td>
                     <td colSpan={1}>15.9</td>
                     <td colSpan={1}>18.5</td>
@@ -116,7 +132,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1} rowSpan={4}>Fair</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                         data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'fair' && user.sex === 'MALE' ? 'yes' : 'no'}                       
+                        >Fair</td>
                     <td colSpan={1}>15.8</td>
                     <td colSpan={1}>19.2</td>
                     <td colSpan={1}>21.4</td>
@@ -153,7 +173,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1} rowSpan={4}>Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'poor' && user.sex === 'MALE' ? 'yes' : 'no'}                        
+                        >Poor</td>
                     <td colSpan={1}>19.7</td>
                     <td colSpan={1}>22.4</td>
                     <td colSpan={1}>24.2</td>
@@ -190,7 +214,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1} rowSpan={4}>Very Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'very poor' && user.sex === 'MALE' ? 'yes' : 'no'}            
+                        >Very Poor</td>
                     <td colSpan={1}>24.9</td>
                     <td colSpan={1}>26.4</td>
                     <td colSpan={1}>27.8</td>
@@ -247,7 +275,9 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>99</td>
-                    <td colSpan={1} rowSpan={2}>Very Lean</td>
+                    <td colSpan={1} rowSpan={2}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'very lean' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    >Very Lean</td>
                     <td colSpan={1}>11.4</td>
                     <td colSpan={1}>11.2</td>
                     <td colSpan={1}>12.1</td>
@@ -266,7 +296,10 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={2}>Excellent</td>
+                    <td colSpan={1} rowSpan={2}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'excellent' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    
+                    >Excellent</td>
                     <td colSpan={1}>15.1</td>
                     <td colSpan={1}>15.5</td>
                     <td colSpan={1}>16.8</td>
@@ -285,7 +318,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>80</td>
-                    <td colSpan={1} rowSpan={5}>Good</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={5}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'good' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    >Good</td>
                     <td colSpan={1}>16.8</td>
                     <td colSpan={1}>17.5</td>
                     <td colSpan={1}>19.5</td>
@@ -331,7 +368,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1} rowSpan={4}>Fair</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'fair' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    >Fair</td>
                     <td colSpan={1}>20.6</td>
                     <td colSpan={1}>22.0</td>
                     <td colSpan={1}>24.6</td>
@@ -368,7 +409,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1} rowSpan={4}>Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'poor' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    >Poor</td>
                     <td colSpan={1}>24.2</td>
                     <td colSpan={1}>25.8</td>
                     <td colSpan={1}>28.4</td>
@@ -405,7 +450,11 @@ const BodyfatCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1} rowSpan={4}>Very Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={user.bodyComp.category && user.bodyComp?.category === 'very poor' && user.sex === 'FEMALE' ? 'yes' : 'no'}                 
+                    >Very Poor</td>
                     <td colSpan={1}>30.5</td>
                     <td colSpan={1}>31.5</td>
                     <td colSpan={1}>33.4</td>

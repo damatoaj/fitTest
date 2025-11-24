@@ -8,8 +8,9 @@ import GripStrengthCategories from '../Components/Tables/GripStrengthCategories'
 import SARCategories from '../Components/Tables/SARCategories';
 import WaistCircumference from '../Components/Tables/WaistCircumference';
 import BodyfatCategories from '../Components/Tables/BodyfatCategories';
-
+import { useUserContext } from '../Hooks/useUserContext';
 const Categories = () => {
+    const { state: { user } } = useUserContext();
     return (
         <main>
             <h1>Fitness Categories & Percentiles</h1>
@@ -28,7 +29,7 @@ const Categories = () => {
                 <br></br>
                 <details open id='waist-circumference'>
                     <summary>Waist Circumference & Cardiovascular Risk</summary>
-                    <WaistCircumference />
+                    <WaistCircumference c={user.waistCircumference?.category ? user.waistCircumference.category : ''} />
                 </details>
                 <br></br>
             </section>
@@ -36,12 +37,18 @@ const Categories = () => {
                 <h2>Endurance Metrics</h2>
                 <details open id='pushups'>
                         <summary>Pushup Categories</summary>
-                        <PushupCategories />
+                        <PushupCategories 
+                            c={user.pushups?.category ? user.pushups.category : ''}
+                            s={user.sex ? user.sex : ''}
+                        />
                     </details>
                     <br></br>
                     <details open id='vo2'>
                         <summary>VO2 Max Categories</summary>
-                        <VO2MaxCategories />
+                        <VO2MaxCategories 
+                            s={user.sex ? user.sex : ''}
+                            c={user.vo2Max?.category ? user.vo2Max.category : ''}
+                        />
                     </details>
                     <br></br>
             </section>

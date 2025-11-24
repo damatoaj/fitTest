@@ -1,5 +1,27 @@
-import { memo } from 'react'
-const VO2MaxCategories = () => {
+import { memo } from 'react';
+
+type Props = {
+    s?: 'MALE' | 'FEMALE' | '';
+    c?: 'very poor'| 'poor'| 'fair'| 'good' | "very good" | 'superior' | 'excellent' | '';
+};
+
+const VO2MaxCategories = ({s, c} : Props) => {
+    const x : number = s === 'MALE' ? 10 : 1;
+
+    const y = {
+        'very poor' : 1,
+        'poor' : 2,
+        'fair' : 3,
+        'good' : 4,
+        'very good' : 5,
+        'excellent' : 6,
+        'superior' : 7
+    };
+
+    const z : number = 
+        (!s || !c) ? 0
+        : x * y[c];
+
     return (
         <table>
             <thead>
@@ -31,7 +53,10 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>95</td>
-                    <td colSpan={1}>Superior</td>
+                    <td 
+                        colSpan={1}
+                        data-currentcategory={z === 70 ? 'yes' : 'no'}                                         
+                        >Superior</td>
                     <td colSpan={1}>66.3</td>
                     <td colSpan={1}>59.8</td>
                     <td colSpan={1}>55.6</td>
@@ -40,7 +65,12 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={3}>Excellent</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={3}
+                        data-currentcategory={z === 50 ? 'yes' : 'no'}                                         
+
+                    >Excellent</td>
                     <td colSpan={1}>61.8</td>
                     <td colSpan={1}>56.6</td>
                     <td colSpan={1}>52.1</td>
@@ -67,7 +97,11 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>75</td>
-                    <td colSpan={1} rowSpan={4}>Good</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={z === 40 ? 'yes' : 'no'}                                         
+                    >Good</td>
                     <td colSpan={1}>55.2</td>
                     <td colSpan={1}>49.2</td>
                     <td colSpan={1}>45.0</td>
@@ -103,7 +137,11 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1} rowSpan={4}>Fair</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={z === 30 ? 'yes' : 'no'}                                          
+                    >Fair</td>
                     <td colSpan={1}>49.0</td>
                     <td colSpan={1}>43.8</td>
                     <td colSpan={1}>38.9</td>
@@ -139,7 +177,11 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1} rowSpan={4}>Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={z === 20 ? 'yes' : 'no'}                                         
+                    >Poor</td>
                     <td colSpan={1}>53.7</td>
                     <td colSpan={1}>48.0</td>
                     <td colSpan={1}>43.9</td>
@@ -175,7 +217,11 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1} rowSpan={3}>Very Poor</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={3}
+                        data-currentcategory={z === 10 ? 'yes' : 'no'}                                             
+                    >Very Poor</td>
                     <td colSpan={1}>35.4</td>
                     <td colSpan={1}>32.7</td>
                     <td colSpan={1}>29.0</td>
@@ -221,7 +267,11 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>95</td>
-                    <td colSpan={1}>Superior</td>
+                    <td 
+                        colSpan={1}
+                        data-currentcategory={z === 7 ? 'yes' : 'no'}                                         
+                        
+                    >Superior</td>
                     <td colSpan={1}>56.0</td>
                     <td colSpan={1}>45.8</td>
                     <td colSpan={1}>41.7</td>
@@ -230,7 +280,12 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>90</td>
-                    <td colSpan={1} rowSpan={3}>Excellent</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={3}
+                        data-currentcategory={z === 5 ? 'yes' : 'no'}                                         
+    
+                    >Excellent</td>
                     <td colSpan={1}>51.3</td>
                     <td colSpan={1}>41.4</td>
                     <td colSpan={1}>38.4</td>
@@ -257,7 +312,12 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>75</td>
-                    <td colSpan={1} rowSpan={4}>Good</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={z === 4 ? 'yes' : 'no'}                                         
+    
+                    >Good</td>
                     <td colSpan={1}>44.7</td>
                     <td colSpan={1}>36.1</td>
                     <td colSpan={1}>32.4</td>
@@ -293,7 +353,12 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>55</td>
-                    <td colSpan={1} rowSpan={4}>Fair</td>
+                    <td 
+                        colSpan={1} 
+                        rowSpan={4}
+                        data-currentcategory={z === 3 ? 'yes' : 'no'}                                         
+
+                    >Fair</td>
                     <td colSpan={1}>49.0</td>
                     <td colSpan={1}>43.8</td>
                     <td colSpan={1}>38.9</td>
@@ -329,7 +394,10 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>35</td>
-                    <td colSpan={1} rowSpan={4}>Poor</td>
+                    <td colSpan={1} rowSpan={4}
+                        data-currentcategory={z === 2 ? 'yes' : 'no'}                                         
+
+                    >Poor</td>
                     <td colSpan={1}>33.6</td>
                     <td colSpan={1}>27.4</td>
                     <td colSpan={1}>24.1</td>
@@ -365,7 +433,10 @@ const VO2MaxCategories = () => {
                 </tr>
                 <tr>
                     <td colSpan={1}>15</td>
-                    <td colSpan={1} rowSpan={3}>Very Poor</td>
+                    <td colSpan={1} rowSpan={3}
+                        data-currentcategory={z === 1 ? 'yes' : 'no'}                                         
+
+                    >Very Poor</td>
                     <td colSpan={1}>26.2</td>
                     <td colSpan={1}>22.5</td>
                     <td colSpan={1}>20.0</td>

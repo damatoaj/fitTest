@@ -1,5 +1,10 @@
-import { memo } from 'react'
-const WaistCircumference = () => {
+import { memo } from 'react';
+
+type WaistCircumferenceProps = {
+    c: string;
+};
+
+const WaistCircumference = ({c} : WaistCircumferenceProps) => {
     return (
         <table>
             <thead>
@@ -27,7 +32,9 @@ const WaistCircumference = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td
+                        data-currentcategory={c && c === 'very low' ? 'yes' : 'no'}                                         
+                    >
                         Very Low
                     </td>
                     <td>
@@ -38,7 +45,9 @@ const WaistCircumference = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td
+                        data-currentcategory={c && c === 'low' ? 'yes' : 'no'}                                         
+                    >
                         Low
                     </td>
                     <td>
@@ -49,7 +58,9 @@ const WaistCircumference = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td
+                        data-currentcategory={c && c === 'high' ? 'yes' : 'no'}                                         
+                    >
                         High
                     </td>
                     <td>
@@ -60,7 +71,9 @@ const WaistCircumference = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td
+                        data-currentcategory={c && c === 'very high' ? 'yes' : 'no'}                                         
+                    >
                         Very High
                     </td>
                     <td>
