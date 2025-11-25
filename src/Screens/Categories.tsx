@@ -67,7 +67,10 @@ const Categories = () => {
                 <br></br>
                 <details open id='grip'>
                     <summary>Grip Strength Categories</summary>
-                    <GripStrengthCategories />
+                    <GripStrengthCategories 
+                        s={user.sex ? user.sex : ''}
+                        c={user.gripStrength?.category ? user.gripStrength?.category : ''}
+                    />
                 </details>
                 <br></br>
             </section>
@@ -75,7 +78,10 @@ const Categories = () => {
                 <h2>Flexibility Metrics</h2>
                 <details open id='sar'>
                     <summary>Sit & Reach Categories</summary>
-                    <SARCategories />
+                    <SARCategories 
+                        s={user.sex ? user.sex : ''}
+                        c={user.sar?.category ? user.sar?.category : ''}
+                    />
                 </details>
             </section>
             </article>
