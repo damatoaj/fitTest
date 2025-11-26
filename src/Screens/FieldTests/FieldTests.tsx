@@ -40,35 +40,114 @@ const FieldTests = () => {
         n.blur();
     };
 
-    const handle15Submit : FormEventHandler<HTMLFormElement>= (event : FormEvent) => {
+    const handle15Submit : FormEventHandler<HTMLFormElement>= async(event : FormEvent) => {
         event.preventDefault();
-        return dispatch({type:'UPDATE_VO2MAX', payload: calculateVo2From1Point5MileRun(convertMinAndSecToMin(parseInt(state.min), parseInt(state.sec)))})
+                try {
+            const t = user.vo2Max?.vo2Max;
+            await dispatch({type: "UPDATE_VO2MAX", payload: calculateVo2From1Point5MileRun(convertMinAndSecToMin(parseInt(state.min), parseInt(state.sec)))});
+            if (t && t !== user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Updated'}});
+                return true;
+            } else if (!t && user.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Added'}});
+                return true
+            } else if (t && t === user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Value Stays The Same'}});
+                return true
+            } else if (!user.vo2Max) {
+                throw new Error('Error Adding V02 Max')
+            };
+            return true;
+        } catch (err: any) {
+            console.error(err);
+            const m = err.message;
+            dispatch({type:'ALERT', payload: {type:'error', message: m}});
+            return false;
+        }
     };
 
-    const handle12Submit : FormEventHandler<HTMLFormElement> = (event : FormEvent) => {
-        event.preventDefault();
-        return dispatch({type: "UPDATE_VO2MAX", payload: calcVo2From12Min(parseInt(state.meters))})
-    };
-
-    const handleSixSubmit : FormEventHandler<HTMLFormElement> = (event : FormEvent) => {
+    const handle12Submit : FormEventHandler<HTMLFormElement> = async (event : FormEvent) => {
         event.preventDefault();
         try {
+            const t = user.vo2Max?.vo2Max;
+            await dispatch({type: "UPDATE_VO2MAX", payload: calcVo2From12Min(parseInt(state.meters))});
+            if (t && t !== user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Updated'}});
+                return true;
+            } else if (!t && user.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Added'}});
+                return true
+            } else if (t && t === user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Value Stays The Same'}});
+                return true
+            } else if (!user.vo2Max) {
+                throw new Error('Error Adding V02 Max')
+            };
+            return true;
+        } catch (err: any) {
+            console.error(err);
+            const m = err.message;
+            dispatch({type:'ALERT', payload: {type:'error', message: m}});
+            return false;
+        }
+    };
+
+    const handleSixSubmit : FormEventHandler<HTMLFormElement> = async(event : FormEvent) => {
+        event.preventDefault();
+        try {
+            let t = user.vo2Max?.vo2Max;
             if (!user.age || !user.sex || !user.currentWeight || !user.height || !user.bloodPressure || !user.bloodPressure.sbp) throw new Error('Missing required user data')
             if (!state.sixHR || !state.sixMeters) throw new Error('Missing form inputs');
-            return dispatch({type: "UPDATE_VO2MAX", payload: sixMin(parseInt(state.sixMeters), user.age, user.currentWeight, user.height, parseInt(state.sixHR) , user.bloodPressure?.sbp )})
-        } catch (err) {
+            await dispatch({type: "UPDATE_VO2MAX", payload: sixMin(parseInt(state.sixMeters), user.age, user.currentWeight, user.height, parseInt(state.sixHR) , user.bloodPressure?.sbp )});
+            
+            if (t && t !== user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Updated'}});
+                return true;
+            } else if (!t && user.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Added'}});
+                return true
+            } else if (t && t === user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Value Stays The Same'}});
+                return true
+            } else if (!user.vo2Max) {
+                throw new Error('Error Adding V02 Max')
+            };
+            return true
+        } catch (err:any) {
             console.error(err);
+            const m = err.message;
+            dispatch({type:'ALERT', payload: {type:'error', message: m}});
+            return false;
         };
     };
 
-    const rockportSubmit : FormEventHandler<HTMLFormElement> = (event: FormEvent) => {
+    const rockportSubmit : FormEventHandler<HTMLFormElement> = async (event: FormEvent) => {
         event.preventDefault();
         try {
             if (!user.currentWeight || !user.age || !user.sex) throw new Error('Missing User Data');
-            return dispatch({type: "UPDATE_VO2MAX", payload: rockPort(user.currentWeight, user.age, user.sex, convertMinAndSecToMin(parseInt(state.rmin), parseInt(state.rsec)), parseInt(state.rHR))})
-        } catch (err) {
+            let t = user.vo2Max?.vo2Max;
+
+            await dispatch({type: "UPDATE_VO2MAX", payload: rockPort(user.currentWeight, user.age, user.sex, convertMinAndSecToMin(parseInt(state.rmin), parseInt(state.rsec)), parseInt(state.rHR))});
+            
+            if (t && t !== user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Updated'}});
+                return true;
+            } else if (!t && user.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Added'}});
+                return true
+            } else if (t && t === user.vo2Max?.vo2Max) {
+                dispatch({type:'ALERT', payload: {type:'success', message: 'V02 Max Value Stays The Same'}});
+                return true
+            } else if (!user.vo2Max) {
+                throw new Error('Error Adding V02 Max')
+            };
+            return true;
+        } catch (err: any) {
+            const m = err.message;
             console.error(err)
-        }
+            dispatch({type:'ALERT', payload: {type:'error', message: m}});
+            return false;
+        };
     };
 
     const handleNumbersInput: ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent) => {
@@ -196,7 +275,11 @@ const FieldTests = () => {
                             </span>
                         </fieldset>
                         <span>
-                            {user.sex && <button type='submit'>Submit</button>}
+                            {
+                                user.sex ? 
+                                <button type='submit'>Submit</button> :
+                                <p>Complete The Demographics Forms To Unlock</p>
+                            }                        
                         </span>
                     </form>
                 </article>
@@ -223,8 +306,9 @@ const FieldTests = () => {
                         </fieldset>
                         <span>
                             {
-                                user.sex && 
-                                <button type='submit'>Submit</button>
+                                user.sex ? 
+                                <button type='submit'>Submit</button> :
+                                <p>Complete The Demographics Forms To Unlock</p>
                             }
                         </span>
                     </form>
@@ -267,7 +351,10 @@ const FieldTests = () => {
                             </span>
                         </fieldset>
                         <span>
-                            {user.sex && user.currentWeight && user.age && <button type='submit'>Submit</button>}
+                            {user.sex && user.currentWeight && user.age ?
+                                <button type='submit'>Submit</button> :
+                                <p>Complete The Demographics Forms To Unlock</p>
+                            }
                         </span>
                     </form>
                 </article>
@@ -306,8 +393,9 @@ const FieldTests = () => {
                         </fieldset>
                         <span>
                             {
-                                user.sex && user.bloodPressure?.sbp &&
-                                <button type='submit'>Submit</button>
+                                user.sex && user.bloodPressure?.sbp ?
+                                <button type='submit'>Submit</button> :
+                                <p>Complete The Blood Pressure & Demographics Forms To Unlock</p>
                             }
                         </span>
                     </form>
