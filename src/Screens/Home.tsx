@@ -29,6 +29,7 @@ const Home = () => {
 
                 <p>
                     Feel like you need assistance taking these tests? Try reaching out to a 
+                </p>   
                     <ul>
                         <li>
                             <a 
@@ -57,7 +58,7 @@ const Home = () => {
                             </a>
                         </li>
                     </ul>
-                </p>
+                
                 <p>
                     Otherwise, click the link below to start
                 </p>
