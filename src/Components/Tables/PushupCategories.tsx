@@ -142,7 +142,7 @@ const PushupCategories = ({s, c} : Props) => {
             <tbody>
                 <tr>
                     <td colSpan={2}><strong>Sex</strong></td>
-                    <td colSpan={5}><strong>M</strong></td>
+                    <td colSpan={5}><strong>Male</strong></td>
                 </tr>
                 <tr>
                     <td colSpan={2}
@@ -201,7 +201,7 @@ const PushupCategories = ({s, c} : Props) => {
                 </tr>
                 <tr>
                     <td colSpan={2}><strong>Sex</strong></td>
-                    <td colSpan={5}><strong>F</strong></td>
+                    <td colSpan={5}><strong>Female</strong></td>
                 </tr>
                 <tr>
                     <td colSpan={2}

@@ -30,7 +30,7 @@ const BenchPressCategories = () => {
                 <tbody>
                     <tr>
                         <th colSpan={8}>
-                            <h3>MEN</h3>
+                            <h3>Male</h3>
                         </th>
                     </tr>
                     <tr>
@@ -273,7 +273,7 @@ const BenchPressCategories = () => {
                 <thead>
                     <tr>
                         <th colSpan={8}>
-                            <h3>WOMEN</h3>
+                            <h3>Femal</h3>
                         </th>
                     </tr>
                     <tr>

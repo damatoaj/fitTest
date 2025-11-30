@@ -169,7 +169,7 @@ const GripStrengthCategories = ({s, c} : Props) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan={7}><strong>M</strong></td>
+                        <td colSpan={7}><strong>Male</strong></td>
                     </tr>
                     <tr>
                         <td 
@@ -232,7 +232,7 @@ const GripStrengthCategories = ({s, c} : Props) => {
                         <td colSpan={1}>{'<= 72'}</td>
                     </tr>
                     <tr>
-                        <td colSpan={7}><strong>F</strong></td>
+                        <td colSpan={7}><strong>Female</strong></td>
                     </tr>
                     <tr>
                         <td 
