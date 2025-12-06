@@ -69,7 +69,7 @@ const ReserveTable = ({ max, rest, title, categories, onDownload } : ReserveTabl
         });
     
     if (title.includes('V02')) {
-        return <table id='reserve-table'>
+        return <table id={title.split(' ').join('-').toLocaleLowerCase()}>
                 <thead>
                     <tr>
                         <th colSpan={3}>{title}</th>
@@ -107,7 +107,7 @@ const ReserveTable = ({ max, rest, title, categories, onDownload } : ReserveTabl
                 <tfoot>
                     <tr>
                         <td colSpan={3}>
-                            <button onClick={(e) => onDownload(e, 'reserve-table')}>
+                            <button onClick={(e) => onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
                                 Download Table
                             </button>
                         </td>
@@ -116,7 +116,7 @@ const ReserveTable = ({ max, rest, title, categories, onDownload } : ReserveTabl
             </table>
     }
     
-    return <table id='reserve-table'>
+    return <table id={title.split(' ').join('-').toLocaleLowerCase()}>
         <thead>
             <tr>
                 <th colSpan={2}>{title}</th>
@@ -147,7 +147,7 @@ const ReserveTable = ({ max, rest, title, categories, onDownload } : ReserveTabl
         <tfoot>
             <tr>
                 <td colSpan={3}>
-                    <button onClick={(e)=> onDownload(e, 'reserve-table')}>
+                    <button onClick={(e)=> onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
                         Download Table
                     </button>
                 </td>

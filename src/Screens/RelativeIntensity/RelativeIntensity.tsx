@@ -4,31 +4,39 @@ import ReserveTable from '../../Components/Tables/ReserveTable';
 import { useUserContext } from '../../Hooks/useUserContext';
 
 
-function createHeaders(tid:string) : string[] {
-    let h : string[] = [];
+function createHeaders(tid:string) : string[][] {
+    let h : string[][] = [];
     if (document === null) return [];
     const childrens : Element[] = Array.from(document.getElementById(tid)!.children);
     console.log(childrens, "<--childrens")
     childrens.forEach((child)=> {
         console.log(child, child.tagName);
         if (child.tagName.toLocaleUpperCase() === 'THEAD') {
-            let row = Array.from(child.children[0].children) as unknown[] as HTMLTableCellElement[];
-            console.log(row, '<-- row', )
-            row.forEach((r  )=> {
-                console.log(r, 'r', r.colSpan)
-                if (r && r.colSpan > 1) {
-                    for (let i = 0; i < r.colSpan; i++) {
-                        console.log(i, '<-- i')
-                        if (i===0 && r.textContent) {
-                            h.push(r.textContent);
-                        } else {
-                            h.push('');
+            // let row = Array.from(child.children[0].children) as unknown[] as HTMLTableCellElement[];
+            let rows = Array.from(child.children) as unknown[] as HTMLTableCellElement[];
+            console.log(rows, '<-- row', )
+            rows.forEach((row) => {
+                if (!row.classList.contains('no-print')) {
+                    let a : string[]= [];
+                    Array.from(row.children).forEach((r : any)=> {
+                    console.log(r, 'r', r.colSpan)
+                    if (r && r.colSpan > 1) {
+                        for (let i = 0; i < r.colSpan; i++) {
+                            console.log(i, '<-- i')
+                            if (i===1 && r.textContent) {
+                                a.push(r.textContent);
+                            } else {
+                                a.push('');
+                            };
                         };
+                    } else if (r.textContent) {
+                        a.push(r.textContent)
+                    }
+                     });
+                     h.push(a);
                     };
-                } else if (r.textContent) {
-                    h.push(r.textContent)
-                }
             });
+            
         }
     });
 
@@ -65,13 +73,13 @@ function createRows(tid:string) : string[][] {
 //     const childrens = Array.from(document.getElementById(tid).children);
 // }
 
-function createCSV(headers : string[], rows:string[][]) : string {
+function createCSV(headers : string[][], rows:string[][]) : string {
     try {
         let csvRows : string[] = [];    
         
-        const h : string = headers.join(',');
-
-        csvRows.push(h);
+        headers.forEach((header)=> {
+            csvRows.push(header.join(','))
+        });
 
         rows.forEach((row) => {
             csvRows.push(row.join(','));
@@ -101,7 +109,7 @@ function downloadCSV(csv:string, filename:string) : void  {
 
 async function downloadCSVFromTable(tableID: string) {
     try {
-        const h : string[] = await createHeaders(tableID);
+        const h : string[][] = await createHeaders(tableID);
         const r : string[][] = await createRows(tableID);
         const c : string = await createCSV(h, r);
 
