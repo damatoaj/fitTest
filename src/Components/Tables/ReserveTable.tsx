@@ -1,4 +1,4 @@
-import {memo} from 'react';
+import {memo, MouseEventHandler} from 'react';
 import { useState, ChangeEvent } from 'react';
 import { calPerMinute } from '../../Functions/Intensity/Intensity';
 import { useUserContext } from '../../Hooks/useUserContext';
@@ -7,6 +7,7 @@ type ReserveTableProps = {
     max : number,
     rest : number,
     title : string,
+    onDownload : any,
     categories : {
     vl : number,
     l : number,
@@ -40,7 +41,7 @@ const determineIntensity = (i : number, categories : {
     return c;
 };
 
-const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => {
+const ReserveTable = ({ max, rest, title, categories, onDownload } : ReserveTableProps ) => {
        const [steps, setSteps] = useState<number>(10);
         const { state } = useUserContext();
         let array = [];
@@ -68,7 +69,7 @@ const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => 
         });
     
     if (title.includes('V02')) {
-        return <table>
+        return <table id='reserve-table'>
                 <thead>
                     <tr>
                         <th colSpan={3}>{title}</th>
@@ -103,10 +104,19 @@ const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => 
                 <tbody>
                     {rows}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colSpan={3}>
+                            <button onClick={(e) => onDownload(e, 'reserve-table')}>
+                                Download Table
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
     }
     
-    return <table>
+    return <table id='reserve-table'>
         <thead>
             <tr>
                 <th colSpan={2}>{title}</th>
@@ -132,7 +142,17 @@ const ReserveTable = ({ max, rest, title, categories } : ReserveTableProps ) => 
         </thead>
         <tbody>
             {rows}
+
         </tbody>
+        <tfoot>
+            <tr>
+                <td colSpan={3}>
+                    <button onClick={(e)=> onDownload(e, 'reserve-table')}>
+                        Download Table
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 }
 

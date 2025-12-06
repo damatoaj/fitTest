@@ -1,7 +1,123 @@
-import {memo} from 'react';
+import {memo, MouseEventHandler} from 'react';
 import Percentages from '../../Components/Tables/Percentages';
 import ReserveTable from '../../Components/Tables/ReserveTable';
 import { useUserContext } from '../../Hooks/useUserContext';
+
+
+function createHeaders(tid:string) : string[] {
+    let h : string[] = [];
+    if (document === null) return [];
+    const childrens : Element[] = Array.from(document.getElementById(tid)!.children);
+    console.log(childrens, "<--childrens")
+    childrens.forEach((child)=> {
+        console.log(child, child.tagName);
+        if (child.tagName.toLocaleUpperCase() === 'THEAD') {
+            let row = Array.from(child.children[0].children) as unknown[] as HTMLTableCellElement[];
+            console.log(row, '<-- row', )
+            row.forEach((r  )=> {
+                console.log(r, 'r', r.colSpan)
+                if (r && r.colSpan > 1) {
+                    for (let i = 0; i < r.colSpan; i++) {
+                        console.log(i, '<-- i')
+                        if (i===0 && r.textContent) {
+                            h.push(r.textContent);
+                        } else {
+                            h.push('');
+                        };
+                    };
+                } else if (r.textContent) {
+                    h.push(r.textContent)
+                }
+            });
+        }
+    });
+
+    return h;
+};
+
+function createRows(tid:string) : string[][] {
+    let csvRows  : string[][] = [];
+    if (document == null) return [];
+    const childrens = Array.from(document.getElementById(tid)!.children);
+    console.log(childrens, "<--childrens")
+    childrens.forEach((child)=> {
+        console.log(child, child.tagName);
+        if (child.tagName.toLocaleUpperCase() === 'TBODY') {
+            let rows = Array.from(child.children) as unknown[] as HTMLTableCellElement[];
+            console.log(rows, '<-- row', )
+            rows.forEach((row)=> {
+                let a : string[]= [];
+                console.log(row, 'row', row)
+                Array.from(row.children).forEach((r)=> {
+                    console.log(r, r.textContent, "<--- r")
+                    if (r.textContent) a.push(r.textContent);
+                });
+                csvRows.push(a);
+            });
+        }
+    });
+
+    return csvRows;
+};
+
+// const createRows = (tid) => {
+//     let r  = [];
+//     const childrens = Array.from(document.getElementById(tid).children);
+// }
+
+function createCSV(headers : string[], rows:string[][]) : string {
+    try {
+        let csvRows : string[] = [];    
+        
+        const h : string = headers.join(',');
+
+        csvRows.push(h);
+
+        rows.forEach((row) => {
+            csvRows.push(row.join(','));
+        });
+        
+        return csvRows.join('\n');;
+    } catch (err: any) {
+        console.error(err);
+        return '';
+    }
+};
+
+function downloadCSV(csv:string, filename:string) : void  {
+    try {
+        const blob = new Blob([csv],{ type: 'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename + '.csv';
+        a.click();
+        // return true;
+    } catch (err:any) {
+        console.error(err);
+        // return false;
+    }
+};
+
+async function downloadCSVFromTable(tableID: string) {
+    try {
+        const h : string[] = await createHeaders(tableID);
+        const r : string[][] = await createRows(tableID);
+        const c : string = await createCSV(h, r);
+
+        const d = new Date();
+        await downloadCSV(c, tableID + "_" + d);
+        return true;
+    } catch (err:any) {
+        console.error(err);
+        return false
+    };
+};
+
+const handleDownload  : any = (event : any, id:string) => {
+    console.log(event);
+    downloadCSVFromTable(id);
+};
 
 const RelativeIntensity = () => {
     const { state } = useUserContext();
@@ -28,6 +144,7 @@ const RelativeIntensity = () => {
                         <Percentages 
                             max={state.user.hrMax}
                             title='Percentage Of Heart Rate Max'
+                            onDownload={handleDownload}
                             categories={{
                                 vl : 57,
                                 l : 63,
@@ -38,7 +155,8 @@ const RelativeIntensity = () => {
                         />
                     ) : <Percentages 
                         max={0} 
-                        title='Percentage Of Heart Rate Max' 
+                        title='Percentage Of Heart Rate Max'
+                        onDownload={handleDownload}
                         categories={{
                             vl : 57,
                             l : 63,
@@ -61,8 +179,10 @@ const RelativeIntensity = () => {
                         <li>Near maximal to maximal: greater than 89%</li>
                     </ul>
                 </div>
+
                 {(state.user.hrMax && state.user.hrMax >  0) && (state.user.restingHR > 0)? (
                     <ReserveTable 
+                        onDownload={handleDownload}
                         max={state.user.hrMax}
                         rest={state.user.restingHR}
                         title='Percentage Of Heart Rate Reserve'
@@ -75,6 +195,7 @@ const RelativeIntensity = () => {
                         }}
                     />
                 ) : <ReserveTable 
+                        onDownload={handleDownload}
                         max={0} rest={0} 
                         title='Percentage Of Heart Rate Reserve' 
                         categories={{
@@ -84,6 +205,7 @@ const RelativeIntensity = () => {
                             h : 89,
                             max : 100
                         }}/>}
+                   
             </section>
             <section id='vo2-max'>
                 <div>
@@ -98,6 +220,7 @@ const RelativeIntensity = () => {
                 </div>
                     {state.user.vo2Max?.vo2Max ? (
                         <Percentages 
+                            onDownload={handleDownload}
                             max={state.user.vo2Max?.vo2Max}
                             title='Percentage Of VO2 Max'
                             categories={{
@@ -109,6 +232,7 @@ const RelativeIntensity = () => {
                             }}
                         />
                         ) : <Percentages 
+                            onDownload={handleDownload}
                             max={0} 
                             title='Percentage Of VO2 Max' 
                             categories={{
@@ -133,6 +257,7 @@ const RelativeIntensity = () => {
                 </div>
                 {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) ? (
                     <ReserveTable 
+                        onDownload={handleDownload}
                         max={state.user.vo2Max.vo2Max}
                         rest={state.user.restingV02}
                         title='Percentage V02 Rate Reserve'
@@ -145,6 +270,7 @@ const RelativeIntensity = () => {
                         }}
                     />
                 ) : <ReserveTable 
+                        onDownload={handleDownload}
                         max={0} rest={0} 
                         title='Percentage Of V02 Rate Reserve' 
                         categories={{
@@ -187,8 +313,9 @@ const RelativeIntensity = () => {
                 </div>
                 {(state.user.vo2Max && state.user.vo2Max.vo2Max >  0) ? (
                     <Percentages
+                        onDownload={handleDownload}
                         max={state.user.vo2Max.vo2Max / 3.5}
-                        title='Percentage METs'
+                        title='Percentage Of METs'
                         categories={ state.user.vo2Max.vo2Max / 3.5 >= 5 ? {
                             vl : 44,
                             l : 51,
@@ -212,6 +339,7 @@ const RelativeIntensity = () => {
                     }
                     />
                 ) : <Percentages 
+                        onDownload={handleDownload}
                         max={0} 
                         title='Percentage Of METs' 
                         categories={{
@@ -236,6 +364,7 @@ const RelativeIntensity = () => {
 
                     {state.user.benchPress?.benchPress ? (
                     <Percentages 
+                        onDownload={handleDownload}
                         max={state.user.prefers_metric ? state.user.benchPress?.benchPress : Math.round(state.user.benchPress?.benchPress * 2.2 * 100) / 100}
                         title='Percentage Of 1RM Bench Press'
                         categories={{
@@ -247,6 +376,7 @@ const RelativeIntensity = () => {
                         }}
                     />
                     ) : <Percentages 
+                        onDownload={handleDownload}
                         max={0} 
                         title='Percentage Of 1RM Bench Press' 
                         categories={{
@@ -259,6 +389,7 @@ const RelativeIntensity = () => {
                     />}
                     {state.user.legPress?.legPress ? (
                     <Percentages 
+                        onDownload={handleDownload}
                         max={state.user.prefers_metric ? state.user.legPress?.legPress : Math.round(state.user.legPress.legPress * 2.2 * 100) / 100}
                         title='Percentage Of 1RM Leg Press'
                         categories={{
@@ -270,6 +401,7 @@ const RelativeIntensity = () => {
                         }}
                     />
                     ) : <Percentages 
+                    onDownload={handleDownload}
                     max={0} 
                     title='Percentage Of 1RM Leg Press' 
                     categories={{

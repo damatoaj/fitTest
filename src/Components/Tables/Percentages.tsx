@@ -6,6 +6,7 @@ import { useUserContext } from '../../Hooks/useUserContext';
 type PercentageTableProps = {
     max : number,
     title : string,
+    onDownload : any,
     categories : {
         vl : number,
         l : number,
@@ -39,7 +40,7 @@ const determineIntensity = (i : number, categories : {
     return c;
 };
 
-const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => {
+const PercentageTable = ({ max, title, categories, onDownload } : PercentageTableProps ) => {
     const [steps, setSteps] = useState<number>(10);
     const { state } = useUserContext();
     let array = [];
@@ -69,7 +70,7 @@ const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => 
     });
 
     if (title.includes('VO2')) {
-        return <table>
+        return <table id={title.split(' ').join('-').toLocaleLowerCase()}>
         <thead>
             <tr>
                 <th colSpan={3}>{title}</th>
@@ -104,10 +105,19 @@ const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => 
         <tbody>
             {rows}
         </tbody>
+        <tfoot>
+            <tr>
+                <td  colSpan={3}>
+                    <button onClick={(e)=> onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
+                        Download Table
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     }
 
-    return <table>
+    return <table id={title.split(' ').join('-').toLocaleLowerCase()}>
         <thead>
             <tr>
                 <th colSpan={2}>{title}</th>
@@ -134,6 +144,15 @@ const PercentageTable = ({ max, title, categories } : PercentageTableProps ) => 
         <tbody>
             {rows}
         </tbody>
+        <tfoot>
+            <tr>
+                <td colSpan={3}>
+                    <button onClick={(e)=> onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
+                        Download Table
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 }
 
