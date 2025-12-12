@@ -2,6 +2,7 @@ import { useState, memo, useEffect } from 'react';
 import { getStoreData, initDB } from '../../indexedDB';
 import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
+import { downloadCSVFromTable } from '../../Functions/downloadCSV';
 
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
@@ -41,7 +42,7 @@ const SessionsTable = () => {
     )
 
     return (
-            <table>
+            <table id='sessions-table'>
                 <thead>
                     <tr><th colSpan={30}>Previous Sessions On This Browser</th></tr>
                     <tr>
@@ -139,6 +140,15 @@ const SessionsTable = () => {
                         </tr>
                     )})}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colSpan={30}>
+                            <button onClick={()=> downloadCSVFromTable('sessions-table')}>
+                                Download Table
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
     ); 
 };

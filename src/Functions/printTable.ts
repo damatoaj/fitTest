@@ -26,9 +26,9 @@ export async function printTable(id:string) {
             printDoc?.head.appendChild(style.cloneNode(true));
             console.log(style, i)
         });
-        WinPrint?.focus();
-        WinPrint?.print();
-    
+        await WinPrint?.focus();
+        await WinPrint?.print();
+        await WinPrint?.close();
         return true;
     } catch (err) {
         console.error(err);

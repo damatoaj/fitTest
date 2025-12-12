@@ -1,4 +1,4 @@
-import {memo, MouseEventHandler} from 'react';
+import {memo} from 'react';
 import { useState, ChangeEvent } from 'react';
 import { calPerMinute } from '../../Functions/Intensity/Intensity';
 import { useUserContext } from '../../Hooks/useUserContext';
