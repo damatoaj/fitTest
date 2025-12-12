@@ -80,7 +80,7 @@ const NavBar = ({u} : NavBarProps) => {
    
     return (
         <header>
-            <img src={require('../assets/fittest_logo_2.jpg')} className='logo' alt='Fit Test Logo'></img>
+            <img src={require('../assets/fit-tests-favicon_192.jpeg')} className='logo' alt='Fit Test Logo'></img>
             <nav>
                 <button 
                     data-showhamburger={showHamburger}
