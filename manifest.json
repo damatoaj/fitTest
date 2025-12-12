@@ -1,0 +1,15 @@
+{
+  "short_name": "FITTESTS",
+  "name": "Fit Tests",
+  "icons": [
+    {
+      "src": "/fit-test-favicon_192.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://fit-tests.com/#/",
+  "display": "standalone",
+  "theme_color": "#09179a",
+  "background_color": "white"
+}
