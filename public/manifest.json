@@ -5,6 +5,16 @@
     {
       "src": "/fit-test-favicon_192.jpeg",
       "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/icon_32_32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_16_16.png",
+      "sizes": "16x16",
       "type": "image/png"
     }
   ],
