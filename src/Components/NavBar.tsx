@@ -82,7 +82,8 @@ const NavBar = ({u} : NavBarProps) => {
         <header>
             <img src={require('../assets/fit-tests-favicon_192.jpeg')} className='logo' alt='Fit Test Logo'></img>
             <nav>
-                <button 
+                <button
+                    id='menu-btn'
                     data-showhamburger={showHamburger}
                     onClick={()=> state.showAll=== 'false' ? setState({...state, showAll : 'true'}) : setState({...state, showAll : 'false'})}
                 >

@@ -82,8 +82,15 @@ section {
 }
 
 header {
+  height: clamp(120px, 15vh, 150px) !important;
   padding: .5rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* max-height:160px; */
+  background-color: black;
+  width:100%;
   /* border-bottom: 3px solid darkblue; */
 }
 
@@ -174,18 +181,10 @@ section:last-child {
   border-bottom: none;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-height:160px;
-  width:100%;
-}
-
 .logo {
-  height: 192px;
-  width: 192px;
-  border-radius: 25px;
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
 }
 
 #metric-switcher {

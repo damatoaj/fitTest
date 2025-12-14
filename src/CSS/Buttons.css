@@ -117,3 +117,15 @@ button[type = button]:hover {
   button[data-showhamburger="true"] {
     min-height:100px;
   }
+
+  #menu-btn {
+    color: var(--prm-lgt-blue);
+    background-color: black;
+    opacity:1;
+  }
+
+  #menu-btn:focus:active:hover {
+    color: black;
+    background-color: var(--prm-lgt-blue);
+    border-color: var(--prm-drk-blue);
+  }
