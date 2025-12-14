@@ -56,10 +56,27 @@ const affiliateLinks = [{
     0 : 'https://www.wealthfront.com/c/affiliates/invited/AFFB-40XA-UKW7-72GN',
     1 : 'If you sign up for a cash account, we both get a .50% APY boost for three months.',
     2 : 'Wealthfront Cash Account Boost to 5.30%'
+}];
+
+const donationLinks = [{
+    0: 'https://www.paypal.com/donate/?hosted_button_id=77653EN8YEYMA',
+    1: 'PayPal',
+    2: 'Donate Via' 
+}, 
+{
+   0: 'https://venmo.com/Arthur-DAmato',
+   1: 'Venmo',
+   2: 'Donate Via'
 }]
 
 const Footer = () => {
     const links = affiliateLinks.map((link, i) => {
+        return (<a href={link[0]} title={link[1]} key={i} target='_blank' rel='noreferrer'>
+            {link[2]} - {link[1]}
+        </a>)
+    })
+
+    const dLinks = donationLinks.map((link, i) => {
         return (<a href={link[0]} title={link[1]} key={i} target='_blank' rel='noreferrer'>
             {link[2]} - {link[1]}
         </a>)
@@ -72,6 +89,13 @@ const Footer = () => {
                     Considering checking out some of our affiliate links below!
                     FitTest is a free application and any support is appreciated, which will help the project grow and provide more functionality to users.
                 </summary>
+                <h3>Donation Sites</h3>
+                <ul>
+                    {dLinks}
+                </ul>
+                <br></br>
+                <hr></hr>
+                <h3>Affiliate Links</h3>
                 <ul>
                     {links}
                 </ul>

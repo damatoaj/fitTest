@@ -65,13 +65,12 @@ main {
 }
 hr {
   overflow: visible; /* For IE */
-
-  border-width: 3px 2px 0px 3px;
+  border-width: 3px 0px 0px 0px;
   border-color: black;
   border-style: dotted;
   width: 95%;
   height: 30px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   margin-top: 50px;
 }
 
@@ -145,6 +144,7 @@ main > h1 {
   text-decoration: underline;
 }
 
+
 article {
   background-color: whitesmoke;
   padding: .75rem;
@@ -213,6 +213,11 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+footer h3 {
+  text-align: center;
+}
+
 
 address {
   text-orientation: upright;
