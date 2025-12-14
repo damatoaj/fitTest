@@ -1,14 +1,28 @@
 details {
-    /* overflow: auto;  */
+    overflow: hidden;
     text-align: left;
     width: 100%;
-    /* max-width: fit-content; */
-    /* margin-top: 1rem;
-    margin-bottom: 1rem; */
     background-color: whitesmoke;
     border: 2px solid black;
     border-radius: 1rem;
     transition: height .3s ease-in-out;
+}
+
+details:has(summary:focus), details:target {
+    box-shadow: 0 0 15px black;
+}
+
+summary:focus {
+    background-color: var(--prm-lgt-blue);
+    color: var(--prm-drk-blue);
+    text-decoration: underline;
+    outline: none;
+    /* box-shadow: 0 0 15px black; */
+}
+
+summary:active {
+    background-color: black;
+    color: var(--prm-lgt-blue);
 }
 
 details > * {
@@ -24,6 +38,8 @@ details > table {
     border-style: hidden;
     box-shadow: none;
 }
+
+
 
 details > ul, details a {
     background-color: whitesmoke;
@@ -52,14 +68,11 @@ select + details {
 summary {
     background-color: var(--prm-drk-blue);
     color : white;
-    border-radius: 10px;
+    padding: 1rem;
+    outline: none;
 }
 
-details:open > summary {
-    border-radius: 10px 10px 0 0;
-}
-
-summary:hover{
+summary:hover, summary:active{
     cursor: pointer;
 }
 
@@ -78,8 +91,6 @@ footer > details, footer > details > summary {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        /* max-height: 550px; */
-        /* padding-right:50px */
         width:100%;
         padding: 0px;
         justify-content: space-evenly;
