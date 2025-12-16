@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { User } from '../interfaces'
+import InstallBtn from './Buttons/installBtn'
 // import { navLinks } from '../Screens/Variables/navLinks'
 import { useState, useEffect } from 'react'
 interface NavBarProps {
@@ -218,6 +219,7 @@ const NavBar = ({u} : NavBarProps) => {
                         <Link to='/relative-intensity' onClick={handleNavigate}>Exercise Intensity</Link>
                     </li>
                 </ul>
+                <InstallBtn />
             </nav>
         </header>
     )
