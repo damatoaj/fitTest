@@ -46,6 +46,7 @@ import FieldTests from './Screens/FieldTests/FieldTests';
 import RelativeIntensity from './Screens/RelativeIntensity/RelativeIntensity';
 import RestingHeartRate from './Components/Forms/RestingHeartRate';
 import MaximalTreadmillTests from './Screens/TreadmillProtocals/MaximalTreadmillTests';
+import InstallBtn from './Components/Buttons/installBtn';
 
 function App() {
   const { state } = useUserContext();
@@ -145,6 +146,7 @@ function App() {
           <Route path="/*" element={<FourOhFourScreen />}>
           </Route>
         </Routes>
+        <InstallBtn />
         <Footer />
       </>
     )

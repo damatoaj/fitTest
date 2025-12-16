@@ -1,3 +1,9 @@
+dialog {
+    position: fixed;
+    z-index: 1000;
+    top: 40%;
+}
+
 dialog.alert {
     width: 200px;
     height: 100px;
