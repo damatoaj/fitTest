@@ -173,7 +173,7 @@ const NavBar = ({u} : NavBarProps) => {
                                     data-active={state.cardiovascularEndurance}
                                     onClick={()=> state.cardiovascularEndurance === 'false' ? setState({...state, cardiovascularEndurance : 'true'}) : setState({...state, cardiovascularEndurance : 'false'})}
                                 >
-                                    Cardiovascular Endurance
+                                    Cardio Endurance
                                 </button>
                                 <ul>
                                     <li className='light'>

@@ -189,7 +189,7 @@ section:last-child {
 
 #metric-switcher {
   position: fixed;
-  top: 80%;
+  top: 60%;
   right: 0%;
   background-color: whitesmoke;
   z-index: 10;
@@ -227,7 +227,7 @@ address {
   width: 40px;
   height: 200px;
   position: fixed;
-  top: 50%;
+  top: 20%;
   display: flex;
   flex-direction: column;
   writing-mode: vertical-rl;

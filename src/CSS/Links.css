@@ -53,12 +53,12 @@ button.link {
     overflow: hidden;
 }
 
-button.link[data-active="false"]::after {
+button.link[data-active="false"]::before {
     content: '  ►';
     font-size: 10px;
 }
 
-button.link[data-active='true']::after {
+button.link[data-active='true']::before {
     content: '  ▼';
     font-size: 10px;
 }
@@ -112,7 +112,7 @@ nav > ul > li {
     margin:0;
     padding:0;
     max-height: 42px;
-    width: clamp(120px, 10%, 250px)
+    width: clamp(50px, 100%, 100px)
 }
 
 .light > a {
@@ -133,7 +133,7 @@ nav > ul > li {
     color: white;
     padding:0;
     max-height:42px;
-    min-width: 140px;
+    width: clamp(50px, 100%, 100px);
 }
 .dark > a {
     background-color: inherit;
@@ -151,11 +151,11 @@ nav > ul > li {
 li.subnav {
     background-color: transparent;
     border:none;
-    width: clamp(120px, 10%, 250px);
+    width: clamp(100px, 100%, 200px);
 }
 
 .subnav button  {
-    width: clamp(200px, 10%, 250px);
+    width: clamp(100px, 100%, 200px);
     height: 100%;
     border:none;
     padding: 5%;
@@ -164,10 +164,11 @@ li.subnav {
 .subnav li  {
     margin: 0;
     padding: 0;
+    width: clamp(100px, 100%, 200px);
 }
 
 .subnav > button {
-    width: 160px;
+    /* width: 160px; */
     margin:0;
 }
 
@@ -195,6 +196,10 @@ button[data-showhamburger="false"] {
 
 ul {
     width:100%;
+    margin-block-end: 0;
+    margin-block-start : 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
 }
 
 a {
@@ -249,17 +254,18 @@ footer a {
     nav {
         display: flex;
         flex-direction: row;
-        justify-content: end;
         align-items: center;
         overflow:visible;
         width: 100%;
+        flex-grow: 1;
         /* padding: 15px 0 0 0; */
         margin: 0;
     }
 
     nav > ul {
         display: flex;
-        flex-direction: reverse;
+        flex-direction: row;
+        justify-content: end;
         height: clamp(10px, 10rem, 40px);
     }
 
@@ -328,7 +334,7 @@ footer a {
 
       .dark,.light {
         /* min-width:160px; */
-        /* max-width:140px; */
+        max-width:100px;
         height: auto;
       }
     
