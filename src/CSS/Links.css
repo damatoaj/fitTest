@@ -235,6 +235,15 @@ footer a {
     outline: 1px solid black;
 }
 
+#logo-link {
+    margin: 0;
+    padding : 0;
+    border: none;
+    height:100px;
+    width:100px;
+    border-radius: 25px;
+}
+
 @media screen and (min-width : 800px) {
     nav {
         display: flex;

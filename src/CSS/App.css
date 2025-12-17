@@ -218,6 +218,9 @@ footer h3 {
   text-align: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
 
 address {
   text-orientation: upright;

@@ -80,7 +80,9 @@ const NavBar = ({u} : NavBarProps) => {
    
     return (
         <header>
-            <img src={require('../assets/fit-tests-favicon_192.jpeg')} className='logo' alt='Fit Test Logo'></img>
+            <Link to='/' onClick={handleNavigate} id='logo-link'>
+                <img src={require('../assets/fit-tests-favicon_192.jpeg')} className='logo' alt='Fit Test Logo'></img>
+            </Link>
             <nav>
                 <button
                     id='menu-btn'
@@ -90,9 +92,6 @@ const NavBar = ({u} : NavBarProps) => {
                     Menu
                 </button>
                 <ul data-showall={state.showAll}>
-                    <li className='light'>
-                        <Link to='/' onClick={handleNavigate}>Home</Link>
-                    </li>
                     <li className='subnav'>
                         <button 
                             className='link dark'

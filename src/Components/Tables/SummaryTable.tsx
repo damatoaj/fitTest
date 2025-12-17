@@ -11,6 +11,9 @@ import DemographicTable from "./DemographicTable";
 import WaistTable from "./WaistTable";
 import SkinFoldTable from "./SkinFoldTable";
 import Vo2Maxtable from "./Vo2Maxtable";
+import { faShare, faPrint, faSave } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const SummaryTable = () => {
     const { state } = useUserContext();
     const date : number = new Date().getDate();
@@ -100,7 +103,7 @@ const SummaryTable = () => {
             </section>
             {state.user.fname === null && <h2>If you fill out the demographic forms, you can Save, Share, or Print your results here. </h2>}
             {state.user?.fname !== null && (
-                <section>
+                <section className="flex-column">
                     <h3>Want to save your session to compare for next time?</h3>
                     <p>Clicking the "Save" button below will push your results into a cache that you can refer back to the next time you visit the site. That way, as long as you are using the same browser you can compare your previous performance to this session. You can view those results in the Previous Sessions tab.
                     </p>
@@ -111,7 +114,7 @@ const SummaryTable = () => {
                             if (d !== null) d.showModal();
                             }}
                         >
-                            {localStorage.getItem('mostRecentSession')?.includes('fname') ? 'Save This Session' : 'Update Most Recent Session'}
+                            {localStorage.getItem('mostRecentSession')?.includes('fname') ? <><FontAwesomeIcon icon={faSave}/> Save This Session </>: <><FontAwesomeIcon icon={faSave} /> Update Session</>}
                         </button>
                         <button type='button' onClick={()=> {
                                 let text : string = `Name: ${state.user.fname} ${state.user.lname}\nAge: ${state.user.age}\nHeight: ${state.user.height}"\nMax heart rate: ${state.user.hrMax} \nCurrent weight: ${state.user.currentWeight}`;
@@ -176,6 +179,7 @@ const SummaryTable = () => {
                                     console.error(err)
                                 })
                             }}>
+                                <FontAwesomeIcon icon={faShare} />
                                 Share Your Results!
                             </button>
                         <button 
@@ -190,6 +194,7 @@ const SummaryTable = () => {
                                 };
                             }}
                         >
+                           <FontAwesomeIcon icon={faPrint} /> 
                             Print Results
                         </button>
                     </span>
