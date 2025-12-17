@@ -220,6 +220,7 @@ footer a {
 #share-links-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .share-links {
