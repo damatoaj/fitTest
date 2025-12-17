@@ -258,7 +258,7 @@ footer a {
 
     nav > ul {
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: reverse;
         height: clamp(10px, 10rem, 40px);
     }
 
