@@ -14,9 +14,9 @@ const links : any = [
     ["https://share.flipboard.com/bookmarklet/popout?v=2&title={title}&url={url}", faFlipboard],
     ["https://t.me/share/url?url={url}&text={title}", faTelegram],
     ["mailto:{email_address}?subject={title}&body={url}", faMessage],
-    ["https://mail.google.com/mail/?view=cm&to={email_address}&su={title}&body={url}",faGoogle],
-    ["http://compose.mail.yahoo.com/?to={email_address}&subject={title}&body={url}", faYahoo],
-    ["sms:''?body={url}\n{title}", faSms],
+    ["https://mail.google.com/mail/?view=cm&to=&su={title}&body={url}",faGoogle],
+    ["http://compose.mail.yahoo.com/?to=&subject={title}&body={url}", faYahoo],
+    ["sms:''?body={url}", faSms],
     ["https://bsky.app/intent/compose?text={url}", faBluesky],
     ['https://threads.net/intent/post?text={url}', faThreads],
     ['https://www.snapchat.com/share?link={url}', faSnapchat]
