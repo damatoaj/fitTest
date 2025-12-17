@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faShare,faSms,faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faShare,faSms,faMessage, faCopy } from '@fortawesome/free-solid-svg-icons';
 import {faSnapchat, faThreads, faBluesky, faXTwitter, faGoogle, faYahoo, faTelegram, faPinterest,faFlipboard,faBlogger,faEvernote,faLinkedin,faReddit,faTumblr} from '@fortawesome/free-brands-svg-icons'
 const links : any = [
     ["https://twitter.com/intent/tweet?url={url}&text={title}", faXTwitter],
@@ -19,20 +19,40 @@ const links : any = [
     ["sms:''?body={url}", faSms],
     ["https://bsky.app/intent/compose?text={url}", faBluesky],
     ['https://threads.net/intent/post?text={url}', faThreads],
-    ['https://www.snapchat.com/share?link={url}', faSnapchat]
+    ['https://www.snapchat.com/share?link={url}', faSnapchat],
+    ['https://fit-tests.com', faCopy]
 ];
 
+
 const ShareLinks = () => {
+    function handleCopy(t:string) {
+    try {
+        navigator.clipboard.writeText(t);
+        alert('Link Copied');
+    } catch (err:any) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
     return <ul id='share-links-container'>
         {links.map((link : any)=> {
             let l = link[0].replace('{url}', 'https%3A%2F%2Ffit-tests.com%2F').replace('{title}', 'Fit%20Tests:%20A%20Free%20Exercise%20Testing%20App')
             let i = link[1] as IconProp;
             console.log(i)
-            return <>
-                <a href={l} target='_blank' rel="noopener noreferrer" className='share-links'>
-                    <FontAwesomeIcon icon={i} />
-                </a>
-            </>
+            if (link[0] !== "https://fit-tests.com") {
+                return <>
+                    <a href={l} target='_blank' rel="noopener noreferrer" className='share-links'>
+                        <FontAwesomeIcon icon={i} />
+                    </a>
+                </>
+            } else {
+                return <>
+                    <button className='share-links' onClick={()=> handleCopy(l)}>
+                        <FontAwesomeIcon icon={i} />
+                    </button>
+                </>
+            }
         })}
     </ul>
 };

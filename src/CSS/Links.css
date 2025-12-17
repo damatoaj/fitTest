@@ -233,12 +233,15 @@ footer a {
     line-height: 50px !important;
     color:black;
     text-align: center;
-
+    border : none; 
+    border-radius: 0;
+    background-color: inherit;
 }
 
 .share-links:active {
     color:black;
     outline: 1px solid black;
+    background-color: var(--prm-lgt-green);
 }
 
 #logo-link {
