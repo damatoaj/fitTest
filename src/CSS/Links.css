@@ -217,6 +217,24 @@ footer a {
     line-height:100%;
 }
 
+#share-links-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.share-links {
+    width: 70px;
+    line-height: 50px !important;
+    color:black;
+    text-align: center;
+
+}
+
+.share-links:active {
+    color:black;
+    outline: 1px solid black;
+}
+
 @media screen and (min-width : 800px) {
     nav {
         display: flex;

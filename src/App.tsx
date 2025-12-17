@@ -5,6 +5,8 @@ import './CSS/Table.css';
 import './CSS/Links.css';
 import './CSS/Details.css';
 import './CSS/Alert.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 import { useState } from 'react';
 import Alert from './Components/Alert';

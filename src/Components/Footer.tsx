@@ -1,4 +1,9 @@
 import { memo } from 'react';
+import ShareLinks from './Buttons/ShareLinks';
+import { faPaypal } from '@fortawesome/free-brands-svg-icons';
+import { faV } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const affiliateLinks = [{
     0 : 'https://referral.getambassador.com/6mQpRh',
@@ -61,12 +66,12 @@ const affiliateLinks = [{
 const donationLinks = [{
     0: 'https://www.paypal.com/donate/?hosted_button_id=77653EN8YEYMA',
     1: 'PayPal',
-    2: 'Donate Via' 
+    2: faPaypal 
 }, 
 {
    0: 'https://venmo.com/Arthur-DAmato',
    1: 'Venmo',
-   2: 'Donate Via'
+   2: faV
 }]
 
 const Footer = () => {
@@ -78,7 +83,7 @@ const Footer = () => {
 
     const dLinks = donationLinks.map((link, i) => {
         return (<a href={link[0]} title={link[1]} key={i} target='_blank' rel='noreferrer'>
-            {link[2]} - {link[1]}
+            <FontAwesomeIcon icon={link[2]} /> - {link[1]}
         </a>)
     })
 
@@ -86,9 +91,15 @@ const Footer = () => {
         <footer>
             <details>
                 <summary>
-                    Considering checking out some of our affiliate links below!
+                    Consider checking out some of the links below!
                     FitTest is a free application and any support is appreciated, which will help the project grow and provide more functionality to users.
                 </summary>
+                <br></br>
+                <h3>Share To...</h3>
+                <br></br>
+                <ShareLinks />
+                <br></br>
+                <hr></hr>
                 <h3>Donation Sites</h3>
                 <ul>
                     {dLinks}
