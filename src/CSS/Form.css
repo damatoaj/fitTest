@@ -157,6 +157,25 @@ input[type='checkbox'] {
     margin: 5px 10px 5px 5px;
 }
 
+input[type='range']::before {
+    content: attr(min);
+    position:relative;
+    top : -15px;
+    left: 12px
+}
+
+input[type='range']::after {
+    content:attr(max);
+    position:relative;
+    top : -17px;
+    right:10px;
+}
+
+/* Honeypot */
+input#full_name {
+    display: none !important;
+}
+
 .validity-error {
     color: var(--prm-drk-red)
 }
@@ -239,6 +258,19 @@ fieldset:has(select:required:empty) legend::after {
 
 #metric-switcher {
     max-width: 165px;
+}
+
+dialog > form, dialog > form:focus-within {
+    border-style : none !important;
+    border-width : 0 !important;
+    box-shadow: 0 0 0 !important;
+    background-color: inherit;
+    margin:0px !important;
+    padding: 0px !important;
+}
+
+dialog input {
+    background-color: inherit !important;
 }
 
 @media screen and (max-width:400px) {

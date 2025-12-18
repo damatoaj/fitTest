@@ -11,7 +11,7 @@ import DemographicTable from "./DemographicTable";
 import WaistTable from "./WaistTable";
 import SkinFoldTable from "./SkinFoldTable";
 import Vo2Maxtable from "./Vo2Maxtable";
-import { faShare, faPrint, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faShare, faPrint, faSave, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SummaryTable = () => {
@@ -197,6 +197,17 @@ const SummaryTable = () => {
                            <FontAwesomeIcon icon={faPrint} /> 
                             Print Results
                         </button>
+                        <button
+                            type="button"
+                            onClick={async ()=> {
+                                let d : HTMLDialogElement | null = document.querySelector('dialog#feedback');
+                                if (d !== null) {
+                                    d.showModal();
+                                };
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faMessage} /> Leave Feedback
+                        </button>
                     </span>
                     <dialog id='confirmationModal'>
                         <p>Are you sure? Clicking save add the session to the "Previous Sessions" table</p>
@@ -271,6 +282,34 @@ const SummaryTable = () => {
                             {state.user.macros && <MacrosTable  macros={state.user.macros} />}
                             {state.user.micros && <MicrosTable  micros={state.user.micros}/>}
                         </section>
+                    </dialog>
+                    <dialog id='feedback'>
+                        <form action='mailto:mr.arthurdamato@gmail.com' method='POST'>
+                                <fieldset>
+                                    <legend>One a scale of 1 - 5</legend>
+                                    <p>How would you rate Fit Tests?</p>
+                                    <input type='range' min={1} max={5} id='nps-score' name='nps-score' step={1} defaultValue={1} required>
+                                    </input>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>What could be improved?</legend>
+                                    <input type='text' id='how-to-improve' name='how-to-improve'/>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>What is the most helpful feature?</legend>
+                                    <input type='text' id='most-helpful-feature' name='most-helpful-feature'/>
+                                </fieldset>
+                        <span>
+                            <button type='submit'>Submit</button>
+                            <button 
+                                type='button'
+                                onClick={()=> {
+                                    let d : HTMLDialogElement | null = document.querySelector('dialog#feedback');
+                                    if (d !== null) d.close();
+                                }}
+                            >Cancel</button>
+                        </span>
+                        </form>
                     </dialog>
                 </section>
             )}

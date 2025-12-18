@@ -52,7 +52,7 @@ import InstallBtn from './Components/Buttons/installBtn';
 
 function App() {
   const { state } = useUserContext();
-  const [feedback, showFeedback] = useState(true);
+  // const [feedback, showFeedback] = useState(true);
   // useEffect(()=> {
   //   function handleHamburger() {
   //       if (window.innerWidth > 800) {
@@ -70,7 +70,7 @@ function App() {
 // }, [])
     return (
       <>
-      {feedback && (
+      {/* {feedback && (
         <address>
           <button type='button' title='Close feedback widget' onClick={()=> {
             showFeedback(false);
@@ -80,7 +80,7 @@ function App() {
               FeedBack
           </a>
       </address>
-      )}
+      )} */}
       {state.error && <Alert message={state.error} type={'error'} />}
       {state.alert && <Alert message={state.alert.message} type={state.alert.type} />}
       {state.isLoading && <Loader />}

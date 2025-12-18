@@ -1,7 +1,17 @@
 dialog {
     position: fixed;
     z-index: 1000;
-    top: 40%;
+    top: calc(100vh/2.5-100);
+    /* inline-size:fit-content; */
+    width: clamp(320px, 50%, 800px);
+
+    height:fit-content;
+    /* block-size: fit-content; */
+    padding:10px;
+}
+
+dialog::modal {
+  max-width: 100vw;
 }
 
 dialog.alert {
