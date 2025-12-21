@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faShare,faSms,faMessage, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faSms,faMessage, faCopy } from '@fortawesome/free-solid-svg-icons';
 import {faSnapchat, faThreads, faBluesky, faXTwitter, faGoogle, faYahoo, faTelegram, faPinterest,faFlipboard,faBlogger,faEvernote,faLinkedin,faReddit,faTumblr} from '@fortawesome/free-brands-svg-icons'
 const links : any = [
     ["https://twitter.com/intent/tweet?url={url}&text={title}", faXTwitter],

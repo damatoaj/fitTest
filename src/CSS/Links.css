@@ -148,34 +148,7 @@ nav > ul > li {
     width:inherit;
 }
 
-li.subnav {
-    background-color: transparent;
-    border:none;
-    width: clamp(100px, 100%, 200px);
-}
 
-.subnav button  {
-    width: clamp(100px, 100%, 200px);
-    height: 100%;
-    border:none;
-    padding: 5%;
-}
-
-.subnav li  {
-    margin: 0;
-    padding: 0;
-    width: clamp(100px, 100%, 200px);
-}
-
-.subnav > button {
-    /* width: 160px; */
-    margin:0;
-}
-
-.subnav {
-    margin:0;
-    padding:0;
-}
 
 .link {
     width: clamp(50px, 15%, 140px);
