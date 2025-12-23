@@ -94,6 +94,63 @@ async function downloadCSVFromTable(tableID: string) {
     };
 };
 
+function pushToHorR(h : string[], r:string[], data : any, p : string | null) {
+    for (const property in data) {
+                if ((typeof data[property] === 'string' ||
+                    typeof data[property] === 'number') &&
+                    data[property] != null
+                ) {
+                    p ? 
+                    h.push(p + '_' + property) :
+                    h.push(property);
+
+                    typeof data[property] === 'number' ?
+                        r.push(data[property].toString()) :
+                        r.push(data[property]);
+                    } else if (typeof data[property] === 'object') {
+                        console.log('going a level deeper:', property, data[property])
+                        pushToHorR(h, r, data[property], property);
+                    };
+            };
+            
+            return [h, r];
+        };
+
+async function downloadCSVFromAllSessionData(keys:string[]) {
+    try {
+        let headers : string[]= [];
+        let rows :string[] = [];
+        
+        
+        keys.forEach((key)=> {
+            let data: string | null = sessionStorage.getItem(key);
+            if (data) {
+                let _data  = JSON.parse(data);
+                if (typeof _data === 'object') {
+                    let v = pushToHorR(headers, rows, _data, null);
+                } else if (typeof _data === 'string') {
+                    headers.push(key);
+                    rows.push(_data);
+                } else if (typeof _data === 'number') {
+                    headers.push(key);
+                    rows.push(_data.toString());
+                };
+            };
+        });
+        
+        let c = createCSV([headers], [rows]);
+
+        const d = new Date();
+        await downloadCSV(c, 'session_data _' + d);
+        return true;
+
+    } catch (err: any) {
+        console.error(err);
+        return false;
+    }   
+};
+
 export {
-    downloadCSVFromTable
+    downloadCSVFromTable,
+    downloadCSVFromAllSessionData
 }

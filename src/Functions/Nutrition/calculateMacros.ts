@@ -64,21 +64,27 @@ export function calculateFats(carbs:Carbohydrates, protein:Protein, totalCalorie
 }
 
 export function calculateMacros(sex:Sex='MALE', age:number, mass:number, height:number, activityLevel:ActivityLevel='moderately active', goal: WeightGoal = 'maintain'){
-    if (sex !== 'MALE' && sex !== 'FEMALE') throw new Error('Invalid sex for this equation')
-    if (181 < mass || mass < 4.5) throw new Error(`Mass is outside of the acceptable ranges: ${mass}`)
-    if (height < 90 || height > 244) throw new Error(`Height is outside of the acceptable ranges: ${height}`)
-    if (age < 1 || age > 100) throw new Error(`Age is outside of the acceptable range: ${age}`)
+    try {
+        if (sex !== 'MALE' && sex !== 'FEMALE') throw new Error('Invalid sex for this equation')
+        if (181 < mass || mass < 4.5) throw new Error(`Mass is outside of the acceptable ranges: ${mass}`)
+        if (height < 90 || height > 244) throw new Error(`Height is outside of the acceptable ranges: ${height}`)
+        if (age < 1 || age > 100) throw new Error(`Age is outside of the acceptable range: ${age}`)
+    
+        const basalMetabolicRate = harrisBenedictBMR(sex, age, height, mass, activityLevel)
+        const carbs :Carbohydrates = calculateCarbs(basalMetabolicRate)
+        const protein : Protein = calculateProtein(mass, goal)
+        const fats : Fats = calculateFats(carbs, protein, basalMetabolicRate)
+    
+        return {
+            totalCalories: basalMetabolicRate,
+            carbs,
+            protein,
+            fats
+        } as Macros
 
-    const basalMetabolicRate = harrisBenedictBMR(sex, age, height, mass, activityLevel)
-    const carbs :Carbohydrates = calculateCarbs(basalMetabolicRate)
-    const protein : Protein = calculateProtein(mass, goal)
-    const fats : Fats = calculateFats(carbs, protein, basalMetabolicRate)
-
-    return {
-        totalCalories: basalMetabolicRate,
-        carbs,
-        protein,
-        fats
-    } as Macros
-}
+    } catch (err:any){
+        console.error('Calculate Macros: ', err)
+        return null;
+    };
+};
 

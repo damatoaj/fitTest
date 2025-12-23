@@ -11,8 +11,9 @@ import DemographicTable from "./DemographicTable";
 import WaistTable from "./WaistTable";
 import SkinFoldTable from "./SkinFoldTable";
 import Vo2Maxtable from "./Vo2Maxtable";
-import { faShare, faPrint, faSave, faMessage } from "@fortawesome/free-solid-svg-icons";
+import {faDownload, faShare, faPrint, faSave, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { downloadCSVFromAllSessionData } from "../../Functions/downloadCSV";
 
 const SummaryTable = () => {
     const { state } = useUserContext();
@@ -196,6 +197,17 @@ const SummaryTable = () => {
                         >
                            <FontAwesomeIcon icon={faPrint} /> 
                             Print Results
+                        </button>
+                        <button 
+                            type='button' 
+                            onClick={async ()=> {
+                                //add download csv
+                                await downloadCSVFromAllSessionData(['user', 'restingV02', 'hr_max', 'macros', 'micros']);
+                                return true
+                            }}
+                        >
+                           <FontAwesomeIcon icon={faDownload} /> 
+                            Download Data
                         </button>
                         <button
                             type="button"

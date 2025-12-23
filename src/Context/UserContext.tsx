@@ -412,7 +412,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                 && state.user.activityLevel
                 && bodyWeightGoal
                 && state.user.prefers_metric === false) {
-                sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+                sessionStorage.setItem('macros', JSON.stringify({macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
                 return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
             }
     
@@ -423,7 +423,7 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
                 && state.user.activityLevel
                 && bodyWeightGoal
                 && state.user.prefers_metric) {
-                sessionStorage.setItem('user', JSON.stringify({...state.user, macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
+                sessionStorage.setItem('macros', JSON.stringify({macros: calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal)}));
                 return calculateMacros(state.user.sex,state.user.age, state.user.currentWeight, state.user.height, state.user.activityLevel, bodyWeightGoal);
             }
             return null;
@@ -432,14 +432,12 @@ export const UserProvider = (props:PropsWithChildren<{}>) => {
             return null
         }
         
-    }, [state.user.age, state.user.sex, state.user.currentWeight, state.user.activityLevel, bodyWeightGoal, state.user.height]);
+    }, [state.user, bodyWeightGoal]);
 
     const micros : Micros | null = useMemo(()=> {
         try {
             if (state.user.age && state.user.sex) {
-                if (!sessionStorage.getItem('user') || sessionStorage.getItem('user')?.includes('fiber')) {
-                    sessionStorage.setItem('user',JSON.stringify({...state.user, micros : JSON.stringify(calculateMicros(state.user.sex,state.user.age))}));
-                }
+                sessionStorage.setItem('micros',JSON.stringify({micros : calculateMicros(state.user.sex,state.user.age)}));
                 return calculateMicros(state.user.sex,state.user.age)
             }
             return null

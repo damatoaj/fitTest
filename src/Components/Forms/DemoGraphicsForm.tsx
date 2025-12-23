@@ -92,7 +92,7 @@ function DemoGraphicsForm() {
         </fieldset>
         <fieldset>
                 <legend>
-                    {user.prefers_metric ? 'Goal Weight in Kilograms' : 'Goal Weight in Pounds'}
+                    Goal Weight
                 </legend>
                 <input 
                     type='number' 
@@ -106,6 +106,7 @@ function DemoGraphicsForm() {
                     inputMode='numeric'
                     enterKeyHint='done'
                     autoComplete='false'
+                    placeholder={user.prefers_metric ? 'Measured in KGS' : 'Measured In Pounds'}
                     // defaultValue={defaultValue}
                 />
             </fieldset>
