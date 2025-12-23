@@ -3,6 +3,8 @@ import { getStoreData, initDB } from '../../indexedDB';
 import { useUserContext } from '../../Hooks/useUserContext';
 import Loader from '../Loader';
 import { downloadCSVFromTable } from '../../Functions/downloadCSV';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SessionsTable = () => {
     const [sessions, setSessions]= useState<any[]>([]);
@@ -144,6 +146,7 @@ const SessionsTable = () => {
                     <tr>
                         <td colSpan={30}>
                             <button onClick={()=> downloadCSVFromTable('sessions-table')}>
+                                <FontAwesomeIcon icon={faDownload} /> 
                                 Download Table
                             </button>
                         </td>

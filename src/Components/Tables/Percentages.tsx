@@ -2,7 +2,8 @@ import {memo} from 'react';
 import { useState, ChangeEvent } from 'react';
 import { calPerMinute } from '../../Functions/Intensity/Intensity';
 import { useUserContext } from '../../Hooks/useUserContext';
-
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 type PercentageTableProps = {
     max : number,
     title : string,
@@ -109,6 +110,7 @@ const PercentageTable = ({ max, title, categories, onDownload } : PercentageTabl
             <tr>
                 <td  colSpan={3}>
                     <button onClick={(e)=> onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
+                        <FontAwesomeIcon icon={faDownload} /> 
                         Download Table
                     </button>
                 </td>
@@ -148,6 +150,7 @@ const PercentageTable = ({ max, title, categories, onDownload } : PercentageTabl
             <tr>
                 <td colSpan={3}>
                     <button onClick={(e)=> onDownload(e, title.split(' ').join('-').toLocaleLowerCase())}>
+                        <FontAwesomeIcon icon={faDownload} /> 
                         Download Table
                     </button>
                 </td>
