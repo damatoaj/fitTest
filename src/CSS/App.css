@@ -227,6 +227,10 @@ address > a {
   font-style: normal;
 }
 
+ol, ul {
+  padding-left: 25px;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;

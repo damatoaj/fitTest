@@ -16,11 +16,17 @@ header > menu {
   flex-direction: row;
 }
 
+header ul {
+    padding-left: none;
+}
+
 header li {
   margin: 10px;
   padding: 10px;
   list-style: none;
 }
+
+
 
 
 .light {
